@@ -1,5 +1,6 @@
 # my-new-site
 
+**Lulamile M** — designer, founder and builder, South Africa (ZA).
 The portfolio, rebuilt as a static site: content and images from
 **[shubhamranjan-portfolio.vercel.app](https://shubhamranjan-portfolio.vercel.app/)**, with a **Tools** section taken from
 **[github.com/LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner)** sitting directly after Home in the nav.
@@ -70,6 +71,8 @@ node scripts/check-links.mjs  # every internal link and local image path resolve
 
 ## Notes on the two sources
 
+- **Identity** (name, location, email, LinkedIn, portrait, favicon) is Lulamile M's. **Location** is
+  South Africa (ZA) throughout — hero, about, contact and footer.
 - **Case studies, copy, services, testimonials, filters and logo order** come from the live portfolio. Where the live
   site only had a one-line description, that is what is used — nothing was invented to fill a gap.
 - **The Tools section** mirrors the devzigner repo: the eight tools in its order, the step sequences its `SKILL.md`

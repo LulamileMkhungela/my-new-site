@@ -121,7 +121,7 @@
         <div class="shell header-inner">
           <a class="brand" href="index.html" aria-label="${SITE.name} — home">
             <span class="brand__mark">
-              <img data-asset="about.webp" src="${LOCAL}about.webp" alt="" width="32" height="32" />
+              <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="32" height="32" />
             </span>
             <span>${SITE.name}<small>${SITE.brandLine}</small></span>
           </a>
@@ -230,7 +230,7 @@
               <h4>Elsewhere</h4>
               <a href="mailto:${SITE.email}">${SITE.email}</a>
               <a href="${SITE.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="${SITE.twitter}" target="_blank" rel="noopener">X / Twitter</a>
+              ${SITE.twitter ? `<a href="${SITE.twitter}" target="_blank" rel="noopener">X / Twitter</a>` : ''}
               <a href="${SITE.behance}" target="_blank" rel="noopener">Behance</a>
             </div>
           </div>

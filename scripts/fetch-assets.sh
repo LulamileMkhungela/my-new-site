@@ -38,7 +38,6 @@ FILES=$(
 
 # Plus the logos and the portrait used by the shell and the home page.
 EXTRA=(
-  about.webp
   Gojo-logo.svg savein-logo.svg scanbo-logo.svg maxima-logo.svg Sejaya-logo.svg asette-logo.svg
   swapabee-logo.svg rational-logo.svg ivypro-logo.svg havenise-logo.svg elvd-logo.svg tachus-logo.svg
   culinacraftique-logo.svg

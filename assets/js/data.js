@@ -7,14 +7,14 @@
  * Edit copy here; edit case studies by re-running the generator.
  */
 window.SITE = {
-  name: 'Shubham Ranjan',
+  name: 'Lulamile M',
   brandLine: 'Designer · Founder · Builder',
-  location: 'India, Anywhere Remote',
+  location: 'South Africa, Anywhere Remote',
   roles: ['Product Designer', 'Brand Strategist', 'Entrepreneur'],
-  email: 'shubhamranjan542@gmail.com',
-  linkedin: 'https://linkedin.com/in/shubhamranjan542',
-  twitter: 'https://x.com/Shubham_542',
-  behance: 'https://www.behance.net/shubhamranjan',
+  email: 'mkhungela.l@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/lulamile-mkhungela/',
+  twitter: '',
+  behance: 'https://lulamilemkhungela.github.io/portfolio.github.io/index.html',
   resume: 'https://drive.google.com/file/d/1jEAy1hFhtBHoPb1scwxsnQLnI4MfRXqC/view?usp=sharing',
   bookCall: 'contact.html',
   headline: 'Great ideas deserve great design.',
@@ -420,7 +420,7 @@ window.SITE = {
       company: 'Gojo & Company',
       period: 'July 2024',
       message:
-        'I had the pleasure of working with Shubham, and he is an outstanding designer. He is easy to communicate with, flexible, and consistently demonstrates a proactive attitude. Shubham is a self-starter who takes on various responsibilities, from content generation to website design, with enthusiasm and skill. He is a fantastic colleague and a valuable asset to any team.',
+        'I had the pleasure of working with Lulamile, and he is an outstanding designer. He is easy to communicate with, flexible, and consistently demonstrates a proactive attitude. Lulamile is a self-starter who takes on various responsibilities, from content generation to website design, with enthusiasm and skill. He is a fantastic colleague and a valuable asset to any team.',
     },
     {
       name: 'Rahul Pujara',
@@ -428,7 +428,7 @@ window.SITE = {
       company: 'Gojo & Company',
       period: 'June 2022',
       message:
-        'Shubham is empathetic and imbibes design thinking approach in his research and experiments with real customers. He had designed UX for neo banking product and experimented the product prototype in the market. He had also supported me in my user research and he is strong believer of bringing customer at the center. I see him as a great talent and was impressed by the quality of his product design. I strongly recommend his candidature to future employers and wish him lots of success.',
+        'Lulamile is empathetic and imbibes design thinking approach in his research and experiments with real customers. He had designed UX for neo banking product and experimented the product prototype in the market. He had also supported me in my user research and he is strong believer of bringing customer at the center. I see him as a great talent and was impressed by the quality of his product design. I strongly recommend his candidature to future employers and wish him lots of success.',
     },
     {
       name: 'Syam Nair',
@@ -436,7 +436,7 @@ window.SITE = {
       company: 'Gojo & Company',
       period: 'June 2022',
       message:
-        'Shubham is a talented product designer who designs products with empathy. As a practitioner of design thinking and human centered design approach, Shubham designed some of the key products for us. He designed some of the well received UX for our mobile app by considering all stake holders interest. He led the customer research & interviews and prototype testing with real end users to make the product successful from the go. He is really flexible and I really liked his quality of listening every opinion and testing the hypothesis for data driven decisions.',
+        'Lulamile is a talented product designer who designs products with empathy. As a practitioner of design thinking and human centered design approach, Lulamile designed some of the key products for us. He designed some of the well received UX for our mobile app by considering all stake holders interest. He led the customer research & interviews and prototype testing with real end users to make the product successful from the go. He is really flexible and I really liked his quality of listening every opinion and testing the hypothesis for data driven decisions.',
     },
     {
       name: 'Vineeta Sagar',
@@ -444,7 +444,7 @@ window.SITE = {
       company: 'ProdX',
       period: 'Jan 2022',
       message:
-        "Shubham has been an amazing mentor to me. He has helped me skyrocket my design skills exponentially. His client handling and dedication towards his work are really inspiring. Being a true definition of 'leader', it was great to work alongside him. Wishing him the very best for his future goals!",
+        "Lulamile has been an amazing mentor to me. He has helped me skyrocket my design skills exponentially. His client handling and dedication towards his work are really inspiring. Being a true definition of 'leader', it was great to work alongside him. Wishing him the very best for his future goals!",
     },
     {
       name: 'Vinayak Khare',
@@ -459,7 +459,7 @@ window.SITE = {
       designation: 'CIO',
       company: 'Tachus',
       period: 'January 2022',
-      message: 'Great communication, insights and results. It is very easy to get the work needed to be completed. Thank you for your work, Shubham!',
+      message: 'Great communication, insights and results. It is very easy to get the work needed to be completed. Thank you for your work, Lulamile!',
     },
   ],
 
@@ -467,12 +467,12 @@ window.SITE = {
     intro:
       'I build things. Sometimes that means designing a product that lives on millions of screens. Sometimes it means growing a brand from scratch, figuring out supply chains, or sitting quietly in a city I have never been to — just watching how people move through the world.',
     paragraphs: [
-      "I'm Shubham — a designer, founder, and someone who doesn't stay in one lane by choice. My work sits at the intersection of design, entrepreneurship, culture, and whatever else it takes to make something genuinely work. I don't follow the designer's playbook; I write mine as I go, learning in parallel across fields most designers never touch: marketing, business models, data, distribution, and people.",
+      "I'm Lulamile — a designer, founder, and someone who doesn't stay in one lane by choice. My work sits at the intersection of design, entrepreneurship, culture, and whatever else it takes to make something genuinely work. I don't follow the designer's playbook; I write mine as I go, learning in parallel across fields most designers never touch: marketing, business models, data, distribution, and people.",
       "To me, design isn't a title or a checklist. It's a way of seeing problems clearly enough to actually solve them. The work that lasts isn't born from chasing trends — it comes from staying curious, moving slow enough to notice things, and caring whether something works once it's out in the real world.",
       'I spent four years with Gojo & Company on products I believed in because of what it was trying to change, not just how it looked. I built Culina Craftique from the ground up — a wooden serveware brand built with equal parts craft and intent. There is more in the pipeline, things built for impact, not just revenue.',
       "When I'm not building, I'm moving. Backpacking, exploring places with stories older than most countries, picking up bits of culture, language, food, and history that always find their way back into how I think. Talking to strangers when the vibe is right, perfectly fine alone when it isn't.",
     ],
-    close: 'Rooted in India. Always somewhere interesting.',
+    close: 'Rooted in South Africa. Always somewhere interesting.',
     quote: {
       text: 'I am always doing that which I cannot do, in order that I may learn how to do it.',
       author: 'Pablo Picasso',

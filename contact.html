@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contact | Book a Free Call with Shubham Ranjan</title>
+    <title>Contact | Book a Free Call with Lulamile M</title>
     <meta
       name="description"
-      content="Get in touch with Shubham Ranjan for product design, brand strategy, Amazon growth or website projects. Book a free call or send a message."
+      content="Get in touch with Lulamile M for product design, brand strategy, Amazon growth or website projects. Book a free call or send a message."
     />
     <link rel="icon" href="assets/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
@@ -37,7 +37,7 @@
           <h1 class="display-xl" style="max-width: 20ch">A 30-minute conversation is all it takes.</h1>
           <p class="lede" style="margin-top: 1.4rem">
             No brief required. Tell me where you are and what's not working — research, strategy or design, or all
-            three. Based in India, working anywhere remote.
+            three. Based in South Africa (ZA), working anywhere remote.
           </p>
         </div>
       </section>
@@ -99,11 +99,10 @@
               <div class="card" style="margin-top: 1rem">
                 <h3 class="display-sm" style="margin-bottom: 0.5rem">Booking a call</h3>
                 <p style="font-size: 0.88rem; color: hsl(var(--ink-soft)); margin-bottom: 1rem">
-                  Calls run through the calendar on the original site. If you would rather keep it in email, say so in
-                  your message and I'll send times.
+                  Send a note with a couple of times that suit you and I'll confirm. Calls run 30 minutes.
                 </p>
-                <a class="btn btn--ghost btn--sm" href="https://shubhamranjan-portfolio.vercel.app/contact" target="_blank" rel="noopener">
-                  Open the booking page
+                <a class="btn btn--ghost btn--sm" href="mailto:mkhungela.l@gmail.com?subject=30-min%20call">
+                  Ask for a time
                 </a>
               </div>
             </div>
@@ -140,13 +139,17 @@
             <span aria-hidden="true">→</span>
           </a>
           <a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener">
-            <span><strong>LinkedIn</strong><span>linkedin.com/in/shubhamranjan542</span></span>
+            <span><strong>LinkedIn</strong><span>linkedin.com/in/lulamile-mkhungela</span></span>
             <span aria-hidden="true">→</span>
           </a>
-          <a href="${esc(SITE.twitter)}" target="_blank" rel="noopener">
-            <span><strong>X / Twitter</strong><span>@Shubham_542</span></span>
+          ${
+            SITE.twitter
+              ? `<a href="${esc(SITE.twitter)}" target="_blank" rel="noopener">
+            <span><strong>X / Twitter</strong><span>${esc(SITE.twitter.replace('https://x.com/', '@'))}</span></span>
             <span aria-hidden="true">→</span>
-          </a>
+          </a>`
+              : ''
+          }
           <a href="${esc(SITE.resume)}" target="_blank" rel="noopener">
             <span><strong>Resume</strong><span>Download the PDF</span></span>
             <span aria-hidden="true">→</span>
