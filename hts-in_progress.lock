@@ -1,8 +1,0 @@
-Mirror in progress since Fri, 06 Nov 2026 00:06:43 .. please wait!
-httrack https://shubhamranjan-portfolio.vercel.app/ -O . +*.shubhamranjan-portfolio.vercel.app* -v 
-To pause the engine: create an empty file named 'hts-stop.lock' (an earlier run's copy is ignored, so create it again)
-To stop it and keep the mirror: create an empty file named 'hts-abort.lock' (an earlier run's copy is ignored, so create it again)
-PID=53044
-UID=502
-GID=502
-START=1793916433

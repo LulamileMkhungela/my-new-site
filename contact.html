@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Book a Free Call with Shubham Ranjan</title>
+    <meta
+      name="description"
+      content="Get in touch with Shubham Ranjan for product design, brand strategy, Amazon growth or website projects. Book a free call or send a message."
+    />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>
+      try {
+        var saved = localStorage.getItem('sr-theme');
+        document.documentElement.dataset.theme =
+          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div data-header></div>
+
+    <main id="main">
+      <section class="hero" style="padding-bottom: clamp(1rem, 3vw, 2rem)">
+        <div class="shell">
+          <p class="eyebrow">Contact</p>
+          <h1 class="display-xl" style="max-width: 20ch">A 30-minute conversation is all it takes.</h1>
+          <p class="lede" style="margin-top: 1.4rem">
+            No brief required. Tell me where you are and what's not working — research, strategy or design, or all
+            three. Based in India, working anywhere remote.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: clamp(1.5rem, 3vw, 2.5rem)">
+        <div class="shell">
+          <div class="contact-grid">
+            <div class="card">
+              <h2 class="display-md" style="margin-bottom: 0.6rem">Send a message</h2>
+              <p style="color: hsl(var(--ink-soft)); font-size: 0.9rem">
+                This form opens your email app with everything filled in — nothing is posted anywhere, and no data
+                leaves your browser.
+              </p>
+              <form data-contact-form style="margin-top: 1.4rem">
+                <label class="form-field">
+                  <span>Your name</span>
+                  <input type="text" name="name" required autocomplete="name" placeholder="Ada Lovelace" />
+                </label>
+                <label class="form-field">
+                  <span>Email</span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" />
+                </label>
+                <label class="form-field">
+                  <span>What do you need?</span>
+                  <select name="topic">
+                    <option>Product design &amp; strategy</option>
+                    <option>Brand strategy &amp; Amazon growth</option>
+                    <option>Microfinance &amp; impact consulting</option>
+                    <option>Website design &amp; conversion</option>
+                    <option>The builder toolkit</option>
+                    <option>Something else</option>
+                  </select>
+                </label>
+                <label class="form-field">
+                  <span>Where you are</span>
+                  <textarea name="message" rows="5" required placeholder="The product, the problem, and what's not working."></textarea>
+                </label>
+                <button class="btn btn--accent btn--block" type="submit">Open in my email app</button>
+                <p class="form-note" style="margin: 0.8rem 0 0" data-form-note>
+                  Prefer email? Write to <a href="#" data-email style="text-decoration: underline"></a>.
+                </p>
+              </form>
+            </div>
+
+            <div>
+              <h2 class="display-md" style="margin-bottom: 1rem">Elsewhere</h2>
+              <div class="contact-list" data-contact-list></div>
+
+              <div class="card" style="margin-top: 1.5rem">
+                <h3 class="display-sm" style="margin-bottom: 0.6rem">What happens next</h3>
+                <ol class="tool-steps" style="margin-top: 0.4rem">
+                  <li><span class="n">01</span><span>You send a note, or book a call.</span></li>
+                  <li><span class="n">02</span><span>We spend 30 minutes on where you are and what's not working.</span></li>
+                  <li><span class="n">03</span><span>I map what's needed — research, strategy, design, or a combination.</span></li>
+                  <li><span class="n">04</span><span>We build and ship, iteratively, with your team in the loop.</span></li>
+                </ol>
+              </div>
+
+              <div class="card" style="margin-top: 1rem">
+                <h3 class="display-sm" style="margin-bottom: 0.5rem">Booking a call</h3>
+                <p style="font-size: 0.88rem; color: hsl(var(--ink-soft)); margin-bottom: 1rem">
+                  Calls run through the calendar on the original site. If you would rather keep it in email, say so in
+                  your message and I'll send times.
+                </p>
+                <a class="btn btn--ghost btn--sm" href="https://shubhamranjan-portfolio.vercel.app/contact" target="_blank" rel="noopener">
+                  Open the booking page
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Common questions</p>
+              <h2 class="display-lg">Before you write</h2>
+            </div>
+          </div>
+          <div class="faq" data-faq></div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/projects.data.js"></script>
+    <script src="assets/js/shell.js"></script>
+    <script>
+      (function () {
+        const SITE = window.SITE;
+        const { esc } = window.SR;
+
+        document.querySelector('[data-contact-list]').innerHTML = `
+          <a href="mailto:${esc(SITE.email)}">
+            <span><strong>Email</strong><span>${esc(SITE.email)}</span></span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener">
+            <span><strong>LinkedIn</strong><span>linkedin.com/in/shubhamranjan542</span></span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="${esc(SITE.twitter)}" target="_blank" rel="noopener">
+            <span><strong>X / Twitter</strong><span>@Shubham_542</span></span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="${esc(SITE.resume)}" target="_blank" rel="noopener">
+            <span><strong>Resume</strong><span>Download the PDF</span></span>
+            <span aria-hidden="true">→</span>
+          </a>`;
+
+        document.querySelector('[data-email]').textContent = SITE.email;
+        document.querySelector('[data-email]').href = `mailto:${SITE.email}`;
+
+        const form = document.querySelector('[data-contact-form]');
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          const subject = `${data.get('topic')} — ${data.get('name')}`;
+          const body = `${data.get('message')}\n\n— ${data.get('name')}\n${data.get('email')}`;
+          location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          document.querySelector('[data-form-note]').textContent =
+            'If your email app did not open, copy the address above and send it manually.';
+        });
+
+        const pool = SITE.services.flatMap((service) => SITE.serviceDetail[service.id].faqs);
+        document.querySelector('[data-faq]').innerHTML = pool
+          .map(
+            (item) => `
+            <details>
+              <summary>${esc(item.q)}</summary>
+              <p>${esc(item.a)}</p>
+            </details>`,
+          )
+          .join('');
+      })();
+    </script>
+  </body>
+</html>

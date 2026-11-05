@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services | Shubham Ranjan — Product, Brand &amp; Growth</title>
+    <meta
+      name="description"
+      content="Product design, brand strategy & Amazon growth, microfinance consulting, and conversion-focused website design — services by Shubham Ranjan."
+    />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>
+      try {
+        var saved = localStorage.getItem('sr-theme');
+        document.documentElement.dataset.theme =
+          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div data-header></div>
+
+    <main id="main">
+      <section class="hero" style="padding-bottom: clamp(1rem, 3vw, 2rem)">
+        <div class="shell">
+          <p class="eyebrow">Services</p>
+          <h1 class="display-xl" style="max-width: 22ch">Where do you need clarity?</h1>
+          <p class="lede" style="margin-top: 1.4rem">
+            Four areas of work. Most early-stage founders waste months building the wrong thing — the job is to define
+            what to build, then design it properly so you ship faster with less wasted runway.
+          </p>
+          <nav class="filters" aria-label="Jump to a service" style="margin-top: 2rem">
+            <a class="filter" href="#product" style="text-decoration:none">01 · Product</a>
+            <a class="filter" href="#brand" style="text-decoration:none">02 · Brand</a>
+            <a class="filter" href="#impact" style="text-decoration:none">03 · Impact</a>
+            <a class="filter" href="#web" style="text-decoration:none">04 · Web</a>
+          </nav>
+        </div>
+      </section>
+
+      <div class="shell" data-services></div>
+
+      <section class="section section--tight">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Common questions</p>
+              <h2 class="display-lg">Before we talk</h2>
+            </div>
+          </div>
+          <div class="faq" data-faq></div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="shell">
+          <div class="band">
+            <p class="eyebrow eyebrow--bare" style="justify-content: center">Start here</p>
+            <h2>A 30-minute conversation is all it takes to figure out where to begin.</h2>
+            <p>No brief required. Tell me what you're building and what's not working.</p>
+            <div class="row">
+              <a class="btn btn--accent" href="contact.html">Book a free 30-min call</a>
+              <a class="btn btn--ghost" href="work.html">See the work</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/projects.data.js"></script>
+    <script src="assets/js/shell.js"></script>
+    <script src="assets/js/services.js"></script>
+  </body>
+</html>
