@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ===================== FAVICON ===================== -->
+    <!-- HOW TO CHANGE FAVICON IN FUTURE:
+         1. Put your new image in the /public folder (e.g., /public/my-icon.png)
+         2. Change the href below to match: <link rel="icon" href="/my-icon.png" type="image/png" />
+         3. For .webp use type="image/webp", for .ico use type="image/x-icon"
+         You can also use multiple sizes for better browser support (see apple-touch-icon below). -->
+   <link rel="icon" href="/favicon.png" type="image/png" />
+   <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- ===================== FONTS ===================== -->
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ===================== PRIMARY SEO ===================== -->
+    <meta name="google-site-verification" content="z8lWLptHE_zRHcOEjt9_z84gF2jQMjbdmxjBwcmeaJQ" />
+    <title>Shubham Ranjan | Designer & Entrepreneur | Products, Brands & Strategy</title>
+    <meta
+      name="description"
+      content="I build things that work — products, brands & strategies rooted in design thinking, entrepreneurship & a curiosity that never stays in one lane."
+    />
+    <meta name="author" content="Shubham Ranjan" />
+    <meta
+      name="keywords"
+      content="Shubham Ranjan, product designer, UX designer, brand strategy, entrepreneur, design thinking, India, portfolio"
+    />
+
+    <!-- ===================== OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ===================== -->
+    <meta property="og:title" content="Shubham Ranjan | Designer & Entrepreneur | Products, Brands & Strategy" />
+    <meta
+      property="og:description"
+      content="I build things that work — products, brands & strategies rooted in design thinking, entrepreneurship & a curiosity that never stays in one lane."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://shubhamranjan.online/projects/about.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Shubham Ranjan Portfolio" />
+
+    <!-- ===================== TWITTER CARD ===================== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shubham Ranjan | Designer & Entrepreneur" />
+    <meta
+      name="twitter:description"
+      content="I build things that work — products, brands & strategies rooted in design thinking, entrepreneurship & a curiosity that never stays in one lane."
+    />
+    <meta name="twitter:image" content="https://shubhamranjan.online/projects/about.webp" />
+    <meta name="twitter:site" content="@Shubham_542" />
+    <meta name="twitter:creator" content="@Shubham_542" />
+
+    <!-- ===================== GEO / LOCATION (for geo crawlers) ===================== -->
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
+    <meta name="ICBM" content="20.5937, 78.9629" />
+
+    <!-- ===================== ROBOTS ===================== -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- ===================== JSON-LD: Person Schema (for Google & LLMs) ===================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Shubham Ranjan",
+        "url": "https://shubhamranjan.online/",
+        "image": "https://shubhamranjan.online/projects/about.webp",
+        "jobTitle": "Product Designer & Entrepreneur",
+        "description": "I build things that work — products, brands & strategies rooted in design thinking, entrepreneurship & a curiosity that never stays in one lane.",
+        "knowsAbout": ["Product Design", "UX Design", "Brand Strategy", "Entrepreneurship", "Design Thinking"],
+        "nationality": "Indian",
+        "sameAs": [
+          "https://www.linkedin.com/in/shubhamranjan542/",
+          "https://x.com/Shubham_542"
+        ]
+      }
+    </script>
+
+    <!-- ===================== JSON-LD: Website Schema ===================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Shubham Ranjan Portfolio",
+        "url": "https://shubhamranjan.online/",
+        "description": "Portfolio of Shubham Ranjan — designer, founder, and builder of products, brands & strategies rooted in design thinking, entrepreneurship & a curiosity that never stays in one lane.",
+        "inLanguage": "en-IN",
+        "author": {
+          "@type": "Person",
+          "name": "Shubham Ranjan"
+        }
+      }
+    </script>
+
+    <!-- ===================== GOOGLE ANALYTICS ===================== -->
+    <!-- HOW TO ADD GOOGLE ANALYTICS IN FUTURE:
+         1. Go to analytics.google.com → create a property → get your Measurement ID (looks like G-XXXXXXXXXX)
+         2. Uncomment and paste your ID in the two lines below:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+    <script type="module" crossorigin src="/assets/index-DEiHh-6e.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BfPpQAnT.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
