@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | Lulamile M — Designer, Founder &amp; Brand Strategist</title>
+    <meta
+      name="description"
+      content="The story behind Lulamile M — product designer, founder of Culina Craftique, and brand strategist working across fintech, e-commerce and impact."
+    />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>
+      try {
+        var saved = localStorage.getItem('sr-theme');
+        document.documentElement.dataset.theme =
+          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div data-header></div>
+
+    <main id="main">
+      <section class="hero" style="padding-bottom: 0">
+        <div class="shell shell--narrow">
+          <div class="about-portrait">
+            <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="Lulamile M" width="900" height="675" />
+          </div>
+          <div style="margin-top: clamp(2rem, 4vw, 3rem)">
+            <p class="eyebrow">About</p>
+            <h1 class="display-xl">Designer, founder, and someone who doesn't stay in one lane by choice.</h1>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell shell--narrow prose" data-about></div>
+      </section>
+
+      <section class="section" style="padding-block: 0">
+        <div class="shell shell--narrow">
+          <div class="pull-quote">
+            <p data-quote-text></p>
+            <footer data-quote-author></footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Clients</p>
+              <h2 class="display-lg">Worked with</h2>
+            </div>
+          </div>
+          <div class="grid grid--3" data-clients></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">What people say</p>
+              <h2 class="display-lg">Quiet confidence</h2>
+            </div>
+          </div>
+          <div class="grid grid--3" data-quotes></div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="shell">
+          <div class="band">
+            <p class="eyebrow" style="justify-content: center">Let's connect</p>
+            <h2 data-connect></h2>
+            <div class="row">
+              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
+              <a class="btn btn--ghost" href="#" data-linkedin target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn btn--ghost" href="#" data-resume target="_blank" rel="noopener">Download Resume</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/projects.data.js"></script>
+    <script src="assets/js/shell.js"></script>
+    <script>
+      (function () {
+        const SITE = window.SITE;
+        const { esc, initials } = window.SR;
+
+        document.querySelector('[data-about]').innerHTML = `
+          <p><strong>${esc(SITE.about.intro)}</strong></p>
+          ${SITE.about.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('')}
+          <p><strong>${esc(SITE.about.close)}</strong></p>`;
+
+        document.querySelector('[data-quote-text]').textContent = `“${SITE.about.quote.text}”`;
+        document.querySelector('[data-quote-author]').textContent = `— ${SITE.about.quote.author}`;
+
+        document.querySelector('[data-clients]').innerHTML = SITE.logos
+          .map(
+            (logo) => `
+            <div class="card" style="display:grid;place-items:center;min-height:7rem">
+              <img data-asset="${esc(logo.src)}" src="${window.asset(logo.src)}" alt="${esc(logo.alt)}"
+                style="max-height:${logo.scale ? (2.2 * logo.scale).toFixed(1) : '2.2'}rem;max-width:80%;object-fit:contain" loading="lazy" />
+            </div>`,
+          )
+          .join('');
+
+        document.querySelector('[data-quotes]').innerHTML = SITE.testimonials
+          .map(
+            (item) => `
+            <figure class="card" style="display:flex;flex-direction:column;gap:1rem;margin:0">
+              <blockquote style="margin:0;font-size:0.9rem;line-height:1.7;color:hsl(var(--ink-soft))">“${esc(item.message)}”</blockquote>
+              <figcaption style="margin-top:auto;display:flex;align-items:center;gap:0.7rem">
+                <span class="avatar">${esc(initials(item.name))}</span>
+                <span>
+                  <strong style="display:block;font-size:0.88rem">${esc(item.name)}</strong>
+                  <span style="font-size:0.76rem;color:hsl(var(--ink-soft))">${esc(item.designation)} · ${esc(item.company)}</span>
+                </span>
+              </figcaption>
+            </figure>`,
+          )
+          .join('');
+
+        document.querySelector('[data-connect]').textContent = SITE.about.connect;
+        document.querySelector('[data-linkedin]').href = SITE.linkedin;
+        document.querySelector('[data-resume]').href = SITE.resume;
+      })();
+    </script>
+  </body>
+</html>

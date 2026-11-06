@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tools | The builder toolkit — Lulamile M</title>
+    <meta
+      name="description"
+      content="Eight free tools for builders — agent skills, templates, conventions and workflows from the devzigner toolkit, with their full step sequences and install paths."
+    />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>
+      try {
+        var saved = localStorage.getItem('sr-theme');
+        document.documentElement.dataset.theme =
+          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div data-header></div>
+
+    <main id="main">
+      <section class="tools-hero">
+        <div class="shell">
+          <div class="tools-hero__grid">
+            <div>
+              <p class="eyebrow" data-intro-eyebrow>Tools</p>
+              <h1 data-intro-title>The builder toolkit</h1>
+              <p class="lede" style="margin-top: 1.3rem" data-intro-lede></p>
+              <div class="hero__actions">
+                <a class="btn btn--accent" href="#toolkit">Open the toolkit</a>
+                <a class="btn btn--ghost" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">
+                  The repository
+                </a>
+              </div>
+            </div>
+            <div class="tools-stats" data-tool-stats></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="toolkit" style="padding-top: clamp(1.5rem, 3vw, 2.5rem)">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">The eight</p>
+              <h2 class="display-lg">Every tool, every step</h2>
+              <p>Each tool lists the steps it actually runs and the file behind each one. Nothing behind a tab is hidden.</p>
+            </div>
+          </div>
+          <div class="tool-tabs" data-tool-tabs role="tablist" aria-label="The eight free tools"></div>
+          <div data-tool-panel></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">The flow</p>
+              <h2 class="display-lg">ProdOps, in five stages</h2>
+              <p>Plan and design a real app, then export a handoff a coding agent can build from.</p>
+            </div>
+          </div>
+          <div class="grid grid--3" data-stages></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">The library</p>
+              <h2 class="display-lg">Every skill the agent reads</h2>
+              <p>Thirteen skills, eighty files. Each one is Markdown instructions, not a program — the agent applies the ones relevant to the stage.</p>
+            </div>
+          </div>
+          <div class="tool-grid" data-library></div>
+          <p class="quote-note" style="margin-top: 1rem">
+            Read them at
+            <a href="https://github.com/LulamileMkhungela/devzigner/tree/main/.agents/skills" target="_blank" rel="noopener" style="text-decoration: underline">.agents/skills/</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Inside the workspace</p>
+              <h2 class="display-lg">What you actually work in</h2>
+              <p>The workspace lists role-specific process steps and the resulting folders. The canon opens before there is a product to open.</p>
+            </div>
+          </div>
+          <div class="tool-grid" data-workspace></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Commands</p>
+              <h2 class="display-lg">The command set</h2>
+              <p>All twenty local commands are mapped to at least one process. Ten of them carry the stage work; five carry the standards.</p>
+            </div>
+          </div>
+          <div class="tool-grid" data-commands></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="case-section__head">
+            <div>
+              <p class="eyebrow">Install</p>
+              <h2 class="display-lg">Run it locally</h2>
+              <p class="lede" style="margin-top: 1rem; font-size: 0.95rem">
+                The package is the repository. Skills live in <code>.agents/skills</code>, instructions in
+                <code>AGENTS.md</code>, commands in <code>.agents/commands/prodops</code>.
+              </p>
+              <div data-install style="margin-top: 1.6rem"></div>
+            </div>
+            <div>
+              <div class="card">
+                <h3 class="display-sm" style="margin-bottom: 0.6rem">What is in the package</h3>
+                <pre class="tree" data-tree></pre>
+              </div>
+              <p class="quote-note" style="margin-top: 1rem" data-repo-note></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="shell">
+          <div class="band">
+            <p class="eyebrow eyebrow--bare" style="justify-content: center">Free, with no gate</p>
+            <h2>There is no email and no key.</h2>
+            <p>Every tool above is already in the package the repository exports. Clone it and read the canon.</p>
+            <div class="row">
+              <a class="btn btn--accent" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">
+                Clone the repository
+              </a>
+              <a class="btn btn--ghost" href="contact.html">Talk about a build</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/tools.data.js"></script>
+    <script src="assets/js/shell.js"></script>
+    <script src="assets/js/tools.js"></script>
+  </body>
+</html>
