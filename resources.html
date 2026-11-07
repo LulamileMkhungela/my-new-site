@@ -3,20 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Resources | Lulamile Mkhungela — Toolkit, AI Prompts &amp; Reading</title>
-    <meta name="description" content="Lulamile Mkhungela's grouped builder toolkit, copyable AI design prompts, paid prompt packs and a credited reading list of 90n resources and guides." />
-    <meta name="author" content="Lulamile Mkhungela" />
+    <title>Resources | Lulamile Mkhungelakhungela — Toolkit, AI Prompts &amp; Reading</title>
+    <meta
+      name="description"
+      content="Lulamile Mkhungela’s grouped builder toolkit, AI design prompts and credited reading list."
+    />
     <link rel="icon" href="assets/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <noscript><style>[data-reveal] { opacity: 1; transform: none; }</style></noscript>
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/site.css" />
     <script>
       try {
         var saved = localStorage.getItem('lm-theme');
-        document.documentElement.dataset.theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme =
+          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       } catch (e) {}
     </script>
   </head>
@@ -28,19 +35,17 @@
         <div class="shell">
           <div class="tools-hero__grid">
             <div>
-              <p class="eyebrow">Resources · Lulamile Mkhungela</p>
-              <h1>The builder toolkit, prompts &amp; reading.</h1>
-              <p class="lede" style="margin-top: 1.3rem">
-                My working toolkit, AI design prompts and a reading list worth your time. Made by me where it says so;
-                clearly credited to its publisher where it isn’t.
-              </p>
+              <p class="eyebrow" data-intro-eyebrow>Resources</p>
+              <h1 data-intro-title>Resources for builders</h1>
+              <p class="lede" style="margin-top: 1.3rem" data-intro-lede></p>
               <div class="hero__actions">
                 <a class="btn btn--accent" href="#toolkit">Open the toolkit</a>
-                <a class="btn btn--ghost" href="#prompts">AI prompts</a>
-                <a class="btn btn--ghost" href="#reading">Reading list</a>
+                <a class="btn btn--ghost" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">
+                  The repository
+                </a>
               </div>
             </div>
-            <div class="tools-stats" data-resource-stats></div>
+            <div class="tools-stats" data-tool-stats></div>
           </div>
         </div>
       </section>
@@ -49,13 +54,13 @@
         <div class="shell">
           <div class="section-head">
             <div>
-              <p class="eyebrow">01 · Built by me</p>
+              <p class="eyebrow">The eight</p>
               <h2 class="display-lg">Every tool, every step</h2>
-              <p>Eight free tools from my devzigner repository, grouped by the job they do. Each tab lists the steps it actually runs and the file behind each one.</p>
+              <p>Each tool lists the steps it actually runs and the file behind each one. Nothing behind a tab is hidden.</p>
             </div>
-            <a class="btn btn--ghost btn--sm" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">The repository ↗</a>
           </div>
-          <div data-toolkit-groups></div>
+          <div class="tool-tabs" data-tool-tabs role="tablist" aria-label="The eight free tools"></div>
+          <div data-tool-panel></div>
         </div>
       </section>
 
@@ -82,7 +87,10 @@
             </div>
           </div>
           <div class="tool-grid" data-library></div>
-          <p class="quote-note" style="margin-top: 1rem">Read them at <a href="https://github.com/LulamileMkhungela/devzigner/tree/main/.agents/skills" target="_blank" rel="noopener" style="text-decoration: underline">.agents/skills/</a></p>
+          <p class="quote-note" style="margin-top: 1rem">
+            Read them at
+            <a href="https://github.com/LulamileMkhungela/devzigner/tree/main/.agents/skills" target="_blank" rel="noopener" style="text-decoration: underline">.agents/skills/</a>
+          </p>
         </div>
       </section>
 
@@ -118,7 +126,10 @@
             <div>
               <p class="eyebrow">Install</p>
               <h2 class="display-lg">Run it locally</h2>
-              <p class="lede" style="margin-top: 1rem; font-size: 0.95rem">The package is the repository. Skills live in <code>.agents/skills</code>, instructions in <code>AGENTS.md</code>, commands in <code>.agents/commands/prodops</code>.</p>
+              <p class="lede" style="margin-top: 1rem; font-size: 0.95rem">
+                The package is the repository. Skills live in <code>.agents/skills</code>, instructions in
+                <code>AGENTS.md</code>, commands in <code>.agents/commands/prodops</code>.
+              </p>
               <div data-install style="margin-top: 1.6rem"></div>
             </div>
             <div>
@@ -136,26 +147,14 @@
         <div class="shell">
           <div class="section-head">
             <div>
-              <p class="eyebrow">02 · Created by Lulamile Mkhungela</p>
-              <h2 class="display-lg">AI design prompts</h2>
-              <p>Prompts I use to explore interfaces, commerce and portfolio ideas. Free prompts open in the panel below; paid packs link to my Selar store.</p>
+              <p class="eyebrow">AI prompts</p>
+              <h2 class="display-lg">Prompts from my practice</h2>
+              <p>Free prompts include the full public text. Paid packs link to my Selar store; their prompt bodies and files are not copied here.</p>
             </div>
-            <a class="btn btn--ghost btn--sm" href="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html" target="_blank" rel="noopener">Original prompt library ↗</a>
           </div>
-
-          <div class="card resource-search-card" data-reveal>
-            <label class="form-field">
-              <span>Search prompts and reading</span>
-              <input type="search" data-resource-search placeholder="Search prompts, packs or guides…" autocomplete="off" />
-            </label>
-            <div class="filters" data-resource-access role="group" aria-label="Filter by access"></div>
-            <div class="filters" data-prompt-categories role="group" aria-label="Filter prompts by design category"></div>
-            <p class="resource-count" data-resource-count role="status" aria-live="polite"></p>
-          </div>
-
-          <div class="prompt-reader" data-prompt-reader hidden></div>
-          <div class="work-grid work-grid--feature" data-prompt-grid></div>
-          <p class="resource-note">Free prompts are the full public text. Paid packs show only the public title, format and price — the prompt body and files are delivered by Selar after purchase.</p>
+          <div class="filters" data-prompt-filters role="group" aria-label="Filter prompts by access"></div>
+          <div class="tool-tabs" data-prompt-tabs role="tablist" aria-label="AI design prompts"></div>
+          <div data-prompt-panel></div>
         </div>
       </section>
 
@@ -163,34 +162,28 @@
         <div class="shell">
           <div class="section-head">
             <div>
-              <p class="eyebrow">03 · Curated by me, written by others</p>
-              <h2 class="display-lg">A reading list I stand behind</h2>
-              <p>External guides, skill packs and software I recommend. Most are free; the software entry has a free trial and paid plans. Publisher names stay on every card.</p>
+              <p class="eyebrow">Reading list</p>
+              <h2 class="display-lg">Resources I recommend</h2>
+              <p>External packs, guides and software, grouped by type. Every card names its publisher and whether access is free, paid or both.</p>
             </div>
           </div>
-          <div class="row directory-links" data-directory-links></div>
+          <div class="row" data-directory-links style="margin-bottom: 1.6rem"></div>
           <div data-reading-groups></div>
-          <p class="resource-disclosure" data-resource-disclosure></p>
+          <p class="quote-note" style="margin-top: 1rem" data-resource-disclosure></p>
         </div>
       </section>
-
-      <div class="shell">
-        <div class="card center" data-resource-empty hidden style="padding: 3rem 1rem">
-          <h2 class="display-md">No matches yet.</h2>
-          <p style="color: hsl(var(--ink-soft)); margin: 0.8rem 0 1.2rem">Try a different search or clear the filters.</p>
-          <button class="btn btn--ghost btn--sm" type="button" data-resource-reset>Clear filters</button>
-        </div>
-      </div>
 
       <section class="section section--tight">
         <div class="shell">
           <div class="band">
-            <p class="eyebrow eyebrow--bare" style="justify-content: center">Need a hand applying this?</p>
-            <h2>Tools are useful. Judgement is the work.</h2>
-            <p>I help teams turn these workflows into a product, a design system or an interface that ships.</p>
+            <p class="eyebrow eyebrow--bare" style="justify-content: center">Resources, with clear credit</p>
+            <h2>Use the free tools. Credit the publishers.</h2>
+            <p>My toolkit is free in the repository. External guides and packs stay with their publishers; paid prompt packs are delivered by Selar.</p>
             <div class="row">
-              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-              <a class="btn btn--ghost" href="work.html">See my work</a>
+              <a class="btn btn--accent" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">
+                Open the toolkit repository
+              </a>
+              <a class="btn btn--ghost" href="contact.html">Talk about a build</a>
             </div>
           </div>
         </div>

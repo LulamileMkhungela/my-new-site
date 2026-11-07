@@ -1,53 +1,123 @@
 /**
- * Home — original my-new-site hero, client marquee, featured work, process,
- * services and testimonials. Content comes from window.SITE and window.PROJECTS.
+ * Home — hero, client marquee, featured work, process, services, testimonials.
+ * All copy comes from window.SITE and window.PROJECTS.
  */
 (function () {
   const SITE = window.SITE;
-  const { esc, initials } = window.LM;
+  const P = window.PROJECTS;
+  const { esc, md, initials } = window.LM;
   const img = (name, alt, cls) =>
     `<img data-asset="${esc(name)}" src="${window.asset(name)}" alt="${esc(alt)}" loading="lazy" decoding="async"${cls ? ` class="${cls}"` : ''} />`;
 
   /* ---- Hero --------------------------------------------------------------- */
-  document.querySelector('[data-headline]').innerHTML = 'Design the product.<br><em>Build the interface.</em>';
+  document.querySelector('[data-headline]').innerHTML = SITE.headline.replace(
+    /great design\.?$/i,
+    '<em>great design</em>.',
+  );
   document.querySelector('[data-roles]').innerHTML = SITE.roles.map((role) => `<span>${esc(role)}</span>`).join('');
-  document.querySelector('[data-subline]').textContent = SITE.subline;
-  document.querySelector('[data-location]').textContent = `${SITE.location} · ${SITE.availability}`;
   document.querySelector('[data-stats]').innerHTML = SITE.stats
     .map((stat) => `<div class="stat"><strong>${esc(stat.value)}</strong><span>${esc(stat.label)}</span></div>`)
     .join('');
 
   /* ---- Client marquee (two passes so the loop is seamless) ---------------- */
-  const names = SITE.collaborations.map((name) => `<span class="client-name">${esc(name)}</span>`).join('');
-  document.querySelector('[data-marquee]').innerHTML = `<div class="marquee__track">${names}${names}</div>`;
+  const logos = SITE.logos
+    .map(
+      (logo) =>
+        `<img data-asset="${esc(logo.src)}" src="${window.asset(logo.src)}" alt="${esc(logo.alt)}" loading="lazy"
+           style="height:${logo.scale ? (1.4 * logo.scale).toFixed(2) : '1.4'}rem" />`,
+    )
+    .join('');
+  document.querySelector('[data-marquee]').innerHTML = `<div class="marquee__track">${logos}${logos}</div>`;
 
-  /* ---- Featured work, grouped by source category -------------------------- */
-  window.ProjectUI.mount(document.querySelector('[data-featured]'), document.querySelector('[data-filters]'));
+  /* ---- Filters ------------------------------------------------------------ */
+  const filters = document.querySelector('[data-filters]');
+  filters.innerHTML = SITE.filters
+    .map(
+      (filter, index) =>
+        `<button class="filter" type="button" data-filter="${esc(filter.tag)}" aria-pressed="${index === 0}">
+           ${esc(filter.label)}<span>${filter.count}</span>
+         </button>`,
+    )
+    .join('');
 
-  /* ---- Resources in the original archive-card list ------------------------ */
-  document.querySelector('[data-archive]').innerHTML = [
-    { href: 'resources.html#toolkit', tint: 'tint-lavender', title: 'My toolkit', body: 'Eight free tools, grouped by the job they do.' },
-    { href: 'resources.html#prompts', tint: 'tint-peach', title: 'AI design prompts', body: 'Ten free prompts to copy; five paid packs on Selar.' },
-    { href: 'resources.html#reading', tint: 'tint-sky', title: 'Reading list', body: 'Credited 90n packs and guides, plus Lantern.' },
-  ].map((item) => `
-    <a class="archive-card" href="${item.href}" data-reveal>
-      <div class="media ${item.tint}" aria-hidden="true"></div>
-      <div><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div>
-    </a>`).join('');
+  /* ---- Featured work ------------------------------------------------------ */
+  const featured = [
+    ...P.product.map((project) => ({ ...project, href: /^https?:/.test(project.url) ? project.url : `case-study.html?id=${project.id}` })),
+    ...Object.values(P.graphic).map((project) => ({ ...project, href: /^https?:/.test(project.url) ? project.url : `case-study.html?id=${project.id}` })),
+    ...Object.values(P.amazon).map((project) => ({ ...project, href: /^https?:/.test(project.url) ? project.url : `case-study.html?id=${project.id}` })),
+  ];
+
+  const archiveCards = P.archive
+    .map(
+      (project) => `
+      <a class="archive-card" href="${esc(project.url)}" target="_blank" rel="noopener" data-reveal>
+        <div class="media">${img(project.cover, project.title)}</div>
+        <div>
+          <h3>${esc(project.title)}</h3>
+          <p>${esc(project.client)} · ${esc(project.year)}</p>
+        </div>
+      </a>`,
+    )
+    .join('');
+
+  function card(project, index) {
+    const tags = project.tags || [];
+    return `
+      <a class="work-card" href="${esc(project.href)}" data-tags="${esc(tags.join(' '))}" data-reveal style="--delay:${index * 60}ms">
+        <div class="media media--16x9">${img(project.cover, project.title)}</div>
+        <div class="work-card__body">
+          <span class="work-card__index">
+            <span>${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}</span>
+            <span>${esc(project.client)}</span>
+          </span>
+          <h3>${esc(project.title)}</h3>
+          <p>${esc(project.description)}</p>
+          <span class="chips">${(project.skills || []).slice(0, 4).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
+          <span class="work-card__foot">
+            <span>${esc(project.year)}</span>
+            <span class="work-card__cta">${/^https?:/.test(project.href) ? 'Open project' : 'View case study'}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </span>
+        </div>
+      </a>`;
+  }
+
+  const grid = document.querySelector('[data-featured]');
+  const archiveHost = document.querySelector('[data-archive]');
+  grid.innerHTML = featured.map(card).join('');
+  archiveHost.innerHTML = archiveCards;
+
+  filters.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    const tag = button.dataset.filter;
+    filters.querySelectorAll('[data-filter]').forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+    grid.querySelectorAll('.work-card').forEach((element) => {
+      const tags = element.dataset.tags || '';
+      element.hidden = tag !== 'all' && !tags.split(' ').includes(tag);
+    });
+    archiveHost.querySelectorAll('.archive-card').forEach((element) => {
+      element.hidden = tag !== 'all';
+    });
+  });
 
   /* ---- Process ------------------------------------------------------------ */
   document.querySelector('[data-process]').innerHTML = SITE.process
-    .map((step) => `
+    .map(
+      (step) => `
       <li data-reveal>
         <span class="n">${esc(step.num)}</span>
         <h3>${esc(step.title)}</h3>
         <p>${esc(step.body)}</p>
-      </li>`)
+      </li>`,
+    )
     .join('');
 
   /* ---- Services ----------------------------------------------------------- */
   document.querySelector('[data-services]').innerHTML = SITE.services
-    .map((service, index) => `
+    .map(
+      (service, index) => `
       <a class="service-card" href="${esc(service.page)}" data-reveal style="--delay:${index * 70}ms">
         <div class="media media--16x9">${img(service.image, service.title)}</div>
         <div class="service-card__body">
@@ -56,7 +126,8 @@
           <p>${esc(service.oneliner)}</p>
           <span class="chips"><span class="chip">${esc(service.tagline)}</span></span>
         </div>
-      </a>`)
+      </a>`,
+    )
     .join('');
 
   /* ---- Testimonials ------------------------------------------------------- */
@@ -70,7 +141,10 @@
   const dots = document.querySelector('[data-quote-dots]');
 
   dots.innerHTML = list
-    .map((item, index) => `<button type="button" role="tab" data-dot="${index}" aria-current="${index === 0}" aria-label="Testimonial from ${esc(item.name)}"></button>`)
+    .map(
+      (item, index) =>
+        `<button type="button" role="tab" data-dot="${index}" aria-current="${index === 0}" aria-label="Testimonial from ${esc(item.name)}"></button>`,
+    )
     .join('');
 
   function show(index) {
@@ -78,7 +152,7 @@
     const item = list[at];
     textEl.textContent = `“${item.message}”`;
     nameEl.textContent = item.name;
-    metaEl.textContent = `${item.designation} · ${item.company}`;
+    metaEl.textContent = [item.designation, item.company, item.period].filter(Boolean).join(' · ');
     avatarEl.textContent = initials(item.name);
     dots.querySelectorAll('[data-dot]').forEach((dot, i) => dot.setAttribute('aria-current', String(i === at)));
   }
@@ -89,8 +163,14 @@
     timer = setInterval(() => show(at + 1), 9000);
   }
 
-  document.querySelector('[data-quote-prev]').addEventListener('click', () => { show(at - 1); auto(); });
-  document.querySelector('[data-quote-next]').addEventListener('click', () => { show(at + 1); auto(); });
+  document.querySelector('[data-quote-prev]').addEventListener('click', () => {
+    show(at - 1);
+    auto();
+  });
+  document.querySelector('[data-quote-next]').addEventListener('click', () => {
+    show(at + 1);
+    auto();
+  });
   dots.addEventListener('click', (event) => {
     const dot = event.target.closest('[data-dot]');
     if (!dot) return;

@@ -228,7 +228,7 @@ window.TOOLKIT_DATA = {
     body: 'There is no email and no key: the tool is already in the package the repository exports.',
     steps: [
       'It ships at the path named on the tool, exactly where its steps expect it.',
-      'Its folder sits under .agents/skills/; CLAUDE.md and .claude/skills are symlinks to it, so there is one copy to update.',
+      'Agent skills sit under .agents/skills/; templates, conventions and workflows live at the paths named above. CLAUDE.md and .claude/skills symlink to the agent folder, so there is one copy to update.',
       'Run it with the command its own file names — every step listed is a section of SKILL.md.',
     ],
   },

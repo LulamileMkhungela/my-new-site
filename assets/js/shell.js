@@ -1,14 +1,16 @@
 /**
- * Shell — original my-new-site header, mobile drawer, theme, footer,
- * reveal-on-scroll and image fallback. Images are local-first; nothing falls
- * back to another designer's website.
+ * Shell — header, mobile drawer, theme, footer, reveal-on-scroll, image fallback.
+ *
+ * Images live locally under assets/img/. A missing file uses the original
+ * inline placeholder; no request is made to another designer's website.
  */
 (function () {
   const SITE = window.SITE;
   const LOCAL = 'assets/img/projects/';
-  const THEME_KEY = 'lm-theme';
 
   /* ---- Image resolution -------------------------------------------------- */
+
+  /** Inline SVG placeholder, tinted, with the asset name on it. */
   function placeholder(name) {
     const label = (name || 'image').replace(/[-_]/g, ' ').replace(/\.\w+$/, '');
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
@@ -18,25 +20,29 @@
       <rect width="640" height="480" fill="url(#g)"/>
       <circle cx="320" cy="216" r="46" fill="#3a2f63" opacity=".12"/>
       <text x="320" y="300" text-anchor="middle" font-family="Inter,sans-serif"
-        font-size="17" fill="#3a2f63" opacity=".65">${label.replace(/[<>&"']/g, '')}</text>
+        font-size="17" fill="#3a2f63" opacity=".65">${label}</text>
     </svg>`;
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.replace(/\s+/g, ' '))}`;
   }
 
+  /** Local-first guard: a missing file uses the original inline placeholder. */
   function guard(img) {
     if (img.dataset.guarded) return;
     img.dataset.guarded = '1';
+    const name = img.dataset.asset || img.getAttribute('src') || '';
+    const file = name.split('/').pop();
     img.addEventListener('error', () => {
       if (img.dataset.failed) return;
       img.dataset.failed = '1';
-      img.src = placeholder(img.dataset.asset || img.alt || 'image');
+      img.src = placeholder(file);
     });
   }
 
   function guardAll(root) {
-    (root || document).querySelectorAll('img[data-asset], img[data-guard], img').forEach(guard);
+    (root || document).querySelectorAll('img[data-asset], img[data-guard]').forEach(guard);
   }
 
+  /* ---- Asset URL helpers (used by the page scripts) ---------------------- */
   window.asset = function asset(name, folder) {
     if (!name) return placeholder('image');
     if (/^(https?:|data:|\/\/)/.test(name)) return name;
@@ -46,10 +52,17 @@
   window.placeholderImage = placeholder;
 
   /* ---- Theme ------------------------------------------------------------- */
+  const KEY = 'lm-theme';
+
   function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
-    try { localStorage.setItem(THEME_KEY, theme); } catch (e) { /* storage blocked */ }
+    try {
+      localStorage.setItem(KEY, theme);
+    } catch (e) {
+      /* storage blocked — the attribute still applies for this page */
+    }
   }
+
   function currentTheme() {
     return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
   }
@@ -67,7 +80,7 @@
   ];
 
   const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  const isCurrent = (href) => !href.includes('#') && (href.toLowerCase() === here || (href === 'resources.html' && here === 'tools.html'));
+  const isCurrent = (href) => !href.includes('#') && href.toLowerCase() === here;
 
   function mark() {
     document.querySelectorAll('[data-nav]').forEach((a) => {
@@ -114,7 +127,7 @@
           ${NAV.map((item) => `<a href="${item.href}" data-nav>${item.label}</a>`).join('')}
           <div class="drawer__foot">
             <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-            <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">View CV</a>
+            <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
           </div>
         </nav>
       </div>`;
@@ -176,11 +189,11 @@
         <div class="shell">
           <div class="footer-top">
             <div>
-              <h3>Thanks for the visit.</h3>
+              <h3>${SITE.contactMessage.split('.')[0]}.</h3>
               <p class="lede" style="font-size:0.95rem">${SITE.contactMessage}</p>
               <div class="row" style="margin-top:1.2rem">
                 <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-                <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">View CV</a>
+                <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
               </div>
             </div>
             <div class="footer-col">
@@ -193,13 +206,13 @@
               <h4>Elsewhere</h4>
               <a href="mailto:${SITE.email}">${SITE.email}</a>
               <a href="${SITE.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="${SITE.github}" target="_blank" rel="noopener">GitHub</a>
-              <a href="${SITE.portfolio}" target="_blank" rel="noopener">Original portfolio</a>
+              ${SITE.twitter ? `<a href="${SITE.twitter}" target="_blank" rel="noopener">X / Twitter</a>` : ''}
+              <a href="${SITE.behance}" target="_blank" rel="noopener">Portfolio</a>
             </div>
           </div>
           <div class="footer-bottom">
             <span>© ${year} ${SITE.name}. ${SITE.location}.</span>
-            <span>Designed &amp; built by Lulamile Mkhungela · Independent professional practice</span>
+            <span>Portfolio content from <a href="${SITE.portfolio}" target="_blank" rel="noopener" style="text-decoration:underline">Lulamile Mkhungela</a> · Toolkit from <a href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener" style="text-decoration:underline">devzigner</a></span>
           </div>
         </div>
       </footer>`;
@@ -248,26 +261,43 @@
   else boot();
 
   /* Small shared helpers */
-  const esc = (text) => String(text ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   window.LM = {
-    esc,
+    money: (n) => n,
     initials(name) {
-      return String(name || '').split(/\s+/).slice(0, 2).map((word) => word[0] || '').join('').toUpperCase();
+      return (name || '')
+        .split(/\s+/)
+        .slice(0, 2)
+        .map((word) => word[0] || '')
+        .join('')
+        .toUpperCase();
     },
+    esc(text) {
+      return String(text || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    },
+    /**
+     * Minimal markdown, block level: **bold**, *italic*, `code`, paragraphs.
+     * Only safe inside a container that is not already a <p> — use mdInline()
+     * when the output goes inside one.
+     */
+    md(text) {
+      if (!text) return '';
+      return `<p>${window.LM.mdInline(text).replace(/\n{2,}/g, '</p><p>')}</p>`;
+    },
+
+    /** Markdown that stays inside a single paragraph; blank lines become <br>. */
     mdInline(text) {
       if (!text) return '';
-      return esc(text)
+      return window.LM.esc(text)
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         .replace(/\*(?!\s)([^*]+?)\*/g, '<em>$1</em>')
+        .replace(/`/g, '')
         .replace(/\n{2,}/g, '<br /><br />')
         .replace(/\n/g, '<br />');
     },
-    md(text) {
-      if (!text) return '';
-      return `<p>${window.LM.mdInline(text).replace(/(<br \/>){2,}/g, '</p><p>')}</p>`;
-    },
-    reveal,
-    guardAll,
   };
 })();

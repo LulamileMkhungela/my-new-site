@@ -320,6 +320,125 @@ def parse_prompts(source, cache):
     return prompts
 
 
+def original_project(project):
+    """Fit imported content to the original my-new-site project/case-study schema.
+
+    The page structure and renderer stay the original ones; only the content
+    changes. Extra imported sections are preserved for auditing the source.
+    """
+    sections = {item["id"]: item for item in project.get("sections", [])}
+    def paras(item):
+        return "\n\n".join(item.get("paragraphs", [])) if item else ""
+    def cards(item):
+        return item.get("cards", []) if item else []
+    def steps(item):
+        return item.get("steps", []) if item else []
+    def images(item):
+        return item.get("images", []) if item else []
+    def result_items(item):
+        return [{"heading": c["title"], "body": " ".join(c.get("paragraphs", []))} for c in cards(item)]
+
+    overview = sections.get("overview") or sections.get("role")
+    checks = sections.get("checks")
+    problem = sections.get("problem")
+    results = sections.get("results")
+    goals = sections.get("goals")
+    personas = sections.get("personas")
+    process = sections.get("process")
+    decisions = sections.get("decisions")
+    outcomes = sections.get("outcomes")
+    conclusion = sections.get("conclusion")
+    tradeoffs = sections.get("tradeoffs")
+    impact = sections.get("impact") or outcomes
+
+    case = {"hero": project.get("cover"), "summary": {
+        "title": overview["title"] if overview else "Overview",
+        "body": paras(overview) or project.get("description", ""),
+        "disclaimer": paras(checks),
+    }}
+    problem_cards = []
+    for card in cards(results):
+        paragraphs = card.get("paragraphs", [])
+        note = ""
+        body = paragraphs[0] if paragraphs else ""
+        if len(paragraphs) > 1 and paragraphs[1].startswith("Impact:"):
+            note = paragraphs[1][len("Impact:"):].strip()
+        problem_cards.append({"heading": card["title"], "body": body, "noteHeading": "Impact" if note else "", "note": note})
+    case["problem"] = {"title": problem["title"] if problem else "The problem", "cards": problem_cards}
+    blueprint_images = images(problem) or images(process)
+    case["blueprint"] = {"title": "", "image": blueprint_images[0]["src"] if blueprint_images else ""}
+
+    goal_cards = cards(goals)
+    business = next((c for c in goal_cards if "BUSINESS" in c.get("label", "")), {})
+    user = next((c for c in goal_cards if "USER" in c.get("label", "")), {})
+    case["goals"] = {"title": goals["title"] if goals else "", "businessTitle": "Business goals", "userTitle": "User goals",
+                     "business": business.get("items") or ([paras({"paragraphs": business.get("paragraphs", [])})] if business else []),
+                     "user": user.get("items") or ([paras({"paragraphs": user.get("paragraphs", [])})] if user else [])}
+    case["users"] = {"title": personas["title"] if personas else "", "personas": [
+        {"name": (c["title"] + (" (" + c["label"] + ")" if "HYPOTHESIS" in c.get("label", "") else "")),
+         "body": " ".join(c.get("paragraphs", [])), "image": ""} for c in cards(personas)]}
+
+    if steps(process):
+        case["process"] = {"title": process["title"], "steps": steps(process)}
+    elif cards(decisions):
+        case["process"] = {"title": decisions["title"], "steps": [
+            {"heading": c["title"], "body": " ".join(c.get("paragraphs", [])) + (("\n\n" + c["tradeoff"]) if c.get("tradeoff") else "")}
+            for c in cards(decisions)]}
+    else:
+        case["process"] = {"title": "", "steps": []}
+
+    build = []
+    if steps(process) and cards(decisions):
+        build.extend({"heading": c["title"], "body": " ".join(c.get("paragraphs", [])) + (("\n\n" + c["tradeoff"]) if c.get("tradeoff") else ""), "image": ""} for c in cards(decisions))
+    for card in cards(sections.get("vodacom-internal")):
+        build.append({"heading": card["title"], "body": " ".join(card.get("paragraphs", [])), "image": ""})
+    if cards(tradeoffs):
+        build.extend({"heading": c["title"], "body": " ".join(c.get("paragraphs", [])), "image": ""} for c in cards(tradeoffs))
+    used_blueprint = case["blueprint"]["image"]
+    for item in project.get("sections", []):
+        for image in images(item):
+            if image["src"] == used_blueprint:
+                continue
+            build.append({"heading": image.get("caption") or item["title"], "body": "", "image": image["src"]})
+    case["build"] = {"title": "Design decisions & artefacts" if build else "", "sections": build}
+
+    case["impact"] = {"title": impact["title"] if impact else "", "body": paras(impact) if impact and impact.get("paragraphs") else " ".join(" ".join(c.get("paragraphs", [])) for c in cards(impact)), "image": ""}
+    case["localisation"] = {"body": "", "image": ""}
+    case["expansion"] = {"title": outcomes["title"] if outcomes and impact is not outcomes else "", "items": result_items(outcomes) if outcomes and impact is not outcomes else []}
+    learned = []
+    if conclusion:
+        learned.append({"heading": conclusion["title"], "body": paras(conclusion)})
+    if tradeoffs and not steps(process):
+        learned.extend({"heading": c["title"], "body": " ".join(c.get("paragraphs", []))} for c in cards(tradeoffs))
+    case["learned"] = {"title": "What I took forward" if learned else "", "items": learned}
+
+    skills = list(project.get("tags", []))
+    if project.get("status") and project["status"] not in skills:
+        skills.append(project["status"])
+    return {
+        "kind": "project", "slug": project["id"], "id": project["id"], "title": project["title"],
+        "client": project.get("client", "Lulamile Mkhungela"), "year": project.get("year", ""),
+        "description": project.get("description", ""), "role": project.get("role", "Product designer"),
+        "team": project.get("client", ""), "duration": project.get("location", ""), "location": project.get("location", ""),
+        "skills": skills, "tags": ["home", "cat-" + project["category"].lower()],
+        "cover": project.get("cover") or "archive-portfolio.svg", "url": project.get("url", ""),
+        "sourceUrl": project.get("sourceUrl", ""), "liveUrl": project.get("liveUrl", ""),
+        "category": project["category"], "status": project.get("status", ""), "sections": project.get("sections", []),
+        "caseStudy": case,
+    }
+
+
+def original_collection(projects):
+    return {
+        "product": [original_project(p) for p in projects],
+        "graphic": {}, "amazon": {},
+        "archive": [{
+            "id": "lulamile-portfolio", "title": "Earlier work & portfolio", "client": "Lulamile Mkhungela",
+            "year": "Portfolio", "cover": "archive-portfolio.svg", "url": ORIGIN,
+        }],
+    }
+
+
 def write_script(path, variable, data, note):
     path.write_text(f"/** {note} */\nwindow.{variable} = {json.dumps(data, ensure_ascii=False, indent=2)};\n", encoding="utf-8")
 
@@ -347,7 +466,7 @@ def main():
                 raise ValueError(f"Category changed upstream for {project_id}; review before importing")
             projects.append(project)
         prompts = parse_prompts(read("portfolio/lula-design-library.html"), cache)
-        write_script(ROOT / "assets/js/projects.data.js", "PROJECTS", projects, "Public project content from Lulamile Mkhungela's portfolio. Refresh with scripts/sync-portfolio.py; editorial summaries live in this file.")
+        write_script(ROOT / "assets/js/projects.data.js", "PROJECTS", original_collection(projects), "Public project content from Lulamile Mkhungela's portfolio, fitted to the original my-new-site schema. Refresh with scripts/sync-portfolio.py.")
         write_script(ROOT / "assets/js/prompts.data.js", "PROMPTS", prompts, "Lulamile Mkhungela's AI design prompts. Free text is public; paid bodies are intentionally excluded. Refresh with scripts/sync-portfolio.py.")
         manifest = {"source": ORIGIN, "repository": REPO, "projects": [p["id"] for p in projects], "promptCount": len(prompts), "policy": "Public desktop projects and public prompt metadata only. No training documents, locked studies or paid prompt bodies."}
         (ROOT / "reference/portfolio-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

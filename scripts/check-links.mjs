@@ -7,6 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import crypto from 'node:crypto';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const PAGES = ['index.html', 'resources.html', 'work.html', 'services.html', 'about.html', 'contact.html', '404.html', 'case-study.html'];
@@ -50,9 +51,10 @@ const expected = [
   ['designops-design-system', 'Product'], ['forma-design-system', 'Product'],
   ['prodops', 'Product'], ['toyota-mobility-brand', 'Brand'],
 ];
-if (PROJECTS.length !== expected.length) fail(`expected ${expected.length} projects, found ${PROJECTS.length}`);
+const selectedProjects = PROJECTS.product;
+if (selectedProjects.length !== expected.length) fail(`expected ${expected.length} projects, found ${selectedProjects.length}`);
 for (const [id, category] of expected) {
-  const project = PROJECTS.find((item) => item.id === id);
+  const project = selectedProjects.find((item) => item.id === id);
   if (!project) { fail(`missing project ${id}`); continue; }
   if (project.category !== category) fail(`${id}: category ${project.category}, expected ${category}`);
   if (!project.sourceUrl.startsWith('https://lulamilemkhungela.github.io/portfolio.github.io/')) fail(`${id}: wrong source`);
@@ -60,8 +62,10 @@ for (const [id, category] of expected) {
   for (const section of project.sections) for (const image of section.images) {
     if (!exists(`assets/img/projects/${image.src}`)) fail(`${id}: missing image ${image.src}`);
   }
+  const caseImages = [project.caseStudy.hero, project.caseStudy.blueprint.image, ...project.caseStudy.build.sections.map((item) => item.image)].filter(Boolean);
+  for (const image of caseImages) if (!exists(`assets/img/projects/${image}`)) fail(`${id}: missing case image ${image}`);
 }
-ok(`${PROJECTS.length} projects · ${SITE.categories.map((c) => `${c.label} ${PROJECTS.filter((p) => p.category === c.id).length}`).join(' · ')}`);
+ok(`${selectedProjects.length} projects · ${SITE.filters.filter((f) => f.tag !== 'all').map((f) => `${f.label} ${selectedProjects.filter((p) => p.tags.includes(f.tag)).length}`).join(' · ')} · original archive link`);
 
 /* Prompt boundary: free text is present; paid bodies never enter the repo. */
 const free = PROMPTS.filter((prompt) => prompt.access === 'free');
@@ -76,7 +80,8 @@ ok(`${PROMPTS.length} prompts · ${free.length} free · ${paid.length} paid · n
 
 /* Resources: grouped, credited, and access-labelled. */
 const groupedTools = TOOLKIT_DATA.groups.flatMap((group) => group.tools);
-if (groupedTools.length !== TOOLKIT_DATA.tools.length || new Set(groupedTools).size !== TOOLKIT_DATA.tools.length) fail('toolkit groups must contain every tool exactly once');
+const toolIds = new Set(TOOLKIT_DATA.tools.map((tool) => tool.id));
+if (groupedTools.length !== TOOLKIT_DATA.tools.length || new Set(groupedTools).size !== TOOLKIT_DATA.tools.length || groupedTools.some((id) => !toolIds.has(id))) fail('toolkit groups must contain every tool exactly once');
 for (const item of RESOURCES_DATA.items) {
   if (!['free', 'paid', 'freemium'].includes(item.access) || !item.price || !item.provider) fail(`resource ${item.id}: missing access/provider metadata`);
   if (!/^https:\/\//.test(item.url)) fail(`resource ${item.id}: invalid URL`);
@@ -96,20 +101,36 @@ for (const file of files.filter((file) => /\.(js|html|json|css)$/.test(file))) {
 }
 ok('no training documents, legacy mirror or borrowed project attribution');
 
-/* Original my-new-site UI/interaction hooks must remain in place. */
+/* Exact original structure: content may change, page skeletons and CSS rules may not. */
+const baseline = JSON.parse(fs.readFileSync(path.join(ROOT, 'reference/ui-structure.json'), 'utf8'));
+const sectionAttrs = (html) => {
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+  return [...main.matchAll(/<section\b([^>]*)>/g)].map((m) => m[1].replace(/\s+/g, ' ').trim());
+};
+for (const [page, expectedSections] of Object.entries(baseline.pageSections)) {
+  const actual = sectionAttrs(fs.readFileSync(path.join(ROOT, page), 'utf8'));
+  if (JSON.stringify(actual) !== JSON.stringify(expectedSections)) fail(`${page}: section structure differs from the original my-new-site`);
+}
+const resourceSections = sectionAttrs(fs.readFileSync(path.join(ROOT, 'resources.html'), 'utf8')).filter((attrs) => !/id="(prompts|reading)"/.test(attrs));
+if (JSON.stringify(resourceSections) !== JSON.stringify(baseline.resourcesOriginalSections)) fail('resources.html: original Tools sections were changed or reordered');
+const cssRules = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').trim();
+for (const [file, hash] of Object.entries(baseline.cssRulesSha256)) {
+  const actual = crypto.createHash('sha256').update(cssRules(fs.readFileSync(path.join(ROOT, file), 'utf8'))).digest('hex');
+  if (actual !== hash) fail(`${file}: visual rules differ from the original my-new-site`);
+}
 const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const workHtml = fs.readFileSync(path.join(ROOT, 'work.html'), 'utf8');
 const resourcesHtml = fs.readFileSync(path.join(ROOT, 'resources.html'), 'utf8');
-const siteCss = fs.readFileSync(path.join(ROOT, 'assets/css/site.css'), 'utf8');
-const baseCss = fs.readFileSync(path.join(ROOT, 'assets/css/base.css'), 'utf8');
 const shellJs = fs.readFileSync(path.join(ROOT, 'assets/js/shell.js'), 'utf8');
 const resourcesJs = fs.readFileSync(path.join(ROOT, 'assets/js/resources.js'), 'utf8');
 const homeJs = fs.readFileSync(path.join(ROOT, 'assets/js/home.js'), 'utf8');
-if (!indexHtml.includes('data-marquee') || !indexHtml.includes('logo-note')) fail('home marquee structure missing');
-if (!siteCss.includes('@keyframes marquee') || !baseCss.includes('[data-reveal]') || !baseCss.includes('.site-header.is-hidden')) fail('original animation/reveal/sticky CSS missing');
-if (!shellJs.includes("label: 'Process'") || !shellJs.includes('data-sticky') || !shellJs.includes('data-drawer')) fail('original header/drawer/nav hooks missing');
-if (!homeJs.includes('setInterval') || !homeJs.includes('data-quote-next')) fail('original testimonial carousel interaction missing');
+const workJs = fs.readFileSync(path.join(ROOT, 'assets/js/work.js'), 'utf8');
+if (!indexHtml.includes('data-marquee') || !indexHtml.includes('data-archive') || !workHtml.includes('data-archive')) fail('original marquee/archive structure missing');
+if (!shellJs.includes("label: 'Resources'") || !shellJs.includes('data-sticky') || !shellJs.includes('data-drawer')) fail('original header/drawer/nav hooks missing');
+if (!homeJs.includes('setInterval') || !homeJs.includes('data-quote-next') || !workJs.includes('data-filter')) fail('original carousel/filter interactions missing');
 if (!resourcesHtml.includes('tools-hero') || !resourcesJs.includes('data-tool-tabs') || !resourcesJs.includes('tool-panel') || !resourcesJs.includes('data-grant')) fail('original Resources tab/panel/access interaction missing');
-ok('original my-new-site UI, animations and interaction hooks present');
+if (exists('assets/js/project-ui.js')) fail('rejected grouped project/prompt renderer is still present');
+ok('original my-new-site page skeletons, CSS rules, animations and interaction hooks preserved');
 
 if (failures) { console.error(`\n${failures} problem(s)`); process.exit(1); }
 console.log('\nAll static checks passed.');

@@ -2,7 +2,7 @@
 
 Static professional site for **Lulamile Mkhungela**, product designer and UI developer based in **Johannesburg, South Africa**.
 
-The UI, page structure, interactions and animations are the original `my-new-site` ones: sticky hide/show header, mobile drawer, theme toggle, marquee, reveal-on-scroll, work filters, testimonial carousel, case-study layout, and the Tools-style tab/panel/access interaction now used by Resources.
+The UI, page structure, interactions and animations are the original `my-new-site` ones. Content is fitted into the existing skeletons: sticky hide/show header, mobile drawer, theme toggle, client marquee, reveal-on-scroll, flat work grid with category filters and Archive, testimonial carousel, original case-study layout, and the original Tools tab/panel/access pattern now labelled **Resources**. `reference/ui-structure.json` records the original section skeletons and CSS-rule hashes; `scripts/check-links.mjs` fails if a content edit changes them.
 
 No framework and no runtime dependencies. Open `index.html` or serve the folder:
 
@@ -14,13 +14,13 @@ python3 -m http.server 8080 --bind 0.0.0.0
 
 | Page | Content |
 | --- | --- |
-| `index.html` | Positioning, selected work by category, process, services, resources, endorsements |
-| `work.html` | The six public desktop projects from the owner's portfolio: **Product 4 · Impact 1 · Brand 1** |
+| `index.html` | Original home skeleton: positioning, clients marquee, selected work filters + Archive, process, services, endorsements |
+| `work.html` | Original work skeleton: stats, category filters, flat featured grid and Archive. Six public projects: **Product 4 · Impact 1 · Brand 1** |
 | `case-study.html?id=…` | Local case studies with the source project's role, process, outcomes and evidence boundaries |
-| `resources.html` | **Resources** (formerly Tools): grouped builder toolkit, AI design prompts, external reading list |
+| `resources.html` | Original Tools skeleton renamed **Resources**: one grouped tablist/panel, stages, library, workspace, commands and install; added prompt and reading sections reuse the same tab/panel/card patterns |
 | `services.html` | Product/UX design, design systems/UI development, websites, brand |
 | `about.html` | Professional bio, selected experience and verified endorsements |
-| `contact.html` | Mail-app contact form, email, LinkedIn, GitHub and CV |
+| `contact.html` | Original mail-app contact form, Elsewhere links, next steps, booking and FAQ |
 | `tools.html` | Legacy redirect to `resources.html` |
 
 The portfolio currently exposes **six** desktop project folders, so the site uses those six rather than inventing extra projects to reach a number:
@@ -29,14 +29,14 @@ The portfolio currently exposes **six** desktop project folders, so the site use
 - **Impact:** FoodieZone (Pimville, Soweto)
 - **Brand:** Toyota Mobility Brand (Toyota South Africa, via iOCO)
 
-ProdOps and Forma are labelled **in progress**. Locked/archive studies are not imported.
+ProdOps and Forma are labelled **in progress**. The original Archive section remains and links to the owner’s portfolio; locked studies and certificates are not imported.
 
 ## Resources and authorship
 
-- **My toolkit:** eight tools from [LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner), grouped into product planning, design/front-end build, and agent workflows/standards. Each group uses the original tool tabs, keyboard navigation and “Access free” panel.
-- **AI prompts:** the owner's public [AI Design Prompts library](https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html). Ten free prompts open in the original panel/access style with copy/select; five paid packs link to the owner's Selar store. Paid prompt bodies and files are **not** stored here.
+- **My toolkit:** eight tools from [LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner). The original single tablist is ordered and labelled by group: product planning, design/front-end build, and agent workflows/standards. Keyboard navigation and the “Access free” panel are unchanged.
+- **AI prompts:** the owner's public [AI Design Prompts library](https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html). The added prompt section uses the original filter chips and tab/panel pattern: ten free prompts show full public text with copy/select; five paid packs link to the owner's Selar store. Paid prompt bodies and files are **not** stored here.
 - **External reading:** selected free packs and guides from [90n Resources](https://90n.ai/resources) and [90n Guides](https://90n.ai/guides), plus Lantern’s free trial/paid plans. Every external card names its publisher. These are recommendations, not claims that Lulamile created them or that 90n endorses this site. The guides are linked, not copied, so they do not need a separate Git repository.
-- Search, access filters and prompt-category filters work together for prompts and reading. Free includes resources with a free tier; Paid includes paid packs and paid tiers.
+- Prompt access filters are All / Free / Paid. The reading list is grouped into packs, guides and software; each card states free, paid or free-trial/paid-plan access.
 
 The site, portfolio work and prompt library are branded as Lulamile Mkhungela’s. External publishers retain credit for their own material.
 
@@ -53,6 +53,7 @@ assets/js/resources.data.js  curated external reading with access labels
 assets/img/projects/         local project images from the owner's portfolio
 assets/img/prompts/          local prompt covers from the owner's portfolio
 reference/portfolio-manifest.json  import scope and provenance
+reference/ui-structure.json        original page skeletons and CSS-rule hashes
 ```
 
 Refresh the public portfolio imports with Python’s standard library:
@@ -75,6 +76,6 @@ This repository is a professional brand site. It deliberately contains **no cert
 node scripts/check-links.mjs
 ```
 
-Checks internal links, local assets, project categories/counts, prompt authorship, the free/paid boundary, resource grouping, and the absence of the legacy mirror or training documents.
+Checks internal links, local assets, project categories/counts, prompt authorship, the free/paid boundary, resource grouping, the exact original page skeletons/CSS rules, and the absence of the legacy mirror or training documents.
 
 External access labels were checked against publisher pages on **2026-11-07**; providers can change prices and terms. Fonts load from Fontshare and Google Fonts. Theme preference is stored locally under `lm-theme`.

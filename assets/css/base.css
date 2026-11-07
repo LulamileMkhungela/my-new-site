@@ -1,13 +1,13 @@
 /* ==========================================================================
    Base — tokens, reset, type, layout, controls, chrome
-   Lulamile Mkhungela — original my-new-site design language:
+   Original my-new-site design language for Lulamile Mkhungela:
    lavender paper, deep indigo ink, single orange accent, Clash Grotesk display.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces & ink — original my-new-site tokens */
+  /* Surfaces & ink */
   --bg: 260 42% 96%;
   --fg: 255 45% 12%;
   --card: 260 35% 93%;
