@@ -3,92 +3,61 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Work | Lulamile M — Products, Brands &amp; Case Studies</title>
-    <meta
-      name="description"
-      content="Selected work by Lulamile M: fintech and microfinance products, SaaS and operations tools, CleanTech, e-commerce brands and conversion-focused websites."
-    />
+    <title>Work | Lulamile Mkhungela — Product, Impact &amp; Brand</title>
+    <meta name="description" content="Selected South African projects by Lulamile Mkhungela: Vodacom Engage, FoodieZone, DesignOps, Forma, ProdOps and Toyota Mobility Brand." />
+    <meta name="author" content="Lulamile Mkhungela" />
     <link rel="icon" href="assets/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <noscript>
-      <style>
-        [data-reveal] { opacity: 1; transform: none; }
-      </style>
-    </noscript>
+    <noscript><style>[data-reveal] { opacity: 1; transform: none; }</style></noscript>
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/site.css" />
     <script>
       try {
-        var saved = localStorage.getItem('sr-theme');
-        document.documentElement.dataset.theme =
-          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        var saved = localStorage.getItem('lm-theme');
+        document.documentElement.dataset.theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       } catch (e) {}
     </script>
   </head>
   <body>
     <div data-header></div>
-
     <main id="main">
       <section class="hero" style="padding-bottom: clamp(1rem, 3vw, 2rem)">
         <div class="shell">
-          <p class="eyebrow">Portfolio</p>
+          <p class="eyebrow">Portfolio · Lulamile Mkhungela</p>
           <h1 class="display-xl" style="max-width: 20ch">Products, brands and systems that had to work.</h1>
           <p class="lede" style="margin-top: 1.4rem">
-            Eleven case studies across fintech, microfinance, SaaS operations, CleanTech and e-commerce — plus six
-            earlier projects. Every one of them was designed for a real constraint: low connectivity, low literacy, a
-            first-time founder, or a category where generic wins by default.
+            Six public projects from my portfolio, based in or built from South Africa. Enterprise work for Vodacom and
+            Toyota, a live ordering PWA in Soweto, and my own design-system and product-planning tools.
           </p>
-          <div class="stats">
-            <div class="stat"><strong>11</strong><span>Case studies</span></div>
-            <div class="stat"><strong>6</strong><span>Earlier projects</span></div>
-            <div class="stat"><strong>13</strong><span>Client logos</span></div>
-            <div class="stat"><strong>4</strong><span>Areas of work</span></div>
-          </div>
+          <div class="stats" data-work-stats></div>
         </div>
       </section>
 
       <section class="section" style="padding-top: clamp(2rem, 4vw, 3rem)">
         <div class="shell">
-          <div class="filters" data-filters role="group" aria-label="Filter work"></div>
-          <div class="work-grid work-grid--feature" data-work></div>
-        </div>
-      </section>
-
-      <section class="section" style="padding-top: 0">
-        <div class="shell">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Earlier</p>
-              <h2 class="display-lg">Archive</h2>
-              <p>Six projects from 2020–2023, published as Behance case studies.</p>
-            </div>
-          </div>
-          <div class="work-grid work-grid--list" data-archive></div>
+          <div class="filters" data-filters role="group" aria-label="Filter work by category"></div>
+          <p class="sr-only" data-work-status role="status" aria-live="polite"></p>
+          <div data-work data-work-kind="work"></div>
+          <p class="resource-note">In-progress projects are labelled as such. Case-study outcomes keep the evidence boundaries from my original portfolio; confidential details stay out.</p>
         </div>
       </section>
 
       <section class="section section--tight">
-        <div class="shell">
-          <div class="band">
-            <p class="eyebrow eyebrow--bare" style="justify-content: center">Next</p>
-            <h2>The work is the argument. Let's make yours.</h2>
-            <p>Product design, brand strategy or a website that converts — start with a 30-minute conversation.</p>
-            <div class="row">
-              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-              <a class="btn btn--ghost" href="services.html">See the services</a>
-            </div>
-          </div>
-        </div>
+        <div class="shell"><div class="band">
+          <p class="eyebrow eyebrow--bare" style="justify-content: center">Next</p>
+          <h2>The work is the argument. Let’s make yours.</h2>
+          <p>Product design, a design system or an interface that needs to ship — start with a conversation.</p>
+          <div class="row"><a class="btn btn--accent" href="contact.html">Start a conversation</a><a class="btn btn--ghost" href="services.html">See the services</a></div>
+        </div></div>
       </section>
     </main>
-
     <div data-footer></div>
-
     <script src="assets/js/data.js"></script>
     <script src="assets/js/projects.data.js"></script>
     <script src="assets/js/shell.js"></script>
+    <script src="assets/js/project-ui.js"></script>
     <script src="assets/js/work.js"></script>
   </body>
 </html>

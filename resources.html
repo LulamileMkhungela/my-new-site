@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resources | Lulamile Mkhungela — Toolkit, AI Prompts &amp; Reading</title>
+    <meta name="description" content="Lulamile Mkhungela’s builder toolkit, free and paid AI design prompts, and a curated reading list for product and design teams." />
+    <meta name="author" content="Lulamile Mkhungela" />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <noscript><style>[data-reveal] { opacity: 1; transform: none; }</style></noscript>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>
+      try {
+        var saved = localStorage.getItem('lm-theme');
+        document.documentElement.dataset.theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div data-header></div>
+
+    <main id="main">
+      <section class="hero resources-hero">
+        <div class="shell">
+          <p class="eyebrow">Lulamile Mkhungela · Resources</p>
+          <h1 class="display-xl" style="max-width: 18ch">Resources for people who <em>build.</em></h1>
+          <p class="lede" style="margin-top: 1.4rem">
+            My working toolkit, AI design prompts and a reading list worth your time. Made by me where it says so;
+            clearly credited to its publisher where it isn’t.
+          </p>
+          <div class="stats" data-resource-stats></div>
+          <nav class="filters resource-jumps" aria-label="Jump to a resource section">
+            <a class="filter" href="#toolkit">01 · My toolkit</a>
+            <a class="filter" href="#prompts">02 · AI prompts</a>
+            <a class="filter" href="#reading">03 · Reading list</a>
+          </nav>
+        </div>
+      </section>
+
+      <div class="shell">
+        <div class="resource-toolbar" data-reveal>
+          <label class="resource-search">
+            <span class="sr-only">Search resources</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input type="search" data-resource-search placeholder="Search tools, prompts or guides…" autocomplete="off" />
+          </label>
+          <div class="resource-toolbar__filters">
+            <div class="filters" data-resource-types role="group" aria-label="Filter by resource type"></div>
+            <div class="filters" data-resource-access role="group" aria-label="Filter by access"></div>
+          </div>
+          <p class="resource-count" data-resource-count role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <section class="section resource-section" id="toolkit" data-resource-section="toolkit">
+        <div class="shell">
+          <div class="section-head" data-reveal>
+            <div>
+              <p class="eyebrow">01 · Built by me</p>
+              <h2 class="display-lg">My toolkit</h2>
+              <p>Eight free tools from my devzigner repository, grouped by the job they do. Open a tool to see its actual steps and where it ships.</p>
+            </div>
+            <a class="btn btn--ghost btn--sm" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">Open my repository ↗</a>
+          </div>
+          <div data-toolkit-groups></div>
+          <details class="toolkit-reference">
+            <summary>Inside the repository: stages, skills, commands and setup <span aria-hidden="true">+</span></summary>
+            <div class="toolkit-reference__body" data-toolkit-reference></div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section resource-section" id="prompts" data-resource-section="prompts">
+        <div class="shell">
+          <div class="section-head" data-reveal>
+            <div>
+              <p class="eyebrow">02 · Created by Lulamile Mkhungela</p>
+              <h2 class="display-lg">AI design prompts</h2>
+              <p>Prompts I use to explore interfaces, commerce and portfolio ideas. Free prompts copy straight to your clipboard; paid packs open on my Selar store.</p>
+            </div>
+            <a class="btn btn--ghost btn--sm" href="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html" target="_blank" rel="noopener">Original prompt library ↗</a>
+          </div>
+          <div class="filters" data-prompt-categories role="group" aria-label="Filter prompts by design category"></div>
+          <div class="prompt-grid" data-prompt-grid></div>
+          <p class="resource-note">Free prompts are the full public text. Paid packs show only the public title, format and price — the prompt body and files are delivered by Selar after purchase.</p>
+        </div>
+      </section>
+
+      <section class="section resource-section" id="reading" data-resource-section="external">
+        <div class="shell">
+          <div class="section-head" data-reveal>
+            <div>
+              <p class="eyebrow">03 · Curated by me, written by others</p>
+              <h2 class="display-lg">A reading list I stand behind</h2>
+              <p>External guides, skill packs and software I recommend. Most are free; the software entry has a free trial and paid plans. Publisher names stay on every card.</p>
+            </div>
+          </div>
+          <div class="row directory-links" data-directory-links></div>
+          <div data-reading-groups></div>
+          <p class="resource-disclosure" data-resource-disclosure></p>
+        </div>
+      </section>
+
+      <div class="shell"><div class="resource-empty" data-resource-empty hidden>
+        <h2 class="display-md">No matches yet.</h2>
+        <p>Try a different search or clear the filters.</p>
+        <button class="btn btn--ghost btn--sm" type="button" data-resource-reset>Clear filters</button>
+      </div></div>
+
+      <section class="section section--tight">
+        <div class="shell"><div class="band" data-reveal>
+          <p class="eyebrow eyebrow--bare" style="justify-content: center">Need a hand applying this?</p>
+          <h2>Tools are useful. Judgement is the work.</h2>
+          <p>I help teams turn these workflows into a product, a design system or an interface that ships.</p>
+          <div class="row"><a class="btn btn--accent" href="contact.html">Talk to me about a build</a><a class="btn btn--ghost" href="work.html">See my work</a></div>
+        </div></div>
+      </section>
+    </main>
+
+    <dialog class="prompt-dialog" data-prompt-dialog aria-labelledby="prompt-dialog-title">
+      <div class="prompt-dialog__head">
+        <div><span class="access-badge" data-dialog-badge></span><h2 id="prompt-dialog-title" data-dialog-title></h2><p class="meta" data-dialog-meta></p></div>
+        <button class="icon-btn" type="button" data-dialog-close aria-label="Close prompt">×</button>
+      </div>
+      <div class="prompt-dialog__content">
+        <div class="media media--16x9" data-dialog-media><img data-dialog-image alt="" /></div>
+        <div data-dialog-free>
+          <label class="sr-only" for="prompt-text">Prompt text</label>
+          <textarea id="prompt-text" data-dialog-text readonly rows="12"></textarea>
+          <div class="row prompt-dialog__actions">
+            <button class="btn btn--accent btn--sm" type="button" data-dialog-copy>Copy prompt</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-dialog-select>Select all</button>
+            <span class="meta" data-dialog-status role="status" aria-live="polite"></span>
+          </div>
+        </div>
+        <div data-dialog-paid hidden>
+          <p>This is a paid pack from my prompt library. The prompt and any included files are delivered through Selar after purchase.</p>
+          <a class="btn btn--accent" data-dialog-buy target="_blank" rel="noopener">View on my Selar store ↗</a>
+        </div>
+        <p class="resource-note">Created by Lulamile Mkhungela. Review generated output against your brief, brand and real user needs before using it.</p>
+      </div>
+    </dialog>
+
+    <div data-footer></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/toolkit.data.js"></script>
+    <script src="assets/js/prompts.data.js"></script>
+    <script src="assets/js/resources.data.js"></script>
+    <script src="assets/js/shell.js"></script>
+    <script src="assets/js/resources.js"></script>
+  </body>
+</html>

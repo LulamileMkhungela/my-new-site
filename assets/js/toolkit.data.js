@@ -5,18 +5,23 @@
  * their SKILL.md phase headings, and the paths each one ships at. Steps are the
  * headings the skills actually use, so the list here matches the files.
  */
-window.TOOLS_DATA = {
+window.TOOLKIT_DATA = {
   intro: {
-    eyebrow: 'Tools',
-    title: 'The builder toolkit',
-    lede: 'Eight free tools for builders — the skills, templates, conventions and workflows that turn a fuzzy idea into something a coding agent can actually build. Every one of them ships in the package.',
+    eyebrow: 'Resources · my own toolkit',
+    title: 'The way I build',
+    lede: 'Eight free tools from my devzigner repository, grouped by the job they do. Alongside them: my AI design prompts and a reading list I actually recommend.',
     stats: [
-      { value: '8', label: 'Free tools' },
-      { value: '80', label: 'Files in the package' },
-      { value: '20', label: 'Mapped commands' },
-      { value: '5', label: 'ProdOps stages' },
+      { value: '8', label: 'Tools in my kit' },
+      { value: '3', label: 'Workflow groups' },
+      { value: 'Free', label: 'Open repository' },
     ],
   },
+
+  groups: [
+    { id: 'planning', title: 'Product planning', description: 'Turn a fuzzy idea into a scoped plan and a build-ready handoff.', tools: ['prd-creator', 'prodops'] },
+    { id: 'design-build', title: 'Design & front-end build', description: 'Shared visual decisions, production assets and a starter that carries the conventions.', tools: ['design-system', 'favicon-creator', 'starter'] },
+    { id: 'agent-workflows', title: 'Agent workflows & standards', description: 'Repeatable skills, one canonical instruction set and standards the agent can follow.', tools: ['skill-builder', 'agents', 'standards'] },
+  ],
 
   tools: [
     {
@@ -174,7 +179,7 @@ window.TOOLS_DATA = {
 
   /* Inside the workspace, per the repo's TRACK_NAV and stage copy. */
   workspace: [
-    { title: 'Tools', body: 'The eight free tools, their full step sequence and where each one ships.' },
+    { title: 'Resource groups', body: 'Planning, design/build and agent workflows — each tool with its steps and source path.' },
     { title: 'Library', body: 'The skill library the agent reads, mapped to the stage where it applies.' },
     { title: 'Build kits', body: 'Starter kits per stack — the conventions, instructions and deployment notes.' },
     { title: 'Who it is for', body: 'The person whose day the product changes, their goal, their pain, what is actually true.' },
@@ -229,5 +234,5 @@ window.TOOLS_DATA = {
   },
 
   repoUrl: 'https://github.com/LulamileMkhungela/devzigner',
-  note: 'Content mirrors github.com/LulamileMkhungela/devzigner — the toolkit, the five-stage ProdOps flow and the command set described in its README.',
+  note: 'Built and maintained by Lulamile Mkhungela in the devzigner repository.',
 };

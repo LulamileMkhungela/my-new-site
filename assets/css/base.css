@@ -1,20 +1,20 @@
 /* ==========================================================================
    Base — tokens, reset, type, layout, controls, chrome
-   Design language carried over from https://shubhamranjan-portfolio.vercel.app/
-   (lavender paper, deep indigo ink, single orange accent, Clash Grotesk display).
+   Lulamile Mkhungela: lavender paper, deep indigo ink, burnt-orange accent,
+   Clash Grotesk display. Light and dark themes.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces & ink — taken from the source site's HSL tokens */
+  /* Surfaces & ink */
   --bg: 260 42% 96%;
   --fg: 255 45% 12%;
   --card: 260 35% 93%;
   --muted: 260 25% 90%;
   --ink-soft: 255 30% 25%;
   --border: 260 25% 85%;
-  --accent: 16 85% 55%;
+  --accent: 16 78% 43%;
   --accent-ink: 260 42% 96%;
 
   /* Project tints */

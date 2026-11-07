@@ -1,0 +1,14 @@
+{
+  "source": "https://lulamilemkhungela.github.io/portfolio.github.io/",
+  "repository": "LulamileMkhungela/portfolio.github.io",
+  "projects": [
+    "employee-engagement-app-redesign",
+    "foodiezone-pwa",
+    "designops-design-system",
+    "forma-design-system",
+    "prodops",
+    "toyota-mobility-brand"
+  ],
+  "promptCount": 15,
+  "policy": "Public desktop projects and public prompt metadata only. No training documents, locked studies or paid prompt bodies."
+}

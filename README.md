@@ -1,82 +1,78 @@
-# my-new-site
+# Lulamile Mkhungela — professional site
 
-**Lulamile M** — designer, founder and builder, South Africa (ZA).
-The portfolio, rebuilt as a static site: content and images from
-**[shubhamranjan-portfolio.vercel.app](https://shubhamranjan-portfolio.vercel.app/)**, with a **Tools** section taken from
-**[github.com/LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner)** sitting directly after Home in the nav.
+Static professional site for **Lulamile Mkhungela**, product designer and UI developer based in **Johannesburg, South Africa**.
 
-No build step, no framework, no dependencies. Open `index.html` or serve the folder.
+No framework and no runtime dependencies. Open `index.html` or serve the folder:
 
 ```sh
-python3 -m http.server 8080 --bind 0.0.0.0   # then open http://localhost:8080
+python3 -m http.server 8080 --bind 0.0.0.0
 ```
 
-## Pages
+## What is on the site
 
-| File | What it is |
+| Page | Content |
 | --- | --- |
-| `index.html` | Home — hero, client logos, selected work with category filters, process, areas of work, testimonials |
-| `tools.html` | The builder toolkit — eight tools with their full step lists, the five-stage flow, the skill library, the command set, install |
-| `work.html` | Full portfolio index plus the six-project archive |
-| `case-study.html?id=…` | Any of the twelve case studies, rendered from the data file |
-| `services.html` | The four areas of work — offerings, deliverables, who it's for, questions |
-| `about.html` | About, portrait, quote, clients, testimonials |
-| `contact.html` | Contact form (opens your mail app), links, common questions |
-| `404.html` | Not found |
+| `index.html` | Positioning, selected work by category, process, services, resources, endorsements |
+| `work.html` | The six public desktop projects from the owner's portfolio: **Product 4 · Impact 1 · Brand 1** |
+| `case-study.html?id=…` | Local case studies with the source project's role, process, outcomes and evidence boundaries |
+| `resources.html` | **Resources** (formerly Tools): grouped builder toolkit, AI design prompts, external reading list |
+| `services.html` | Product/UX design, design systems/UI development, websites, brand |
+| `about.html` | Professional bio, selected experience and verified endorsements |
+| `contact.html` | Mail-app contact form, email, LinkedIn, GitHub and CV |
+| `tools.html` | Legacy redirect to `resources.html` |
 
-`?id=` accepts either a product id (`pasio-banking-app`), a graphic id (`pasio-marketing-prints`) or an Amazon study
-(`culina-craftique`, `ELVD-Wellness`).
+The portfolio currently exposes **six** desktop project folders, so the site uses those six rather than inventing extra projects to reach a number:
 
-## Where the content comes from
+- **Product:** Vodacom Engage, DesignOps, Forma Design System, ProdOps
+- **Impact:** FoodieZone (Pimville, Soweto)
+- **Brand:** Toyota Mobility Brand (Toyota South Africa, via iOCO)
 
+ProdOps and Forma are labelled **in progress**. Locked/archive studies are not imported.
+
+## Resources and authorship
+
+- **My toolkit:** eight tools from [LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner), grouped into product planning, design/front-end build, and agent workflows/standards.
+- **AI prompts:** the owner's public [AI Design Prompts library](https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html). Ten free prompts include copyable text; five paid packs link to the owner's Selar store. Paid prompt bodies and files are **not** stored here.
+- **External reading:** selected free packs and guides from [90n Resources](https://90n.ai/resources) and [90n Guides](https://90n.ai/guides), plus Lantern’s free trial/paid plans. Every external card names its publisher. These are recommendations, not claims that Lulamile created them or that 90n endorses this site.
+- Search, type/access filters and prompt-category filters work together. Free includes resources with a free tier; Paid includes paid packs and paid tiers.
+
+The site, portfolio work and prompt library are branded as Lulamile Mkhungela’s. External publishers retain credit for their own material.
+
+## Content sources
+
+Primary source: <https://lulamilemkhungela.github.io/portfolio.github.io/>
+
+```text
+assets/js/data.js            professional copy, services, bio, endorsements
+assets/js/projects.data.js   imported public project content (generated)
+assets/js/prompts.data.js    imported public prompt text/metadata (generated)
+assets/js/toolkit.data.js    the owner's devzigner toolkit, grouped
+assets/js/resources.data.js  curated external reading with access labels
+assets/img/projects/         local project images from the owner's portfolio
+assets/img/prompts/          local prompt covers from the owner's portfolio
+reference/portfolio-manifest.json  import scope and provenance
 ```
-assets/js/data.js          site copy: nav, services, process, testimonials, about  (from the live site)
-assets/js/projects.data.js case studies, generated — do not hand-edit             (from the live site)
-assets/js/tools.data.js    the eight tools, skills, commands, stages, install     (from devzigner)
-reference/source-mirror/   the captured React bundle and CSS the generator reads   (provenance)
-```
 
-`projects.data.js` is produced by reading the project arrays out of the source site's captured bundle:
+Refresh the public portfolio imports with Python’s standard library:
 
 ```sh
-node scripts/build-data.mjs
+python3 scripts/sync-portfolio.py
+# or use an existing checkout:
+python3 scripts/sync-portfolio.py --source-dir /path/to/portfolio.github.io
 ```
 
-That keeps the case studies faithful to 1:1 rather than retyped. Edit `data.js` for site copy; re-run the generator
-for case studies.
+The importer reads only the six public desktop projects and the public prompt library from the owner's GitHub repository. It does **not** import training documents, locked studies or paid prompt bodies. Review upstream category/status changes before publishing a refresh.
 
-## Images
+## Professional-only boundary
 
-Images are resolved in three steps, so a missing file is never a broken image:
-
-1. `assets/img/projects/<name>` — local, fast, versioned;
-2. `https://shubhamranjan-portfolio.vercel.app/projects/<name>` — the original site;
-3. an inline generated placeholder that still reads (tinted block with the asset name).
-
-To make everything local:
-
-```sh
-scripts/fetch-assets.sh            # only what is missing
-scripts/fetch-assets.sh --force    # re-fetch everything
-```
-
-The script takes the list straight from `assets/js/projects.data.js`, plus the client logos and the portrait.
+This repository is a professional brand site. It deliberately contains **no certificates or training-document galleries**. The previous borrowed source mirror and unrelated project archive have been removed. Case studies keep the original evidence caveats instead of inventing metrics.
 
 ## Checks
 
 ```sh
-node scripts/build-data.mjs   # regenerate case studies from the source bundle
-node scripts/check-links.mjs  # every internal link and local image path resolves
+node scripts/check-links.mjs
 ```
 
-## Notes on the two sources
+Checks internal links, local assets, project categories/counts, prompt authorship, the free/paid boundary, resource grouping, and the absence of the legacy mirror or training documents.
 
-- **Identity** (name, location, email, LinkedIn, portrait, favicon) is Lulamile M's. **Location** is
-  South Africa (ZA) throughout — hero, about, contact and footer.
-- **Case studies, copy, services, testimonials, filters and logo order** come from the live portfolio. Where the live
-  site only had a one-line description, that is what is used — nothing was invented to fill a gap.
-- **The Tools section** mirrors the devzigner repo: the eight tools in its order, the step sequences its `SKILL.md`
-  files actually define, the paths each one ships at, the five ProdOps stages, the workspace map, the command set and
-  the install commands from its README.
-- Fonts (Clash Grotesk, Inter) load from Fontshare and Google Fonts. Palette, radii and type scale follow the source
-  site's tokens, with a dark theme and a mobile drawer added.
+External access labels were checked against publisher pages on **2026-11-07**; providers can change prices and terms. Fonts load from Fontshare and Google Fonts. Theme preference is stored locally under `lm-theme`.

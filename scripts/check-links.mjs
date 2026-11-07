@@ -1,91 +1,100 @@
 /**
- * Checks every page: internal links resolve, local images exist, scripts load
- * without throwing, and each page has exactly one h1.
- *
+ * Static integrity checks for the professional site.
  *   node scripts/check-links.mjs
- *
- * Exits non-zero on a broken link or a page-level script error. Missing local
- * images are reported but do not fail the run — those fall back to the live
- * site, and `scripts/fetch-assets.sh` fills them in.
+ * Checks internal links, local assets, data shape, image files, attribution
+ * hygiene and the free/paid prompt boundary. No network access required.
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-
-/* case-study.html renders its heading from data, so its h1 is checked after JS. */
-const DYNAMIC = new Set(['case-study.html']);
-
-const PAGES = [
-  'index.html',
-  'tools.html',
-  'work.html',
-  'services.html',
-  'about.html',
-  'contact.html',
-  '404.html',
-  'case-study.html',
-];
-
-let failures = 0;
+const PAGES = ['index.html', 'resources.html', 'work.html', 'services.html', 'about.html', 'contact.html', '404.html', 'case-study.html'];
 const exists = (file) => fs.existsSync(path.join(ROOT, file));
+let failures = 0;
+const fail = (message) => { failures += 1; console.error(`✗ ${message}`); };
+const ok = (message) => console.log(`✓ ${message}`);
+
+const context = { window: {} };
+vm.createContext(context);
+for (const file of ['data.js', 'projects.data.js', 'prompts.data.js', 'resources.data.js', 'toolkit.data.js']) {
+  vm.runInContext(fs.readFileSync(path.join(ROOT, 'assets/js', file), 'utf8'), context, { filename: file });
+}
+const { SITE, PROJECTS, PROMPTS, RESOURCES_DATA, TOOLKIT_DATA } = context.window;
 
 for (const page of PAGES) {
   const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
   const issues = [];
-
-  /* Links in the markup. Anything built by JS is covered by the data checks below. */
+  const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
   for (const match of html.matchAll(/href="([^"]+)"/g)) {
     const href = match[1];
-    if (/^(https?:|mailto:|tel:|#|data:|\/\/)/.test(href)) continue;
-    if (href.includes('${')) continue; /* built at runtime, checked in the DOM pass */
-    const target = href.split(/[?#]/)[0];
-    if (target && !exists(target)) issues.push(`broken link → ${href}`);
+    if (/^(https?:|mailto:|tel:|data:|\/\/)/.test(href) || href.includes('${')) continue;
+    const [target, fragment] = href.split('#');
+    if (target && !exists(target.split('?')[0])) issues.push(`broken link → ${href}`);
+    const dynamicFragments = new Set(['toolkit', 'prompts', 'reading', ...SITE.services.map((service) => service.id)]);
+    if (!target && fragment && !ids.has(fragment) && !dynamicFragments.has(fragment)) issues.push(`missing fragment → ${href}`);
   }
-
-  /* Local scripts and stylesheets must be real files. */
   for (const match of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g)) {
-    const file = match[1];
-    if (file.startsWith('assets/img/')) continue; /* images fall back to the live site */
-    if (!exists(file)) issues.push(`missing asset → ${file}`);
+    if (!exists(match[1])) issues.push(`missing asset → ${match[1]}`);
   }
-
-  if (!DYNAMIC.has(page)) {
-    const h1s = (html.match(/<h1[\s>]/g) || []).length;
-    if (h1s !== 1) issues.push(`expected one <h1>, found ${h1s}`);
-  }
-
-  if (issues.length) {
-    failures += issues.length;
-    console.log(`✗ ${page}`);
-    issues.forEach((issue) => console.log(`    ${issue}`));
-  } else {
-    console.log(`✓ ${page}`);
-  }
+  const h1s = (html.match(/<h1[\s>]/g) || []).length;
+  if (page !== 'case-study.html' && h1s !== 1) issues.push(`expected one static <h1>, found ${h1s}`);
+  if (/shubham|pasio-banking|gojo|sr-theme/i.test(html)) issues.push('legacy source attribution or theme key');
+  if (issues.length) issues.forEach((issue) => fail(`${page}: ${issue}`));
+  else ok(page);
 }
 
-/* Case studies: every id in the generated data must render, and every image
-   name must look like a file the fetcher can ask for. */
-const data = fs.readFileSync(path.join(ROOT, 'assets/js/projects.data.js'), 'utf8');
-const ids = [...data.matchAll(/"slug":\s*"([^"]+)"/g)].map((m) => m[1]);
-const images = new Set();
-const walk = (value) => {
-  if (!value) return;
-  if (typeof value === 'string') {
-    if (/\.(webp|png|jpe?g|svg)$/i.test(value)) images.add(value);
-    return;
+/* Project collection: exactly the public desktop selection, in source categories. */
+const expected = [
+  ['employee-engagement-app-redesign', 'Product'], ['foodiezone-pwa', 'Impact'],
+  ['designops-design-system', 'Product'], ['forma-design-system', 'Product'],
+  ['prodops', 'Product'], ['toyota-mobility-brand', 'Brand'],
+];
+if (PROJECTS.length !== expected.length) fail(`expected ${expected.length} projects, found ${PROJECTS.length}`);
+for (const [id, category] of expected) {
+  const project = PROJECTS.find((item) => item.id === id);
+  if (!project) { fail(`missing project ${id}`); continue; }
+  if (project.category !== category) fail(`${id}: category ${project.category}, expected ${category}`);
+  if (!project.sourceUrl.startsWith('https://lulamilemkhungela.github.io/portfolio.github.io/')) fail(`${id}: wrong source`);
+  if (project.cover && !exists(`assets/img/projects/${project.cover}`)) fail(`${id}: missing cover ${project.cover}`);
+  for (const section of project.sections) for (const image of section.images) {
+    if (!exists(`assets/img/projects/${image.src}`)) fail(`${id}: missing image ${image.src}`);
   }
-  if (typeof value === 'object') Object.values(value).forEach(walk);
-};
-walk(JSON.parse(data.slice(data.indexOf('{'), data.lastIndexOf('}') + 1)));
-
-console.log(`\n${ids.length} case studies: ${ids.join(', ')}`);
-const local = [...images].filter((name) => exists(`assets/img/projects/${name}`));
-console.log(`${images.size} images referenced · ${local.length} local · ${images.size - local.length} served from the live site`);
-console.log('run scripts/fetch-assets.sh to pull the rest in');
-
-if (failures) {
-  console.log(`\n${failures} problem(s)`);
-  process.exit(1);
 }
-console.log('\nno broken links');
+ok(`${PROJECTS.length} projects · ${SITE.categories.map((c) => `${c.label} ${PROJECTS.filter((p) => p.category === c.id).length}`).join(' · ')}`);
+
+/* Prompt boundary: free text is present; paid bodies never enter the repo. */
+const free = PROMPTS.filter((prompt) => prompt.access === 'free');
+const paid = PROMPTS.filter((prompt) => prompt.access === 'paid');
+for (const prompt of PROMPTS) {
+  if (prompt.author !== SITE.name) fail(`prompt ${prompt.id}: wrong author`);
+  if (prompt.cover && !exists(`assets/img/prompts/${prompt.cover}`)) fail(`prompt ${prompt.id}: missing cover`);
+  if (prompt.access === 'free' && !prompt.prompt.trim()) fail(`free prompt ${prompt.id}: empty text`);
+  if (prompt.access === 'paid' && (prompt.prompt || !prompt.url.startsWith('https://selar.com/'))) fail(`paid prompt ${prompt.id}: unsafe boundary`);
+}
+ok(`${PROMPTS.length} prompts · ${free.length} free · ${paid.length} paid · no paid bodies`);
+
+/* Resources: grouped, credited, and access-labelled. */
+const groupedTools = TOOLKIT_DATA.groups.flatMap((group) => group.tools);
+if (groupedTools.length !== TOOLKIT_DATA.tools.length || new Set(groupedTools).size !== TOOLKIT_DATA.tools.length) fail('toolkit groups must contain every tool exactly once');
+for (const item of RESOURCES_DATA.items) {
+  if (!['free', 'paid', 'freemium'].includes(item.access) || !item.price || !item.provider) fail(`resource ${item.id}: missing access/provider metadata`);
+  if (!/^https:\/\//.test(item.url)) fail(`resource ${item.id}: invalid URL`);
+}
+ok(`${TOOLKIT_DATA.tools.length} tools in ${TOOLKIT_DATA.groups.length} groups · ${RESOURCES_DATA.items.length} credited external resources`);
+
+/* No training documents or legacy mirror are part of the site. */
+const walk = (dir) => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap((entry) => {
+  const rel = path.join(dir, entry.name);
+  return entry.isDirectory() ? walk(rel) : [rel];
+});
+const files = walk('assets').concat(walk('reference'));
+if (files.some((file) => /certificate|source-mirror/i.test(file))) fail('training documents or legacy source mirror found');
+for (const file of files.filter((file) => /\.(js|html|json|css)$/.test(file))) {
+  const text = fs.readFileSync(path.join(ROOT, file), 'utf8');
+  if (/shubhamranjan|pasio-banking-app|Gojo & Company|sr-theme/.test(text)) fail(`legacy content in ${file}`);
+}
+ok('no training documents, legacy mirror or borrowed project attribution');
+
+if (failures) { console.error(`\n${failures} problem(s)`); process.exit(1); }
+console.log('\nAll static checks passed.');
