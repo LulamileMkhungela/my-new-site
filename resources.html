@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Resources | Lulamile Mkhungela — Toolkit, AI Prompts &amp; Reading</title>
-    <meta name="description" content="Lulamile Mkhungela’s builder toolkit, free and paid AI design prompts, and a curated reading list for product and design teams." />
+    <meta name="description" content="Lulamile Mkhungela's grouped builder toolkit, copyable AI design prompts, paid prompt packs and a credited reading list of 90n resources and guides." />
     <meta name="author" content="Lulamile Mkhungela" />
     <link rel="icon" href="assets/img/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
@@ -24,75 +24,144 @@
     <div data-header></div>
 
     <main id="main">
-      <section class="hero resources-hero">
+      <section class="tools-hero">
         <div class="shell">
-          <p class="eyebrow">Lulamile Mkhungela · Resources</p>
-          <h1 class="display-xl" style="max-width: 18ch">Resources for people who <em>build.</em></h1>
-          <p class="lede" style="margin-top: 1.4rem">
-            My working toolkit, AI design prompts and a reading list worth your time. Made by me where it says so;
-            clearly credited to its publisher where it isn’t.
-          </p>
-          <div class="stats" data-resource-stats></div>
-          <nav class="filters resource-jumps" aria-label="Jump to a resource section">
-            <a class="filter" href="#toolkit">01 · My toolkit</a>
-            <a class="filter" href="#prompts">02 · AI prompts</a>
-            <a class="filter" href="#reading">03 · Reading list</a>
-          </nav>
+          <div class="tools-hero__grid">
+            <div>
+              <p class="eyebrow">Resources · Lulamile Mkhungela</p>
+              <h1>The builder toolkit, prompts &amp; reading.</h1>
+              <p class="lede" style="margin-top: 1.3rem">
+                My working toolkit, AI design prompts and a reading list worth your time. Made by me where it says so;
+                clearly credited to its publisher where it isn’t.
+              </p>
+              <div class="hero__actions">
+                <a class="btn btn--accent" href="#toolkit">Open the toolkit</a>
+                <a class="btn btn--ghost" href="#prompts">AI prompts</a>
+                <a class="btn btn--ghost" href="#reading">Reading list</a>
+              </div>
+            </div>
+            <div class="tools-stats" data-resource-stats></div>
+          </div>
         </div>
       </section>
 
-      <div class="shell">
-        <div class="resource-toolbar" data-reveal>
-          <label class="resource-search">
-            <span class="sr-only">Search resources</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input type="search" data-resource-search placeholder="Search tools, prompts or guides…" autocomplete="off" />
-          </label>
-          <div class="resource-toolbar__filters">
-            <div class="filters" data-resource-types role="group" aria-label="Filter by resource type"></div>
-            <div class="filters" data-resource-access role="group" aria-label="Filter by access"></div>
-          </div>
-          <p class="resource-count" data-resource-count role="status" aria-live="polite"></p>
-        </div>
-      </div>
-
-      <section class="section resource-section" id="toolkit" data-resource-section="toolkit">
+      <section class="section" id="toolkit" style="padding-top: clamp(1.5rem, 3vw, 2.5rem)">
         <div class="shell">
-          <div class="section-head" data-reveal>
+          <div class="section-head">
             <div>
               <p class="eyebrow">01 · Built by me</p>
-              <h2 class="display-lg">My toolkit</h2>
-              <p>Eight free tools from my devzigner repository, grouped by the job they do. Open a tool to see its actual steps and where it ships.</p>
+              <h2 class="display-lg">Every tool, every step</h2>
+              <p>Eight free tools from my devzigner repository, grouped by the job they do. Each tab lists the steps it actually runs and the file behind each one.</p>
             </div>
-            <a class="btn btn--ghost btn--sm" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">Open my repository ↗</a>
+            <a class="btn btn--ghost btn--sm" href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">The repository ↗</a>
           </div>
           <div data-toolkit-groups></div>
-          <details class="toolkit-reference">
-            <summary>Inside the repository: stages, skills, commands and setup <span aria-hidden="true">+</span></summary>
-            <div class="toolkit-reference__body" data-toolkit-reference></div>
-          </details>
         </div>
       </section>
 
-      <section class="section resource-section" id="prompts" data-resource-section="prompts">
+      <section class="section" style="padding-top: 0">
         <div class="shell">
-          <div class="section-head" data-reveal>
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">The flow</p>
+              <h2 class="display-lg">ProdOps, in five stages</h2>
+              <p>Plan and design a real app, then export a handoff a coding agent can build from.</p>
+            </div>
+          </div>
+          <div class="grid grid--3" data-stages></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">The library</p>
+              <h2 class="display-lg">Every skill the agent reads</h2>
+              <p>Thirteen skills, eighty files. Each one is Markdown instructions, not a program — the agent applies the ones relevant to the stage.</p>
+            </div>
+          </div>
+          <div class="tool-grid" data-library></div>
+          <p class="quote-note" style="margin-top: 1rem">Read them at <a href="https://github.com/LulamileMkhungela/devzigner/tree/main/.agents/skills" target="_blank" rel="noopener" style="text-decoration: underline">.agents/skills/</a></p>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Inside the workspace</p>
+              <h2 class="display-lg">What you actually work in</h2>
+              <p>The workspace lists role-specific process steps and the resulting folders. The canon opens before there is a product to open.</p>
+            </div>
+          </div>
+          <div class="tool-grid" data-workspace></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Commands</p>
+              <h2 class="display-lg">The command set</h2>
+              <p>All twenty local commands are mapped to at least one process. Ten of them carry the stage work; five carry the standards.</p>
+            </div>
+          </div>
+          <div class="tool-grid" data-commands></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="case-section__head">
+            <div>
+              <p class="eyebrow">Install</p>
+              <h2 class="display-lg">Run it locally</h2>
+              <p class="lede" style="margin-top: 1rem; font-size: 0.95rem">The package is the repository. Skills live in <code>.agents/skills</code>, instructions in <code>AGENTS.md</code>, commands in <code>.agents/commands/prodops</code>.</p>
+              <div data-install style="margin-top: 1.6rem"></div>
+            </div>
+            <div>
+              <div class="card">
+                <h3 class="display-sm" style="margin-bottom: 0.6rem">What is in the package</h3>
+                <pre class="tree" data-tree></pre>
+              </div>
+              <p class="quote-note" style="margin-top: 1rem" data-repo-note></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="prompts" style="padding-top: 0">
+        <div class="shell">
+          <div class="section-head">
             <div>
               <p class="eyebrow">02 · Created by Lulamile Mkhungela</p>
               <h2 class="display-lg">AI design prompts</h2>
-              <p>Prompts I use to explore interfaces, commerce and portfolio ideas. Free prompts copy straight to your clipboard; paid packs open on my Selar store.</p>
+              <p>Prompts I use to explore interfaces, commerce and portfolio ideas. Free prompts open in the panel below; paid packs link to my Selar store.</p>
             </div>
             <a class="btn btn--ghost btn--sm" href="https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html" target="_blank" rel="noopener">Original prompt library ↗</a>
           </div>
-          <div class="filters" data-prompt-categories role="group" aria-label="Filter prompts by design category"></div>
-          <div class="prompt-grid" data-prompt-grid></div>
+
+          <div class="card resource-search-card" data-reveal>
+            <label class="form-field">
+              <span>Search prompts and reading</span>
+              <input type="search" data-resource-search placeholder="Search prompts, packs or guides…" autocomplete="off" />
+            </label>
+            <div class="filters" data-resource-access role="group" aria-label="Filter by access"></div>
+            <div class="filters" data-prompt-categories role="group" aria-label="Filter prompts by design category"></div>
+            <p class="resource-count" data-resource-count role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="prompt-reader" data-prompt-reader hidden></div>
+          <div class="work-grid work-grid--feature" data-prompt-grid></div>
           <p class="resource-note">Free prompts are the full public text. Paid packs show only the public title, format and price — the prompt body and files are delivered by Selar after purchase.</p>
         </div>
       </section>
 
-      <section class="section resource-section" id="reading" data-resource-section="external">
+      <section class="section" id="reading" style="padding-top: 0">
         <div class="shell">
-          <div class="section-head" data-reveal>
+          <div class="section-head">
             <div>
               <p class="eyebrow">03 · Curated by me, written by others</p>
               <h2 class="display-lg">A reading list I stand behind</h2>
@@ -105,45 +174,28 @@
         </div>
       </section>
 
-      <div class="shell"><div class="resource-empty" data-resource-empty hidden>
-        <h2 class="display-md">No matches yet.</h2>
-        <p>Try a different search or clear the filters.</p>
-        <button class="btn btn--ghost btn--sm" type="button" data-resource-reset>Clear filters</button>
-      </div></div>
+      <div class="shell">
+        <div class="card center" data-resource-empty hidden style="padding: 3rem 1rem">
+          <h2 class="display-md">No matches yet.</h2>
+          <p style="color: hsl(var(--ink-soft)); margin: 0.8rem 0 1.2rem">Try a different search or clear the filters.</p>
+          <button class="btn btn--ghost btn--sm" type="button" data-resource-reset>Clear filters</button>
+        </div>
+      </div>
 
       <section class="section section--tight">
-        <div class="shell"><div class="band" data-reveal>
-          <p class="eyebrow eyebrow--bare" style="justify-content: center">Need a hand applying this?</p>
-          <h2>Tools are useful. Judgement is the work.</h2>
-          <p>I help teams turn these workflows into a product, a design system or an interface that ships.</p>
-          <div class="row"><a class="btn btn--accent" href="contact.html">Talk to me about a build</a><a class="btn btn--ghost" href="work.html">See my work</a></div>
-        </div></div>
-      </section>
-    </main>
-
-    <dialog class="prompt-dialog" data-prompt-dialog aria-labelledby="prompt-dialog-title">
-      <div class="prompt-dialog__head">
-        <div><span class="access-badge" data-dialog-badge></span><h2 id="prompt-dialog-title" data-dialog-title></h2><p class="meta" data-dialog-meta></p></div>
-        <button class="icon-btn" type="button" data-dialog-close aria-label="Close prompt">×</button>
-      </div>
-      <div class="prompt-dialog__content">
-        <div class="media media--16x9" data-dialog-media><img data-dialog-image alt="" /></div>
-        <div data-dialog-free>
-          <label class="sr-only" for="prompt-text">Prompt text</label>
-          <textarea id="prompt-text" data-dialog-text readonly rows="12"></textarea>
-          <div class="row prompt-dialog__actions">
-            <button class="btn btn--accent btn--sm" type="button" data-dialog-copy>Copy prompt</button>
-            <button class="btn btn--ghost btn--sm" type="button" data-dialog-select>Select all</button>
-            <span class="meta" data-dialog-status role="status" aria-live="polite"></span>
+        <div class="shell">
+          <div class="band">
+            <p class="eyebrow eyebrow--bare" style="justify-content: center">Need a hand applying this?</p>
+            <h2>Tools are useful. Judgement is the work.</h2>
+            <p>I help teams turn these workflows into a product, a design system or an interface that ships.</p>
+            <div class="row">
+              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
+              <a class="btn btn--ghost" href="work.html">See my work</a>
+            </div>
           </div>
         </div>
-        <div data-dialog-paid hidden>
-          <p>This is a paid pack from my prompt library. The prompt and any included files are delivered through Selar after purchase.</p>
-          <a class="btn btn--accent" data-dialog-buy target="_blank" rel="noopener">View on my Selar store ↗</a>
-        </div>
-        <p class="resource-note">Created by Lulamile Mkhungela. Review generated output against your brief, brand and real user needs before using it.</p>
-      </div>
-    </dialog>
+      </section>
+    </main>
 
     <div data-footer></div>
 

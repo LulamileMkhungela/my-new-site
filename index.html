@@ -29,16 +29,18 @@
       } catch (e) {}
     </script>
   </head>
+
   <body>
     <div data-header></div>
 
     <main id="main">
+      <!-- Hero -->
       <section class="hero">
         <div class="shell">
           <div class="hero__grid">
             <div>
               <p class="hero__badge">
-                <img src="assets/img/lulamile.webp" alt="" width="24" height="24" />
+                <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="24" height="24" />
                 <span class="dot" aria-hidden="true"></span>
                 <span data-location>Johannesburg, South Africa · Available remotely</span>
               </p>
@@ -46,47 +48,74 @@
               <p class="hero__roles" data-roles></p>
               <p class="hero__lede" data-subline></p>
               <div class="hero__actions">
-                <a class="btn btn--accent" href="contact.html">Start a conversation <span aria-hidden="true">→</span></a>
-                <a class="btn btn--ghost" href="work.html">See the work</a>
+                <a class="btn btn--accent" href="contact.html">
+                  Book a Free Call
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </a>
+                <a class="btn btn--ghost" href="work.html">See the Work</a>
               </div>
               <div class="stats" data-stats></div>
             </div>
             <div class="hero__figure">
-              <div class="media"><img src="assets/img/lulamile.webp" alt="Lulamile Mkhungela" width="900" height="675" fetchpriority="high" /></div>
-              <p class="hero__note"><strong>Design through production</strong>Figma, React, Angular and Ionic — with the details checked in the browser.</p>
+              <div class="media">
+                <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="Lulamile Mkhungela" width="900" height="675" fetchpriority="high" />
+              </div>
+              <p class="hero__note"><strong>8+ years</strong>designing and building digital products from Johannesburg.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Clients -->
       <section class="section section--tight" aria-label="Selected collaborations">
-        <div class="shell"><p class="eyebrow eyebrow--bare center" style="justify-content: center">Selected collaborations</p></div>
+        <div class="shell"><p class="eyebrow eyebrow--bare center" style="justify-content: center">Worked with</p></div>
         <div class="marquee" data-marquee aria-live="off"></div>
+        <p class="logo-note">Hover to pause</p>
       </section>
 
+      <!-- Selected work -->
       <section class="section" id="work">
         <div class="shell">
           <div class="section-head" data-reveal>
-            <div><p class="eyebrow">Portfolio · South Africa</p><h2 class="display-lg">Selected work</h2><p>Six public projects from my portfolio, grouped as Product, Impact and Brand. Each study says what I owned and what the evidence supports.</p></div>
+            <div>
+              <p class="eyebrow">Portfolio</p>
+              <h2 class="display-lg">Selected Work</h2>
+            </div>
             <a class="btn btn--ghost btn--sm" href="work.html">All work →</a>
           </div>
           <div class="filters" data-filters role="group" aria-label="Filter work by category"></div>
           <p class="sr-only" data-work-status role="status" aria-live="polite"></p>
           <div data-featured data-work-kind="home"></div>
+
+          <div class="between" style="margin-top: clamp(2.5rem, 5vw, 3.5rem)">
+            <div>
+              <p class="eyebrow">Resources</p>
+              <h3 class="display-md">From the practice</h3>
+            </div>
+            <p class="meta">Toolkit · AI prompts · reading</p>
+          </div>
+          <div class="work-grid work-grid--list" data-archive style="margin-top: 1.4rem"></div>
         </div>
       </section>
 
+      <!-- Process -->
       <section class="section" id="process">
         <div class="shell">
-          <div class="section-head" data-reveal><div><p class="eyebrow">Process</p><h2 class="display-lg">How I work</h2></div></div>
+          <div class="section-head" data-reveal>
+            <div><p class="eyebrow">Process</p><h2 class="display-lg">How I work</h2></div>
+          </div>
           <ol class="process" data-process></ol>
           <div class="callout" data-reveal>
-            <div><h3>Start with the problem.</h3><p>A 30-minute conversation about the people, the product and what is not working.</p></div>
-            <a class="btn" href="contact.html">Let’s talk</a>
+            <div>
+              <h3>Ready to get started?</h3>
+              <p>A 30-minute conversation is all it takes to figure out where to begin.</p>
+            </div>
+            <a class="btn" href="contact.html">Book a free 30-min call</a>
           </div>
         </div>
       </section>
 
+      <!-- Areas of work -->
       <section class="section" id="services">
         <div class="shell">
           <div class="section-head" data-reveal>
@@ -97,18 +126,12 @@
         </div>
       </section>
 
-      <section class="section section--tight" id="resources">
-        <div class="shell"><div class="band band--resources" data-reveal>
-          <p class="eyebrow eyebrow--bare" style="justify-content: center">Resources · from my practice</p>
-          <h2>The toolkit, the prompts, the reading.</h2>
-          <p>My free builder toolkit, copyable AI design prompts, paid prompt packs and a credited reading list — all in one place.</p>
-          <div class="row"><a class="btn btn--accent" href="resources.html">Open Resources</a><a class="btn btn--ghost" href="resources.html#prompts">Browse AI prompts</a></div>
-        </div></div>
-      </section>
-
+      <!-- Testimonials -->
       <section class="section" id="testimonials">
         <div class="shell">
-          <div class="section-head" data-reveal><div><p class="eyebrow">What people say</p><h2 class="display-lg">Quiet confidence, <span class="italic">spoken by others.</span></h2></div></div>
+          <div class="section-head" data-reveal>
+            <div><p class="eyebrow">What people say</p><h2 class="display-lg">Quiet confidence, <span class="italic">spoken by others.</span></h2></div>
+          </div>
           <div class="quote-panel" data-quote data-reveal>
             <div class="quote-panel__mark" aria-hidden="true">“</div>
             <blockquote data-quote-text></blockquote>
@@ -117,27 +140,38 @@
               <span class="quote-panel__who"><strong data-quote-name></strong><span data-quote-meta></span></span>
             </div>
             <div class="quote-controls">
-              <div class="quote-dots" data-quote-dots aria-label="Testimonials"></div>
+              <div class="quote-dots" data-quote-dots role="tablist" aria-label="Testimonials"></div>
               <div class="row" style="gap: 0.5rem">
-                <button class="icon-btn" type="button" data-quote-prev aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" /></svg></button>
-                <button class="icon-btn" type="button" data-quote-next aria-label="Next testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></button>
-                <span class="quote-note">Use the arrows to navigate</span>
+                <button class="icon-btn" type="button" data-quote-prev aria-label="Previous testimonial">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+                </button>
+                <button class="icon-btn" type="button" data-quote-next aria-label="Next testimonial">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </button>
+                <span class="quote-note">Tap to navigate · Auto-advances</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- CTA -->
       <section class="section section--tight">
-        <div class="shell"><div class="band" data-reveal>
-          <p class="eyebrow eyebrow--bare" style="justify-content: center">Thanks for the visit</p>
-          <h2>I’m always happy to chat about design, product strategy or a potential collaboration.</h2>
-          <div class="row"><a class="btn btn--accent" href="contact.html">Start a conversation</a><a class="btn btn--ghost" href="https://drive.google.com/file/d/1nCqtTe9LVwj_LeQX67L4f90zd1IYYeRE/view?usp=sharing" target="_blank" rel="noopener" data-resume>View CV</a></div>
-        </div></div>
+        <div class="shell">
+          <div class="band" data-reveal>
+            <p class="eyebrow eyebrow--bare" style="justify-content: center">Thanks for the visit</p>
+            <h2>I'm always happy to chat about design, product strategy, or potential collaborations.</h2>
+            <div class="row">
+              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
+              <a class="btn btn--ghost" href="#" target="_blank" rel="noopener" data-resume>View CV</a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
     <div data-footer></div>
+
     <script src="assets/js/data.js"></script>
     <script src="assets/js/projects.data.js"></script>
     <script src="assets/js/shell.js"></script>

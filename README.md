@@ -2,6 +2,8 @@
 
 Static professional site for **Lulamile Mkhungela**, product designer and UI developer based in **Johannesburg, South Africa**.
 
+The UI, page structure, interactions and animations are the original `my-new-site` ones: sticky hide/show header, mobile drawer, theme toggle, marquee, reveal-on-scroll, work filters, testimonial carousel, case-study layout, and the Tools-style tab/panel/access interaction now used by Resources.
+
 No framework and no runtime dependencies. Open `index.html` or serve the folder:
 
 ```sh
@@ -31,10 +33,10 @@ ProdOps and Forma are labelled **in progress**. Locked/archive studies are not i
 
 ## Resources and authorship
 
-- **My toolkit:** eight tools from [LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner), grouped into product planning, design/front-end build, and agent workflows/standards.
-- **AI prompts:** the owner's public [AI Design Prompts library](https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html). Ten free prompts include copyable text; five paid packs link to the owner's Selar store. Paid prompt bodies and files are **not** stored here.
-- **External reading:** selected free packs and guides from [90n Resources](https://90n.ai/resources) and [90n Guides](https://90n.ai/guides), plus Lantern’s free trial/paid plans. Every external card names its publisher. These are recommendations, not claims that Lulamile created them or that 90n endorses this site.
-- Search, type/access filters and prompt-category filters work together. Free includes resources with a free tier; Paid includes paid packs and paid tiers.
+- **My toolkit:** eight tools from [LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner), grouped into product planning, design/front-end build, and agent workflows/standards. Each group uses the original tool tabs, keyboard navigation and “Access free” panel.
+- **AI prompts:** the owner's public [AI Design Prompts library](https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html). Ten free prompts open in the original panel/access style with copy/select; five paid packs link to the owner's Selar store. Paid prompt bodies and files are **not** stored here.
+- **External reading:** selected free packs and guides from [90n Resources](https://90n.ai/resources) and [90n Guides](https://90n.ai/guides), plus Lantern’s free trial/paid plans. Every external card names its publisher. These are recommendations, not claims that Lulamile created them or that 90n endorses this site. The guides are linked, not copied, so they do not need a separate Git repository.
+- Search, access filters and prompt-category filters work together for prompts and reading. Free includes resources with a free tier; Paid includes paid packs and paid tiers.
 
 The site, portfolio work and prompt library are branded as Lulamile Mkhungela’s. External publishers retain credit for their own material.
 

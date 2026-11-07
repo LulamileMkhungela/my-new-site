@@ -96,5 +96,20 @@ for (const file of files.filter((file) => /\.(js|html|json|css)$/.test(file))) {
 }
 ok('no training documents, legacy mirror or borrowed project attribution');
 
+/* Original my-new-site UI/interaction hooks must remain in place. */
+const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const resourcesHtml = fs.readFileSync(path.join(ROOT, 'resources.html'), 'utf8');
+const siteCss = fs.readFileSync(path.join(ROOT, 'assets/css/site.css'), 'utf8');
+const baseCss = fs.readFileSync(path.join(ROOT, 'assets/css/base.css'), 'utf8');
+const shellJs = fs.readFileSync(path.join(ROOT, 'assets/js/shell.js'), 'utf8');
+const resourcesJs = fs.readFileSync(path.join(ROOT, 'assets/js/resources.js'), 'utf8');
+const homeJs = fs.readFileSync(path.join(ROOT, 'assets/js/home.js'), 'utf8');
+if (!indexHtml.includes('data-marquee') || !indexHtml.includes('logo-note')) fail('home marquee structure missing');
+if (!siteCss.includes('@keyframes marquee') || !baseCss.includes('[data-reveal]') || !baseCss.includes('.site-header.is-hidden')) fail('original animation/reveal/sticky CSS missing');
+if (!shellJs.includes("label: 'Process'") || !shellJs.includes('data-sticky') || !shellJs.includes('data-drawer')) fail('original header/drawer/nav hooks missing');
+if (!homeJs.includes('setInterval') || !homeJs.includes('data-quote-next')) fail('original testimonial carousel interaction missing');
+if (!resourcesHtml.includes('tools-hero') || !resourcesJs.includes('data-tool-tabs') || !resourcesJs.includes('tool-panel') || !resourcesJs.includes('data-grant')) fail('original Resources tab/panel/access interaction missing');
+ok('original my-new-site UI, animations and interaction hooks present');
+
 if (failures) { console.error(`\n${failures} problem(s)`); process.exit(1); }
 console.log('\nAll static checks passed.');

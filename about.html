@@ -22,57 +22,106 @@
   </head>
   <body>
     <div data-header></div>
+
     <main id="main">
       <section class="hero" style="padding-bottom: 0">
         <div class="shell shell--narrow">
-          <div class="about-portrait"><img src="assets/img/lulamile.webp" alt="Lulamile Mkhungela" width="900" height="675" /></div>
+          <div class="about-portrait">
+            <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="Lulamile Mkhungela" width="900" height="675" />
+          </div>
           <div style="margin-top: clamp(2rem, 4vw, 3rem)">
-            <p class="eyebrow">About · Johannesburg, South Africa</p>
+            <p class="eyebrow">About</p>
             <h1 class="display-xl">I design digital products and build the interfaces that ship.</h1>
           </div>
         </div>
       </section>
 
-      <section class="section"><div class="shell shell--narrow prose" data-about></div></section>
+      <section class="section">
+        <div class="shell shell--narrow prose" data-about></div>
+      </section>
 
       <section class="section" style="padding-block: 0">
-        <div class="shell shell--narrow"><div class="pull-quote"><p data-quote-text></p><footer data-quote-author></footer></div></div>
+        <div class="shell shell--narrow">
+          <div class="pull-quote">
+            <p data-quote-text></p>
+            <footer data-quote-author></footer>
+          </div>
+        </div>
       </section>
 
       <section class="section">
         <div class="shell">
-          <div class="section-head"><div><p class="eyebrow">Experience</p><h2 class="display-lg">Design through production</h2><p>Selected roles from my public portfolio. Enterprise engagements through iOCO; focused freelance work alongside them.</p></div></div>
-          <div class="experience-list" data-experience></div>
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Experience</p>
+              <h2 class="display-lg">Design through production</h2>
+              <p>Selected roles from my public portfolio. Enterprise engagements through iOCO; focused freelance work alongside them.</p>
+            </div>
+          </div>
+          <div class="grid grid--3" data-experience></div>
         </div>
       </section>
 
       <section class="section" style="padding-top: 0">
         <div class="shell">
-          <div class="section-head"><div><p class="eyebrow">What people say</p><h2 class="display-lg">Quiet confidence</h2></div></div>
+          <div class="section-head">
+            <div><p class="eyebrow">What people say</p><h2 class="display-lg">Quiet confidence</h2></div>
+          </div>
           <div class="grid grid--3" data-quotes></div>
         </div>
       </section>
 
       <section class="section section--tight">
-        <div class="shell"><div class="band">
-          <p class="eyebrow" style="justify-content: center">Let’s connect</p>
-          <h2 data-connect></h2>
-          <div class="row"><a class="btn btn--accent" href="contact.html">Start a conversation</a><a class="btn btn--ghost" href="#" data-linkedin target="_blank" rel="noopener">LinkedIn</a><a class="btn btn--ghost" href="#" data-resume target="_blank" rel="noopener">View CV</a></div>
-        </div></div>
+        <div class="shell">
+          <div class="band">
+            <p class="eyebrow" style="justify-content: center">Let's connect</p>
+            <h2 data-connect></h2>
+            <div class="row">
+              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
+              <a class="btn btn--ghost" href="#" data-linkedin target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn btn--ghost" href="#" data-resume target="_blank" rel="noopener">View CV</a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
+
     <div data-footer></div>
+
     <script src="assets/js/data.js"></script>
     <script src="assets/js/shell.js"></script>
     <script>
       (function () {
         const SITE = window.SITE;
         const { esc, initials } = window.LM;
-        document.querySelector('[data-about]').innerHTML = `<p><strong>${esc(SITE.about.intro)}</strong></p>${SITE.about.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}<p><strong>${esc(SITE.about.close)}</strong></p>`;
+
+        document.querySelector('[data-about]').innerHTML = `
+          <p><strong>${esc(SITE.about.intro)}</strong></p>
+          ${SITE.about.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('')}
+          <p><strong>${esc(SITE.about.close)}</strong></p>`;
+
         document.querySelector('[data-quote-text]').textContent = `“${SITE.about.quote.text}”`;
         document.querySelector('[data-quote-author]').textContent = `— ${SITE.about.quote.author}`;
-        document.querySelector('[data-experience]').innerHTML = SITE.about.experience.map((item) => `<article class="experience-item" data-reveal><span class="meta">${esc(item.period)}</span><div><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div></article>`).join('');
-        document.querySelector('[data-quotes]').innerHTML = SITE.testimonials.map((item) => `<figure class="card endorsement"><blockquote>“${esc(item.message)}”</blockquote><figcaption><span class="avatar">${esc(initials(item.name))}</span><span><strong>${esc(item.name)}</strong><span>${esc(item.designation)} · ${esc(item.company)}</span></span></figcaption></figure>`).join('');
+
+        document.querySelector('[data-experience]').innerHTML = SITE.about.experience.map((item) => `
+          <div class="card" data-reveal>
+            <span class="meta">${esc(item.period)}</span>
+            <h3 class="display-sm" style="margin:0.5rem 0">${esc(item.title)}</h3>
+            <p style="margin:0;font-size:0.88rem;color:hsl(var(--ink-soft))">${esc(item.body)}</p>
+          </div>`).join('');
+
+        document.querySelector('[data-quotes]').innerHTML = SITE.testimonials.map((item) => `
+          <figure class="card" style="display:flex;flex-direction:column;gap:1rem;margin:0" data-reveal>
+            <blockquote style="margin:0;font-size:0.9rem;line-height:1.7;color:hsl(var(--ink-soft))">“${esc(item.message)}”</blockquote>
+            <figcaption style="margin-top:auto;display:flex;align-items:center;gap:0.7rem">
+              <span class="avatar">${esc(initials(item.name))}</span>
+              <span>
+                <strong style="display:block;font-size:0.88rem">${esc(item.name)}</strong>
+                <span style="font-size:0.76rem;color:hsl(var(--ink-soft))">${esc(item.designation)} · ${esc(item.company)}</span>
+              </span>
+            </figcaption>
+          </figure>`).join('');
+
         document.querySelector('[data-connect]').textContent = SITE.about.connect;
         document.querySelector('[data-linkedin]').href = SITE.linkedin;
         document.querySelector('[data-resume]').href = SITE.resume;

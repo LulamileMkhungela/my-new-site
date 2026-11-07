@@ -1,20 +1,20 @@
 /* ==========================================================================
    Base — tokens, reset, type, layout, controls, chrome
-   Lulamile Mkhungela: lavender paper, deep indigo ink, burnt-orange accent,
-   Clash Grotesk display. Light and dark themes.
+   Lulamile Mkhungela — original my-new-site design language:
+   lavender paper, deep indigo ink, single orange accent, Clash Grotesk display.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces & ink */
+  /* Surfaces & ink — original my-new-site tokens */
   --bg: 260 42% 96%;
   --fg: 255 45% 12%;
   --card: 260 35% 93%;
   --muted: 260 25% 90%;
   --ink-soft: 255 30% 25%;
   --border: 260 25% 85%;
-  --accent: 16 78% 43%;
+  --accent: 16 85% 55%;
   --accent-ink: 260 42% 96%;
 
   /* Project tints */
