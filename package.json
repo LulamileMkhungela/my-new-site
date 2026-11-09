@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/app.jsx --bundle --minify --format=iife --target=es2020 --outfile=assets/js/app.js",
-    "check": "node scripts/check-links.mjs"
+    "check": "node scripts/check-links.mjs",
+    "start": "node scripts/preview-server.mjs",
+    "preview": "node scripts/preview-server.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

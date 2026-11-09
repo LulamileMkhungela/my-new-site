@@ -9,23 +9,23 @@ The interface is the captured reference build preserved in this repository’s G
 ```sh
 npm install
 npm run build
-python3 -m http.server 8080 --bind 0.0.0.0
+npm run preview
 ```
 
-`src/app.jsx` is the source. `assets/js/app.js` is the committed production bundle, so the site can also be served statically without rebuilding.
+`src/app.jsx` and `src/recommendations.jsx` are the source. `assets/js/app.js` is the committed production bundle. `npm run preview` serves clean URLs (`/resources`, `/about`, `/service/product`) and legacy `.html` URLs, including direct loads and refreshes.
 
 ## Pages
 
 | Page | Content |
 | --- | --- |
-| `index.html` | Greeting, hero, clients marquee, selected work + Archive, process, expertise rows, about teaser, endorsements, contact band |
-| `work.html` | Six public portfolio projects: **Product 4 · Impact 1 · Brand 1**, with category filters and Archive |
-| `case-study.html?id=…` | Local case studies with role, process, outcomes and evidence boundaries |
-| `resources.html` | Grouped builder toolkit, AI design prompts, credited external reading list |
-| `services.html` / `service.html?id=…` | Expertise overview and service detail |
-| `about.html` | Bio, portrait, quote, clients, endorsements |
-| `contact.html` | Book-a-call / email tabs, mail-app form, contact links |
-| `tools.html` | Legacy route rendered as Resources |
+| `/` (`index.html`) | Greeting, hero, clients marquee, selected work + Archive, process, expertise rows, about teaser, endorsements, contact band |
+| `/work` (`work.html`) | Six public portfolio projects: **Product 4 · Impact 1 · Brand 1**, with category filters and Archive |
+| `/case-study/:id` (`/project/:id`, legacy query URL) | Local case studies with role, process, outcomes and evidence boundaries |
+| `/resources` (`resources.html`) | Grouped builder toolkit, AI design prompts, credited external reading list |
+| `/services` / `/service/:id` | Expertise overview and service detail |
+| `/about` (`about.html`) | Reference About layout: portrait, bio, quote, scrolling colleague recommendations, connect links |
+| `/contact` (`contact.html`) | Book-a-call / email tabs, mail-app form, contact links |
+| `/tools` (`tools.html`) | Legacy route rendered as Resources |
 
 ## Content sources
 
@@ -35,6 +35,8 @@ python3 -m http.server 8080 --bind 0.0.0.0
 
 ```text
 src/app.jsx                       React source for the reference UI + Lulamile content
+src/recommendations.jsx           reference Home carousel and About recommendation strip
+scripts/preview-server.mjs        clean-URL preview server with legacy .html support
 assets/js/app.js                  committed production bundle
 assets/css/reference.css          captured reference stylesheet (unchanged)
 assets/css/additions.css          self-hosted font faces, keyframes and content-page utilities
@@ -73,4 +75,4 @@ npm run build
 node scripts/check-links.mjs
 ```
 
-Checks internal assets, project categories/counts, prompt authorship and free/paid boundary, resource grouping, the captured reference stylesheet hash, required greeting/hero/Expertise/music/page-transition markers, self-hosted fonts/audio fallbacks, and the absence of legacy borrowed content.
+Checks clean routes and preview fallbacks, the seven public endorsements, reference Home/About recommendation layouts, internal assets, project categories/counts, prompt authorship and free/paid boundary, resource grouping, the captured reference stylesheet hash, required greeting/hero/Expertise/music/page-transition markers, self-hosted fonts/audio fallbacks, and the absence of legacy borrowed content.

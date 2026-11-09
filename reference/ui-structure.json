@@ -24,7 +24,9 @@
     "pt-page-in",
     "data-hero",
     "data-tool-tab",
-    "data-prompt-tab"
+    "data-prompt-tab",
+    "AboutRecommendations",
+    "Testimonials items={SITE.testimonials}"
   ],
   "requiredBundleMarkers": [
     "Good Morning",

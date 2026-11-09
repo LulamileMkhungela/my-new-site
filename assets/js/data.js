@@ -715,6 +715,27 @@ window.SITE = {
       "company": "FoodieZone",
       "message": "Orders used to come through messages all day. Now customers order themselves, reorder in a tap, and I change the menu from my phone. It just works.",
       "period": ""
+    },
+    {
+      "name": "Gary Bannatyne",
+      "designation": "Managing Director & Co-founder",
+      "company": "The Digital Academy",
+      "message": "I would have no hesitation recommending Lulamile for an extended internship or an intern developer role. He has acquired a technical foundation but would benefit greatly from the ability to further hone his skills before he becomes part of a development team.",
+      "period": ""
+    },
+    {
+      "name": "Ed Wrede",
+      "designation": "Technical Manager",
+      "company": "The Digital Academy",
+      "message": "Lulamile showed a good grasp of Java OOP principles, good database proficiency and a good grasp of Git and DVCS fundamentals. He was primarily involved with the implementation of the application from ideation and design through to the logic for his team's native Android app. He is good at design for mobile apps, and he assisted the web development team in coming up with intuitive designs.",
+      "period": ""
+    },
+    {
+      "name": "Bongani Dlamini",
+      "designation": "Internal Communications Coordinator",
+      "company": "The Digital Academy",
+      "message": "Ambition — during his time at The Digital Academy, Lulamile displayed the desire to learn and improve his skills. Top three competencies: ambition, team player, communication.",
+      "period": ""
     }
   ],
   "about": {

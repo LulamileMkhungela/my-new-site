@@ -101,6 +101,16 @@ const source = fs.readFileSync(path.join(ROOT, 'src/app.jsx'), 'utf8');
 const bundle = fs.readFileSync(path.join(ROOT, 'assets/js/app.js'), 'utf8');
 for (const marker of contract.requiredSourceMarkers) if (!source.includes(marker)) fail(`reference UI marker missing from source: ${marker}`);
 for (const marker of contract.requiredBundleMarkers) if (!bundle.includes(marker)) fail(`reference UI marker missing from bundle: ${marker} (run npm run build)`);
+const recommendations = fs.readFileSync(path.join(ROOT, 'src/recommendations.jsx'), 'utf8');
+for (const marker of ['data-about-recommendations', 'data-recommendation-track', 'Hover to pause', 'marquee 70s linear infinite', 'data-home-recommendations', 'data-quote-previous', 'data-quote-next', 'setInterval(next, 6000)']) if (!recommendations.includes(marker)) fail(`reference recommendation UI marker missing: ${marker}`);
+if (!source.includes('<AboutRecommendations items={SITE.testimonials} />')) fail('About must use the reference recommendation strip');
+if (!source.includes('<Testimonials items={SITE.testimonials} Fade={Fade} />')) fail('Home must use the reference layered carousel');
+if (SITE.testimonials.length !== 7) fail('expected the seven public colleague endorsements');
+for (const path of ['/resources', '/about', '/contact', '/service/:id', '/case-study/:id']) if (!source.includes(`path="${path}"`)) fail(`clean route missing: ${path}`);
+const server = fs.readFileSync(path.join(ROOT, 'scripts/preview-server.mjs'), 'utf8');
+for (const marker of ["\"/resources\"", "\"/about\"", "\"/contact\"", 'service\\/', 'case-study|project']) if (!server.includes(marker)) fail(`preview server route fallback missing: ${marker}`);
+ok('clean routes, preview fallbacks, seven endorsements and reference recommendation layouts present');
+
 const additions = fs.readFileSync(path.join(ROOT, 'assets/css/additions.css'), 'utf8');
 for (const keyframe of ['ls-char-in', 'ls-sub-in', 'ls-line-in', 'pt-page-in', 'hero-scroll-nudge', 'audioPulse']) if (!additions.includes(`@keyframes ${keyframe}`)) fail(`missing reference keyframes: ${keyframe}`);
 ok('captured reference UI contract present (greeting, hero fill, Expertise, music, page transitions)');
