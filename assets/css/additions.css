@@ -1,0 +1,31 @@
+/* Self-hosted copies of the reference fonts: no third-party font request. */
+@font-face { font-family: 'Clash Grotesk'; src: url('../fonts/ClashGrotesk-Variable.woff2') format('woff2'); font-weight: 200 700; font-style: normal; font-display: swap; }
+@font-face { font-family: Inter; src: url('../fonts/Inter-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Additions use the reference site's existing design tokens. */
+.font-display { font-family: 'Clash Grotesk', sans-serif; }
+.font-body { font-family: Inter, sans-serif; }
+.marquee__track { animation: lm-marquee 38s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes lm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ls-char-in { from { opacity: 0; transform: translateY(60%) skewY(8deg); } to { opacity: 1; transform: translateY(0) skewY(0deg); } }
+@keyframes ls-sub-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ls-line-in { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
+@keyframes pt-page-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-scroll-nudge { 0% { transform: scaleY(0); transform-origin: top; opacity: 1; } 55% { transform: scaleY(1); transform-origin: top; opacity: 1; } 100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; } }
+@keyframes audioPulse { from { height: 20%; } to { height: 100%; } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  [data-greeting] * { animation-duration: 1ms !important; animation-delay: 0ms !important; }
+}
+/* Utility fallbacks for classes used by the Lulamile content pages. */
+.min-h-\[280px\] { min-height: 280px; }
+.min-h-28 { min-height: 7rem; }
+.bg-card\/40 { background-color: hsl(var(--card) / .4); }
+.bg-card\/50 { background-color: hsl(var(--card) / .5); }
+.bg-card\/60 { background-color: hsl(var(--card) / .6); }
+.h-fit { height: fit-content; }
+.break-words { overflow-wrap: break-word; }
+.break-all { word-break: break-all; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+.duration-400 { transition-duration: .4s; }
+.last\:mr-0:last-child { margin-right: 0; }

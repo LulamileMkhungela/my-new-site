@@ -1,0 +1,14 @@
+Ambient fallback loops
+======================
+focus-1.mp3  Lo-fi focus loop
+focus-2.mp3  Quiet piano loop
+focus-3.mp3  Ambient drift loop
+
+These are short, procedurally synthesized fallback loops generated for this
+site with NumPy and the @breezystack/lamejs MP3 encoder. They contain no
+third-party samples or recordings. The ambient player tries the reference
+site's original Pixabay track URLs first and falls back to these local loops
+when a remote track cannot load, so the control still works offline or behind
+restrictive networks.
+
+Generation: 24 seconds, 22.05 kHz mono, 64 kbps MP3, deterministic seed.

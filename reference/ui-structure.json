@@ -1,52 +1,39 @@
 {
-  "sourceCommit": "485eb8b1df1c0c161cca2f63bfcccd83ba09dd82",
-  "cssRulesSha256": {
-    "assets/css/base.css": "bb50fb9e70d794268f830818870fd28da421d80f4224601fc09d54f63499d32a",
-    "assets/css/site.css": "b7a53520fe36f4da6cbf9d37efa46437e377ea684aa2d1fe8a36bee23b8a29e2"
-  },
-  "pageSections": {
-    "index.html": [
-      "class=\"hero\"",
-      "class=\"section section--tight\" aria-label=\"Clients\"",
-      "class=\"section\" id=\"work\"",
-      "class=\"section\" id=\"process\"",
-      "class=\"section\" id=\"services\"",
-      "class=\"section\" id=\"testimonials\"",
-      "class=\"section section--tight\""
-    ],
-    "work.html": [
-      "class=\"hero\" style=\"padding-bottom: clamp(1rem, 3vw, 2rem)\"",
-      "class=\"section\" style=\"padding-top: clamp(2rem, 4vw, 3rem)\"",
-      "class=\"section\" style=\"padding-top: 0\"",
-      "class=\"section section--tight\""
-    ],
-    "services.html": [
-      "class=\"hero\" style=\"padding-bottom: clamp(1rem, 3vw, 2rem)\"",
-      "class=\"section section--tight\"",
-      "class=\"section section--tight\""
-    ],
-    "about.html": [
-      "class=\"hero\" style=\"padding-bottom: 0\"",
-      "class=\"section\"",
-      "class=\"section\" style=\"padding-block: 0\"",
-      "class=\"section\"",
-      "class=\"section\" style=\"padding-top: 0\"",
-      "class=\"section section--tight\""
-    ],
-    "contact.html": [
-      "class=\"hero\" style=\"padding-bottom: clamp(1rem, 3vw, 2rem)\"",
-      "class=\"section\" style=\"padding-top: clamp(1.5rem, 3vw, 2.5rem)\"",
-      "class=\"section section--tight\""
-    ]
-  },
-  "resourcesOriginalSections": [
-    "class=\"tools-hero\"",
-    "class=\"section\" id=\"toolkit\" style=\"padding-top: clamp(1.5rem, 3vw, 2.5rem)\"",
-    "class=\"section\" style=\"padding-top: 0\"",
-    "class=\"section\" style=\"padding-top: 0\"",
-    "class=\"section\" style=\"padding-top: 0\"",
-    "class=\"section\" style=\"padding-top: 0\"",
-    "class=\"section\" style=\"padding-top: 0\"",
-    "class=\"section section--tight\""
-  ]
+  "capturedInCommit": "485eb8b1df1c0c161cca2f63bfcccd83ba09dd82",
+  "cssFile": "assets/css/reference.css",
+  "cssSha256": "7f5bbbd6998fba130cbe517a127532838438aa988bebe1a98d7520061d65d015",
+  "cssMatchesCapturedReference": true,
+  "requiredSourceMarkers": [
+    "data-greeting",
+    "Good Morning",
+    "Good Afternoon",
+    "Good Evening",
+    "Good Night",
+    "ls-char-in",
+    "ls-sub-in",
+    "ls-line-in",
+    "Great ideas",
+    "deserve",
+    "design.",
+    "hero-scroll-nudge",
+    "data-expertise",
+    "Expertise",
+    "data-music",
+    "Ambient music player",
+    "PageTransition",
+    "pt-page-in",
+    "data-hero",
+    "data-tool-tab",
+    "data-prompt-tab"
+  ],
+  "requiredBundleMarkers": [
+    "Good Morning",
+    "Great ideas deserve great design.",
+    "Expertise",
+    "Ambient music player",
+    "data-greeting",
+    "data-hero"
+  ],
+  "contentOwner": "Lulamile Mkhungela",
+  "referenceSource": "Captured reference build preserved in this repository at commit 485eb8b (reference/source-mirror). UI only; all site content is Lulamile Mkhungela\u2019s."
 }

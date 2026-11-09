@@ -1,81 +1,76 @@
 # Lulamile Mkhungela — professional site
 
-Static professional site for **Lulamile Mkhungela**, product designer and UI developer based in **Johannesburg, South Africa**.
+Professional site for **Lulamile Mkhungela**, product designer and UI developer based in **Johannesburg, South Africa**.
 
-The UI, page structure, interactions and animations are the original `my-new-site` ones. Content is fitted into the existing skeletons: sticky hide/show header, mobile drawer, theme toggle, client marquee, reveal-on-scroll, flat work grid with category filters and Archive, testimonial carousel, original case-study layout, and the original Tools tab/panel/access pattern now labelled **Resources**. `reference/ui-structure.json` records the original section skeletons and CSS-rule hashes; `scripts/check-links.mjs` fails if a content edit changes them.
+The interface is the captured reference build preserved in this repository’s Git history: time-based greeting screen, split-screen exit, scroll-filled hero headline, Expertise dropdown, sticky hide/show header, mobile drawer, theme toggle, ambient background, page transitions, work filters, testimonial carousel and ambient music control. The stylesheet is the captured reference stylesheet byte-for-byte; the content, projects, resources and identity are Lulamile’s. The reference fonts (Clash Grotesk and Inter) are self-hosted so the preview does not depend on external font hosts.
 
-No framework and no runtime dependencies. Open `index.html` or serve the folder:
+## Run
 
 ```sh
+npm install
+npm run build
 python3 -m http.server 8080 --bind 0.0.0.0
 ```
 
-## What is on the site
+`src/app.jsx` is the source. `assets/js/app.js` is the committed production bundle, so the site can also be served statically without rebuilding.
+
+## Pages
 
 | Page | Content |
 | --- | --- |
-| `index.html` | Original home skeleton: positioning, clients marquee, selected work filters + Archive, process, services, endorsements |
-| `work.html` | Original work skeleton: stats, category filters, flat featured grid and Archive. Six public projects: **Product 4 · Impact 1 · Brand 1** |
-| `case-study.html?id=…` | Local case studies with the source project's role, process, outcomes and evidence boundaries |
-| `resources.html` | Original Tools skeleton renamed **Resources**: one grouped tablist/panel, stages, library, workspace, commands and install; added prompt and reading sections reuse the same tab/panel/card patterns |
-| `services.html` | Product/UX design, design systems/UI development, websites, brand |
-| `about.html` | Professional bio, selected experience and verified endorsements |
-| `contact.html` | Original mail-app contact form, Elsewhere links, next steps, booking and FAQ |
-| `tools.html` | Legacy redirect to `resources.html` |
-
-The portfolio currently exposes **six** desktop project folders, so the site uses those six rather than inventing extra projects to reach a number:
-
-- **Product:** Vodacom Engage, DesignOps, Forma Design System, ProdOps
-- **Impact:** FoodieZone (Pimville, Soweto)
-- **Brand:** Toyota Mobility Brand (Toyota South Africa, via iOCO)
-
-ProdOps and Forma are labelled **in progress**. The original Archive section remains and links to the owner’s portfolio; locked studies and certificates are not imported.
-
-## Resources and authorship
-
-- **My toolkit:** eight tools from [LulamileMkhungela/devzigner](https://github.com/LulamileMkhungela/devzigner). The original single tablist is ordered and labelled by group: product planning, design/front-end build, and agent workflows/standards. Keyboard navigation and the “Access free” panel are unchanged.
-- **AI prompts:** the owner's public [AI Design Prompts library](https://lulamilemkhungela.github.io/portfolio.github.io/portfolio/lula-design-library.html). The added prompt section uses the original filter chips and tab/panel pattern: ten free prompts show full public text with copy/select; five paid packs link to the owner's Selar store. Paid prompt bodies and files are **not** stored here.
-- **External reading:** selected free packs and guides from [90n Resources](https://90n.ai/resources) and [90n Guides](https://90n.ai/guides), plus Lantern’s free trial/paid plans. Every external card names its publisher. These are recommendations, not claims that Lulamile created them or that 90n endorses this site. The guides are linked, not copied, so they do not need a separate Git repository.
-- Prompt access filters are All / Free / Paid. The reading list is grouped into packs, guides and software; each card states free, paid or free-trial/paid-plan access.
-
-The site, portfolio work and prompt library are branded as Lulamile Mkhungela’s. External publishers retain credit for their own material.
+| `index.html` | Greeting, hero, clients marquee, selected work + Archive, process, expertise rows, about teaser, endorsements, contact band |
+| `work.html` | Six public portfolio projects: **Product 4 · Impact 1 · Brand 1**, with category filters and Archive |
+| `case-study.html?id=…` | Local case studies with role, process, outcomes and evidence boundaries |
+| `resources.html` | Grouped builder toolkit, AI design prompts, credited external reading list |
+| `services.html` / `service.html?id=…` | Expertise overview and service detail |
+| `about.html` | Bio, portrait, quote, clients, endorsements |
+| `contact.html` | Book-a-call / email tabs, mail-app form, contact links |
+| `tools.html` | Legacy route rendered as Resources |
 
 ## Content sources
 
-Primary source: <https://lulamilemkhungela.github.io/portfolio.github.io/>
+- Projects and prompts: <https://lulamilemkhungela.github.io/portfolio.github.io/>
+- Toolkit: <https://github.com/LulamileMkhungela/devzigner>
+- External reading: <https://90n.ai/resources> and <https://90n.ai/guides>, plus Lantern. Publishers retain authorship; access labels were checked on 2026-11-07.
 
 ```text
-assets/js/data.js            professional copy, services, bio, endorsements
-assets/js/projects.data.js   imported public project content (generated)
-assets/js/prompts.data.js    imported public prompt text/metadata (generated)
-assets/js/toolkit.data.js    the owner's devzigner toolkit, grouped
-assets/js/resources.data.js  curated external reading with access labels
-assets/img/projects/         local project images from the owner's portfolio
-assets/img/prompts/          local prompt covers from the owner's portfolio
-reference/portfolio-manifest.json  import scope and provenance
-reference/ui-structure.json        original page skeletons and CSS-rule hashes
+src/app.jsx                       React source for the reference UI + Lulamile content
+assets/js/app.js                  committed production bundle
+assets/css/reference.css          captured reference stylesheet (unchanged)
+assets/css/additions.css          self-hosted font faces, keyframes and content-page utilities
+assets/fonts/                     Clash Grotesk + Inter variable fonts and notices
+assets/audio/                     local ambient fallback loops for the music control
+assets/js/data.js                 professional copy, services, bio, endorsements
+assets/js/projects.data.js        imported public project content (generated)
+assets/js/prompts.data.js         imported public prompt text/metadata (generated)
+assets/js/toolkit.data.js         grouped devzigner toolkit
+assets/js/resources.data.js       curated external reading with access labels
+reference/ui-structure.json       UI contract: stylesheet hash + required reference markers
+reference/portfolio-manifest.json import scope and provenance
 ```
 
-Refresh the public portfolio imports with Python’s standard library:
+Refresh public imports:
 
 ```sh
 python3 scripts/sync-portfolio.py
-# or use an existing checkout:
-python3 scripts/sync-portfolio.py --source-dir /path/to/portfolio.github.io
+# or: python3 scripts/sync-portfolio.py --source-dir /path/to/portfolio.github.io
 ```
 
-The importer reads only the six public desktop projects and the public prompt library from the owner's GitHub repository. It does **not** import training documents, locked studies or paid prompt bodies. Review upstream category/status changes before publishing a refresh.
+The importer reads only the six public desktop projects and the public prompt library. It does not import certificates, locked studies or paid prompt bodies.
 
-## Professional-only boundary
+## Boundaries
 
-This repository is a professional brand site. It deliberately contains **no certificates or training-document galleries**. The previous borrowed source mirror and unrelated project archive have been removed. Case studies keep the original evidence caveats instead of inventing metrics.
+- No certificates or training-document galleries.
+- Paid prompt bodies are not stored; paid packs link to the owner’s Selar store.
+- External guides are linked, not copied, so they do not need a separate Git repository.
+- The reference UI is used as the design baseline; no reference-site personal identity, projects or attribution are presented as Lulamile’s.
+- The music control tries the reference ambient tracks first and falls back to local procedural loops when remote audio is blocked.
 
 ## Checks
 
 ```sh
+npm run build
 node scripts/check-links.mjs
 ```
 
-Checks internal links, local assets, project categories/counts, prompt authorship, the free/paid boundary, resource grouping, the exact original page skeletons/CSS rules, and the absence of the legacy mirror or training documents.
-
-External access labels were checked against publisher pages on **2026-11-07**; providers can change prices and terms. Fonts load from Fontshare and Google Fonts. Theme preference is stored locally under `lm-theme`.
+Checks internal assets, project categories/counts, prompt authorship and free/paid boundary, resource grouping, the captured reference stylesheet hash, required greeting/hero/Expertise/music/page-transition markers, self-hosted fonts/audio fallbacks, and the absence of legacy borrowed content.

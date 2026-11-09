@@ -1,0 +1,17 @@
+Clash Grotesk — font attribution
+
+Designer: Shiva Nallaperumal
+Foundry: Indian Type Foundry
+Copyright 2017-2021 Indian Type Foundry. All rights reserved.
+
+Embedded license notice:
+This Font Software is protected under domestic and international trademark and copyright law. You agree to identify the ITF fonts by name and credit the ITF's ownership of the trademarks and copyrights in any design or production credits.
+
+License terms: https://fontshare.com/terms
+Foundry: https://indiantypefoundry.com
+
+Font file obtained unmodified from:
+https://github.com/Mudrank/Clash-Grotesk/blob/main/ClashGrotesk-Variable.woff2
+API content SHA: 0915d80d14b1fdedff315a72d517aefe0099f3a2
+
+The original font names and ownership notices are retained. This is a font asset, not a claim of authorship by the site owner.

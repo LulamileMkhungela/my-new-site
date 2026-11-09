@@ -1,37 +1,25 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page not found | Lulamile Mkhungelakhungela</title>
-    <meta name="robots" content="noindex" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found | Lulamile Mkhungela</title>
+    <meta name="description" content="Page not found." />
+    <meta name="author" content="Lulamile Mkhungela" />
     <link rel="icon" href="assets/img/favicon.png" type="image/png" />
-    <link rel="preconnect" href="https://api.fontshare.com" />
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <noscript>
-      <style>
-        [data-reveal] { opacity: 1; transform: none; }
-      </style>
-    </noscript>
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/site.css" />
+    <link rel="preload" href="assets/fonts/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/reference.css" />
+    <link rel="stylesheet" href="assets/css/additions.css" />
+    <script>try{document.documentElement.classList.toggle('dark',localStorage.getItem('lm-theme')==='dark')}catch(e){}</script>
   </head>
   <body>
-    <div data-header></div>
-    <main id="main">
-      <section class="shell notfound">
-        <p class="eyebrow" style="justify-content: center">404</p>
-        <h1>Off the map.</h1>
-        <p class="lede" style="margin-inline: auto">That page doesn't exist. The work does, though.</p>
-        <div class="row" style="justify-content: center; margin-top: 1rem">
-          <a class="btn btn--accent" href="index.html">Back home</a>
-          <a class="btn btn--ghost" href="work.html">See the work</a>
-        </div>
-      </section>
-    </main>
-    <div data-footer></div>
+    <div id="root"></div>
     <script src="assets/js/data.js"></script>
-    <script src="assets/js/shell.js"></script>
+    <script src="assets/js/projects.data.js"></script>
+    <script src="assets/js/prompts.data.js"></script>
+    <script src="assets/js/resources.data.js"></script>
+    <script src="assets/js/toolkit.data.js"></script>
+    <script src="assets/js/app.js"></script>
   </body>
 </html>
