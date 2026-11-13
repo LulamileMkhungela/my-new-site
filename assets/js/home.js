@@ -52,6 +52,14 @@
     )
     .join('');
 
+  /* ---- Positioning ------------------------------------------------------- */
+  const chips = document.querySelector('[data-positioning-chips]');
+  if (chips) {
+    chips.innerHTML = ['Product', 'Brand', 'Amazon', 'Impact', 'Web']
+      .map((label) => `<span class="chip">${esc(label)}</span>`)
+      .join('');
+  }
+
   /* ---- Featured work ------------------------------------------------------ */
   const APPS = (window.EXTRA && window.EXTRA.comingSoon && window.EXTRA.comingSoon.apps) || [];
 

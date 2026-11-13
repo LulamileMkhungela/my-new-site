@@ -14,7 +14,7 @@ import path from 'node:path';
 const ROOT = path.resolve(import.meta.dirname, '..');
 
 /* case-study.html renders its heading from data, so its h1 is checked after JS. */
-const DYNAMIC = new Set(['case-study.html']);
+const DYNAMIC = new Set(['case-study.html', 'service.html']);
 
 const PAGES = [
   'index.html',
@@ -26,6 +26,7 @@ const PAGES = [
   'contact.html',
   '404.html',
   'case-study.html',
+  'service.html',
 ];
 
 let failures = 0;
@@ -46,7 +47,7 @@ for (const page of PAGES) {
 
   /* Local scripts and stylesheets must be real files. */
   for (const match of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g)) {
-    const file = match[1];
+    const file = match[1].split(/[?#]/)[0]; /* strip the ?v= cache stamp */
     if (file.startsWith('assets/img/')) continue; /* images fall back to the live site */
     if (!exists(file)) issues.push(`missing asset → ${file}`);
   }

@@ -99,7 +99,8 @@ Images are resolved in three steps, so a missing file is never a broken image:
 
 1. `assets/img/projects/<name>` — local, fast, versioned;
 2. `https://shubhamranjan-portfolio.vercel.app/projects/<name>` — the original site;
-3. an inline generated placeholder that still reads (tinted block with the asset name).
+3. an inline generated placeholder that still reads — a wordmark for logos, a tinted plate with
+the project name for covers — so a page without its images never looks broken.
 
 To make everything local:
 
@@ -110,12 +111,29 @@ scripts/fetch-assets.sh --force    # re-fetch everything
 
 The script takes the list straight from `assets/js/projects.data.js`, plus the client logos and the portrait.
 
+## Previewing
+
+```sh
+node scripts/preview.mjs 8080   # http://localhost:8080, Cache-Control: no-store
+```
+
+Use this rather than `python3 -m http.server`. Plain static servers send no cache
+headers, so a browser will happily keep using an old `site.css` / `shell.js`
+after they change — which makes a finished change look like it never applied.
+`preview.mjs` sends `no-store`, and every asset URL also carries a content hash
+(`site.css?v=ab12cd34`) so production caching stays correct.
+
 ## Checks
 
 ```sh
-node scripts/build-data.mjs   # regenerate case studies from the source bundle
-node scripts/check-links.mjs  # every internal link and local image path resolves
+node scripts/stamp-assets.mjs          # rewrite ?v= hashes after touching CSS/JS
+node scripts/stamp-assets.mjs --check  # fail if any page carries a stale hash
+node scripts/build-data.mjs            # regenerate case studies from the source bundle
+node scripts/check-links.mjs           # every internal link and local image path resolves
 ```
+
+Run `stamp-assets.mjs` last, after any CSS or JS edit — the hash is of the file's
+own bytes, so a stale stamp is the one thing that can silently serve old code.
 
 ## Notes on the two sources
 

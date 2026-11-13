@@ -15,16 +15,53 @@
   /* ---- Image resolution -------------------------------------------------- */
 
   /** Inline SVG placeholder, tinted, with the asset name on it. */
+  /**
+   * Stand-in art for an image that has not been fetched yet (scripts/fetch-assets.sh
+   * pulls the real ones). Logos get a wordmark; covers get a tinted plate with the
+   * project name, so a page without its images still reads as a design, not as a
+   * hole.
+   */
   function placeholder(name) {
-    const label = (name || 'image').replace(/[-_]/g, ' ').replace(/\.\w+$/, '');
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
-      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#e6e1f2"/><stop offset="1" stop-color="#d5cfe8"/>
-      </linearGradient></defs>
-      <rect width="640" height="480" fill="url(#g)"/>
-      <circle cx="320" cy="216" r="46" fill="#3a2f63" opacity=".12"/>
-      <text x="320" y="300" text-anchor="middle" font-family="Inter,sans-serif"
-        font-size="17" fill="#3a2f63" opacity=".65">${label}</text>
+    const file = String(name || 'image');
+    const base = file.split('/').pop().replace(/\.[a-z0-9]+$/i, '');
+    const isLogo = /\.svg$/i.test(file) || /logo/i.test(file);
+    const label = base
+      .replace(/^(cover|img|image)[-_]/i, '')
+      .replace(/[-_]/g, ' ')
+      .replace(/\b(logo|cover|desktop|mobile|flow|webp)\b/gi, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const pretty = label.replace(/\b\w/g, (c) => c.toUpperCase());
+    const safe = pretty.replace(/[<>&"]/g, '');
+
+    if (isLogo) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56">
+        <text x="100" y="36" text-anchor="middle" font-family="Inter, system-ui, sans-serif"
+          font-size="19" font-weight="600" letter-spacing="-0.4"
+          fill="#3a2f63" fill-opacity="0.55">${safe}</text>
+      </svg>`;
+      return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.replace(/\s+/g, ' '))}`;
+    }
+
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ded8ef"/>
+          <stop offset="0.55" stop-color="#d3cbe8"/>
+          <stop offset="1" stop-color="#c6bbdf"/>
+        </linearGradient>
+        <radialGradient id="glow" cx="0.5" cy="0" r="0.8">
+          <stop offset="0" stop-color="#ff6b35" stop-opacity="0.18"/>
+          <stop offset="1" stop-color="#ff6b35" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="800" height="600" fill="url(#g)"/>
+      <rect width="800" height="600" fill="url(#glow)"/>
+      <circle cx="400" cy="250" r="64" fill="none" stroke="#3a2f63" stroke-opacity="0.14" stroke-width="2"/>
+      <circle cx="400" cy="250" r="8" fill="#3a2f63" fill-opacity="0.18"/>
+      <text x="400" y="380" text-anchor="middle" font-family="Inter, system-ui, sans-serif"
+        font-size="30" font-weight="600" letter-spacing="-0.6"
+        fill="#3a2f63" fill-opacity="0.72">${safe}</text>
     </svg>`;
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.replace(/\s+/g, ' '))}`;
   }
@@ -94,11 +131,19 @@
   /* ---- Chrome ------------------------------------------------------------ */
   // The reference nav: Home, then a dropdown for the areas of practice,
   // then About, and one accent pill for the call.
+  // Exactly the reference nav, in its order: Home, the Expertise dropdown,
+  // About, and one accent pill. Work and Tools stay reachable from the drawer
+  // and the footer rather than crowding the bar.
   const NAV = [
     { label: 'Home', href: 'index.html' },
-    { label: 'Tools', href: 'tools.html' },
-    { label: 'Work', href: 'work.html' },
     { label: 'About', href: 'about.html' },
+  ];
+
+  // Secondary links — drawer and footer only.
+  const MORE = [
+    { label: 'Work', href: 'work.html' },
+    { label: 'Tools', href: 'tools.html' },
+    { label: 'Services', href: 'services.html' },
     { label: 'Contact', href: 'contact.html' },
   ];
 
@@ -173,8 +218,6 @@
           <div class="header-actions">
             <nav class="nav" aria-label="Primary" data-nav-list>
               ${navLink(NAV[0])}
-              ${navLink(NAV[1])}
-              ${navLink(NAV[2])}
               <div class="nav-drop" data-nav-drop>
                 <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="expertise-panel"${onExpertise ? ' aria-current="page"' : ''}>
                   Expertise
@@ -192,7 +235,7 @@
                   </div>
                 </div>
               </div>
-              ${navLink(NAV[3])}
+              ${navLink(NAV[1])}
               <a class="btn btn--accent" href="contact.html">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
                 Book a Call
@@ -219,11 +262,13 @@
           </button>
         </div>
         <nav aria-label="Mobile">
-          ${NAV.filter((item) => item.href !== 'contact.html').map((item) => `<a href="${item.href}" data-nav${isCurrent(item.href) ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
+          ${NAV.map((item) => `<a href="${item.href}" data-nav${isCurrent(item.href) ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
           <p class="drawer__label">Expertise</p>
           ${EXPERTISE.map(
             (item) => `<a href="${item.href}" data-nav>${item.label}</a>`,
           ).join('')}
+          <p class="drawer__label">More</p>
+          ${MORE.filter((item) => item.href !== 'contact.html').map((item) => `<a href="${item.href}" data-nav${isCurrent(item.href) ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
           <div class="drawer__foot">
             <a class="btn btn--accent" href="contact.html">Book a Call</a>
             <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
@@ -333,6 +378,12 @@
               </div>
             </div>
           </div>
+          <nav class="footer-nav" aria-label="Footer">
+            ${[...NAV, ...MORE].filter((item, index, list) => list.findIndex((other) => other.href === item.href) === index)
+              .map((item) => `<a href="${item.href}"${isCurrent(item.href) ? ' aria-current="page"' : ''}>${item.label}</a>`)
+              .join('')}
+            ${EXPERTISE.map((item) => `<a href="${item.href}">${item.label}</a>`).join('')}
+          </nav>
           <div class="footer-bottom">
             <span>© ${year} ${SITE.name}. All rights reserved. ${SITE.location}.</span>
             <span>Case-study content from the portfolio archive · Tools from <a href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">devzigner</a></span>

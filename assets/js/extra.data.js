@@ -414,7 +414,7 @@ window.EXTRA = {
         aka: 'Lekgotla',
         tagline: 'Legal matters, gathered in one place.',
         description:
-          'A mobile home for South African legal practice — matters, documents and client updates in one app. In development; the description below will be replaced with the repo’s own copy once the build is public.',
+          'A mobile home for South African legal practice — matters, documents and client updates in one app, so the admin lives in one place instead of a phone full of threads.',
         status: 'In development',
         platforms: ['Android', 'iOS'],
         skills: ['Legal tech', 'Mobile app'],
@@ -438,7 +438,7 @@ window.EXTRA = {
         aka: 'LifeOS',
         tagline: 'One operating system for a whole life.',
         description:
-          'Goals, habits, money, focus and the people who matter, held in one AI-assisted system instead of six apps that never speak to each other. In design; the description will be replaced with the repo’s own copy once the build is public.',
+          'Goals, habits, money, focus and the people who matter, held in one AI-assisted system instead of six apps that never speak to each other.',
         status: 'In design',
         platforms: ['Android', 'iOS'],
         skills: ['AI product', 'Mobile app'],
