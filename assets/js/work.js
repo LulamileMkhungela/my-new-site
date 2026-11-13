@@ -37,65 +37,76 @@
     .filter((filter) => filter.count > 0 || filter.tag === 'all')
     .map(
       (filter, index) =>
-        `<button class="filter" type="button" role="tab" data-filter="${esc(filter.tag)}" aria-pressed="${index === 0}">
+        `<button class="filter" type="button" data-filter="${esc(filter.tag)}" aria-pressed="${index === 0}">
            ${esc(filter.label)}<span>${filter.count}</span>
          </button>`,
     )
     .join('');
 
-  /* ---- Case-study cards — the reference's image row + 3/5 · 2/5 split --- */
+  /* ---- Case-study cards --------------------------------------------------- */
   const grid = document.querySelector('[data-work]');
   grid.innerHTML = all
-    .map((project, index) => {
-      const counter = `${String(index + 1).padStart(2, '0')} / ${String(all.length).padStart(2, '0')}`;
-      return `
-      <a class="work-card" href="${esc(project.href)}" data-tags="${esc((project.tags || []).join(' '))}" data-reveal style="--delay:${(index % 2) * 80}ms">
-        <div class="media media--16x9">
-          ${img(project.cover, project.title)}
-          <span class="work-card__counter" aria-hidden="true">${counter}</span>
-        </div>
+    .map(
+      (project, index) => `
+      <a class="work-card" href="${esc(project.href)}" data-tags="${esc((project.tags || []).join(' '))}" data-reveal style="--delay:${(index % 2) * 60}ms">
+        <div class="media media--16x9">${img(project.cover, project.title)}</div>
         <div class="work-card__body">
-          <div>
-            <span class="work-card__index">
-              <span>${esc(project.client)} · ${esc(project.year)}</span>
-              <span>${esc(project.role || '')}</span>
-            </span>
-            <h3>${esc(project.title)}</h3>
+          <span class="work-card__index">
+            <span>${String(index + 1).padStart(2, '0')} / ${String(all.length).padStart(2, '0')}</span>
+            <span>${esc(project.client)} · ${esc(project.year)}</span>
+          </span>
+          <h3>${esc(project.title)}</h3>
+          <p>${esc(project.description)}</p>
+          <span class="chips">${(project.skills || []).slice(0, 4).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
+          <span class="work-card__foot">
+            <span>${esc(project.role || project.kind)}</span>
             <span class="work-card__cta">View case study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </span>
-          </div>
-          <div>
-            <p>${esc(project.description)}</p>
-            <span class="chips">${(project.skills || [])
-              .slice(0, 3)
-              .map((skill) => `<span class="chip">${esc(skill)}</span>`)
-              .join('')}</span>
-          </div>
+          </span>
         </div>
-      </a>`;
-    })
+      </a>`,
+    )
     .join('');
 
-  /* ---- Redirect-only cards — compact rows, still a link out ------------- */
+  /* ---- Redirect-only cards ------------------------------------------------ */
   const redirectHost = document.querySelector('[data-redirects]');
   if (redirectHost) {
+    const note = WORK.redirects.filter((project) => project.cover).length
+      ? 'Opens the live product in a new tab.'
+      : '';
     redirectHost.innerHTML = WORK.redirects
       .map((project, index) => {
+        /* No cover for ProdOps: the card leads with the name instead, rather
+           than borrowing a screenshot that would misdescribe it. */
         const media = project.cover
-          ? `<div class="media">${img(project.cover, project.title)}</div>`
+          ? `<div class="media media--16x9">${img(project.cover, project.title)}</div>`
           : `<div class="redirect-card__plate" aria-hidden="true">
-               <span>${esc(project.client)}</span>
+               <span>${esc(String(index + 1).padStart(2, '0'))}</span>
                <span>${esc(project.title)}</span>
              </div>`;
         return `
-        <a class="archive-card" href="${esc(project.url)}" target="_blank" rel="noopener" data-reveal style="--delay:${(index % 2) * 60}ms">
+        <a class="work-card work-card--redirect" href="${esc(project.url)}" target="_blank" rel="noopener" data-reveal style="--delay:${(index % 2) * 60}ms">
           ${media}
-          <h3>${esc(project.title)}</h3>
-          <p>${esc(project.year)} · ${esc(project.urlLabel || 'Live product')} ↗</p>
+          <div class="work-card__body">
+            <span class="work-card__index">
+              <span>Live product</span>
+              <span>${esc(project.client)} · ${esc(project.year)}</span>
+            </span>
+            <h3>${esc(project.title)}</h3>
+            <p>${esc(project.description)}</p>
+            <span class="chips">${(project.skills || []).slice(0, 4).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
+            <span class="work-card__foot">
+              <span>${esc(project.role || project.kind)}</span>
+              <span class="work-card__cta">${esc(project.urlLabel || 'Open the live product')}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </span>
+            </span>
+          </div>
         </a>`;
       })
       .join('');
+    if (note) redirectHost.setAttribute('aria-description', note);
   }
 
   /* ---- Archive ----------------------------------------------------------- */
@@ -131,8 +142,5 @@
     document.querySelectorAll('[data-archive] .archive-card').forEach((element) => {
       element.hidden = tag !== 'all';
     });
-    /* Keep the redirect row dimmed-but-present when a filter is on, since the
-       cards are not part of the category taxonomy. */
-
   });
 })();

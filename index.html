@@ -59,42 +59,57 @@
       <!-- Hero -->
       <section class="hero">
         <div class="shell">
-          <p class="hero__badge">
-            <span class="dot" aria-hidden="true"></span>
-            <span data-roles>Product Designer · Brand Strategist · Entrepreneur</span>
-          </p>
           <div class="hero__grid">
             <div>
+              <p class="hero__badge">
+                <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="24" height="24" />
+                <span class="dot" aria-hidden="true"></span>
+                <span data-location>South Africa, Anywhere Remote</span>
+              </p>
               <h1 data-headline>Great ideas deserve <em>great design</em>.</h1>
+              <p class="hero__roles" data-roles></p>
               <p class="hero__lede" data-subline>
-                I help founders and organisations build products and brands that people
-                <strong>immediately understand, trust, and buy.</strong>
+                I help founders and organisations build products and brands that people immediately understand, trust,
+                and buy.
               </p>
               <div class="hero__actions">
                 <a class="btn btn--accent" href="contact.html">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
                   Book a Free Call
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
                 </a>
-                <a class="btn btn--outline" href="work.html">
-                  See the Work
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-                </a>
+                <a class="btn btn--ghost" href="work.html">See the Work</a>
               </div>
+              <div class="stats" data-stats></div>
             </div>
-            <div class="stats" data-stats></div>
+            <div class="hero__figure">
+              <div class="media">
+                <img
+                  data-asset="lulamile.webp"
+                  src="assets/img/lulamile.webp"
+                  alt="Lulamile M"
+                  width="900"
+                  height="1125"
+                  fetchpriority="high"
+                />
+              </div>
+              <p class="hero__note">
+                <strong>5+ years</strong>
+                designing products people immediately understand.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Clients -->
-      <section class="section section--tight" style="padding-block: 0" aria-label="Clients">
+      <section class="section section--tight" aria-label="Clients">
         <div class="shell">
-          <div class="between">
-            <p class="eyebrow eyebrow--bare" style="margin: 0">Worked with</p>
-            <p class="meta" style="margin: 0"><span data-logo-count>30+</span> brands &amp; founders</p>
-          </div>
+          <p class="eyebrow eyebrow--bare center" style="justify-content: center">Worked with</p>
         </div>
         <div class="marquee" data-marquee aria-live="off"></div>
+        <p class="logo-note">Hover to pause</p>
       </section>
 
       <!-- Selected work -->
@@ -107,16 +122,16 @@
             </div>
             <a class="btn btn--ghost btn--sm" href="work.html">All work →</a>
           </div>
-          <div class="filters" data-filters role="tablist" aria-label="Filter projects by category"></div>
+          <div class="filters" data-filters role="group" aria-label="Filter work"></div>
           <div class="work-grid work-grid--feature" data-featured></div>
-          <div class="between" style="margin-top: clamp(3rem, 6vw, 5rem)">
+          <div class="between" style="margin-top: clamp(2.5rem, 5vw, 3.5rem)">
             <div>
               <p class="eyebrow">Earlier</p>
-              <h2 class="display-md">Archive</h2>
+              <h3 class="display-md">Archive</h3>
             </div>
             <p class="meta">2020 — 2023 · Behance</p>
           </div>
-          <div class="work-grid work-grid--list" data-archive style="margin-top: 2rem"></div>
+          <div class="work-grid work-grid--list" data-archive style="margin-top: 1.4rem"></div>
         </div>
       </section>
 
@@ -145,11 +160,11 @@
           </div>
           <ol class="process" data-process></ol>
           <div class="callout" data-reveal>
-            <h3>Ready to get started? A 30-minute conversation is all it takes to figure out where to begin.</h3>
-            <a class="btn btn--accent" href="contact.html">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
-              Book a free 30-min call
-            </a>
+            <div>
+              <h3>Ready to get started?</h3>
+              <p>A 30-minute conversation is all it takes to figure out where to begin.</p>
+            </div>
+            <a class="btn" href="contact.html">Book a free 30-min call</a>
           </div>
         </div>
       </section>
@@ -174,7 +189,7 @@
           <div class="section-head" data-reveal>
             <div>
               <p class="eyebrow">What people say</p>
-              <h2 class="display-lg">Quiet confidence, <span style="color:hsl(var(--accent))">spoken by others.</span></h2>
+              <h2 class="display-lg">Quiet confidence, <span class="italic">spoken by others.</span></h2>
             </div>
           </div>
           <div class="quote-panel" data-quote data-reveal>
@@ -213,7 +228,6 @@
           <div class="band" data-reveal>
             <p class="eyebrow eyebrow--bare" style="justify-content: center">Thanks for the visit</p>
             <h2>I'm always happy to chat about design, product strategy, or potential collaborations.</h2>
-            <p>Tell me what you're building and we'll figure out the rest.</p>
             <div class="row">
               <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
               <a class="btn btn--ghost" href="https://drive.google.com/file/d/1jEAy1hFhtBHoPb1scwxsnQLnI4MfRXqC/view?usp=sharing" target="_blank" rel="noopener" data-resume>Download Resume</a>
