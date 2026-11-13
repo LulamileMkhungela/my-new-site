@@ -92,18 +92,28 @@
   }
 
   /* ---- Chrome ------------------------------------------------------------ */
-  // Expertise sits after Work: the areas of practice behind the studies, with
-  // ProdOps (the product I own) leading that page.
   const NAV = [
     { label: 'Home', href: 'index.html' },
     { label: 'Tools', href: 'tools.html' },
     { label: 'Work', href: 'work.html' },
-    { label: 'Expertise', href: 'expertise.html' },
     { label: 'Services', href: 'services.html' },
     { label: 'About', href: 'about.html' },
     { label: 'Process', href: 'index.html#process' },
     { label: 'Contact', href: 'contact.html' },
   ];
+
+  // Expertise is a hover/click dropdown, not a flat nav item: the four areas of
+  // practice, each anchoring to its block on expertise.html, plus ProdOps.
+  const EXPERTISE = [
+    { label: 'Product design & strategy', href: 'expertise.html#product', icon: '01', blurb: 'Research, flows, prototyping, the system underneath.' },
+    { label: 'Brand & growth', href: 'expertise.html#brand', icon: '02', blurb: 'Positioning, Amazon listings, conversion.' },
+    { label: 'Microfinance & impact', href: 'expertise.html#impact', icon: '03', blurb: 'Products for the people most products forget.' },
+    { label: 'Web design & conversion', href: 'expertise.html#web', icon: '04', blurb: 'Sites that earn trust and turn visitors into customers.' },
+    { label: 'ProdOps', href: 'expertise.html#prodops', icon: 'PO', blurb: 'The role-based product workspace I own and build.' },
+  ];
+
+  // The dropdown sits where Expertise sits: after Work.
+  const EXPERTISE_AFTER = 'work.html';
 
   const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const isCurrent = (href) => !href.includes('#') && href.toLowerCase() === here;
@@ -111,6 +121,67 @@
   function mark() {
     document.querySelectorAll('[data-nav]').forEach((a) => {
       if (isCurrent(a.getAttribute('href'))) a.setAttribute('aria-current', 'page');
+    });
+  }
+
+  /** The Expertise dropdown markup — a button plus its panel. */
+  function expertiseDrop() {
+    const onExpertise = here === 'expertise.html';
+    return `
+      <div class="nav-drop" data-nav-drop>
+        <button type="button" class="nav-drop__btn" aria-haspopup="true" aria-expanded="false" aria-controls="expertise-menu"${onExpertise ? ' aria-current="page"' : ''}>
+          Expertise
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav-drop__panel" id="expertise-menu" role="menu" aria-label="Expertise">
+          <p class="nav-drop__label">Areas of practice</p>
+          ${EXPERTISE.map(
+            (entry) => `
+            <a class="nav-drop__item" role="menuitem" href="${entry.href}">
+              <span class="nav-drop__num">${entry.icon}</span>
+              <span class="nav-drop__text">
+                <strong>${entry.label}</strong>
+                <span>${entry.blurb}</span>
+              </span>
+            </a>`,
+          ).join('')}
+        </div>
+      </div>`;
+  }
+
+  /** Hover opens the panel, click pins it, Escape and outside clicks close it. */
+  function wireDrop(host) {
+    const drop = host.querySelector('[data-nav-drop]');
+    if (!drop) return;
+    const btn = drop.querySelector('.nav-drop__btn');
+    let closeTimer;
+
+    const setOpen = (open) => {
+      drop.toggleAttribute('data-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    const openNow = () => {
+      clearTimeout(closeTimer);
+      setOpen(true);
+    };
+    const closeSoon = () => {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => setOpen(false), 140);
+    };
+
+    drop.addEventListener('mouseenter', openNow);
+    drop.addEventListener('mouseleave', closeSoon);
+    drop.addEventListener('focusin', openNow);
+    btn.addEventListener('click', () => setOpen(!drop.hasAttribute('data-open')));
+    document.addEventListener('click', (event) => {
+      if (!drop.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (drop.hasAttribute('data-open')) {
+        setOpen(false);
+        btn.focus();
+      }
     });
   }
 
@@ -128,7 +199,10 @@
             <span>${SITE.name}<small>${SITE.brandLine}</small></span>
           </a>
           <nav class="nav" aria-label="Primary" data-nav-list>
-            ${NAV.map((item) => `<a href="${item.href}" data-nav ${item.href === 'tools.html' ? 'data-flag title="Tools — the builder toolkit"' : ''}>${item.label}</a>`).join('')}
+            ${NAV.map((item) => {
+              const link = `<a href="${item.href}" data-nav ${item.href === 'tools.html' ? 'data-flag title="Tools — the builder toolkit"' : ''}>${item.label}</a>`;
+              return item.href === EXPERTISE_AFTER ? link + expertiseDrop() : link;
+            }).join('')}
           </nav>
           <div class="header-actions">
             <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme">
@@ -150,7 +224,16 @@
           </button>
         </div>
         <nav aria-label="Mobile">
-          ${NAV.map((item) => `<a href="${item.href}" data-nav>${item.label}</a>`).join('')}
+          ${NAV.map((item) => {
+            const link = `<a href="${item.href}" data-nav>${item.label}</a>`;
+            return item.href === EXPERTISE_AFTER
+              ? link +
+                  `<p class="drawer__label">Expertise</p>` +
+                  EXPERTISE.map(
+                    (entry) => `<a href="${entry.href}" data-nav>${entry.label}</a>`,
+                  ).join('')
+              : link;
+          }).join('')}
           <div class="drawer__foot">
             <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
             <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
@@ -159,6 +242,7 @@
       </div>`;
 
     mark();
+    wireDrop(host);
 
     const drawer = host.querySelector('[data-drawer]');
     const openBtn = host.querySelector('[data-menu-open]');

@@ -86,7 +86,7 @@
                <span>${esc(project.title)}</span>
              </div>`;
         return `
-        <a class="work-card work-card--redirect" href="${esc(project.url)}" target="_blank" rel="noopener" data-reveal style="--delay:${(index % 2) * 60}ms">
+        <a class="work-card work-card--redirect" href="${esc(project.url)}" target="_blank" rel="noopener" data-tags="${esc((project.tags || []).join(' '))}" data-reveal style="--delay:${(index % 2) * 60}ms">
           ${media}
           <div class="work-card__body">
             <span class="work-card__index">
@@ -135,9 +135,11 @@
       const match = tag === 'all' || (element.dataset.tags || '').split(' ').includes(tag);
       element.hidden = !match;
     });
-    /* Redirect cards are not part of the filter, so they only show on "All". */
+    /* Redirect cards carry their own tags, so Web Conversion filters them with
+       the rest of that area; the archive only shows on "All". */
     redirectHost?.querySelectorAll('.work-card').forEach((element) => {
-      element.hidden = tag !== 'all';
+      const match = tag === 'all' || (element.dataset.tags || '').split(' ').includes(tag);
+      element.hidden = !match;
     });
     document.querySelectorAll('[data-archive] .archive-card').forEach((element) => {
       element.hidden = tag !== 'all';

@@ -47,15 +47,15 @@ window.SITE = {
     { src: 'culinacraftique-logo.svg', alt: 'Culina Craftique', scale: 1.6 },
   ],
 
-  /* Portfolio filter, in the source site's order and with its counts. */
+  /* Portfolio filter — the four areas of work, in the order the Services page
+     presents them. Counts are computed from the project list in work.data.js,
+     so adding a project never leaves a stale badge. */
   filters: [
-    { tag: 'all', label: 'All', count: 11 },
-    { tag: 'cat-fintech', label: 'Fintech', count: 3 },
-    { tag: 'cat-saas-ops', label: 'SaaS & Ops', count: 2 },
-    { tag: 'cat-cleantech', label: 'CleanTech', count: 1 },
-    { tag: 'cat-ecommerce', label: 'E-Commerce', count: 2 },
-    { tag: 'cat-healthcare', label: 'Healthcare', count: 1 },
-    { tag: 'cat-marketingwebsite', label: 'Marketing Website', count: 5 },
+    { tag: 'all', label: 'All', count: 0 },
+    { tag: 'product-design', label: 'Product Design', count: 0 },
+    { tag: 'brand-strategy', label: 'Brand', count: 0 },
+    { tag: 'microfinance', label: 'Impact', count: 0 },
+    { tag: 'website-design', label: 'Web Conversion', count: 0 },
   ],
 
   process: [

@@ -1861,3 +1861,42 @@
   object-fit: cover;
   object-position: top center;
 }
+
+/* The own-product card that sits inside an expertise area. */
+.exp-feature {
+  margin-top: 1.1rem;
+  padding: clamp(1rem, 1.8vw, 1.35rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid hsl(var(--accent) / 0.3);
+  background: hsl(var(--accent) / 0.06);
+}
+
+.exp-feature__tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--accent));
+  margin-bottom: 0.5rem;
+}
+
+.exp-feature h4 {
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.exp-feature h4 span {
+  font-family: var(--body);
+  font-size: 0.74rem;
+  font-weight: 400;
+  color: hsl(var(--ink-soft));
+  margin-left: 0.4rem;
+}
+
+.exp-feature p {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: hsl(var(--ink-soft));
+}

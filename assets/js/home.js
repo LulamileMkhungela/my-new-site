@@ -100,6 +100,14 @@
     archiveHost.querySelectorAll('.archive-card').forEach((element) => {
       element.hidden = tag !== 'all';
     });
+
+    /* The mobile apps live under Product Design, so the section follows that
+       filter: shown for All and Product Design, tucked away for the rest. */
+    document.querySelectorAll('[data-app-tags]').forEach((card) => {
+      card.hidden = tag !== 'all' && tag !== 'product-design';
+    });
+    const appsSection = document.getElementById('apps');
+    if (appsSection) appsSection.hidden = tag !== 'all' && tag !== 'product-design';
   });
 
   /* ---- Mobile apps, in the build ------------------------------------------ */
@@ -133,7 +141,7 @@
     host.innerHTML = APPS.apps
       .map(
         (app, index) => `
-      <article class="app-card" data-reveal style="--delay:${index * 70}ms">
+      <article class="app-card" data-reveal data-app-tags="product-design mobile-app" style="--delay:${index * 70}ms">
         <div class="app-card__top">
           <span class="app-card__icon" aria-hidden="true">${esc((app.name || '').slice(0, 2).toUpperCase())}</span>
           <span class="chip chip--soon"><span class="dot"></span>Coming soon</span>

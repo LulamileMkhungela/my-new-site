@@ -57,11 +57,39 @@
         </div>
         <div class="exp-row__body">
           <ul class="tick-list">${area.items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
+          ${
+            area.feature
+              ? `<div class="exp-feature">
+                   <span class="exp-feature__tag">Own product</span>
+                   <h4>${esc(area.feature.name)} <span>${esc(area.feature.role)}</span></h4>
+                   <p>${esc(area.feature.body)}</p>
+                   <div class="row" style="margin-top:0.9rem">
+                     <a class="btn btn--accent btn--sm" href="${esc(area.feature.link)}" target="_blank" rel="noopener">${esc(area.feature.linkLabel)}</a>
+                     <a class="btn btn--ghost btn--sm" href="${esc(area.feature.repo)}" target="_blank" rel="noopener">Repository</a>
+                   </div>
+                 </div>`
+              : ''
+          }
           <p class="exp-row__proof">${esc(area.proof)}</p>
         </div>
       </article>`,
     )
     .join('');
+
+  /* ---- What is filed where ------------------------------------------------ */
+  const filedHost = document.querySelector('[data-exp-filed]');
+  if (filedHost && E.filed) {
+    filedHost.innerHTML = E.filed
+      .map(
+        (group) => `
+        <div class="card">
+          <p class="meta">${esc(group.note)}</p>
+          <h3 class="display-sm" style="margin:0.5rem 0 0.8rem">${esc(group.title)}</h3>
+          <div class="chips">${group.items.map((item) => `<span class="chip">${esc(item)}</span>`).join('')}</div>
+        </div>`,
+      )
+      .join('');
+  }
 
   /* ---- Stack & training --------------------------------------------------- */
   document.querySelector('[data-exp-stack]').innerHTML = E.stack
