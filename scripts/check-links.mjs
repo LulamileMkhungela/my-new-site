@@ -20,6 +20,7 @@ const PAGES = [
   'index.html',
   'tools.html',
   'work.html',
+  'expertise.html',
   'services.html',
   'about.html',
   'contact.html',

@@ -1509,3 +1509,355 @@
     color: #000;
   }
 }
+
+/* ---- Mobile apps, in the build ------------------------------------------- */
+/* Same card grammar as .work-card / .service-card: card surface, hairline
+   border, one hover lift — the "coming soon" chip is the only new signal. */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.2rem, 2.4vw, 2rem);
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.2rem, 2vw, 1.7rem);
+  border-radius: var(--radius-xl);
+  border: 1px solid hsl(var(--border) / 0.75);
+  background: hsl(var(--card));
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: hsl(var(--border));
+}
+
+.app-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.app-card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 0.9rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--bg) / 0.75);
+  font-family: var(--display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: hsl(var(--fg));
+}
+
+.chip--soon {
+  gap: 0.45rem;
+  border-color: hsl(var(--accent) / 0.35);
+  background: hsl(var(--accent) / 0.1);
+  color: hsl(var(--fg));
+  font-weight: 600;
+}
+
+.chip--soon .dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: hsl(var(--accent));
+  box-shadow: 0 0 0 3px hsl(var(--accent) / 0.18);
+}
+
+.app-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.app-card__body h3 {
+  font-size: clamp(1.15rem, 1.9vw, 1.4rem);
+  letter-spacing: -0.02em;
+}
+
+.app-card__aka {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-soft));
+  opacity: 0.75;
+}
+
+.app-card__tagline {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: hsl(var(--fg));
+}
+
+.app-card__body p:not(.app-card__tagline) {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: hsl(var(--ink-soft));
+}
+
+.app-card__body .chips {
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+.app-card__foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-top: 1rem;
+  border-top: 1px solid hsl(var(--border) / 0.7);
+}
+
+.app-card__status {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-soft));
+  opacity: 0.85;
+}
+
+.app-card__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.app-card__stores .btn {
+  flex: 1 1 9.5rem;
+  font-size: 0.8rem;
+  padding: 0.65rem 0.9rem;
+}
+
+.app-card__stores .btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.store-btn.is-pending {
+  cursor: not-allowed;
+  opacity: 0.6;
+  border-style: dashed;
+}
+
+.store-btn__state {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+@media (max-width: 1000px) {
+  .app-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .app-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- Expertise ----------------------------------------------------------- */
+.prodops {
+  border-radius: var(--radius-xl);
+  border: 1px solid hsl(var(--border) / 0.85);
+  background:
+    radial-gradient(circle at 12% 0%, hsl(var(--accent) / 0.14), transparent 55%),
+    hsl(var(--card));
+  padding: clamp(1.5rem, 3.4vw, 2.8rem);
+}
+
+.prodops__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.8);
+}
+
+.prodops__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.prodops__grid {
+  margin-top: 1.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.exp-list {
+  display: grid;
+  gap: 0;
+}
+
+.exp-row {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 3vw, 2.4rem);
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+  border-top: 1px solid hsl(var(--border) / 0.7);
+  align-items: start;
+}
+
+.exp-row:last-child {
+  border-bottom: 1px solid hsl(var(--border) / 0.7);
+}
+
+.exp-row__num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: hsl(var(--accent));
+}
+
+.exp-row__title .meta {
+  margin: 0 0 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  opacity: 0.7;
+}
+
+.exp-row__summary {
+  margin: 0.7rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: hsl(var(--ink-soft));
+}
+
+.exp-row__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.exp-row__link svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  transition: transform 0.3s var(--ease);
+}
+
+.exp-row__link:hover svg {
+  transform: translateX(3px);
+}
+
+.exp-row__body .tick-list {
+  margin: 0;
+}
+
+.exp-row__proof {
+  margin: 1.1rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px dashed hsl(var(--border));
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: hsl(var(--ink-soft));
+  opacity: 0.9;
+}
+
+.exp-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.6rem, 5vw, 4rem);
+}
+
+.exp-training {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.exp-training li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.6);
+  font-size: 0.86rem;
+}
+
+.exp-training li span {
+  color: hsl(var(--ink-soft));
+  font-size: 0.78rem;
+}
+
+/* Redirect cards: no cover, so the plate carries the title instead. */
+.redirect-card__plate {
+  display: grid;
+  place-content: center;
+  gap: 0.4rem;
+  aspect-ratio: 16 / 9;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, hsl(var(--accent) / 0.18), transparent 60%),
+    hsl(var(--muted));
+  border-bottom: 1px solid hsl(var(--border) / 0.7);
+}
+
+.redirect-card__plate span:first-child {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  opacity: 0.6;
+}
+
+.redirect-card__plate span:last-child {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 900px) {
+  .prodops__grid,
+  .exp-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .exp-row {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+  }
+
+  .exp-row__body {
+    grid-column: 2;
+  }
+}
+
+/* A tall phone screenshot, shown at phone width instead of cropped to 16:9. */
+.media--portrait {
+  aspect-ratio: 9 / 19.5;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.media--portrait img {
+  object-fit: cover;
+  object-position: top center;
+}

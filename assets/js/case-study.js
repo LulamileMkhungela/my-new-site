@@ -1,5 +1,6 @@
 /**
- * Case study — renders any of the twelve projects from projects.data.js.
+ * Case study — renders any project from projects.data.js or the studies added
+ * in extra.data.js.
  *
  * Three shapes come out of the source site and all three are handled here:
  *   project  long form (summary, problems, goals, personas, process, build, impact)
@@ -21,7 +22,10 @@
       ? `<figure class="media media--${ratio || '16x9'}">${img(name, alt)}</figure>`
       : '';
 
-  const all = [
+  /* Redirect-only entries have no study body, so they are left out of the
+     sequence and the "next" chain never lands on one. */
+  const WORK = window.WORK;
+  const all = WORK ? WORK.studies : [
     ...P.product.map((project) => ({ ...project, href: `case-study.html?id=${project.id}` })),
     ...Object.values(P.graphic).map((project) => ({ ...project, href: `case-study.html?id=${project.id}` })),
     ...Object.values(P.amazon).map((project) => ({ ...project, href: `case-study.html?id=${project.id}` })),
@@ -132,7 +136,7 @@
               <div class="step-block">
                 ${step.heading ? `<h3>${esc(step.heading)}</h3>` : ''}
                 ${step.body ? `<p>${mdInline(step.body)}</p>` : ''}
-                ${step.image ? media(step.image, step.heading, '16x9') : ''}
+                ${step.image ? media(step.image, step.heading, step.ratio || '16x9') : ''}
               </div>`,
               )
               .join('')}
@@ -292,6 +296,28 @@
   /* ---- Page --------------------------------------------------------------- */
   const isProduct = project.kind === 'project';
   const c = project.caseStudy;
+  /* Studies written by hand (extra.data.js) may skip a block the renderer
+     knows about; fill the gaps so a missing section is simply absent. */
+  const blank = (value, fallback) => value || fallback;
+  c.summary = blank(c.summary, {});
+  c.problem = blank(c.problem, { cards: [] });
+  c.problem.cards = blank(c.problem.cards, []);
+  c.blueprint = blank(c.blueprint, {});
+  c.goals = blank(c.goals, { business: [], user: [] });
+  c.goals.business = blank(c.goals.business, []);
+  c.goals.user = blank(c.goals.user, []);
+  c.users = blank(c.users, { personas: [] });
+  c.users.personas = blank(c.users.personas, []);
+  c.process = blank(c.process, { steps: [] });
+  c.process.steps = blank(c.process.steps, []);
+  c.build = blank(c.build, { sections: [] });
+  c.build.sections = blank(c.build.sections, []);
+  c.impact = blank(c.impact, {});
+  c.localisation = blank(c.localisation, {});
+  c.expansion = blank(c.expansion, { items: [] });
+  c.expansion.items = blank(c.expansion.items, []);
+  c.learned = blank(c.learned, { items: [] });
+  c.learned.items = blank(c.learned.items, []);
   const heroImage = isProduct ? c.hero : project.hero;
   const thanks = isProduct ? c.thanks : project.thanks;
 
@@ -324,6 +350,12 @@
           ${
             (project.skills || []).length
               ? `<div class="chips" style="margin-top:1.6rem">${project.skills.map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</div>`
+              : ''
+          }
+          ${
+            project.url
+              ? `<div class="row" style="margin-top:1.6rem"><a class="btn btn--accent" href="${esc(project.url)}" target="_blank" rel="noopener">${esc(project.urlLabel || 'Open the live product')}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div>`
               : ''
           }
         </div>

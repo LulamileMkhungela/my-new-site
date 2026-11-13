@@ -92,11 +92,13 @@
   }
 
   /* ---- Chrome ------------------------------------------------------------ */
-  // Tools sits directly after Home, before the rest of the portfolio.
+  // Expertise sits after Work: the areas of practice behind the studies, with
+  // ProdOps (the product I own) leading that page.
   const NAV = [
     { label: 'Home', href: 'index.html' },
     { label: 'Tools', href: 'tools.html' },
     { label: 'Work', href: 'work.html' },
+    { label: 'Expertise', href: 'expertise.html' },
     { label: 'Services', href: 'services.html' },
     { label: 'About', href: 'about.html' },
     { label: 'Process', href: 'index.html#process' },
@@ -232,6 +234,8 @@
               <a href="${SITE.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
               ${SITE.twitter ? `<a href="${SITE.twitter}" target="_blank" rel="noopener">X / Twitter</a>` : ''}
               <a href="${SITE.behance}" target="_blank" rel="noopener">Behance</a>
+              <a href="https://github.com/LulamileMkhungela" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://lulamilemkhungela.github.io/ProdOps/" target="_blank" rel="noopener">ProdOps</a>
             </div>
           </div>
           <div class="footer-bottom">

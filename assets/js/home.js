@@ -1,9 +1,12 @@
 /**
- * Home — hero, client marquee, featured work, process, services, testimonials.
- * All copy comes from window.SITE and window.PROJECTS.
+ * Home — hero, client marquee, featured work, mobile apps in the build,
+ * process, services, testimonials.
+ * Copy comes from window.SITE, and the work list from window.WORK (the merged
+ * source data plus the work added in extra.data.js).
  */
 (function () {
   const SITE = window.SITE;
+  const WORK = window.WORK;
   const P = window.PROJECTS;
   const { esc, md, initials } = window.SR;
   const img = (name, alt, cls) =>
@@ -31,7 +34,8 @@
 
   /* ---- Filters ------------------------------------------------------------ */
   const filters = document.querySelector('[data-filters]');
-  filters.innerHTML = SITE.filters
+  filters.innerHTML = WORK.filters
+    .filter((filter) => filter.count > 0 || filter.tag === 'all')
     .map(
       (filter, index) =>
         `<button class="filter" type="button" data-filter="${esc(filter.tag)}" aria-pressed="${index === 0}">
@@ -41,11 +45,7 @@
     .join('');
 
   /* ---- Featured work ------------------------------------------------------ */
-  const featured = [
-    ...P.product.map((project) => ({ ...project, href: `case-study.html?id=${project.id}` })),
-    ...Object.values(P.graphic).map((project) => ({ ...project, href: `case-study.html?id=${project.id}` })),
-    ...Object.values(P.amazon).map((project) => ({ ...project, href: `case-study.html?id=${project.id}` })),
-  ];
+  const featured = WORK.studies;
 
   const archiveCards = P.archive
     .map(
@@ -101,6 +101,60 @@
       element.hidden = tag !== 'all';
     });
   });
+
+  /* ---- Mobile apps, in the build ------------------------------------------ */
+  const APPS = (window.EXTRA && window.EXTRA.comingSoon) || null;
+  if (APPS) {
+    const host = document.querySelector('[data-apps]');
+    document.querySelector('[data-apps-title]').textContent = APPS.title;
+    document.querySelector('[data-apps-lede]').textContent = APPS.lede;
+
+    /* A download is only a link once there is a URL; until then the button is
+       present, labelled and disabled, so the page never claims a build it
+       cannot hand over. */
+    const storeButton = (app, platform) => {
+      const url = (app.downloads || {})[platform] || '';
+      const label = platform === 'android' ? 'Android APK' : 'iOS build';
+      const icon =
+        platform === 'android'
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 2l1.6 2.8M17 2l-1.6 2.8"/><rect x="4" y="6.5" width="16" height="12.5" rx="3"/><path d="M8.5 11.5h.01M15.5 11.5h.01"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M16 3.5c-1.2.1-2.4.8-3 1.7-.6.8-1 1.9-.9 2.9 1.2.1 2.4-.6 3.1-1.5.6-.8 1-1.9.8-3.1Z"/><path d="M19.5 16.7c-.5 1.1-.8 1.6-1.5 2.6-1 1.4-2.4 3.1-4.1 3.1-1.5 0-1.9-1-4-1s-2.5 1-4 1c-1.7 0-3-1.9-4-3.3-2.7-4.1-3-9-1.3-11.6 1.2-1.8 3.1-2.8 4.9-2.8 1.8 0 2.9 1 4.4 1 1.4 0 2.3-1 4.4-1 1.6 0 3.3.9 4.5 2.4-4 2.2-3.3 7.9.7 9.6Z"/></svg>';
+
+      if (!url) {
+        return `<span class="btn btn--ghost btn--sm store-btn is-pending" aria-disabled="true" title="Link not added yet">
+            ${icon}${label} <span class="store-btn__state">Not yet</span>
+          </span>`;
+      }
+      return `<a class="btn btn--sm store-btn" href="${esc(url)}" target="_blank" rel="noopener" download>
+          ${icon}${label}
+        </a>`;
+    };
+
+    host.innerHTML = APPS.apps
+      .map(
+        (app, index) => `
+      <article class="app-card" data-reveal style="--delay:${index * 70}ms">
+        <div class="app-card__top">
+          <span class="app-card__icon" aria-hidden="true">${esc((app.name || '').slice(0, 2).toUpperCase())}</span>
+          <span class="chip chip--soon"><span class="dot"></span>Coming soon</span>
+        </div>
+        <div class="app-card__body">
+          <h3>${esc(app.name)}${app.aka ? ` <span class="app-card__aka">· ${esc(app.aka)}</span>` : ''}</h3>
+          <p class="app-card__tagline">${esc(app.tagline)}</p>
+          <p>${esc(app.description)}</p>
+          <span class="chips">${(app.skills || []).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
+        </div>
+        <div class="app-card__foot">
+          <span class="app-card__status">${esc(app.status)}</span>
+          <span class="app-card__stores">
+            ${storeButton(app, 'android')}
+            ${storeButton(app, 'ios')}
+          </span>
+        </div>
+      </article>`,
+      )
+      .join('');
+  }
 
   /* ---- Process ------------------------------------------------------------ */
   document.querySelector('[data-process]').innerHTML = SITE.process

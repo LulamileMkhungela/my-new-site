@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Expertise | Lulamile M — Product, Systems, Front-end, Brand &amp; Impact</title>
+    <meta
+      name="description"
+      content="The practice behind the work: product & UX, design systems, front-end engineering, brand & growth and microfinance/impact — plus ProdOps, the role-based product workspace I own and build."
+    />
+    <meta name="author" content="Lulamile M" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f1f9" />
+
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/img/favicon.png" />
+
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <meta property="og:title" content="Expertise — Lulamile M" />
+    <meta
+      property="og:description"
+      content="Product & UX, design systems, front-end engineering, brand & growth and impact work — and ProdOps, the product workspace I own."
+    />
+    <meta property="og:type" content="website" />
+
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>
+      try {
+        var saved = localStorage.getItem('sr-theme');
+        document.documentElement.dataset.theme =
+          saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+  </head>
+
+  <body>
+    <div data-header></div>
+
+    <main id="main">
+      <!-- Intro -->
+      <section class="hero" style="padding-bottom: clamp(1rem, 3vw, 2rem)">
+        <div class="shell">
+          <p class="eyebrow">Expertise</p>
+          <h1 class="display-xl" style="max-width: 20ch">Where the work actually sits.</h1>
+          <p class="lede" style="margin-top: 1.4rem" data-exp-lede></p>
+          <div class="stats" data-exp-stats></div>
+        </div>
+      </section>
+
+      <!-- ProdOps, the own-product block -->
+      <section class="section section--tight" id="prodops">
+        <div class="shell">
+          <div class="prodops" data-exp-featured>
+            <p class="lede">Loading…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Areas of practice -->
+      <section class="section" style="padding-top: 0" id="practice">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Areas of practice</p>
+              <h2 class="display-lg">Five areas, one method.</h2>
+            </div>
+            <a class="btn btn--ghost btn--sm" href="services.html">What I offer →</a>
+          </div>
+          <div class="exp-list" data-exp-areas></div>
+        </div>
+      </section>
+
+      <!-- Stack & training -->
+      <section class="section" style="padding-top: 0">
+        <div class="shell">
+          <div class="exp-split">
+            <div>
+              <p class="eyebrow">Tools</p>
+              <h2 class="display-md" style="margin-bottom: 1.2rem">What I build with</h2>
+              <div class="chips" data-exp-stack></div>
+              <p class="meta" style="margin-top: 1.2rem; max-width: 40ch">
+                The tools that recur across shipped engagements — not a résumé keyword list.
+              </p>
+            </div>
+            <div>
+              <p class="eyebrow">Training</p>
+              <h2 class="display-md" style="margin-bottom: 1.2rem">Where it was learned</h2>
+              <ul class="exp-training" data-exp-training></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section section--tight">
+        <div class="shell">
+          <div class="band">
+            <p class="eyebrow eyebrow--bare" style="justify-content: center">Next</p>
+            <h2>Tell me the area, and what's not working in it.</h2>
+            <p>A 30-minute conversation is enough to say whether I am the right person for it.</p>
+            <div class="row">
+              <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
+              <a class="btn btn--ghost" href="work.html">See the work</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/projects.data.js"></script>
+    <script src="assets/js/extra.data.js"></script>
+    <script src="assets/js/work.data.js"></script>
+    <script src="assets/js/expertise.data.js"></script>
+    <script src="assets/js/shell.js"></script>
+    <script src="assets/js/expertise.js"></script>
+  </body>
+</html>
