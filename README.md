@@ -7,6 +7,24 @@ The portfolio, rebuilt as a static site: content and images from
 
 No build step, no framework, no dependencies. Open `index.html` or serve the folder.
 
+## The UI is the reference's, not a re-skin
+
+`assets/css/base.css` and `assets/css/site.css` implement the reference design system directly, taken from the
+captured bundle in `reference/source-mirror/` rather than approximated:
+
+- **Tokens** — the reference's HSL custom properties, value for value (`--background 260 42% 96%`,
+  `--foreground 255 45% 12%`, `--hero-accent 16 85% 55%` light / `170 80% 55%` dark, the six project tints), exposed
+  here as `--bg`, `--fg`, `--accent`, `--lavender` … with the same dark-mode values.
+- **Type** — Clash Grotesk display + Inter body; eyebrows are 10–11px, bold, `.22em` uppercase with an accent dot;
+  headings carry the accent on the last phrase (`great design`, `spoken by others`) and are never italic.
+- **Components** — sticky header at 95% background with blur and a hairline border, round avatar ringed in the accent,
+  the Expertise hover/click panel, 2rem-radius media, pill buttons, pill filters filled with the accent when selected,
+  full-bleed project rows with an `01 / 08` counter in white mono over the image and a 3/5 · 2/5 text split, the
+  hairline process box with accent numerals, full-bleed service rows with a round numeral that fills on hover, the
+  stacked quote panel with a 4px accent hairline, the ink CTA band, and the single-row footer.
+
+Section order, copy and content are Lulamile's; only the language is the reference's.
+
 ```sh
 python3 -m http.server 8080 --bind 0.0.0.0   # then open http://localhost:8080
 ```

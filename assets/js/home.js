@@ -13,11 +13,16 @@
     `<img data-asset="${esc(name)}" src="${window.asset(name)}" alt="${esc(alt)}" loading="lazy" decoding="async"${cls ? ` class="${cls}"` : ''} />`;
 
   /* ---- Hero --------------------------------------------------------------- */
+  /* "Great ideas deserve great design." — the last two words carry the accent. */
   document.querySelector('[data-headline]').innerHTML = SITE.headline.replace(
     /great design\.?$/i,
     '<em>great design</em>.',
   );
-  document.querySelector('[data-roles]').innerHTML = SITE.roles.map((role) => `<span>${esc(role)}</span>`).join('');
+
+  /* The badge line above the headline: the three roles, dot separated. */
+  document.querySelector('[data-roles]').innerHTML = SITE.roles
+    .map((role) => esc(role))
+    .join(' &middot; ');
   document.querySelector('[data-stats]').innerHTML = SITE.stats
     .map((stat) => `<div class="stat"><strong>${esc(stat.value)}</strong><span>${esc(stat.label)}</span></div>`)
     .join('');
@@ -31,6 +36,9 @@
     )
     .join('');
   document.querySelector('[data-marquee]').innerHTML = `<div class="marquee__track">${logos}${logos}</div>`;
+
+  const logoCount = document.querySelector('[data-logo-count]');
+  if (logoCount) logoCount.textContent = `${SITE.logos.length}`;
 
   /* ---- Filters ------------------------------------------------------------ */
   const filters = document.querySelector('[data-filters]');
@@ -62,23 +70,31 @@
 
   function card(project, index) {
     const tags = project.tags || [];
+    const counter = `${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}`;
     return `
-      <a class="work-card" href="${esc(project.href)}" data-tags="${esc(tags.join(' '))}" data-reveal style="--delay:${index * 60}ms">
-        <div class="media media--16x9">${img(project.cover, project.title)}</div>
+      <a class="work-card" href="${esc(project.href)}" data-tags="${esc(tags.join(' '))}" data-reveal style="--delay:${(index % 2) * 80}ms">
+        <div class="media media--16x9">
+          ${img(project.cover, project.title)}
+          <span class="work-card__counter" aria-hidden="true">${counter}</span>
+        </div>
         <div class="work-card__body">
-          <span class="work-card__index">
-            <span>${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}</span>
-            <span>${esc(project.client)}</span>
-          </span>
-          <h3>${esc(project.title)}</h3>
-          <p>${esc(project.description)}</p>
-          <span class="chips">${(project.skills || []).slice(0, 4).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
-          <span class="work-card__foot">
-            <span>${esc(project.year)}</span>
-            <span class="work-card__cta">View case study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          <div>
+            <span class="work-card__index">
+              <span>${esc(project.client)} · ${esc(project.year)}</span>
+              <span>${esc(project.role || '')}</span>
             </span>
-          </span>
+            <h3>${esc(project.title)}</h3>
+            <span class="work-card__cta">View case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+          <div>
+            <p>${esc(project.description)}</p>
+            <span class="chips">${(project.skills || [])
+              .slice(0, 3)
+              .map((skill) => `<span class="chip">${esc(skill)}</span>`)
+              .join('')}</span>
+          </div>
         </div>
       </a>`;
   }
@@ -173,13 +189,15 @@
     .map(
       (service, index) => `
       <a class="service-card" href="${esc(service.page)}" data-reveal style="--delay:${index * 70}ms">
-        <div class="media media--16x9">${img(service.image, service.title)}</div>
-        <div class="service-card__body">
-          <span class="service-card__num">${esc(service.number)} · ${esc(service.keyword)}</span>
+        <span class="service-card__num">${esc(service.number)}</span>
+        <span class="service-card__body">
           <h3>${esc(service.title)}</h3>
           <p>${esc(service.oneliner)}</p>
-          <span class="chips"><span class="chip">${esc(service.tagline)}</span></span>
-        </div>
+        </span>
+        <span class="service-card__keyword meta" aria-hidden="true">${esc(service.keyword)}</span>
+        <span class="service-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </span>
       </a>`,
     )
     .join('');
@@ -204,16 +222,17 @@
   function show(index) {
     at = (index + list.length) % list.length;
     const item = list[at];
-    textEl.textContent = `“${item.message}”`;
+    textEl.textContent = item.message;
     nameEl.textContent = item.name;
-    metaEl.textContent = `${item.designation} · ${item.company} · ${item.period}`;
+    metaEl.innerHTML = `${esc(item.designation)} · ${esc(item.company)}<span style="display:block;opacity:.7;font-size:.68rem;margin-top:.15rem">${esc(item.period)}</span>`;
     avatarEl.textContent = initials(item.name);
     dots.querySelectorAll('[data-dot]').forEach((dot, i) => dot.setAttribute('aria-current', String(i === at)));
   }
 
   function auto() {
     clearInterval(timer);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
     timer = setInterval(() => show(at + 1), 9000);
   }
 
