@@ -13,11 +13,16 @@
     `<img data-asset="${esc(name)}" src="${window.asset(name)}" alt="${esc(alt)}" loading="lazy" decoding="async"${cls ? ` class="${cls}"` : ''} />`;
 
   /* ---- Hero --------------------------------------------------------------- */
+  /* "Great ideas deserve great design." — the last two words carry the accent. */
   document.querySelector('[data-headline]').innerHTML = SITE.headline.replace(
     /great design\.?$/i,
     '<em>great design</em>.',
   );
-  document.querySelector('[data-roles]').innerHTML = SITE.roles.map((role) => `<span>${esc(role)}</span>`).join('');
+
+  /* The badge line above the headline: the three roles, dot separated. */
+  document.querySelector('[data-roles]').innerHTML = SITE.roles
+    .map((role) => esc(role))
+    .join(' &middot; ');
   document.querySelector('[data-stats]').innerHTML = SITE.stats
     .map((stat) => `<div class="stat"><strong>${esc(stat.value)}</strong><span>${esc(stat.label)}</span></div>`)
     .join('');
@@ -32,6 +37,9 @@
     .join('');
   document.querySelector('[data-marquee]').innerHTML = `<div class="marquee__track">${logos}${logos}</div>`;
 
+  const logoCount = document.querySelector('[data-logo-count]');
+  if (logoCount) logoCount.textContent = `${SITE.logos.length}`;
+
   /* ---- Filters ------------------------------------------------------------ */
   const filters = document.querySelector('[data-filters]');
   filters.innerHTML = WORK.filters
@@ -45,7 +53,25 @@
     .join('');
 
   /* ---- Featured work ------------------------------------------------------ */
-  const featured = WORK.studies;
+  const APPS = (window.EXTRA && window.EXTRA.comingSoon && window.EXTRA.comingSoon.apps) || [];
+
+  /* Each app becomes a portfolio card in the Product Design category. It is an
+     <article>, not a link: there is no case study yet, and the two download
+     buttons inside it must stay real controls. */
+  const appCards = APPS.map((app) => ({
+    kind: 'app',
+    id: app.id,
+    title: app.name,
+    client: app.aka ? `${app.name} · ${app.aka}` : app.name,
+    year: app.status,
+    description: app.description,
+    role: app.tagline,
+    skills: app.skills || [],
+    tags: ['product-design', 'mobile-app', 'cat-saas-ops'],
+    downloads: app.downloads || {},
+  }));
+
+  const featured = [...WORK.studies, ...appCards];
 
   const archiveCards = P.archive
     .map(
@@ -60,25 +86,88 @@
     )
     .join('');
 
+  /* A download is only a link once there is a URL; until then the button is
+     present, labelled and disabled, so the card never claims a build it cannot
+     hand over. */
+  function storeButton(app, platform) {
+    const url = (app.downloads || {})[platform] || '';
+    const label = platform === 'android' ? 'Android APK' : 'iOS build';
+    const icon =
+      platform === 'android'
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 2l1.6 2.8M17 2l-1.6 2.8"/><rect x="4" y="6.5" width="16" height="12.5" rx="3"/><path d="M8.5 11.5h.01M15.5 11.5h.01"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M16 3.5c-1.2.1-2.4.8-3 1.7-.6.8-1 1.9-.9 2.9 1.2.1 2.4-.6 3.1-1.5.6-.8 1-1.9.8-3.1Z"/><path d="M19.5 16.7c-.5 1.1-.8 1.6-1.5 2.6-1 1.4-2.4 3.1-4.1 3.1-1.5 0-1.9-1-4-1s-2.5 1-4 1c-1.7 0-3-1.9-4-3.3-2.7-4.1-3-9-1.3-11.6 1.2-1.8 3.1-2.8 4.9-2.8 1.8 0 2.9 1 4.4 1 1.4 0 2.3-1 4.4-1 1.6 0 3.3.9 4.5 2.4-4 2.2-3.3 7.9.7 9.6Z"/></svg>';
+
+    if (!url) {
+      return `<span class="btn btn--ghost btn--sm store-btn is-pending" aria-disabled="true" title="Link not added yet">
+          ${icon}${label} <span class="store-btn__state">Not yet</span>
+        </span>`;
+    }
+    return `<a class="btn btn--sm store-btn" href="${esc(url)}" target="_blank" rel="noopener" download>
+        ${icon}${label}
+      </a>`;
+  }
+
   function card(project, index) {
     const tags = project.tags || [];
-    return `
-      <a class="work-card" href="${esc(project.href)}" data-tags="${esc(tags.join(' '))}" data-reveal style="--delay:${index * 60}ms">
-        <div class="media media--16x9">${img(project.cover, project.title)}</div>
+    const counter = `${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}`;
+
+    if (project.kind === 'app') {
+      return `
+      <article class="work-card work-card--app" data-tags="${esc(tags.join(' '))}" data-reveal style="--delay:${(index % 2) * 80}ms">
+        <div class="media media--16x9">
+          <div class="work-card__plate">
+            <span class="work-card__plate-name">${esc(project.title)}</span>
+            <span class="work-card__plate-tag">Mobile app · coming soon</span>
+          </div>
+          <span class="work-card__counter" aria-hidden="true">${counter}</span>
+        </div>
         <div class="work-card__body">
-          <span class="work-card__index">
-            <span>${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}</span>
-            <span>${esc(project.client)}</span>
-          </span>
-          <h3>${esc(project.title)}</h3>
-          <p>${esc(project.description)}</p>
-          <span class="chips">${(project.skills || []).slice(0, 4).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
-          <span class="work-card__foot">
-            <span>${esc(project.year)}</span>
-            <span class="work-card__cta">View case study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          <div>
+            <span class="work-card__index">
+              <span>Product Design &middot; Mobile</span>
+              <span>${esc(project.year)}</span>
             </span>
-          </span>
+            <h3>${esc(project.title)}</h3>
+            <span class="work-card__stores">
+              ${storeButton(project, 'android')}
+              ${storeButton(project, 'ios')}
+            </span>
+          </div>
+          <div>
+            <p>${esc(project.description)}</p>
+            <span class="chips">${(project.skills || [])
+              .slice(0, 3)
+              .map((skill) => `<span class="chip">${esc(skill)}</span>`)
+              .join('')}</span>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    return `
+      <a class="work-card" href="${esc(project.href)}" data-tags="${esc(tags.join(' '))}" data-reveal style="--delay:${(index % 2) * 80}ms">
+        <div class="media media--16x9">
+          ${img(project.cover, project.title)}
+          <span class="work-card__counter" aria-hidden="true">${counter}</span>
+        </div>
+        <div class="work-card__body">
+          <div>
+            <span class="work-card__index">
+              <span>${esc(project.client)} · ${esc(project.year)}</span>
+              <span>${esc(project.role || '')}</span>
+            </span>
+            <h3>${esc(project.title)}</h3>
+            <span class="work-card__cta">View case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+          <div>
+            <p>${esc(project.description)}</p>
+            <span class="chips">${(project.skills || [])
+              .slice(0, 3)
+              .map((skill) => `<span class="chip">${esc(skill)}</span>`)
+              .join('')}</span>
+          </div>
         </div>
       </a>`;
   }
@@ -100,69 +189,7 @@
     archiveHost.querySelectorAll('.archive-card').forEach((element) => {
       element.hidden = tag !== 'all';
     });
-
-    /* The mobile apps live under Product Design, so the section follows that
-       filter: shown for All and Product Design, tucked away for the rest. */
-    document.querySelectorAll('[data-app-tags]').forEach((card) => {
-      card.hidden = tag !== 'all' && tag !== 'product-design';
-    });
-    const appsSection = document.getElementById('apps');
-    if (appsSection) appsSection.hidden = tag !== 'all' && tag !== 'product-design';
   });
-
-  /* ---- Mobile apps, in the build ------------------------------------------ */
-  const APPS = (window.EXTRA && window.EXTRA.comingSoon) || null;
-  if (APPS) {
-    const host = document.querySelector('[data-apps]');
-    document.querySelector('[data-apps-title]').textContent = APPS.title;
-    document.querySelector('[data-apps-lede]').textContent = APPS.lede;
-
-    /* A download is only a link once there is a URL; until then the button is
-       present, labelled and disabled, so the page never claims a build it
-       cannot hand over. */
-    const storeButton = (app, platform) => {
-      const url = (app.downloads || {})[platform] || '';
-      const label = platform === 'android' ? 'Android APK' : 'iOS build';
-      const icon =
-        platform === 'android'
-          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 2l1.6 2.8M17 2l-1.6 2.8"/><rect x="4" y="6.5" width="16" height="12.5" rx="3"/><path d="M8.5 11.5h.01M15.5 11.5h.01"/></svg>'
-          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M16 3.5c-1.2.1-2.4.8-3 1.7-.6.8-1 1.9-.9 2.9 1.2.1 2.4-.6 3.1-1.5.6-.8 1-1.9.8-3.1Z"/><path d="M19.5 16.7c-.5 1.1-.8 1.6-1.5 2.6-1 1.4-2.4 3.1-4.1 3.1-1.5 0-1.9-1-4-1s-2.5 1-4 1c-1.7 0-3-1.9-4-3.3-2.7-4.1-3-9-1.3-11.6 1.2-1.8 3.1-2.8 4.9-2.8 1.8 0 2.9 1 4.4 1 1.4 0 2.3-1 4.4-1 1.6 0 3.3.9 4.5 2.4-4 2.2-3.3 7.9.7 9.6Z"/></svg>';
-
-      if (!url) {
-        return `<span class="btn btn--ghost btn--sm store-btn is-pending" aria-disabled="true" title="Link not added yet">
-            ${icon}${label} <span class="store-btn__state">Not yet</span>
-          </span>`;
-      }
-      return `<a class="btn btn--sm store-btn" href="${esc(url)}" target="_blank" rel="noopener" download>
-          ${icon}${label}
-        </a>`;
-    };
-
-    host.innerHTML = APPS.apps
-      .map(
-        (app, index) => `
-      <article class="app-card" data-reveal data-app-tags="product-design mobile-app" style="--delay:${index * 70}ms">
-        <div class="app-card__top">
-          <span class="app-card__icon" aria-hidden="true">${esc((app.name || '').slice(0, 2).toUpperCase())}</span>
-          <span class="chip chip--soon"><span class="dot"></span>Coming soon</span>
-        </div>
-        <div class="app-card__body">
-          <h3>${esc(app.name)}${app.aka ? ` <span class="app-card__aka">· ${esc(app.aka)}</span>` : ''}</h3>
-          <p class="app-card__tagline">${esc(app.tagline)}</p>
-          <p>${esc(app.description)}</p>
-          <span class="chips">${(app.skills || []).map((skill) => `<span class="chip">${esc(skill)}</span>`).join('')}</span>
-        </div>
-        <div class="app-card__foot">
-          <span class="app-card__status">${esc(app.status)}</span>
-          <span class="app-card__stores">
-            ${storeButton(app, 'android')}
-            ${storeButton(app, 'ios')}
-          </span>
-        </div>
-      </article>`,
-      )
-      .join('');
-  }
 
   /* ---- Process ------------------------------------------------------------ */
   document.querySelector('[data-process]').innerHTML = SITE.process
@@ -181,13 +208,15 @@
     .map(
       (service, index) => `
       <a class="service-card" href="${esc(service.page)}" data-reveal style="--delay:${index * 70}ms">
-        <div class="media media--16x9">${img(service.image, service.title)}</div>
-        <div class="service-card__body">
-          <span class="service-card__num">${esc(service.number)} · ${esc(service.keyword)}</span>
+        <span class="service-card__num">${esc(service.number)}</span>
+        <span class="service-card__body">
           <h3>${esc(service.title)}</h3>
           <p>${esc(service.oneliner)}</p>
-          <span class="chips"><span class="chip">${esc(service.tagline)}</span></span>
-        </div>
+        </span>
+        <span class="service-card__keyword meta" aria-hidden="true">${esc(service.keyword)}</span>
+        <span class="service-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </span>
       </a>`,
     )
     .join('');
@@ -212,16 +241,17 @@
   function show(index) {
     at = (index + list.length) % list.length;
     const item = list[at];
-    textEl.textContent = `“${item.message}”`;
+    textEl.textContent = item.message;
     nameEl.textContent = item.name;
-    metaEl.textContent = `${item.designation} · ${item.company} · ${item.period}`;
+    metaEl.innerHTML = `${esc(item.designation)} · ${esc(item.company)}<span style="display:block;opacity:.7;font-size:.68rem;margin-top:.15rem">${esc(item.period)}</span>`;
     avatarEl.textContent = initials(item.name);
     dots.querySelectorAll('[data-dot]').forEach((dot, i) => dot.setAttribute('aria-current', String(i === at)));
   }
 
   function auto() {
     clearInterval(timer);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
     timer = setInterval(() => show(at + 1), 9000);
   }
 

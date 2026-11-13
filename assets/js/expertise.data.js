@@ -14,16 +14,16 @@ window.EXPERTISE = {
       'Four areas of practice, and the tools and conventions I bring to each. One of them is mine: ProdOps, a role-based product workspace I own and build — so the method on this page is one I run, not one I describe.',
     stats: [
       { value: '4', label: 'Areas of practice' },
-      { value: '5+', label: 'Years experience' },
-      { value: '30+', label: 'Projects delivered' },
+      { value: '4', label: 'Enterprise clients' },
       { value: '2.2 AA', label: 'WCAG target' },
+      { value: '15+', label: 'Years building' },
     ],
   },
 
   /* ProdOps gets the featured block: it is the one product here that is both
      an area of expertise and a thing I own. */
   featured: {
-    tag: 'Part of product design & strategy — my own product',
+    tag: 'Product design & strategy — my own product',
     name: 'ProdOps',
     role: 'Product owner & builder',
     link: 'https://lulamilemkhungela.github.io/ProdOps/',
@@ -59,6 +59,8 @@ window.EXPERTISE = {
     ],
   },
 
+  /* The four areas of work, in the order the Services page presents them.
+     ProdOps is not a fifth area: it is filed inside Product Design & Strategy. */
   areas: [
     {
       id: 'product',
@@ -73,11 +75,12 @@ window.EXPERTISE = {
         'Field research in low-literacy, low-connectivity markets',
         'Usability testing before build, not after launch',
         'Multi-language and offline-tolerant UX',
-        'Product operations: stages, specs and approvals that hold up',
+        'Design systems, tokens and component libraries',
+        'Front-end delivery in React, Angular and TypeScript',
       ],
       proof: 'Pasio banking app across India, Sri Lanka and Cambodia · Vodacom Engage · FoodieZone · ProdOps',
-      link: 'services.html#product',
-      /* ProdOps is the one product in this area I own and build. */
+      link: 'service.html?id=product',
+      /* The one product in this area I own and build. */
       feature: {
         name: 'ProdOps',
         role: 'Product owner & builder',
@@ -93,7 +96,7 @@ window.EXPERTISE = {
       title: 'Brand Strategy & Amazon Growth',
       keyword: 'BRAND',
       summary:
-        'Positioning that survives contact with a buyer — and the listings, identity and content that carry it.',
+        'Positioning that survives contact with a buyer — and the identity, listings and content that carry it.',
       items: [
         'Brand strategy and identity systems',
         'Amazon listing, A+ content and storefront design',
@@ -102,7 +105,7 @@ window.EXPERTISE = {
         'Measurement: CTR, CVR, enquiry quality',
       ],
       proof: 'ELVD Wellness — 0.2% → 1.5% CTR · Culina Craftique · Rational · Toyota mobility brand',
-      link: 'services.html#brand',
+      link: 'service.html?id=brand',
     },
     {
       id: 'impact',
@@ -119,7 +122,7 @@ window.EXPERTISE = {
         'Offline-first and low-data design',
       ],
       proof: 'Gojo & Company across South and Southeast Asia · Pasio programme with Education Above All',
-      link: 'services.html#impact',
+      link: 'service.html?id=impact',
     },
     {
       id: 'web',
@@ -136,17 +139,8 @@ window.EXPERTISE = {
         'CMS handover so the client stays current',
       ],
       proof: 'Africa Cuisine · SK Finds · Nerdma · SnB Chartered Accountants · FoodieZone',
-      link: 'services.html#web',
+      link: 'service.html?id=web',
     },
-  ],
-
-  /* Studies and live products filed under each area — the way the work is
-     actually grouped on the Services page. */
-  filed: [
-    { title: 'Product design & strategy', note: 'Case studies', items: ['Pasio Banking App', 'Field Assist', 'Elaro Solar', 'FoodieZone'] },
-    { title: 'Brand & growth', note: 'Case studies', items: ['ELVD Wellness', 'Culina Craftique', 'Pasio marketing prints'] },
-    { title: 'Microfinance & impact', note: 'Case studies', items: ['Pasio Banking App', 'Field Assist'] },
-    { title: 'Web design & conversion', note: 'Live sites', items: ['Africa Cuisine', 'SK Finds', 'Nerdma', 'SnB Chartered Accountants', 'ProdOps workspace'] },
   ],
 
   stack: [

@@ -76,21 +76,6 @@
     )
     .join('');
 
-  /* ---- What is filed where ------------------------------------------------ */
-  const filedHost = document.querySelector('[data-exp-filed]');
-  if (filedHost && E.filed) {
-    filedHost.innerHTML = E.filed
-      .map(
-        (group) => `
-        <div class="card">
-          <p class="meta">${esc(group.note)}</p>
-          <h3 class="display-sm" style="margin:0.5rem 0 0.8rem">${esc(group.title)}</h3>
-          <div class="chips">${group.items.map((item) => `<span class="chip">${esc(item)}</span>`).join('')}</div>
-        </div>`,
-      )
-      .join('');
-  }
-
   /* ---- Stack & training --------------------------------------------------- */
   document.querySelector('[data-exp-stack]').innerHTML = E.stack
     .map((tool) => `<span class="chip">${esc(tool)}</span>`)

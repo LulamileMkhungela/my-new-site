@@ -92,28 +92,49 @@
   }
 
   /* ---- Chrome ------------------------------------------------------------ */
+  // The reference nav: Home, then a dropdown for the areas of practice,
+  // then About, and one accent pill for the call.
   const NAV = [
     { label: 'Home', href: 'index.html' },
     { label: 'Tools', href: 'tools.html' },
     { label: 'Work', href: 'work.html' },
-    { label: 'Services', href: 'services.html' },
     { label: 'About', href: 'about.html' },
-    { label: 'Process', href: 'index.html#process' },
     { label: 'Contact', href: 'contact.html' },
   ];
 
-  // Expertise is a hover/click dropdown, not a flat nav item: the four areas of
-  // practice, each anchoring to its block on expertise.html, plus ProdOps.
+  // Exactly the four areas of work, each anchoring to its block on
+  // expertise.html. ProdOps is not a fifth entry — it is filed inside Product
+  // Design & Strategy (#prodops), the area it belongs to.
   const EXPERTISE = [
-    { label: 'Product design & strategy', href: 'expertise.html#product', icon: '01', blurb: 'Research, flows, prototyping, the system underneath.' },
-    { label: 'Brand & growth', href: 'expertise.html#brand', icon: '02', blurb: 'Positioning, Amazon listings, conversion.' },
-    { label: 'Microfinance & impact', href: 'expertise.html#impact', icon: '03', blurb: 'Products for the people most products forget.' },
-    { label: 'Web design & conversion', href: 'expertise.html#web', icon: '04', blurb: 'Sites that earn trust and turn visitors into customers.' },
-    { label: 'ProdOps', href: 'expertise.html#prodops', icon: 'PO', blurb: 'The role-based product workspace I own and build.' },
+    {
+      label: 'Product Design & Strategy',
+      href: 'service.html?id=product',
+      icon: 'PD',
+      hue: 220,
+      description: 'From messy problem to working product.',
+    },
+    {
+      label: 'Brand Strategy & Amazon Growth',
+      href: 'service.html?id=brand',
+      icon: 'BR',
+      hue: 30,
+      description: 'From invisible listing to converting brand.',
+    },
+    {
+      label: 'Microfinance & Impact Consulting',
+      href: 'service.html?id=impact',
+      icon: 'MF',
+      hue: 160,
+      description: 'Designing for the people most products forget.',
+    },
+    {
+      label: 'Website Design & Conversion',
+      href: 'service.html?id=web',
+      icon: 'WD',
+      hue: 260,
+      description: 'A website that works as hard as you do.',
+    },
   ];
-
-  // The dropdown sits where Expertise sits: after Work.
-  const EXPERTISE_AFTER = 'work.html';
 
   const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const isCurrent = (href) => !href.includes('#') && href.toLowerCase() === here;
@@ -124,92 +145,63 @@
     });
   }
 
-  /** The Expertise dropdown markup — a button plus its panel. */
-  function expertiseDrop() {
-    const onExpertise = here === 'expertise.html';
-    return `
-      <div class="nav-drop" data-nav-drop>
-        <button type="button" class="nav-drop__btn" aria-haspopup="true" aria-expanded="false" aria-controls="expertise-menu"${onExpertise ? ' aria-current="page"' : ''}>
-          Expertise
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="nav-drop__panel" id="expertise-menu" role="menu" aria-label="Expertise">
-          <p class="nav-drop__label">Areas of practice</p>
-          ${EXPERTISE.map(
-            (entry) => `
-            <a class="nav-drop__item" role="menuitem" href="${entry.href}">
-              <span class="nav-drop__num">${entry.icon}</span>
-              <span class="nav-drop__text">
-                <strong>${entry.label}</strong>
-                <span>${entry.blurb}</span>
-              </span>
-            </a>`,
-          ).join('')}
-        </div>
-      </div>`;
-  }
-
-  /** Hover opens the panel, click pins it, Escape and outside clicks close it. */
-  function wireDrop(host) {
-    const drop = host.querySelector('[data-nav-drop]');
-    if (!drop) return;
-    const btn = drop.querySelector('.nav-drop__btn');
-    let closeTimer;
-
-    const setOpen = (open) => {
-      drop.toggleAttribute('data-open', open);
-      btn.setAttribute('aria-expanded', String(open));
-    };
-    const openNow = () => {
-      clearTimeout(closeTimer);
-      setOpen(true);
-    };
-    const closeSoon = () => {
-      clearTimeout(closeTimer);
-      closeTimer = setTimeout(() => setOpen(false), 140);
-    };
-
-    drop.addEventListener('mouseenter', openNow);
-    drop.addEventListener('mouseleave', closeSoon);
-    drop.addEventListener('focusin', openNow);
-    btn.addEventListener('click', () => setOpen(!drop.hasAttribute('data-open')));
-    document.addEventListener('click', (event) => {
-      if (!drop.contains(event.target)) setOpen(false);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key !== 'Escape') return;
-      if (drop.hasAttribute('data-open')) {
-        setOpen(false);
-        btn.focus();
-      }
-    });
-  }
-
   function renderHeader() {
     const host = document.querySelector('[data-header]');
     if (!host) return;
+
+    const onExpertise = here === 'expertise.html' || here === 'service.html';
+    const hereId = here === 'service.html'
+      ? (new URLSearchParams(location.search).get('id') || 'product')
+      : here === 'expertise.html'
+        ? (location.hash || '').replace('#', '')
+        : '';
+    const navLink = (item) => {
+      const current = isCurrent(item.href) ? ' aria-current="page"' : '';
+      return `<a href="${item.href}" data-nav${current}>${item.label}</a>`;
+    };
+
     host.innerHTML = `
       <a class="skip" href="#main">Skip to content</a>
       <header class="site-header" data-sticky>
         <div class="shell header-inner">
           <a class="brand" href="index.html" aria-label="${SITE.name} — home">
             <span class="brand__mark">
-              <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="32" height="32" />
+              <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="40" height="40" />
             </span>
-            <span>${SITE.name}<small>${SITE.brandLine}</small></span>
+            <span>${SITE.name}<small>${SITE.location}</small></span>
           </a>
-          <nav class="nav" aria-label="Primary" data-nav-list>
-            ${NAV.map((item) => {
-              const link = `<a href="${item.href}" data-nav ${item.href === 'tools.html' ? 'data-flag title="Tools — the builder toolkit"' : ''}>${item.label}</a>`;
-              return item.href === EXPERTISE_AFTER ? link + expertiseDrop() : link;
-            }).join('')}
-          </nav>
           <div class="header-actions">
+            <nav class="nav" aria-label="Primary" data-nav-list>
+              ${navLink(NAV[0])}
+              ${navLink(NAV[1])}
+              ${navLink(NAV[2])}
+              <div class="nav-drop" data-nav-drop>
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="expertise-panel"${onExpertise ? ' aria-current="page"' : ''}>
+                  Expertise
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="nav-drop__panel" id="expertise-panel">
+                  <div class="nav-drop__list">
+                    ${EXPERTISE.map(
+                      (item) => `
+                      <a class="nav-drop__item" href="${item.href}"${item.href.endsWith('=' + hereId) ? ' aria-current="page"' : ''}>
+                        <span class="nav-drop__icon" style="background:hsl(${item.hue} 60% 55% / 0.12);color:hsl(${item.hue} 60% 55%)">${item.icon}</span>
+                        <span><strong>${item.label}</strong><span>${item.description}</span></span>
+                      </a>`,
+                    ).join('')}
+                  </div>
+                </div>
+              </div>
+              ${navLink(NAV[3])}
+              <a class="btn btn--accent" href="contact.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+                Book a Call
+              </a>
+            </nav>
             <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme">
               <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
               <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
             </button>
-            <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
             <button class="icon-btn menu-btn" type="button" data-menu-open aria-label="Open menu" aria-expanded="false">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
             </button>
@@ -218,37 +210,62 @@
       </header>
       <div class="drawer" data-drawer role="dialog" aria-modal="true" aria-label="Menu">
         <div class="drawer__top">
-          <span class="brand"><span>${SITE.name}<small>Menu</small></span></span>
+          <span class="brand">
+            <span class="brand__mark"><img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="40" height="40" /></span>
+            <span>${SITE.name}<small>Menu</small></span>
+          </span>
           <button class="icon-btn" type="button" data-menu-close aria-label="Close menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
           </button>
         </div>
         <nav aria-label="Mobile">
-          ${NAV.map((item) => {
-            const link = `<a href="${item.href}" data-nav>${item.label}</a>`;
-            return item.href === EXPERTISE_AFTER
-              ? link +
-                  `<p class="drawer__label">Expertise</p>` +
-                  EXPERTISE.map(
-                    (entry) => `<a href="${entry.href}" data-nav>${entry.label}</a>`,
-                  ).join('')
-              : link;
-          }).join('')}
+          ${NAV.filter((item) => item.href !== 'contact.html').map((item) => `<a href="${item.href}" data-nav${isCurrent(item.href) ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
+          <p class="drawer__label">Expertise</p>
+          ${EXPERTISE.map(
+            (item) => `<a href="${item.href}" data-nav>${item.label}</a>`,
+          ).join('')}
           <div class="drawer__foot">
-            <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
+            <a class="btn btn--accent" href="contact.html">Book a Call</a>
             <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
           </div>
         </nav>
       </div>`;
 
     mark();
-    wireDrop(host);
+
+    /* Expertise panel: opens on hover and on click, closes on Escape/blur. */
+    const drop = host.querySelector('[data-nav-drop]');
+    const dropBtn = drop.querySelector('button');
+    let closeTimer;
+    const setOpen = (open) => {
+      drop.toggleAttribute('data-open', open);
+      dropBtn.setAttribute('aria-expanded', String(open));
+    };
+    const openNow = () => {
+      clearTimeout(closeTimer);
+      setOpen(true);
+    };
+    const closeSoon = () => {
+      closeTimer = setTimeout(() => setOpen(false), 120);
+    };
+    drop.addEventListener('mouseenter', openNow);
+    drop.addEventListener('mouseleave', closeSoon);
+    dropBtn.addEventListener('click', () => setOpen(!drop.hasAttribute('data-open')));
+    document.addEventListener('mousedown', (event) => {
+      if (!drop.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && drop.hasAttribute('data-open')) {
+        setOpen(false);
+        dropBtn.focus();
+      }
+    });
 
     const drawer = host.querySelector('[data-drawer]');
     const openBtn = host.querySelector('[data-menu-open]');
     const closeBtn = host.querySelector('[data-menu-close]');
 
-    const setOpen = (open) => {
+    const setDrawer = (open) => {
       drawer.classList.toggle('is-open', open);
       document.body.classList.toggle('nav-open', open);
       openBtn.setAttribute('aria-expanded', String(open));
@@ -256,13 +273,13 @@
       else openBtn.focus();
     };
 
-    openBtn.addEventListener('click', () => setOpen(true));
-    closeBtn.addEventListener('click', () => setOpen(false));
+    openBtn.addEventListener('click', () => setDrawer(true));
+    closeBtn.addEventListener('click', () => setDrawer(false));
     drawer.addEventListener('click', (event) => {
-      if (event.target.closest('a')) setOpen(false);
+      if (event.target.closest('a')) setDrawer(false);
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && drawer.classList.contains('is-open')) setOpen(false);
+      if (event.key === 'Escape' && drawer.classList.contains('is-open')) setDrawer(false);
     });
 
     host.querySelector('[data-theme-toggle]').addEventListener('click', () => {
@@ -280,8 +297,7 @@
         ticking = true;
         requestAnimationFrame(() => {
           const y = window.scrollY;
-          if (y > 220 && y > last + 4) bar.classList.add('is-hidden');
-          else if (y < last - 4 || y < 120) bar.classList.remove('is-hidden');
+          bar.classList.toggle('is-hidden', y >= 60 && y > last + 4);
           last = y;
           ticking = false;
         });
@@ -299,32 +315,27 @@
         <div class="shell">
           <div class="footer-top">
             <div>
-              <h3>${SITE.contactMessage.split('.')[0]}.</h3>
-              <p class="lede" style="font-size:0.95rem">${SITE.contactMessage}</p>
-              <div class="row" style="margin-top:1.2rem">
-                <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-                <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
-              </div>
+              <h3>${SITE.name}</h3>
+              <p>${SITE.contactMessage}</p>
             </div>
-            <div class="footer-col">
-              <h4>Explore</h4>
-              ${NAV.filter((item) => !item.href.includes('#'))
-                .map((item) => `<a href="${item.href}">${item.label}</a>`)
-                .join('')}
-            </div>
-            <div class="footer-col">
-              <h4>Elsewhere</h4>
+            <div class="footer-inline">
               <a href="mailto:${SITE.email}">${SITE.email}</a>
-              <a href="${SITE.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
-              ${SITE.twitter ? `<a href="${SITE.twitter}" target="_blank" rel="noopener">X / Twitter</a>` : ''}
-              <a href="${SITE.behance}" target="_blank" rel="noopener">Behance</a>
-              <a href="https://github.com/LulamileMkhungela" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://lulamilemkhungela.github.io/ProdOps/" target="_blank" rel="noopener">ProdOps</a>
+              <div class="footer-social">
+                <a href="${SITE.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.9 8.65 23 11 23 14.3V21h-4v-6c0-1.5-.54-2.5-1.9-2.5-1.04 0-1.66.7-1.93 1.37-.1.24-.13.58-.13.92V21h-4z"/></svg>
+                </a>
+                <a href="https://github.com/LulamileMkhungela" target="_blank" rel="noopener" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.4 9.4 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+                </a>
+                <a href="${SITE.behance}" target="_blank" rel="noopener" aria-label="Portfolio archive">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 4h7a4 4 0 0 1 0 8H4zM4 12h7.5a4 4 0 0 1 0 8H4z"/><path d="M16.5 6h5M15.5 14h6a3 3 0 0 0-6 0v1a3 3 0 0 0 5.4 1.8"/></svg>
+                </a>
+              </div>
             </div>
           </div>
           <div class="footer-bottom">
-            <span>© ${year} ${SITE.name}. ${SITE.location}.</span>
-            <span>Portfolio content from <a href="https://shubhamranjan-portfolio.vercel.app/" target="_blank" rel="noopener" style="text-decoration:underline">shubhamranjan-portfolio.vercel.app</a> · Tools from <a href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener" style="text-decoration:underline">devzigner</a></span>
+            <span>© ${year} ${SITE.name}. All rights reserved. ${SITE.location}.</span>
+            <span>Case-study content from the portfolio archive · Tools from <a href="https://github.com/LulamileMkhungela/devzigner" target="_blank" rel="noopener">devzigner</a></span>
           </div>
         </div>
       </footer>`;

@@ -7,6 +7,24 @@ The portfolio, rebuilt as a static site: content and images from
 
 No build step, no framework, no dependencies. Open `index.html` or serve the folder.
 
+## The UI is the reference's, not a re-skin
+
+`assets/css/base.css` and `assets/css/site.css` implement the reference design system directly, taken from the
+captured bundle in `reference/source-mirror/` rather than approximated:
+
+- **Tokens** — the reference's HSL custom properties, value for value (`--background 260 42% 96%`,
+  `--foreground 255 45% 12%`, `--hero-accent 16 85% 55%` light / `170 80% 55%` dark, the six project tints), exposed
+  here as `--bg`, `--fg`, `--accent`, `--lavender` … with the same dark-mode values.
+- **Type** — Clash Grotesk display + Inter body; eyebrows are 10–11px, bold, `.22em` uppercase with an accent dot;
+  headings carry the accent on the last phrase (`great design`, `spoken by others`) and are never italic.
+- **Components** — sticky header at 95% background with blur and a hairline border, round avatar ringed in the accent,
+  the Expertise hover/click panel, 2rem-radius media, pill buttons, pill filters filled with the accent when selected,
+  full-bleed project rows with an `01 / 08` counter in white mono over the image and a 3/5 · 2/5 text split, the
+  hairline process box with accent numerals, full-bleed service rows with a round numeral that fills on hover, the
+  stacked quote panel with a 4px accent hairline, the ink CTA band, and the single-row footer.
+
+Section order, copy and content are Lulamile's; only the language is the reference's.
+
 ```sh
 python3 -m http.server 8080 --bind 0.0.0.0   # then open http://localhost:8080
 ```
@@ -19,7 +37,7 @@ python3 -m http.server 8080 --bind 0.0.0.0   # then open http://localhost:8080
 | `tools.html` | The builder toolkit — eight tools with their full step lists, the five-stage flow, the skill library, the command set, install |
 | `work.html` | Full portfolio index — studies, the live products that are a redirect only, and the six-project archive |
 | `case-study.html?id=…` | Any case study, rendered from the data file (including FoodieZone and Africa Cuisine) |
-| `expertise.html` | Expertise — the four areas of work (with ProdOps inside product design), what is filed where, the stack and the training. Reached from the **Expertise** hover dropdown in the nav |
+| `expertise.html` | Expertise — ProdOps (the product I own) then the five areas of practice, the stack and the training |
 | `services.html` | The four areas of work — offerings, deliverables, who it's for, questions |
 | `about.html` | About, portrait, quote, clients, testimonials |
 | `contact.html` | Contact form (opens your mail app), links, common questions |
@@ -37,24 +55,10 @@ python3 -m http.server 8080 --bind 0.0.0.0   # then open http://localhost:8080
 | --- | --- | --- |
 | Case study | FoodieZone, Africa Cuisine | Full studies, rendered by `case-study.html?id=…` in the same shape as the rest |
 | Redirect only | SK Finds, Nerdma, SnB, ProdOps | One card each on `work.html` under *Live & linked*, opening the live product in a new tab — no case-study page |
-| Coming soon | Lawmania (Lekgotla), LulaFind, AI-LifeOS | Cards in the home page's *Mobile apps, in the build* block, filed under **Product Design**, each with an Android APK and an iOS button |
+| Coming soon | Lawmania (Lekgotla), LulaFind, AI-LifeOS | Cards in the home page's *Mobile apps, in the build* section, each with an Android APK and an iOS button |
 
 `foodiezone-pwa.html` and `africa-cuisine-pwa.html` are kept as redirect stubs, so links to the old portfolio's
 URLs still land on the new studies.
-
-### Where each entry files
-
-The portfolio filters are the four areas of work, in the order the Services page presents them — **All · Product
-Design · Brand · Impact · Web Conversion** — and every card carries the tag of the area it belongs to:
-
-| Area | What files there |
-| --- | --- |
-| Product Design | Pasio, Field Assist, Elaro, FoodieZone, ProdOps, and the three mobile apps in the build |
-| Brand | ELVD Wellness, Culina Craftique, the Pasio prints |
-| Impact | Pasio, Field Assist, the Pasio prints |
-| Web Conversion | Africa Cuisine, SK Finds, Nerdma, SnB |
-
-Counts in the filter pills are computed from that list, so they cannot drift.
 
 ### Turning the download buttons on
 

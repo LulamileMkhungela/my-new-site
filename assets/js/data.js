@@ -47,15 +47,17 @@ window.SITE = {
     { src: 'culinacraftique-logo.svg', alt: 'Culina Craftique', scale: 1.6 },
   ],
 
-  /* Portfolio filter — the four areas of work, in the order the Services page
-     presents them. Counts are computed from the project list in work.data.js,
-     so adding a project never leaves a stale badge. */
+  /* Portfolio filter — the reference's industry pills, in its order. Counts are
+     computed from the project list in work.data.js, so adding a project never
+     leaves a stale badge. */
   filters: [
     { tag: 'all', label: 'All', count: 0 },
-    { tag: 'product-design', label: 'Product Design', count: 0 },
-    { tag: 'brand-strategy', label: 'Brand', count: 0 },
-    { tag: 'microfinance', label: 'Impact', count: 0 },
-    { tag: 'website-design', label: 'Web Conversion', count: 0 },
+    { tag: 'cat-fintech', label: 'Fintech', count: 0 },
+    { tag: 'cat-saas-ops', label: 'SaaS & Ops', count: 0 },
+    { tag: 'cat-cleantech', label: 'CleanTech', count: 0 },
+    { tag: 'cat-ecommerce', label: 'E-Commerce', count: 0 },
+    { tag: 'cat-healthcare', label: 'Healthcare', count: 0 },
+    { tag: 'cat-marketingwebsite', label: 'Marketing Website', count: 0 },
   ],
 
   process: [
@@ -88,7 +90,7 @@ window.SITE = {
       keyword: 'PRODUCT',
       hue: 'lavender',
       image: 'cover-pasio.webp',
-      page: 'services.html#product',
+      page: 'service.html?id=product',
     },
     {
       id: 'brand',
@@ -100,7 +102,7 @@ window.SITE = {
       keyword: 'BRAND',
       hue: 'peach',
       image: 'cover-field-assist.webp',
-      page: 'services.html#brand',
+      page: 'service.html?id=brand',
     },
     {
       id: 'impact',
@@ -112,7 +114,7 @@ window.SITE = {
       keyword: 'IMPACT',
       hue: 'sage',
       image: 'cover-pasio.webp',
-      page: 'services.html#impact',
+      page: 'service.html?id=impact',
     },
     {
       id: 'web',
@@ -124,13 +126,20 @@ window.SITE = {
       keyword: 'WEB',
       hue: 'sky',
       image: 'cover-field-assist.webp',
-      page: 'services.html#web',
+      page: 'service.html?id=web',
     },
   ],
 
   /* Full service detail, page by page — offerings, who it's for, questions. */
   serviceDetail: {
     product: {
+      problem: {
+        heading: 'Building fast isn\'t the problem. Building the wrong thing is.',
+        kicker: 'Execution wasn\'t the problem. The gap between what was built and what users actually needed was — and that gap forms before a single line of code is written.',
+        chaos: ['What do we build next?', 'Is this feature actually needed?', 'Why did users drop off here?', 'The roadmap changed again.', 'We shipped it, but nobody\'s using it.', 'Are we solving the right problem?'],
+        clarityTitle: 'What clarity looks like',
+        clarity: [{ label: 'A clear brief', body: 'What you\'re building, who it\'s for, and why now.' }, { label: 'Prioritised roadmap', body: 'Features ranked by impact, not founder instinct.' }, { label: 'Validated flows', body: 'User journeys tested before a line of code is written.' }],
+      },
       whatIntro:
         "Most early-stage founders waste months building the wrong thing. I help you define what to build and design it properly — so you ship faster with less wasted runway.",
       offerings: [
@@ -191,6 +200,13 @@ window.SITE = {
       ],
     },
     brand: {
+      problem: {
+        heading: 'Visibility isn\'t the problem. Brand clarity is.',
+        kicker: 'The gap isn\'t the product. It\'s the distance between what the brand actually is and what a buyer feels in the first three seconds on the listing — and that distance is costing you sales right now.',
+        chaos: ['What should our brand say?', 'Why aren\'t we converting?', 'Our ads aren\'t working.', 'The brand feels inconsistent.', 'We\'re listed but not selling.', 'What\'s our positioning?'],
+        clarityTitle: 'What clarity looks like',
+        clarity: [{ label: 'A listing that converts', body: 'Copy, images, and A+ content built around how Amazon buyers actually decide — in under three seconds.' }, { label: 'A brand worth searching for', body: 'Strategy and identity that make your product feel like the obvious choice, not just another option on the shelf.' }, { label: 'A channel that compounds', body: 'Keyword structure, storefront and catalogue architecture that builds rank, review velocity and repeat purchase over time.' }],
+      },
       whatIntro:
         "Most brands spend months building awareness without a clear strategy. I help you define your brand identity and grow your presence — so you stand out and convert faster.",
       offerings: [
@@ -264,6 +280,13 @@ window.SITE = {
       ],
     },
     impact: {
+      problem: {
+        heading: 'The product exists. The adoption doesn\'t.',
+        kicker: 'The gap isn\'t technology. It\'s the distance between how the product was designed and the reality of the person using it — and that distance forms long before deployment.',
+        chaos: ['Users don\'t trust the app.', 'Field agents aren\'t using it.', 'Literacy is a real barrier.', 'Connectivity keeps dropping.', 'The UI assumes too much.', 'Adoption is 20% of target.'],
+        clarityTitle: 'What clarity looks like',
+        clarity: [{ label: 'Designed for the actual user', body: 'Low-literacy, low-connectivity, first-time digital — not an assumed one.' }, { label: 'Tested in the field', body: 'Prototypes validated with real end users before a line of code is written.' }, { label: 'Adoption-first strategy', body: 'Products designed around how people actually live and work, not how they should.' }],
+      },
       whatIntro:
         "Low-income users, first-time digital adopters, and underserved communities deserve products that actually work for them. I've spent 4+ years on the ground — building, testing, and shipping in the markets most designers never visit.",
       offerings: [
@@ -337,6 +360,13 @@ window.SITE = {
       ],
     },
     web: {
+      problem: {
+        heading: 'The site exists. The conversions don\'t.',
+        kicker: 'The gap isn\'t design polish or more pages. It\'s the distance between what a visitor needs to feel confident and what your site actually gives them — and that gap forms in the first five seconds.',
+        chaos: ['Why isn\'t anyone converting?', 'The site looks dated.', 'We get traffic, not leads.', 'It doesn\'t reflect our brand.', 'Visitors leave too quickly.', 'We need this live last week.'],
+        clarityTitle: 'What clarity looks like',
+        clarity: [{ label: 'Clear from the first scroll', body: 'Visitors know exactly what you offer, how it makes their life better and what to do next — without reading everything.' }, { label: 'Built for trust, not just aesthetics', body: 'Social proof, credibility signals and copy that answers real objections — structured to convert.' }, { label: 'Shipped fast without cutting corners', body: 'Modern tooling means designer-level quality in days, not months. No compromise on craft.' }],
+      },
       whatIntro:
         'Most websites look fine and do nothing. I build sites designed from the first scroll to earn trust, communicate value, and turn visitors into customers — fast.',
       offerings: [

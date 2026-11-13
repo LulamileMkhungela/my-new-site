@@ -61,6 +61,10 @@
                 .join('')}
             </div>
 
+            <div class="row" style="margin-top:1.4rem">
+              <a class="btn btn--accent btn--sm" href="service.html?id=${esc(service.id)}">Open the full page</a>
+            </div>
+
             <h3 class="sub-heading">Questions people ask</h3>
             <div class="faq">
               ${detail.faqs
