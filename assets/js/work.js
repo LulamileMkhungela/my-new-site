@@ -99,11 +99,16 @@
   }
 
   /* ---- Archive ----------------------------------------------------------- */
-  document.querySelector('[data-archive]').innerHTML = P.archive
+  const ARCHIVE = WORK.archive || [];
+  document.querySelector('[data-archive]').innerHTML = ARCHIVE
     .map(
-      (project) => `
-      <a class="archive-card" href="${esc(project.url)}" target="_blank" rel="noopener" data-reveal>
-        <div class="media">${img(project.cover, project.title)}</div>
+      (project, index) => `
+      <a class="archive-card" href="${esc(project.url)}" target="_blank" rel="noopener"
+         data-tags="${esc((project.tags || []).join(' '))}" data-reveal>
+        <div class="media">
+          ${img(project.cover, project.title)}
+          <span class="work-card__counter" aria-hidden="true">${String(index + 1).padStart(2, '0')} / ${String(ARCHIVE.length).padStart(2, '0')}</span>
+        </div>
         <div>
           <h3>${esc(project.title)}</h3>
           <p>${esc(project.client)} · ${esc(project.year)}</p>
@@ -128,9 +133,15 @@
     redirectHost?.querySelectorAll('.work-card').forEach((element) => {
       element.hidden = tag !== 'all';
     });
+    /* Archive cards carry category tags of their own, so they filter like any
+       other card rather than vanishing whenever a filter is on. */
+    let archiveShown = 0;
     document.querySelectorAll('[data-archive] .archive-card').forEach((element) => {
-      element.hidden = tag !== 'all';
+      element.hidden = tag !== 'all' && !(element.dataset.tags || '').split(' ').includes(tag);
+      if (!element.hidden) archiveShown += 1;
     });
+    const archiveHead = document.querySelector('[data-archive-head]');
+    if (archiveHead) archiveHead.hidden = archiveShown === 0;
     /* Keep the redirect row dimmed-but-present when a filter is on, since the
        cards are not part of the category taxonomy. */
 

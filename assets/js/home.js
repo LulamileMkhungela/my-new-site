@@ -52,15 +52,31 @@
 
   /* ---- Filters ------------------------------------------------------------ */
   const filters = document.querySelector('[data-filters]');
-  filters.innerHTML = WORK.filters
-    .filter((filter) => filter.count > 0 || filter.tag === 'all')
-    .map(
-      (filter, index) =>
-        `<button class="filter" type="button" data-filter="${esc(filter.tag)}" aria-pressed="${index === 0}">
-           ${esc(filter.label)}<span>${filter.count}</span>
-         </button>`,
-    )
-    .join('');
+
+  /* Rendered after the cards exist, so the badge counts can be computed from
+     what is actually on this page. The home page shows studies, link-out cards
+     and app plates inline plus the archive grid — not the redirect rows that
+     work.html adds — so a count taken from WORK.all would overstate it. */
+  function renderFilters() {
+    const inline = [...document.querySelectorAll('[data-featured] .work-card')];
+    const archived = [...document.querySelectorAll('[data-archive] .archive-card')];
+    const cards = [...inline, ...archived];
+    const countFor = (tag) =>
+      tag === 'all'
+        ? cards.length
+        : cards.filter((card) => (card.dataset.tags || '').split(' ').includes(tag)).length;
+
+    filters.innerHTML = WORK.filters
+      .map((filter) => ({ ...filter, count: countFor(filter.tag) }))
+      .filter((filter) => filter.count > 0 || filter.tag === 'all')
+      .map(
+        (filter, index) =>
+          `<button class="filter" type="button" data-filter="${esc(filter.tag)}" aria-pressed="${index === 0}">
+             ${esc(filter.label)}<span>${filter.count}</span>
+           </button>`,
+      )
+      .join('');
+  }
 
   /* ---- Positioning ------------------------------------------------------- */
   const chips = document.querySelector('[data-positioning-chips]');
@@ -99,20 +115,34 @@
     downloads: app.downloads || {},
   }));
 
-  const featured = [...WORK.studies, ...appCards];
+  /* The reference's two card families. The inline list is the case studies plus
+     the link-out cards plus the app plates; the archive is the Behance array.
+     Both are filtered by the same tabs, and the inline counter totals *both* —
+     that is why the reference's inline cards read 01/11 … 05/11 across a list of
+     five, while its archive restarts at 01/06. */
+  const FEATURED = [...WORK.studies, ...appCards];
+  const ARCHIVE = WORK.archive || [];
 
-  const archiveCards = P.archive
-    .map(
-      (project) => `
-      <a class="archive-card" href="${esc(project.url)}" target="_blank" rel="noopener" data-reveal>
-        <div class="media">${img(project.cover, project.title)}</div>
+  /* The inline counter's total spans both grids — that is why the reference's
+     five inline cards read 01/11 … 05/11 and its archive restarts at 01/06.
+     The total has to match the cards actually painted, or the last counter
+     would name a card that is not on the page. */
+  const TOTAL = FEATURED.length + ARCHIVE.length;
+
+  const archiveCards = ARCHIVE.map(
+    (project, index) => `
+      <a class="archive-card" href="${esc(project.url)}" target="_blank" rel="noopener"
+         data-tags="${esc((project.tags || []).join(' '))}" data-reveal style="--delay:${(index % 2) * 80}ms">
+        <div class="media">
+          ${img(project.cover, project.title)}
+          <span class="work-card__counter" aria-hidden="true">${String(index + 1).padStart(2, '0')} / ${String(ARCHIVE.length).padStart(2, '0')}</span>
+        </div>
         <div>
           <h3>${esc(project.title)}</h3>
           <p>${esc(project.client)} · ${esc(project.year)}</p>
         </div>
       </a>`,
-    )
-    .join('');
+  ).join('');
 
   /* A download is only a link once there is a URL; until then the button is
      present, labelled and disabled, so the card never claims a build it cannot
@@ -137,7 +167,7 @@
 
   function card(project, index) {
     const tags = project.tags || [];
-    const counter = `${String(index + 1).padStart(2, '0')} / ${String(featured.length).padStart(2, '0')}`;
+    const counter = `${String(index + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
 
     if (project.kind === 'app') {
       return `
@@ -202,21 +232,32 @@
 
   const grid = document.querySelector('[data-featured]');
   const archiveHost = document.querySelector('[data-archive]');
-  grid.innerHTML = featured.map(card).join('');
+  grid.innerHTML = FEATURED.map(card).join('');
   archiveHost.innerHTML = archiveCards;
+  renderFilters();
 
   filters.addEventListener('click', (event) => {
     const button = event.target.closest('[data-filter]');
     if (!button) return;
     const tag = button.dataset.filter;
     filters.querySelectorAll('[data-filter]').forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+    const matcher = (element) => {
+      if (tag === 'all') return true;
+      return (element.dataset.tags || '').split(' ').includes(tag);
+    };
     grid.querySelectorAll('.work-card').forEach((element) => {
-      const tags = element.dataset.tags || '';
-      element.hidden = tag !== 'all' && !tags.split(' ').includes(tag);
+      element.hidden = !matcher(element);
     });
+    let archiveShown = 0;
     archiveHost.querySelectorAll('.archive-card').forEach((element) => {
-      element.hidden = tag !== 'all';
+      element.hidden = !matcher(element);
+      if (!element.hidden) archiveShown += 1;
     });
+    /* The archive's "Earlier / Archive" heading belongs to the grid: hide the
+       whole block when the filter leaves nothing in it, as the reference does. */
+    const archiveHead = document.querySelector('[data-archive-head]');
+    if (archiveHead) archiveHead.hidden = archiveShown === 0;
+    if (archiveHost.parentElement) archiveHost.hidden = archiveShown === 0;
   });
 
   /* ---- Process ------------------------------------------------------------ */
