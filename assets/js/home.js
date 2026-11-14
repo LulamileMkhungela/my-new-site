@@ -14,10 +14,16 @@
 
   /* ---- Hero --------------------------------------------------------------- */
   /* "Great ideas deserve great design." — the last two words carry the accent. */
-  document.querySelector('[data-headline]').innerHTML = SITE.headline.replace(
-    /great design\.?$/i,
-    '<em>great design</em>.',
-  );
+  /* Each word is its own span so the headline can rise in one word at a time —
+     the reference's entry animation, done in CSS with a stagger. */
+  const headline = SITE.headline.replace(/great design\.?$/i, '<em>great design</em>.');
+  document.querySelector('[data-headline]').innerHTML = headline
+    .split(/(\s+)/)
+    .map((part, index) => {
+      if (!part.trim()) return part;
+      return `<span class="word" style="--word:${index}"><span>${part}</span></span>`;
+    })
+    .join('');
 
   /* The badge line above the headline: the three roles, dot separated. */
   document.querySelector('[data-roles]').innerHTML = SITE.roles
@@ -58,6 +64,16 @@
     chips.innerHTML = ['Product', 'Brand', 'Amazon', 'Impact', 'Web']
       .map((label) => `<span class="chip">${esc(label)}</span>`)
       .join('');
+  }
+
+  /* ---- Positioning: the glow follows the pointer ------------------------- */
+  const positioning = document.querySelector('[data-positioning]');
+  if (positioning && window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+    positioning.addEventListener('pointermove', (event) => {
+      const rect = positioning.getBoundingClientRect();
+      positioning.style.setProperty('--px', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+      positioning.style.setProperty('--py', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+    });
   }
 
   /* ---- Featured work ------------------------------------------------------ */
@@ -249,11 +265,20 @@
   function show(index) {
     at = (index + list.length) % list.length;
     const item = list[at];
-    textEl.textContent = item.message;
-    nameEl.textContent = item.name;
-    metaEl.innerHTML = `${esc(item.designation)} · ${esc(item.company)}<span style="display:block;opacity:.7;font-size:.68rem;margin-top:.15rem">${esc(item.period)}</span>`;
-    avatarEl.textContent = initials(item.name);
-    dots.querySelectorAll('[data-dot]').forEach((dot, i) => dot.setAttribute('aria-current', String(i === at)));
+    // Crossfade: fade the current quote out, swap the copy, fade it back in.
+    const panel = textEl.closest('.quote-panel') || textEl.parentElement;
+    panel.classList.add('is-swapping');
+    const paint = () => {
+      textEl.textContent = item.message;
+      nameEl.textContent = item.name;
+      metaEl.innerHTML = `${esc(item.designation)} · ${esc(item.company)}<span style="display:block;opacity:.7;font-size:.68rem;margin-top:.15rem">${esc(item.period)}</span>`;
+      avatarEl.textContent = initials(item.name);
+      dots.querySelectorAll('[data-dot]').forEach((dot, i) => dot.setAttribute('aria-current', String(i === at)));
+      requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.remove('is-swapping')));
+    };
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) paint();
+    else setTimeout(paint, 220);
   }
 
   function auto() {

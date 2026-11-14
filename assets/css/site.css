@@ -2428,3 +2428,120 @@ html[data-theme="dark"] .marquee img {
   color: hsl(var(--fg));
   font-weight: 500;
 }
+
+/* ---- Ambient aurora canvas ---------------------------------------------- */
+/* Fixed behind everything, under the sticky header, never interactive.
+   The header paints its own background, so it stays legible on top of it. */
+.aurora {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* Nothing may sit behind the aurora; content stacks above it. */
+body > main,
+body > [data-header],
+body > [data-footer] {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  /* A phone does not need the full aurora; the hero glow carries it. */
+  .aurora {
+    opacity: 0.55;
+  }
+}
+
+/* ---- Motion: the reference's entry animations --------------------------- */
+/* Hero words rise in, one after another. Each word is wrapped twice so the
+   inner span can translate inside an outer one that reserves its space. */
+.hero h1 .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.hero h1 .word > span {
+  display: inline-block;
+  animation: word-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--word, 0) * 70ms + 120ms);
+}
+
+@keyframes word-rise {
+  from {
+    transform: translateY(105%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* The positioning glow drifts to wherever the pointer is. */
+.positioning::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 50% at var(--px, 50%) var(--py, 50%),
+    hsl(var(--accent) / 0.05) 0%,
+    transparent 70%
+  );
+  transition: background 0.6s ease;
+}
+
+.positioning .shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* The accent rule under the positioning headline draws itself in. */
+.positioning__rule {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.positioning__rule.is-in {
+  transform: scaleX(1);
+}
+
+/* Testimonials crossfade rather than snapping. */
+.quote-panel blockquote,
+.quote-panel__author {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.quote-panel.is-swapping blockquote,
+.quote-panel.is-swapping .quote-panel__author {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* App cards get the same lift every other card has. */
+.work-card--app:hover .media {
+  box-shadow: 0 25px 50px -12px hsl(0 0% 0% / 0.25);
+  transform: scale(1.005);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .word > span {
+    animation: none;
+  }
+  .positioning__rule {
+    transform: none;
+    transition: none;
+  }
+  .quote-panel blockquote,
+  .quote-panel__author,
+  .positioning::before {
+    transition: none;
+  }
+}

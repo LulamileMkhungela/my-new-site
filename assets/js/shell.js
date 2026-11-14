@@ -392,6 +392,116 @@
       </footer>`;
   }
 
+  /* ---- Ambient aurora ---------------------------------------------------- */
+  /**
+   * The reference's living background: five soft radial gradients drifting on a
+   * canvas behind the page, tinted per theme. It is the thing that makes the
+   * layout feel alive while you read it, so it is worth the one canvas.
+   *
+   * Pauses when the tab is hidden, respects prefers-reduced-motion (a single
+   * static frame), and steps down to a smaller canvas on low-core devices.
+   */
+  function aurora() {
+    if (document.querySelector('.aurora')) return;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'aurora';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const reduced = () =>
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lowPower = (navigator.hardwareConcurrency || 8) <= 4;
+
+    let width = 0;
+    let height = 0;
+    const resize = () => {
+      const ratio = Math.min(window.devicePixelRatio || 1, lowPower ? 1 : 1.5);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * ratio);
+      canvas.height = Math.floor(height * ratio);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    // x/y as a fraction of the viewport, r as a fraction of the short edge.
+    const blobs = [
+      { x: 0.2, y: 0.2, r: 0.35, speed: 0.0004, phase: 0 },
+      { x: 0.8, y: 0.6, r: 0.3, speed: 0.0003, phase: 2 },
+      { x: 0.5, y: 0.15, r: 0.32, speed: 0.00035, phase: 4 },
+      { x: 0.35, y: 0.8, r: 0.28, speed: 0.00025, phase: 1 },
+      { x: 0.85, y: 0.25, r: 0.22, speed: 0.00045, phase: 3 },
+    ];
+
+    // [hue, saturation, lightness, alpha] — light, then dark.
+    const lightTints = [
+      [270, 65, 65, 0.17],
+      [16, 85, 55, 0.18],
+      [330, 60, 65, 0.15],
+      [170, 70, 50, 0],
+      [45, 70, 60, 0.1],
+    ];
+    const darkTints = [
+      [270, 50, 40, 0.2],
+      [170, 80, 40, 0.1],
+      [210, 60, 35, 0.11],
+      [330, 45, 35, 0.2],
+      [45, 50, 35, 0.15],
+    ];
+
+    const isDark = () => (document.documentElement.dataset.theme || 'light') === 'dark';
+
+    function frame(time) {
+      ctx.clearRect(0, 0, width, height);
+      const tints = isDark() ? darkTints : lightTints;
+      blobs.forEach((blob, index) => {
+        const [hue, saturation, lightness, alpha] = tints[index];
+        if (!alpha) return;
+        const x = width * (blob.x + 0.08 * Math.sin(time * blob.speed + blob.phase));
+        const y = height * (blob.y + 0.06 * Math.cos(time * blob.speed * 0.8 + blob.phase));
+        const radius = Math.min(width, height) * blob.r;
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`);
+        gradient.addColorStop(1, `hsla(${hue}, ${saturation}%, ${lightness}%, 0)`);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      });
+    }
+
+    let raf = 0;
+    const start = () => {
+      if (raf || reduced()) return;
+      raf = requestAnimationFrame(function loop(time) {
+        frame(time);
+        raf = requestAnimationFrame(loop);
+      });
+    };
+    const stop = () => {
+      if (!raf) return;
+      cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    if (reduced()) frame(0);
+    else start();
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    // The theme toggle swaps the tints; a static frame needs repainting.
+    new MutationObserver(() => {
+      if (reduced()) frame(performance.now());
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+
   /* ---- Reveal on scroll -------------------------------------------------- */
   function reveal() {
     const items = document.querySelectorAll('[data-reveal]');
@@ -414,6 +524,7 @@
 
   /* ---- Boot -------------------------------------------------------------- */
   function boot() {
+    aurora();
     renderHeader();
     renderFooter();
     guardAll(document);
