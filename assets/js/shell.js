@@ -282,20 +282,50 @@
     const drop = host.querySelector('[data-nav-drop]');
     const dropBtn = drop.querySelector('button');
     let closeTimer;
+    let openedByHover = false;
     const setOpen = (open) => {
       drop.toggleAttribute('data-open', open);
       dropBtn.setAttribute('aria-expanded', String(open));
+      if (!open) openedByHover = false;
     };
     const openNow = () => {
       clearTimeout(closeTimer);
+      if (!drop.hasAttribute('data-open')) openedByHover = true;
       setOpen(true);
     };
     const closeSoon = () => {
-      closeTimer = setTimeout(() => setOpen(false), 120);
+      closeTimer = setTimeout(() => setOpen(false), 180);
     };
     drop.addEventListener('mouseenter', openNow);
     drop.addEventListener('mouseleave', closeSoon);
-    dropBtn.addEventListener('click', () => setOpen(!drop.hasAttribute('data-open')));
+
+    // A click on the trigger must not close a panel that hover just opened —
+    // that is what made the items impossible to reach with a mouse. Once the
+    // pointer leaves, the panel is hover-driven again.
+    dropBtn.addEventListener('click', () => {
+      if (drop.hasAttribute('data-open') && openedByHover) {
+        openedByHover = false;
+        return;
+      }
+      setOpen(!drop.hasAttribute('data-open'));
+    });
+
+    // Keyboard: open with Enter/Space (native button), move with the arrow keys.
+    drop.addEventListener('keydown', (event) => {
+      const items = [...drop.querySelectorAll('.nav-drop__item')];
+      const at = items.indexOf(document.activeElement);
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setOpen(true);
+        (items[at + 1] || items[0])?.focus();
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        (items[at - 1] || items[items.length - 1])?.focus();
+      }
+    });
+    drop.addEventListener('focusout', (event) => {
+      if (!drop.contains(event.relatedTarget)) setOpen(false);
+    });
     document.addEventListener('mousedown', (event) => {
       if (!drop.contains(event.target)) setOpen(false);
     });

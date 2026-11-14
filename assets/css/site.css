@@ -2444,10 +2444,17 @@ html[data-theme="dark"] .marquee img {
 
 /* Nothing may sit behind the aurora; content stacks above it. */
 body > main,
-body > [data-header],
 body > [data-footer] {
   position: relative;
   z-index: 1;
+}
+
+/* The header carries its own stacking context and must stay above the page:
+   the Expertise panel hangs out of it and would otherwise be painted under the
+   hero. (z-index here, not on a flex child, so the panel can escape.) */
+body > [data-header] {
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 700px) {
@@ -2544,4 +2551,23 @@ body > [data-footer] {
   .positioning::before {
     transition: none;
   }
+}
+
+/* ---- Expertise panel: no dead gap between trigger and panel -------------- */
+/* The panel is absolutely positioned 0.75rem below the button. That gap is
+   part of the panel's containing block only if the invisible bridge below
+   covers it — otherwise the pointer crosses a hole, mouseleave fires and the
+   panel is gone before it can be clicked. */
+.nav-drop__panel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.9rem;
+  height: 0.9rem;
+}
+
+/* Keep the panel above the page while it is open. */
+.nav-drop[data-open] .nav-drop__panel {
+  z-index: 60;
 }
