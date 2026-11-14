@@ -666,8 +666,8 @@
       setTimeout(() => root.remove(), 700);
     };
 
-    // 900ms of greeting, then the halves part.
-    const timer = setTimeout(finish, 2100);
+    // 900ms with the greeting fully drawn, then the halves part.
+    const timer = setTimeout(finish, 1550);
     root.addEventListener('click', finish);
     document.addEventListener(
       'keydown',

@@ -17,13 +17,17 @@
   /* Each word is its own span so the headline can rise in one word at a time —
      the reference's entry animation, done in CSS with a stagger. */
   const headline = SITE.headline.replace(/great design\.?$/i, '<em>great design</em>.');
-  document.querySelector('[data-headline]').innerHTML = headline
-    .split(/(\s+)/)
-    .map((part, index) => {
-      if (!part.trim()) return part;
-      return `<span class="word" style="--word:${index}"><span>${part}</span></span>`;
+  const words = headline.split(/\s+/).filter(Boolean);
+  let wordIndex = 0;
+  document.querySelector('[data-headline]').innerHTML = words
+    .map((part) => {
+      const isAccent = /<em>/.test(part);
+      const text = esc(part.replace(/<[^>]+>/g, ''));
+      const marker = isAccent ? '<em>' : '';
+      const index = wordIndex++;
+      return `<span class="word${isAccent ? ' word--accent' : ''}" style="--word:${index}"><span class="word__ghost" aria-hidden="true">${text}</span><span class="word__fill" aria-hidden="true"><span>${text}</span></span>${marker}</span>`;
     })
-    .join('');
+    .join(' ');
 
   /* The badge line above the headline: the three roles, dot separated. */
   document.querySelector('[data-roles]').innerHTML = SITE.roles
@@ -284,11 +288,19 @@
     else setTimeout(paint, 220);
   }
 
+  const progressBar = document.querySelector('[data-quote-progress]');
+
   function auto() {
     clearInterval(timer);
+    if (progressBar) progressBar.classList.remove('is-running');
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
-    timer = setInterval(() => show(at + 1), 9000);
+    timer = setInterval(() => show(at + 1), 6000);
+    // Restart the progress hairline in step with the timer.
+    if (progressBar) {
+      void progressBar.offsetWidth;
+      progressBar.classList.add('is-running');
+    }
   }
 
   document.querySelector('[data-quote-prev]').addEventListener('click', () => {
