@@ -2278,6 +2278,9 @@ html[data-theme="dark"] .marquee img {
 }
 
 .clarity__title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--mono);
   font-size: 0.64rem;
   font-weight: 700;
@@ -3744,4 +3747,12 @@ body.intro-open {
   .quote-progress {
     display: none;
   }
+}
+
+/* Chaos card icon — inline SVG, so it never depends on an emoji font. */
+.clarity__icon {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  color: hsl(var(--ink-soft) / 0.65);
 }

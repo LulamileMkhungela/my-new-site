@@ -170,7 +170,10 @@
         <p class="service-section__body" style="max-width:62ch;margin-top:1.2rem">${esc(detail.problem.kicker)}</p>
         <div class="clarity" style="margin-top:clamp(2rem,4vw,3rem)">
           <div class="clarity__col clarity__col--chaos">
-            <p class="clarity__title"><span aria-hidden="true">🌀</span> Chaos</p>
+            <p class="clarity__title">
+              <svg class="clarity__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7a5 5 0 1 0 5 5"/><path d="M12 11a1 1 0 1 0 1 1"/><path d="M20 4l1.5 1.5M4 4l1.5 1.5"/></svg>
+              Chaos
+            </p>
             <ul class="clarity__list">
               ${detail.problem.chaos.map((item) => `<li>${esc(item)}</li>`).join('')}
             </ul>
