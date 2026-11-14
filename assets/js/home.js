@@ -231,13 +231,16 @@
   document.querySelector('[data-services]').innerHTML = SITE.services
     .map(
       (service, index) => `
-      <a class="service-card" href="${esc(service.page)}" data-reveal style="--delay:${index * 70}ms">
+      <a class="service-card" href="${esc(service.page)}" data-reveal style="--delay:${index * 70}ms;--hue:${esc(service.hue === 'lavender' ? 270 : service.hue === 'peach' ? 30 : service.hue === 'sage' ? 160 : 210)}">
         <span class="service-card__num">${esc(service.number)}</span>
         <span class="service-card__body">
           <h3>${esc(service.title)}</h3>
           <p>${esc(service.oneliner)}</p>
         </span>
         <span class="service-card__keyword meta" aria-hidden="true">${esc(service.keyword)}</span>
+        <span class="service-card__thumb" aria-hidden="true">
+          <img data-asset="${esc(service.image)}" src="${window.asset(service.image)}" alt="" loading="lazy" decoding="async" />
+        </span>
         <span class="service-card__arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </span>

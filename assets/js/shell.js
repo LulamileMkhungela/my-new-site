@@ -422,6 +422,280 @@
       </footer>`;
   }
 
+  /* ---- Page transitions -------------------------------------------------- */
+  /**
+   * The reference wipes between pages with two accent panels that close over the
+   * old page and part again on the new one. Same idea here, done with the
+   * ordinary multi-page navigation: intercept an internal link, close the
+   * curtains, then go. Links keep working with JS off, in a new tab, and for
+   * anything the script should not own (external, mailto, hash, downloads).
+   */
+  function transitions() {
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+
+    const curtain = document.createElement('div');
+    curtain.className = 'curtain';
+    curtain.setAttribute('aria-hidden', 'true');
+    curtain.innerHTML = '<span></span><span></span>';
+    document.body.appendChild(curtain);
+
+    const here = location.pathname.split('/').pop() || 'index.html';
+    const samePage = (href) => {
+      const [path, hash] = href.split('#');
+      const file = path.split('/').pop() || here;
+      return file === here || (!path && hash);
+    };
+
+    document.addEventListener('click', (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || /^(https?:|mailto:|tel:|#|data:)/.test(href)) return;
+      if (link.target === '_blank' || link.hasAttribute('download')) return;
+      if (samePage(href)) return; // in-page anchors and same-document links stay instant
+      if (!/\.html(\?|#|$)/.test(href)) return;
+
+      event.preventDefault();
+      curtain.classList.add('is-closing');
+      setTimeout(() => {
+        location.href = href;
+      }, 430);
+    });
+
+    // Coming back via the bfcache should never leave the curtain closed.
+    window.addEventListener('pageshow', () => curtain.classList.remove('is-closing'));
+  }
+
+  /* ---- Ambient music player ---------------------------------------------- */
+  /**
+   * The reference's floating player: three ambient tracks, a volume slider and
+   * a now-playing line. Off by default, never autoplays (browsers block it and
+   * it would be rude), remembers the volume for the session.
+   */
+  const TRACKS = [
+    { id: 'focus-1', label: 'Sentimental Jazzy', genre: 'Lo-fi', src: 'https://cdn.pixabay.com/audio/2026/01/25/audio_1dd7f3126d.mp3' },
+    { id: 'focus-2', label: 'Peaceful Piano', genre: 'Modern Classical', src: 'https://cdn.pixabay.com/audio/2024/08/15/audio_6a3249cbfa.mp3' },
+    { id: 'focus-3', label: 'Focus & Relaxation', genre: 'Ambient', src: 'https://cdn.pixabay.com/audio/2025/05/15/audio_ba956a1042.mp3' },
+  ];
+
+  function player() {
+    if (document.querySelector('[data-player]')) return;
+
+    const host = document.createElement('div');
+    host.className = 'player';
+    host.setAttribute('data-player', '');
+    host.innerHTML = `
+      <div class="player__panel" role="dialog" aria-label="Ambient music player" aria-hidden="true">
+        <div class="player__head">
+          <span class="player__label"><span class="player__bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> Ambient</span>
+          <button class="player__stop" type="button" data-player-stop hidden>Stop</button>
+        </div>
+        <div class="player__tracks">
+          ${TRACKS.map(
+            (track) => `
+            <button class="player__track" type="button" data-track="${track.id}">
+              <span>
+                <strong>${track.label}</strong>
+                <small>${track.genre}</small>
+              </span>
+              <span class="player__play" aria-hidden="true"></span>
+            </button>`,
+          ).join('')}
+        </div>
+        <div class="player__volume">
+          <span aria-hidden="true">♪</span>
+          <input type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Volume" data-volume />
+          <span aria-hidden="true">♪♪</span>
+        </div>
+        <div class="player__now" data-now hidden><span>Now playing</span><strong></strong></div>
+      </div>
+      <button class="player__toggle" type="button" data-player-toggle aria-label="Open ambient music player" aria-expanded="false">
+        <span aria-hidden="true">♫</span>
+      </button>`;
+    document.body.appendChild(host);
+
+    const audio = new Audio();
+    audio.loop = true;
+    let volume = 0.35;
+    audio.volume = volume;
+    let current = null;
+    let playing = false;
+    const panel = host.querySelector('.player__panel');
+    const toggle = host.querySelector('[data-player-toggle]');
+    const stop = host.querySelector('[data-player-stop]');
+    const now = host.querySelector('[data-now]');
+
+    const setOpen = (open) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close music player' : 'Open ambient music player');
+      panel.setAttribute('aria-hidden', String(!open));
+      host.classList.toggle('is-open', open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+
+    const paint = () => {
+      host.classList.toggle('is-playing', playing);
+      stop.hidden = !playing;
+      host.querySelectorAll('[data-track]').forEach((button) => {
+        const isCurrent = button.dataset.track === current;
+        button.classList.toggle('is-current', isCurrent);
+        button.classList.toggle('is-playing', isCurrent && playing);
+      });
+      const track = TRACKS.find((item) => item.id === current);
+      now.hidden = !(playing && track);
+      if (track && playing) now.querySelector('strong').textContent = `${track.genre} — ${track.label}`;
+    };
+
+    const silence = () => {
+      audio.pause();
+      playing = false;
+      current = null;
+      paint();
+    };
+
+    host.querySelectorAll('[data-track]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.track;
+        const track = TRACKS.find((item) => item.id === id);
+        if (!track) return;
+        if (current === id && playing) {
+          audio.pause();
+          playing = false;
+          paint();
+          return;
+        }
+        if (current !== id) {
+          audio.src = track.src;
+          audio.load();
+          audio.volume = volume;
+          current = id;
+        }
+        audio
+          .play()
+          .then(() => {
+            playing = true;
+            paint();
+          })
+          .catch(() => {
+            playing = false;
+            paint();
+          });
+      });
+    });
+
+    stop.addEventListener('click', silence);
+
+    const slider = host.querySelector('[data-volume]');
+    slider.addEventListener('input', () => {
+      volume = Number(slider.value);
+      audio.volume = volume;
+      slider.style.setProperty('--v', `${volume * 100}%`);
+    });
+    slider.style.setProperty('--v', `${volume * 100}%`);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && host.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('mousedown', (event) => {
+      if (host.classList.contains('is-open') && !host.contains(event.target)) setOpen(false);
+    });
+
+    paint();
+  }
+
+  /* ---- Intro splash ------------------------------------------------------ */
+  /**
+   * The reference opens on a time-of-day greeting — "Good Evening / Great
+   * things take time." — with the letters rising in, a line drawing itself, then
+   * the two halves of the screen sliding apart to reveal the page.
+   *
+   * Once per browser session (not on every navigation), skippable on click or
+   * any key, and skipped entirely under prefers-reduced-motion.
+   */
+  function greeting() {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return { word: 'Good Morning', sub: 'The day is yours.' };
+    if (hour >= 12 && hour < 17) return { word: 'Good Afternoon', sub: "Let's make it count." };
+    if (hour >= 17 && hour < 21) return { word: 'Good Evening', sub: 'Great things take time.' };
+    return { word: 'Good Night', sub: 'Still here. So are we.' };
+  }
+
+  function intro() {
+    const KEY = 'lm-intro-seen';
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try {
+      if (reduced || sessionStorage.getItem(KEY)) return;
+      sessionStorage.setItem(KEY, '1');
+    } catch (e) {
+      return; // storage blocked — do not risk trapping the visitor behind an overlay
+    }
+
+    const { word, sub } = greeting();
+    const root = document.createElement('div');
+    root.className = 'intro';
+    root.setAttribute('aria-live', 'polite');
+    root.setAttribute('aria-label', 'Loading');
+    root.innerHTML = `
+      <div class="intro__half intro__half--top"></div>
+      <div class="intro__half intro__half--bottom"></div>
+      <div class="intro__stage">
+        <p class="intro__word" aria-hidden="true">${word
+          .split('')
+          .map((char, index) => `<span style="animation-delay:${index * 38}ms">${char === ' ' ? '&nbsp;' : escHtml(char)}</span>`)
+          .join('')}</p>
+        <p class="intro__sub" style="animation-delay:${word.length * 38 + 80}ms">${sub}</p>
+        <span class="intro__line" style="animation-delay:${word.length * 38 + 200}ms"></span>
+        <p class="intro__welcome" style="animation-delay:${word.length * 38 + 350}ms">Welcome</p>
+      </div>`;
+    document.body.appendChild(root);
+    document.body.classList.add('intro-open');
+
+    let closed = false;
+    const finish = () => {
+      if (closed) return;
+      closed = true;
+      clearTimeout(timer);
+      root.classList.add('is-leaving');
+      document.body.classList.remove('intro-open');
+      setTimeout(() => root.remove(), 700);
+    };
+
+    // 900ms of greeting, then the halves part.
+    const timer = setTimeout(finish, 2100);
+    root.addEventListener('click', finish);
+    document.addEventListener(
+      'keydown',
+      (event) => {
+        if (event.key) finish();
+      },
+      { once: true },
+    );
+
+    // The real announcement, as the reference does it — opt-in and silent-safe.
+    try {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(`${word}. Welcome.`);
+        utterance.rate = 0.88;
+        utterance.pitch = 1.05;
+        utterance.volume = 0.9;
+        window.speechSynthesis.cancel();
+        setTimeout(() => window.speechSynthesis.speak(utterance), 300);
+      }
+    } catch (e) {
+      /* speech is decoration */
+    }
+  }
+
+  function escHtml(text) {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   /* ---- Ambient aurora ---------------------------------------------------- */
   /**
    * The reference's living background: five soft radial gradients drifting on a
@@ -554,7 +828,10 @@
 
   /* ---- Boot -------------------------------------------------------------- */
   function boot() {
+    intro();
     aurora();
+    player();
+    transitions();
     renderHeader();
     renderFooter();
     guardAll(document);
