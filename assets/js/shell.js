@@ -76,26 +76,41 @@
     img.dataset.guarded = '1';
     const name = img.dataset.asset || img.getAttribute('src') || '';
     const file = name.split('/').pop();
-    img.addEventListener(
-      'error',
-      () => {
-        if (img.dataset.stage === 'remote') {
-          img.dataset.stage = 'placeholder';
-          img.src = placeholder(file);
-          return;
-        }
-        if (img.dataset.stage === undefined) {
-          img.dataset.stage = 'remote';
-          if (img.src.indexOf(REMOTE) === -1) {
-            img.src = REMOTE + file;
-            return;
-          }
-        }
-        img.dataset.stage = 'placeholder';
+
+    /* While the fallback chain is running, a broken image paints the alt text
+       and the browser's broken-image glyph inside the frame. Hide it until it
+       has decoded something, so a missing cover never leaks its filename. */
+    const settle = () => {
+      img.classList.remove('is-pending');
+      if (img.naturalWidth > 0) img.classList.add('is-ready');
+    };
+    if (!(img.complete && img.naturalWidth > 0)) img.classList.add('is-pending');
+    img.addEventListener('load', settle);
+
+    /* One attempt per destination, tracked in a Set rather than a single
+       `stage` string, so an error that arrives after the placeholder has been
+       assigned can't start the chain over from the top and loop forever. */
+    const tried = new Set();
+    if (img.src.indexOf(REMOTE) !== -1) tried.add('remote');
+
+    const advance = () => {
+      if (!tried.has('remote')) {
+        tried.add('remote');
+        img.src = REMOTE + file;
+        return;
+      }
+      if (!tried.has('placeholder')) {
+        tried.add('placeholder');
         img.src = placeholder(file);
-      },
-      { once: false },
-    );
+      }
+    };
+
+    img.addEventListener('error', advance, { once: false });
+
+    /* The local file may have already 404'd before this ran — a `complete` image
+       with no intrinsic width is broken, and its error event has been and gone.
+       Advance by hand instead of leaving the frame empty forever. */
+    if (img.complete && img.naturalWidth === 0 && !tried.has('remote')) advance();
   }
 
   function guardAll(root) {

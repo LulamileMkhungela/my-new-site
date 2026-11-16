@@ -2229,35 +2229,7 @@ html[data-theme="dark"] .marquee img {
   color: hsl(var(--ink-soft));
 }
 
-/* ---- Service detail: sticky tab strip, chaos vs clarity ------------------ */
-.service-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  padding-bottom: 0.9rem;
-  margin-bottom: clamp(1.2rem, 3vw, 2rem);
-  border-bottom: 1px solid hsl(var(--border) / 0.7);
-}
-
-.service-tabs__tab {
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: hsl(var(--ink-soft));
-  text-decoration: none;
-  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
-}
-
-.service-tabs__tab:hover,
-.service-tabs__tab:focus-visible {
-  color: hsl(var(--fg));
-  background: hsl(var(--card));
-  border-color: hsl(var(--border));
-  outline: none;
-}
-
+/* ---- Service detail: chaos vs clarity ----------------------------------- */
 .clarity {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2638,49 +2610,108 @@ body > [data-header] {
   max-width: 56ch;
 }
 
-/* ---- Sticky A · B · C tab strip ---------------------------------------- */
-.service-tabs {
-  position: sticky;
-  top: 4.4rem;
-  z-index: 20;
-  background: hsl(var(--bg) / 0.9);
-  backdrop-filter: blur(10px);
-  border-block: 1px solid hsl(var(--border) / 0.6);
+/* ---- Floating A · B · C section nav ------------------------------------ */
+/* Fixed to the bottom of the viewport, centred, and hidden until the reader is
+   inside the article — the reference's behaviour, not a sticky toolbar. */
+.page-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  translate: -50% 0;
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.75rem);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-.service-tabs__inner {
+.page-nav.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.page-nav__pill {
   display: flex;
-  gap: 0.4rem;
-  padding-block: 0.55rem;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.375rem;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--border) / 0.5);
+  background: hsl(var(--bg) / 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px -10px hsl(var(--fg) / 0.18);
 }
 
-.service-tabs__tab {
+.page-nav__item {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.45rem 0.9rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: hsl(var(--ink-soft));
-  transition: background 0.2s ease, color 0.2s ease;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--fg) / 0.4);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease-out, background 0.25s ease-out;
 }
 
-.service-tabs__tab span {
+.page-nav__item span {
   font-family: var(--mono);
-  font-size: 0.66rem;
   font-weight: 700;
-  color: hsl(var(--accent));
 }
 
-.service-tabs__tab:hover,
-.service-tabs__tab[aria-current] {
-  background: hsl(var(--muted) / 0.8);
-  color: hsl(var(--fg));
+.page-nav__item:hover {
+  color: hsl(var(--fg) / 0.7);
 }
+
+.page-nav__item[aria-current] {
+  background: hsl(var(--accent));
+  color: hsl(var(--bg));
+}
+
+/* Phones get a full-width bar flush to the bottom edge, as the reference does. */
+@media (max-width: 639px) {
+  .page-nav {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    translate: none;
+    transform: translateY(0.75rem);
+  }
+
+  .page-nav__pill {
+    border-radius: 0;
+    border-inline: 0;
+    border-bottom: 0;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .page-nav__item {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.4rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.1;
+  }
+}
+
+
 
 /* ---- Section blocks ----------------------------------------------------- */
 .service-section {
+  position: relative;
   padding-block: clamp(3rem, 6vw, 5.5rem);
   border-top: 1px solid hsl(var(--border) / 0.5);
 }
@@ -3037,16 +3068,6 @@ body > [data-header] {
 /* ---- Closing ------------------------------------------------------------ */
 .service-cta .service-section__title {
   max-width: 26ch;
-}
-
-@media (max-width: 700px) {
-  .service-tabs {
-    top: 3.9rem;
-    overflow-x: auto;
-  }
-  .service-tabs__inner {
-    flex-wrap: nowrap;
-  }
 }
 
 /* ==========================================================================
@@ -3780,4 +3801,32 @@ body.intro-open {
 
 .archive-block[hidden] {
   display: none;
+}
+
+/* A cover that is still resolving, or that failed and is waiting on its
+   fallback, stays invisible rather than painting its alt text and the
+   browser's broken-image glyph across the frame. */
+img.is-pending {
+  opacity: 0;
+  transition: none;
+}
+
+/* 1px marker at the end of the FAQ section — it bounds the floating nav's
+   lifetime, and must not take part in layout. */
+.service-sentinel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* The player would collide with the full-width section bar on phones; lift it
+   clear of the bar rather than letting it sit on top of the last tab. Declared
+   after the base `.player` rule so it is not overridden by it. */
+@media (max-width: 639px) {
+  .player {
+    bottom: calc(5.75rem + env(safe-area-inset-bottom));
+  }
 }

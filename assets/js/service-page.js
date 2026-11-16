@@ -155,14 +155,6 @@
       </div>
     </section>
 
-    <nav class="service-tabs" aria-label="On this page" data-service-tabs>
-      <div class="shell service-tabs__inner">
-        <a class="service-tabs__tab" href="#portfolio" data-tab="portfolio"><span>A</span> Portfolio</a>
-        <a class="service-tabs__tab" href="#offer" data-tab="offer"><span>B</span> What I Offer</a>
-        <a class="service-tabs__tab" href="#questions" data-tab="faq"><span>C</span> Common Questions</a>
-      </div>
-    </nav>
-
     <!-- The problem: chaos vs clarity -->
     <section class="service-section" id="problem">
       <div class="service-section__inner">
@@ -331,6 +323,9 @@
             .join('')}
         </div>
       </div>
+      <!-- The reference ends the section nav's lifetime with a 1px sentinel at
+           the bottom of the FAQ section, not at the bottom of the page. -->
+      <div id="faq-end" class="service-sentinel" aria-hidden="true"></div>
     </section>
 
     <!-- Closing -->
@@ -343,7 +338,21 @@
           <a class="btn btn--ghost" href="contact.html">${esc(COPY.cta2)}</a>
         </div>
       </div>
-    </section>`;
+    </section>
+
+    <!--
+      The reference's section nav is a floating pill anchored to the bottom of
+      the viewport, not a bar under the header. It fades in only while the
+      reader is somewhere between the problem statement and the last question,
+      and fades out again at the top and the closing block.
+    -->
+    <nav class="page-nav" aria-label="Page section navigation" data-service-tabs>
+      <div class="page-nav__pill">
+        <a class="page-nav__item" href="#portfolio" data-tab="portfolio"><span>A</span>Portfolio</a>
+        <a class="page-nav__item" href="#offer" data-tab="offer"><span>B</span>What I Offer</a>
+        <a class="page-nav__item" href="#questions" data-tab="faq"><span>C</span>Common Questions</a>
+      </div>
+    </nav>`;
 
   /* ---- Client marquee (same loop as the home page) ----------------------- */
   const marquee = document.querySelector('[data-marquee]');
@@ -360,23 +369,64 @@
     if (counter) counter.textContent = `${(SITE.logos || []).length}+`;
   }
 
-  /* ---- Sticky tabs follow the scroll ------------------------------------ */
-  const tabs = [...document.querySelectorAll('[data-service-tabs] .service-tabs__tab')];
-  const targets = tabs
+  /* ---- Floating section nav --------------------------------------------- */
+  /* Mirrors the reference: the pill is visible only while the reader is inside
+     the article — it appears once the problem heading is 80% up the viewport
+     and disappears past the bottom of the last question. Clicks scroll in-page
+     with an 88px offset so the heading clears the header. */
+  const nav = document.querySelector('[data-service-tabs]');
+  const navItems = [...document.querySelectorAll('[data-service-tabs] [data-tab]')];
+  const targets = navItems
     .map((tab) => ({ tab, section: document.getElementById(tab.getAttribute('href').slice(1)) }))
     .filter((entry) => entry.section);
+
+  if (nav) {
+    const start = document.getElementById('problem') || targets[0]?.section;
+    const end = document.getElementById('faq-end') || targets[targets.length - 1]?.section;
+
+    const syncVisibility = () => {
+      if (!start || !end) return;
+      const top = start.getBoundingClientRect().top;
+      const bottom = end.getBoundingClientRect().bottom;
+
+      /* The reference hides the pill once the FAQ's end sentinel leaves the
+         viewport. Comparing against the viewport's bottom edge is not enough:
+         by the time the read is over the sentinel is still hundreds of pixels
+         up the screen while the pill sits over the footer. Hide it as soon as
+         the sentinel has passed *above the pill*, which is the point where the
+         questions stop being what is on screen. */
+      const pillTop = nav.getBoundingClientRect().top;
+      const show = top < window.innerHeight * 0.8 && bottom > pillTop;
+      nav.classList.toggle('is-visible', show);
+    };
+
+    syncVisibility();
+    window.addEventListener('scroll', syncVisibility, { passive: true });
+    window.addEventListener('resize', syncVisibility, { passive: true });
+
+    navItems.forEach((item) => {
+      item.addEventListener('click', (event) => {
+        const section = document.getElementById(item.getAttribute('href').slice(1));
+        if (!section) return;
+        event.preventDefault();
+        const top = section.getBoundingClientRect().top + window.scrollY - 88;
+        window.scrollTo({ top, behavior: 'smooth' });
+        history.replaceState(null, '', item.getAttribute('href'));
+      });
+    });
+  }
 
   if (targets.length && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          tabs.forEach((tab) => tab.removeAttribute('aria-current'));
+          navItems.forEach((tab) => tab.removeAttribute('aria-current'));
           const match = targets.find((target) => target.section === entry.target);
           if (match) match.tab.setAttribute('aria-current', 'true');
         });
       },
-      { rootMargin: '-25% 0px -60% 0px' },
+      { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
     );
     targets.forEach((target) => io.observe(target.section));
   }
