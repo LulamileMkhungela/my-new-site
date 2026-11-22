@@ -1,0 +1,26 @@
+[
+  {
+    "id": "all",
+    "label": "All projects"
+  },
+  {
+    "id": "website",
+    "label": "Website"
+  },
+  {
+    "id": "product-design",
+    "label": "Product Design"
+  },
+  {
+    "id": "apps",
+    "label": "Apps"
+  },
+  {
+    "id": "frontend-dev",
+    "label": "Frontend Dev"
+  },
+  {
+    "id": "ai-prompt",
+    "label": "AI Prompt"
+  }
+]

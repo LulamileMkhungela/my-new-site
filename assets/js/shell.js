@@ -97,7 +97,7 @@
     { label: 'Home', href: 'index.html' },
     { label: 'Tools', href: 'tools.html' },
     { label: 'Work', href: 'work.html' },
-    { label: 'Services', href: 'services.html' },
+    { label: 'My Services', href: 'services.html' },
     { label: 'About', href: 'about.html' },
     { label: 'Process', href: 'index.html#process' },
     { label: 'Contact', href: 'contact.html' },
@@ -115,93 +115,44 @@
   function renderHeader() {
     const host = document.querySelector('[data-header]');
     if (!host) return;
+    const links = [
+      {label:'Home',href:'/'}, {label:'Tools',href:'/tools.html'},
+      {label:'My Services',href:'/services/'}, {label:'Portfolio',href:'/work.html'},
+      {label:'About',href:'/about/'}
+    ];
+    const active = href => location.pathname.replace(/\/$/, '') === href.replace(/\/$/, '');
+    const navLinks = links.map(item => `<a href="${item.href}" ${active(item.href) ? 'aria-current="page" class="is-active"' : ''}>${item.label}</a>`).join('');
     host.innerHTML = `
-      <a class="skip" href="#main">Skip to content</a>
-      <header class="site-header" data-sticky>
-        <div class="shell header-inner">
-          <a class="brand" href="index.html" aria-label="${SITE.name} — home">
-            <span class="brand__mark">
-              <img data-asset="lulamile.webp" src="assets/img/lulamile.webp" alt="" width="32" height="32" />
-            </span>
-            <span>${SITE.name}<small>${SITE.brandLine}</small></span>
-          </a>
-          <nav class="nav" aria-label="Primary" data-nav-list>
-            ${NAV.map((item) => `<a href="${item.href}" data-nav ${item.href === 'tools.html' ? 'data-flag title="Tools — the builder toolkit"' : ''}>${item.label}</a>`).join('')}
-          </nav>
-          <div class="header-actions">
-            <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle colour theme">
-              <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-              <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
-            </button>
-            <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-            <button class="icon-btn menu-btn" type="button" data-menu-open aria-label="Open menu" aria-expanded="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-            </button>
+      <header class="rhino-header">
+        <a class="rhino-skip" href="#main">Skip to content</a>
+        <div class="rhino-header-main">
+          <a href="/" class="rhino-wordmark" aria-label="Lulamile M — Home"><span class="rhino-monogram" aria-hidden="true">LM</span><span>Lulamile<strong>M.</strong></span></a>
+          <nav class="rhino-primary" aria-label="Main navigation">${navLinks}</nav>
+          <div class="rhino-header-actions">
+            <a href="/services/" class="rhino-mobile-services">My Services</a>
+            <a href="/contact/" class="rhino-contact">Let’s Talk <span aria-hidden="true">↗</span></a>
+            <button type="button" class="rhino-menu-button" aria-label="Open navigation" aria-expanded="false" aria-controls="rhino-mobile-menu">☰</button>
           </div>
         </div>
-      </header>
-      <div class="drawer" data-drawer role="dialog" aria-modal="true" aria-label="Menu">
-        <div class="drawer__top">
-          <span class="brand"><span>${SITE.name}<small>Menu</small></span></span>
-          <button class="icon-btn" type="button" data-menu-close aria-label="Close menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-          </button>
-        </div>
-        <nav aria-label="Mobile">
-          ${NAV.map((item) => `<a href="${item.href}" data-nav>${item.label}</a>`).join('')}
-          <div class="drawer__foot">
-            <a class="btn btn--accent" href="contact.html">Book a Free Call</a>
-            <a class="btn btn--ghost" href="${SITE.resume}" target="_blank" rel="noopener">Download Resume</a>
-          </div>
-        </nav>
-      </div>`;
-
-    mark();
-
-    const drawer = host.querySelector('[data-drawer]');
-    const openBtn = host.querySelector('[data-menu-open]');
-    const closeBtn = host.querySelector('[data-menu-close]');
-
-    const setOpen = (open) => {
-      drawer.classList.toggle('is-open', open);
-      document.body.classList.toggle('nav-open', open);
-      openBtn.setAttribute('aria-expanded', String(open));
-      if (open) drawer.querySelector('a, button')?.focus();
-      else openBtn.focus();
+        <nav id="rhino-mobile-menu" class="rhino-mobile-menu" aria-label="Mobile navigation" hidden>${navLinks}</nav>
+        <nav class="hybrid-service-nav" aria-label="Explore services"><div class="hybrid-service-nav-inner">
+          ${(window.SERVICE_NAV || []).map(item => `<a href="${item.href}">${item.title}</a>`).join('')}
+        </div></nav>
+      </header>`;
+    const button = host.querySelector('.rhino-menu-button');
+    const menu = host.querySelector('#rhino-mobile-menu');
+    const setOpen = open => {
+      menu.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      button.textContent = open ? '✕' : '☰';
     };
-
-    openBtn.addEventListener('click', () => setOpen(true));
-    closeBtn.addEventListener('click', () => setOpen(false));
-    drawer.addEventListener('click', (event) => {
-      if (event.target.closest('a')) setOpen(false);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && drawer.classList.contains('is-open')) setOpen(false);
-    });
-
-    host.querySelector('[data-theme-toggle]').addEventListener('click', () => {
-      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
-    });
-
-    /* Sticky header hides on scroll down, returns on scroll up. */
-    const bar = host.querySelector('[data-sticky]');
-    let last = window.scrollY;
-    let ticking = false;
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          const y = window.scrollY;
-          if (y > 220 && y > last + 4) bar.classList.add('is-hidden');
-          else if (y < last - 4 || y < 120) bar.classList.remove('is-hidden');
-          last = y;
-          ticking = false;
-        });
-      },
-      { passive: true },
-    );
+    button.addEventListener('click', () => setOpen(menu.hidden));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') setOpen(false); });
+    // The host spans both rows and must stay sticky on the legacy static pages.
+    host.style.position = 'sticky';
+    host.style.top = '0';
+    host.style.zIndex = '100';
   }
 
   function renderFooter() {

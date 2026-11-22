@@ -1,0 +1,886 @@
+[
+  {
+    "id": "nerdma",
+    "client": "Nerdma",
+    "title": "One ecosystem. A clearer story.",
+    "description": "Website redesign and product dashboards that connect Nerdma’s governance, risk and sustainability offer.",
+    "categories": [
+      "website"
+    ],
+    "type": "case-study",
+    "external": false,
+    "href": "/project/nerdma",
+    "image": "/assets/img/portfolio/nerdma.webp",
+    "year": "2023",
+    "status": "Client project",
+    "featured": true,
+    "details": {
+      "role": "Freelance UI/UX Designer & Developer",
+      "context": "Nerdma Systems · Governance, risk and sustainability intelligence",
+      "sections": [
+        {
+          "title": "The challenge",
+          "paragraphs": [
+            "Five named products were presented separately, leaving technical evaluators and decision-makers to work out how the ecosystem fitted together. Credibility and the path to enquiry needed to be easier to find."
+          ]
+        },
+        {
+          "title": "The approach",
+          "paragraphs": [
+            "Audit the content and competing platforms, map the buyer’s decision, then organise the site around problem, product and proof. Give every product a stated role and bring certifications, partners and clients into the main story."
+          ]
+        },
+        {
+          "title": "From website to product",
+          "paragraphs": [
+            "Design NerdScore, NerdGrid and NerdGrow dashboards with a shared reading order: the primary number, its trend, then contributing factors. Use consistent tables and filters across the interfaces."
+          ]
+        },
+        {
+          "title": "Delivery & evidence",
+          "paragraphs": [
+            "The original project documents content structure, responsive design/build, forms and analytics. The live website is linked below. No measured before-and-after enquiry or ranking improvement is claimed."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Visit Nerdma",
+          "href": "https://www.nerdma.co.za"
+        }
+      ],
+      "gallery": []
+    },
+    "previewScroll": true
+  },
+  {
+    "id": "addmoredigital",
+    "client": "AddmoreDigital",
+    "title": "An agency website, connected.",
+    "description": "Agency website with search foundations and CRM-connected enquiries.",
+    "categories": [
+      "website"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://addmoredigital.co.za/",
+    "image": "/assets/img/portfolio/addmoredigital.webp",
+    "actionLabel": "Visit website",
+    "previewScroll": true
+  },
+  {
+    "id": "snb",
+    "client": "SNB",
+    "title": "A clear first impression for a professional firm.",
+    "description": "Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.",
+    "categories": [
+      "website"
+    ],
+    "type": "case-study",
+    "external": false,
+    "href": "/project/snb",
+    "image": "/assets/img/portfolio/snb.webp",
+    "year": "2019",
+    "status": "Client project",
+    "featured": true,
+    "details": {
+      "role": "UI/UX & Web Designer · Sesyme & SmartServe",
+      "context": "SnB Chartered Accountants & Auditors",
+      "sections": [
+        {
+          "title": "The brief",
+          "paragraphs": [
+            "Create the firm’s first proper website, from the initial client meeting through structure, design, build and handover."
+          ]
+        },
+        {
+          "title": "Design decisions",
+          "paragraphs": [
+            "Organise the information around service scope, credentials, offices and how to start. Give the service lines their own clear pages and make enquiries straightforward."
+          ]
+        },
+        {
+          "title": "Build & handover",
+          "paragraphs": [
+            "Deliver a responsive, hand-coded website, check contact routing and hand over a CMS with a walkthrough so the firm could maintain its own pages."
+          ]
+        },
+        {
+          "title": "Project status",
+          "paragraphs": [
+            "This is a summary of the 2019 client engagement documented in the original portfolio. The client website is linked for reference; no current performance or conversion uplift is claimed."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Visit SNB",
+          "href": "https://www.snbconsultancy.co.za"
+        }
+      ],
+      "gallery": []
+    },
+    "previewScroll": true
+  },
+  {
+    "id": "foodiezone",
+    "client": "FoodieZone",
+    "title": "From messages to a structured food order.",
+    "description": "An ordering PWA designed around a local kitchen, a clear menu and an easier path to reorder.",
+    "categories": [
+      "website",
+      "product-design"
+    ],
+    "type": "case-study",
+    "external": false,
+    "href": "/project/foodiezone",
+    "image": "/assets/img/portfolio/foodiezone.webp",
+    "status": "Client project",
+    "featured": true,
+    "categoryActions": {
+      "website": {
+        "type": "external",
+        "href": "https://loux91.github.io/foodiezone/",
+        "label": "Visit website"
+      }
+    },
+    "details": {
+      "role": "Lead Product Designer & UI Developer",
+      "context": "FoodieZone · Pimville, Soweto",
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "Direct-message ordering makes it easy to miss an item or an order detail. The design brief was to create a structured path from choosing food to placing an order, without making a small kitchen’s work harder."
+          ]
+        },
+        {
+          "title": "The product approach",
+          "paragraphs": [
+            "Organise the menu around how customers browse, make item choices and basket contents explicit, and bring the reorder path forward. Treat a phone as the primary screen for customers and kitchen updates."
+          ]
+        },
+        {
+          "title": "Design & delivery",
+          "paragraphs": [
+            "The original portfolio documents product design and an end-to-end PWA build. The public ordering flow can be explored through the live site."
+          ]
+        },
+        {
+          "title": "Evidence & next questions",
+          "paragraphs": [
+            "The project notes describe funnel instrumentation but do not supply a measured before-and-after comparison. Order accuracy and the share of repeat orders are useful next validation questions—not published outcomes."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Open FoodieZone",
+          "href": "https://loux91.github.io/foodiezone/"
+        }
+      ],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/foodiezone-flow.webp",
+          "alt": "FoodieZone ordering journey",
+          "caption": "Ordering-flow material from the original portfolio."
+        }
+      ]
+    },
+    "previewScroll": true
+  },
+  {
+    "id": "heritagebites",
+    "client": "HeritageBites",
+    "title": "Heritage on a plate. An ordering site in progress.",
+    "description": "An in-progress online ordering website for South African home-style food. This is a testing link, not a finished launch.",
+    "categories": [
+      "website"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://order.heritagebites.co.za",
+    "image": "/assets/img/portfolio/heritagebites.jpg",
+    "actionLabel": "Explore test site",
+    "imageFit": "contain",
+    "status": "In progress · Testing link",
+    "format": "Testing site"
+  },
+  {
+    "id": "africa-cuisine",
+    "client": "Africa Cuisine",
+    "title": "A restaurant, made easy to discover.",
+    "description": "Restaurant website and PWA for Africa Cuisine in Braamfontein.",
+    "categories": [
+      "website"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://africa-cuisine-pro.vercel.app",
+    "image": "/assets/img/portfolio/africa-cuisine.webp",
+    "actionLabel": "Visit website",
+    "previewScroll": true
+  },
+  {
+    "id": "sk-finds",
+    "client": "SK Finds",
+    "title": "A local storefront with a direct path to order.",
+    "description": "A WhatsApp storefront for car accessories and plush toys in Thembisa.",
+    "categories": [
+      "website"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://skautos.vercel.app/",
+    "image": "/assets/img/portfolio/sk-finds.webp",
+    "actionLabel": "Visit website",
+    "previewScroll": true
+  },
+  {
+    "id": "sesyme",
+    "client": "Sesyme",
+    "title": "Learning, in your pocket.",
+    "description": "A co-learning app for university students, with question-and-answer learning and a digital reading experience.",
+    "categories": [
+      "apps"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/sesyme",
+    "image": "/assets/img/portfolio/sesyme.jpeg",
+    "status": "Previous work",
+    "imageFit": "contain",
+    "details": {
+      "role": "UI/UX & Android development",
+      "context": "Sesyme · Mobile learning",
+      "sections": [
+        {
+          "title": "Project overview",
+          "paragraphs": [
+            "Sesyme is presented in the original portfolio as a co-learning platform for university students. The supplied product mockup shows a reading library across laptop, tablet and mobile."
+          ]
+        },
+        {
+          "title": "Available material",
+          "paragraphs": [
+            "The public repository identifies this as the Sesyme mobile app. This page brings together the original portfolio’s product imagery and that repository context; it does not claim new adoption or learning-outcome results."
+          ]
+        }
+      ],
+      "links": [],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/sesyme.jpeg",
+          "alt": "Sesyme desktop, tablet and mobile product mockups",
+          "caption": "Original Sesyme product mockups, imported from the supplied portfolio."
+        }
+      ]
+    }
+  },
+  {
+    "id": "lunianetwork",
+    "client": "LuniaNetwork",
+    "title": "Helping people find and reconnect.",
+    "description": "An app for finding loved ones or items and connecting with other people.",
+    "categories": [
+      "apps"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/lunianetwork",
+    "image": "/assets/img/portfolio/lunianetwork.jpg",
+    "status": "Previous work",
+    "imageFit": "contain",
+    "details": {
+      "role": "App development",
+      "context": "LuniaNetwork · Community & social",
+      "sections": [
+        {
+          "title": "Project overview",
+          "paragraphs": [
+            "The historical Google Play listing in the original portfolio describes LuniaNetwork as an application for finding loved ones or items and connecting with other people."
+          ]
+        },
+        {
+          "title": "Available evidence",
+          "paragraphs": [
+            "The listing screenshot credits Lulamile Mkhungela as the developer. It is shown as historical project material; present store availability and user figures have not been verified."
+          ]
+        }
+      ],
+      "links": [],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/lunianetwork.jpg",
+          "alt": "Historical LuniaNetwork Google Play listing",
+          "caption": "Historical listing image from the original portfolio—not a current store availability claim."
+        }
+      ]
+    }
+  },
+  {
+    "id": "lawmania",
+    "client": "Lawmania",
+    "title": "Know your rights. Find your next step.",
+    "description": "A voice-first South African legal-information app for customary law, succession and everyday rights. Source-linked explanations, deadlines and document preparation, with multilingual support. Legal information, not a substitute for a lawyer.",
+    "categories": [
+      "apps"
+    ],
+    "type": "coming-soon",
+    "external": false,
+    "href": null,
+    "image": "/assets/img/portfolio/lawmania-feed.png",
+    "status": "Coming soon",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "imageFit": "contain",
+    "imageAlt": "Lawmania app feed with legal questions, topic filters and Feed, Diary, Learn and Saved navigation"
+  },
+  {
+    "id": "ai-lifeos",
+    "client": "Ai-LifeOS",
+    "title": "Everyday life, from your own records.",
+    "description": "A mobile-first, offline-capable app for South African households: irregular-income budgeting, grocery planning, loan-cost checks, scam awareness and life admin. Records stay on the device, with review before saving.",
+    "categories": [
+      "apps"
+    ],
+    "type": "coming-soon",
+    "external": false,
+    "href": null,
+    "image": "/assets/img/portfolio/ai-lifeos-dashboard.png",
+    "status": "Coming soon",
+    "imageFit": "contain",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "imageAlt": "Ai-LifeOS web dashboard showing Today, safe-to-spend setup, daily actions and reminders"
+  },
+  {
+    "id": "onescreen-business",
+    "client": "OneScreen Business",
+    "title": "Run your business by talking to it.",
+    "description": "A cross-platform web and mobile app for South African small and informal businesses. Turn spoken or typed sales into records, track money, stock and customer debts, and build a monthly picture from the owner’s actual business activity.",
+    "categories": [
+      "apps"
+    ],
+    "type": "coming-soon",
+    "external": false,
+    "href": null,
+    "image": "/assets/img/portfolio/onescreen-business-home.png",
+    "status": "Coming soon",
+    "imageFit": "contain",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "imageAlt": "OneScreen Business home screen with talk-or-type business entry, record a sale, snap a slip and business navigation"
+  },
+  {
+    "id": "lulafind",
+    "client": "LulaFind",
+    "title": "A community search network.",
+    "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
+    "categories": [
+      "apps"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/lulafind",
+    "image": "/assets/img/portfolio/lulafind.png",
+    "status": "Pending Google Play review",
+    "imageFit": "contain",
+    "details": {
+      "role": "Product & app development",
+      "context": "LulaFind · Community search",
+      "sections": [
+        {
+          "title": "What it brings together",
+          "paragraphs": [
+            "LulaFind combines missing-person posters, sightings, danger alerts, Spotlight surname communities, 24-hour stories and private chat. The repository documents an Angular/Ionic application with Capacitor shells for Android and iOS."
+          ]
+        },
+        {
+          "title": "Release status",
+          "paragraphs": [
+            "Pending Google Play app review, as supplied by the project owner. The ZIP link below downloads the public project source, not an approved Play Store release or an installable APK."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Download source ZIP",
+          "href": "https://github.com/LulamileMkhungela/LulaFind/archive/refs/heads/main.zip"
+        }
+      ],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/lulafind.png",
+          "alt": "LulaFind home interface",
+          "caption": "Home-interface capture supplied in the LulaFind repository’s design documentation."
+        }
+      ]
+    }
+  },
+  {
+    "id": "lulagazette",
+    "client": "LulaGazette",
+    "title": "Legal information, easier to navigate.",
+    "description": "A searchable civic legal-information library, with source documents beside their summaries.",
+    "categories": [
+      "frontend-dev"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://lulamilemkhungela.github.io/LulaGazette/",
+    "image": "/assets/img/portfolio/lulagazette.webp",
+    "actionLabel": "Open project",
+    "previewScroll": true
+  },
+  {
+    "id": "designops",
+    "client": "DesignOps",
+    "title": "Keep the system in the work.",
+    "description": "Explore the DesignOps tokens, component and linting demo.",
+    "categories": [
+      "frontend-dev"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://6aeb486eccc5e1d03000a127--designopss.netlify.app/",
+    "image": "/assets/img/portfolio/designops.webp",
+    "actionLabel": "Open demo",
+    "previewScroll": true
+  },
+  {
+    "id": "financial-inclusion-hackathon",
+    "client": "Financial inclusion for small businesses",
+    "title": "Financial inclusion for small businesses",
+    "description": "FNB App of the Year hackathon solution deck, from the original portfolio.",
+    "categories": [
+      "frontend-dev"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://drive.google.com/file/d/1anSnYJt_4Okl3xQuKkCJDAVROcVOqEFr/view?usp=sharing",
+    "image": "/assets/img/portfolio/hackathon-financial-inclusion.webp",
+    "actionLabel": "View solution deck",
+    "status": "Hackathon project",
+    "format": "Solution deck"
+  },
+  {
+    "id": "community-hubs-hackathon",
+    "client": "Community-based financial hubs",
+    "title": "Community-based financial hubs",
+    "description": "Geekulcha hackathon solution deck, from the original portfolio.",
+    "categories": [
+      "frontend-dev"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://drive.google.com/file/d/19_dk5NRI_gJzYwyyR5kw_POwazmNhgp-/view?usp=sharing",
+    "image": "/assets/img/portfolio/hackathon-community-hubs.webp",
+    "actionLabel": "View solution deck",
+    "status": "Hackathon project",
+    "format": "Solution deck"
+  },
+  {
+    "id": "wethinkcode-gbv",
+    "client": "WeThinkCode developers",
+    "title": "Developers triumph at a GBV hackathon",
+    "description": "HashScape: the Winning Team’s GBV-prevention concept. ITWeb’s 2021 coverage names Lulamile Mkhungela alongside Mmathabo Pule, Daisy Mangue and Keitumetse Bokaba.",
+    "categories": [
+      "product-design"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://www.itweb.co.za/article/wethinkcode-female-developers-triumph-at-gbv-hackathon/KzQenMjVgjAMZd2r",
+    "image": "/assets/img/portfolio/hashscape-editorial.svg",
+    "actionLabel": "Read coverage",
+    "format": "Press & hackathon",
+    "status": "Hackathon winner · 2021",
+    "imageNote": "Editorial cover, not an event photograph"
+  },
+  {
+    "id": "prodops",
+    "client": "ProdOps",
+    "title": "A shared path from brief to handoff.",
+    "description": "A role-based product workspace connecting business, design, development, quality and delivery.",
+    "categories": [
+      "product-design"
+    ],
+    "type": "case-study",
+    "external": false,
+    "href": "/project/prodops",
+    "image": "/assets/img/portfolio/prodops.webp",
+    "status": "In progress",
+    "details": {
+      "role": "Product owner · Lulamile Mkhungela",
+      "context": "Product operations · High-level product-design case study",
+      "sections": [
+        {
+          "title": "The product problem",
+          "paragraphs": [
+            "Product intent gets fragmented as it moves between business, design, engineering, quality and delivery. ProdOps explores a workspace where each role can see its own process while keeping a shared brief and explicit handoffs."
+          ]
+        },
+        {
+          "title": "The design response",
+          "paragraphs": [
+            "Use an IDE-like layout: role navigation, numbered steps and files, a central editor, and contextual assistance. Separate role-specific deliverables from read-only upstream context so a team can see where decisions came from."
+          ]
+        },
+        {
+          "title": "Key product decisions",
+          "paragraphs": [
+            "Make approvals visible, with notes and a revisit state when upstream work changes. These are local workflow aids—not multi-user permissions.",
+            "Connect scope, requirements, design, tests and handoff through editable documents and traceability views. Keep export packs available so the work can continue in an external development environment.",
+            "Let manual editing and exports work without an AI provider. Clearly separate browser-only functionality from server-dependent drafting and imports."
+          ]
+        },
+        {
+          "title": "What is implemented",
+          "paragraphs": [
+            "The README describes browser-based editing, saved projects, role workflows, approvals, exports and the ProdOps Lab. A static preview is published on GitHub Pages. AI drafting and reference imports require an appropriately configured server; framework compilation and production delivery happen outside this workspace."
+          ]
+        },
+        {
+          "title": "Status & next validation",
+          "paragraphs": [
+            "This is an in-progress product documented from its README, not a claimed adoption success. Test whether users can follow an end-to-end brief-to-handoff journey, identify missing dependencies and recover from changed decisions before drawing usability or delivery-speed conclusions."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Request ProdOps",
+          "href": "mailto:mkhungela.l@gmail.com?subject=Request%20ProdOps&body=Hi%20Lulamile%2C%0A%0AI%20would%20like%20to%20request%20access%20to%20ProdOps.%0A%0AName%3A%20%0AOrganisation%20%28optional%29%3A%20%0AHow%20I%20would%20like%20to%20use%20ProdOps%3A%20%0A%0AThank%20you."
+        }
+      ],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/prodops.webp",
+          "alt": "ProdOps role-based workspace",
+          "caption": "Actual local build of the public ProdOps repository, showing its supplied worked example."
+        }
+      ]
+    }
+  },
+  {
+    "id": "forma",
+    "client": "Forma Design System",
+    "title": "One design language, across the stack.",
+    "description": "A work-in-progress design-to-code system connecting Figma, typed tokens, React, Angular and Storybook.",
+    "categories": [
+      "product-design"
+    ],
+    "type": "case-study",
+    "external": false,
+    "href": "/project/forma",
+    "image": "/assets/img/portfolio/forma.svg",
+    "status": "Work in progress",
+    "details": {
+      "role": "Design-system product work",
+      "context": "Forma · Design systems & tooling",
+      "sections": [
+        {
+          "title": "The challenge",
+          "paragraphs": [
+            "Keep design decisions consistent between a Figma workflow, typed design tokens and framework-specific components—without pretending the design system is complete or adoption-validated."
+          ]
+        },
+        {
+          "title": "The approach",
+          "paragraphs": [
+            "Connect Figma decisions to token generation, shared React and Angular libraries, and Storybook verification. Keep plugin work local-first and make review and accessibility checks part of handoff."
+          ]
+        },
+        {
+          "title": "Product decisions",
+          "paragraphs": [
+            "Use one shared token source, make component variants inspectable, and expose token aliases and selected contrast checks through Review Lab. Keep local snapshots separate from shared team history."
+          ]
+        },
+        {
+          "title": "Current boundaries",
+          "paragraphs": [
+            "The original portfolio describes the plugin as awaiting Figma Community review. Its illustrations are diagrams rather than captured product screens. Wider interaction coverage, native-library sharing and production adoption remain work in progress."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Explore Forma",
+          "href": "https://formaplugin.netlify.app"
+        }
+      ],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/forma-workflow.svg",
+          "alt": "Forma design-to-code workflow diagram",
+          "caption": "Workflow illustration from the original portfolio; not a captured product screen."
+        },
+        {
+          "src": "/assets/img/portfolio/forma-review.svg",
+          "alt": "Forma Review Lab diagram",
+          "caption": "Review Lab illustration from the original portfolio; not an independent accessibility audit."
+        }
+      ]
+    }
+  },
+  {
+    "id": "prompt-spin-the-wheel-portfolio",
+    "client": "Spin the wheel portfolio",
+    "title": "Spin the wheel portfolio",
+    "description": "Premium design resource. R15 · Prompt+ Guide. Explore the listing in my shop; current price and contents are confirmed there.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://selar.com/m/le-loux",
+    "image": "/assets/img/portfolio/prompt-spin-the-wheel-portfolio.svg",
+    "status": "Premium",
+    "format": "Premium prompt",
+    "actionLabel": "Explore premium resource",
+    "promptTier": "premium",
+    "imageRemote": "https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791725141901-5bard8.jpg"
+  },
+  {
+    "id": "prompt-id-card-portfolio",
+    "client": "ID card portfolio",
+    "title": "ID card portfolio",
+    "description": "Premium design resource. R15 · Design + prompt. Explore the listing in my shop; current price and contents are confirmed there.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://selar.com/m/le-loux",
+    "image": "/assets/img/portfolio/prompt-id-card-portfolio.jpg",
+    "status": "Premium",
+    "format": "Premium prompt",
+    "actionLabel": "Explore premium resource",
+    "promptTier": "premium"
+  },
+  {
+    "id": "prompt-halfman-design-app-home-screen-flow",
+    "client": "HalfMan Design App Home screen flow",
+    "title": "HalfMan Design App Home screen flow",
+    "description": "Premium design resource. R220 · Prompt + Figma file. Explore the listing in my shop; current price and contents are confirmed there.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://selar.com/m/le-loux",
+    "image": "/assets/img/portfolio/prompt-halfman-design-app-home-screen-flow.svg",
+    "status": "Premium",
+    "format": "Premium prompt",
+    "actionLabel": "Explore premium resource",
+    "promptTier": "premium",
+    "imageRemote": "https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791377545104-2v3ve2.jpg"
+  },
+  {
+    "id": "prompt-fitness-app-flow",
+    "client": "Fitness App flow",
+    "title": "Fitness App flow",
+    "description": "Premium design resource. Prompt only. Explore the listing in my shop; current price and contents are confirmed there.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://selar.com/m/le-loux",
+    "image": "/assets/img/portfolio/prompt-fitness-app-flow.svg",
+    "status": "Premium",
+    "format": "Premium prompt",
+    "actionLabel": "Explore premium resource",
+    "promptTier": "premium",
+    "imageRemote": "https://usdgvwhhpqriqenjanpe.supabase.co/storage/v1/object/public/covers/1791211375420-spaou9.jpg"
+  },
+  {
+    "id": "prompt-finance-app-flow-figma-file",
+    "client": "Finance App Flow +Figma file",
+    "title": "Finance App Flow +Figma file",
+    "description": "Premium design resource. R300 · Prompt + Figma file. Explore the listing in my shop; current price and contents are confirmed there.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://selar.com/m/le-loux",
+    "image": "/assets/img/portfolio/prompt-finance-app-flow-figma-file.jpg",
+    "status": "Premium",
+    "format": "Premium prompt",
+    "actionLabel": "Explore premium resource",
+    "promptTier": "premium"
+  },
+  {
+    "id": "prompt-service-provider-app",
+    "client": "Service Provider App",
+    "title": "Service Provider App",
+    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/prompt-service-provider-app",
+    "image": "/assets/img/portfolio/prompt-service-provider-app.jpg",
+    "status": "Free",
+    "format": "Free prompt",
+    "actionLabel": "Copy prompt",
+    "promptTier": "free",
+    "details": {
+      "role": "AI-assisted UI exploration · Lulamile Mkhungela",
+      "context": "Free prompt · AI-assisted UI exploration",
+      "sections": [
+        {
+          "title": "About this exploration",
+          "paragraphs": [
+            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+          ]
+        }
+      ],
+      "gallery": [],
+      "links": [],
+      "prompt": "Design a home services app home screen for iPhone 15 Pro (393x852, status bar 9:41) in light mode, Angi-inspired: white, minimal colour, image-led, generous spacing, Inter font (headings 600, body 400-500). Colours: background #FFFFFF, text #121A1C, muted #6F7A7D, lines #E6EAEB, brand green #12935A, dark #141C1E. Layout: (1) header with brand-green circle avatar containing white 'L', map pin + 'Sandton, Johannesburg' + chevron, round outlined bell with small red dot; (2) large rounded outlined search bar 'Try plumbing, painting…' with thin full-width divider below; (3) 'Browse by category' section with 'View all' grey link, then 4 white circles with soft shadow containing charcoal duotone icons: Roofing, Painting, Cleaning, Plumbing; (4) 'Popular projects' section with project cards — 'Handyman' from R45 with image of handyman drilling a kitchen cabinet, 'Home cleaning' from R22 with image of cleaner wiping a white kitchen counter, 'Plumbing' from R60 with image of plumber fixing pipes under a sink — image on top, black price bar under image with bolt icon, title below, third card peeking; (5) 'Maintenance planner' section with autumn garden photo and checklist rows overlaid: 'Prepare garden for winter' (ticked), 'Clear your gutters'; (6) bottom nav on white bar: 4 tabs — Home (filled green icon + green label), Projects, Pros, More (grey outline). Label the three phones above the frames — left 'ChatGPT', centre 'Claude', right 'Figma Make' — in bold type. Rules: light mode only, brand colour only on avatar, active tab and key actions, realistic photography.",
+      "promptDownload": "/assets/prompts/prompt-service-provider-app.txt"
+    }
+  },
+  {
+    "id": "prompt-finance-homescreen",
+    "client": "Finance homescreen",
+    "title": "Finance homescreen",
+    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/prompt-finance-homescreen",
+    "image": "/assets/img/portfolio/prompt-finance-homescreen.jpg",
+    "status": "Free",
+    "format": "Free prompt",
+    "actionLabel": "Copy prompt",
+    "promptTier": "free",
+    "details": {
+      "role": "AI-assisted UI exploration · Lulamile Mkhungela",
+      "context": "Free prompt · AI-assisted UI exploration",
+      "sections": [
+        {
+          "title": "About this exploration",
+          "paragraphs": [
+            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+          ]
+        }
+      ],
+      "gallery": [],
+      "links": [],
+      "prompt": "Design 3 mobile banking home screens, side by side, same content, different layouts, no labels. Canvas: light grey #EDF0F5, generous space between phones, extra empty space at the top for labels. Style: light mode only, brand #2251FF blue, text black #0E1B3D and grey #7A8399, no blue text, fonts Manrope for UI and Bricolage Grotesque for balances, generous gaps between sections. Label the three phones above the frames — left 'ChatGPT', centre 'Claude', right 'Figma Make' — in bold type. Content: header 'Good morning, Lulamile M, LM avatar, bell with a red dot, settings icon'; ZAR account, R1,850.00, In R3,400.00 / Out R59.48; actions 'Add money, Send, Convert, More'; transactions 'Apple.com/bill -R37.49 Declined', 'Salary deposit +R3,400.00', 'Netflix subscription -R15.49', 'Nando's -R6.50'; nav 'Home, Cards, Invest, Accounts'. Screen 1: full blue banner card with wallet pill, big balance with faded decimals, white in/out progress bar; pill chip actions, Add money in dark navy; vertical timeline transactions with coloured status dots; standard bottom bar with labels, Home in blue. Screen 2: blue banner card with two lighter cards stacked behind it, balance and in/out bar; 4 small rounded-square icon buttons with labels below, Add money in blue; clean list transactions with dividers; floating white pill nav with soft shadow, Home as a blue pill. Screen 3: off-white filled banner card, dark balance, blue strip at the bottom with In and Out; one segmented action bar, Add money in blue.",
+      "promptDownload": "/assets/prompts/prompt-finance-homescreen.txt"
+    }
+  },
+  {
+    "id": "prompt-food-delivery-app-home-screen",
+    "client": "Food delivery app home screen",
+    "title": "Food delivery app home screen",
+    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/prompt-food-delivery-app-home-screen",
+    "image": "/assets/img/portfolio/prompt-food-delivery-app-home-screen.jpg",
+    "status": "Free",
+    "format": "Free prompt",
+    "actionLabel": "Copy prompt",
+    "promptTier": "free",
+    "details": {
+      "role": "AI-assisted UI exploration · Lulamile Mkhungela",
+      "context": "Free prompt · AI-assisted UI exploration",
+      "sections": [
+        {
+          "title": "About this exploration",
+          "paragraphs": [
+            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+          ]
+        }
+      ],
+      "gallery": [],
+      "links": [],
+      "prompt": "Design a food delivery app home. Status 9:41, location header '45 Commissioner St, Johannesburg CBD', search 'Search for restaurants, groceries, and more', category row Restaurants / Groceries / Convenience / Pharmacy, promo 'Get 40% off your first order — Free delivery fee on orders R15+ — Use code GET40', store rows 'Nando's — R3.99 delivery' and 'Mugg & Bean — R2.99 delivery' with star ratings, bottom tabs Home / Search / Orders. Cream UI with red-orange accents, flat Figma style.",
+      "promptDownload": "/assets/prompts/prompt-food-delivery-app-home-screen.txt"
+    }
+  },
+  {
+    "id": "prompt-oto-e-commerce-website",
+    "client": "OtO e-commerce website",
+    "title": "OtO e-commerce website",
+    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/prompt-oto-e-commerce-website",
+    "image": "/assets/img/portfolio/prompt-oto-e-commerce-website.jpg",
+    "status": "Free",
+    "format": "Free prompt",
+    "actionLabel": "Copy prompt",
+    "promptTier": "free",
+    "details": {
+      "role": "AI-assisted UI exploration · Lulamile Mkhungela",
+      "context": "Free prompt · AI-assisted UI exploration",
+      "sections": [
+        {
+          "title": "About this exploration",
+          "paragraphs": [
+            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+          ]
+        }
+      ],
+      "gallery": [],
+      "links": [],
+      "prompt": "Design an audio brand e-commerce page for OTO. Hero 'OTO ONE — Lie back. Tune in.' with SHOP OTO ONE R249 button, product grid 'OTO One Headphones R249.00', 'OTO Sport Open Earbuds R179.00', 'OTO Buds R149.00', 'OTO Roam Speaker R119.00', five-star ratings, Bestseller tags, swatches. Flat, clean, premium.",
+      "promptDownload": "/assets/prompts/prompt-oto-e-commerce-website.txt"
+    }
+  },
+  {
+    "id": "prompt-fashion-shopping-app-home-screen",
+    "client": "Fashion shopping app home screen",
+    "title": "Fashion shopping app home screen",
+    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/prompt-fashion-shopping-app-home-screen",
+    "image": "/assets/img/portfolio/prompt-fashion-shopping-app-home-screen.jpg",
+    "status": "Free",
+    "format": "Free prompt",
+    "actionLabel": "Copy prompt",
+    "promptTier": "free",
+    "details": {
+      "role": "AI-assisted UI exploration · Lulamile Mkhungela",
+      "context": "Free prompt · AI-assisted UI exploration",
+      "sections": [
+        {
+          "title": "About this exploration",
+          "paragraphs": [
+            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+          ]
+        }
+      ],
+      "gallery": [],
+      "links": [],
+      "prompt": "Design a fashion e-commerce app home screen. Hero: new arrivals carousel, product grid with garments, search, cart icon, bottom nav Home / Search / Wishlist / Cart. Cream and camel palette, elegant serif and sans typography, flat case-study style.",
+      "promptDownload": "/assets/prompts/prompt-fashion-shopping-app-home-screen.txt"
+    }
+  }
+]

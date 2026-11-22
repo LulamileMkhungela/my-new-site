@@ -1,0 +1,59 @@
+/* Final spacing pass: dimensional faces need room inside their raised edges. */
+:root { --control-inset:clamp(1rem,1.5vw,1.25rem); --control-icon-gap:.85rem; }
+body .contact-direct { gap:.8rem; }
+body :is(.contact-direct,.contact-secondary) a {
+ padding:1.1rem var(--control-inset);
+ gap:var(--control-icon-gap);
+ border-radius:6px;
+}
+body .contact-direct a>span { min-width:0; }
+body .contact-direct a>.ui-line-icon { flex-shrink:0; }
+body .contact-extra-actions { gap:.9rem; margin-top:0; }
+body .contact-extra-actions :is(a,button) {
+ padding:.7rem 1rem;
+ gap:.65rem;
+ min-height:46px;
+ border-radius:5px;
+}
+/* Maintain comfortable icon insets on all primary/action-bar faces. */
+body :is(.hybrid-button,.svc-button,.hm-link-primary,.studio-link-primary) { padding-inline:1.25rem; gap:1rem; }
+body .pf-page :is(.pf-action-bar,.pf-copy-prompt) { padding-inline:1rem; gap:.65rem; }
+body .scene-controls { gap:.75rem; padding:.75rem .75rem .9rem; }
+body .scene-controls button { min-height:44px; padding:.6rem 1rem; }
+body .enquiry-close { width:44px; height:44px; }
+body .rhino-about-dropdown>button { width:36px; }
+/* Only the icon frame is raised; the outer footer label is not a second box. */
+body button.footer-contact-icon,
+body button.footer-contact-icon:hover,
+body button.footer-contact-icon:active {
+ padding:0;
+ border:0;
+ background:none;
+ box-shadow:none;
+ transform:none;
+}
+/* Horizontal browsing keeps an inset at either end, including the last link. */
+body .rhino-header .hybrid-service-nav-inner { scroll-padding-inline:1.5rem; }
+body .rhino-header .hybrid-service-nav-inner>a:last-child { margin-inline-end:.75rem; }
+body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-padding-inline:.4rem; }
+body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
+/* Insets sit within the existing five-across row rather than changing its width. */
+body .pf-page .pf-grid { padding-top:.35rem; padding-bottom:1rem; }
+@media(max-width:600px) {
+ body .contact-extra-actions { gap:.85rem .75rem; }
+ body .contact-extra-actions :is(a,button) { padding:.7rem .9rem; }
+ body .scene-controls { padding-inline:.25rem; }
+}
+/* About's disclosure is deliberately flat/2D, unlike the raised action buttons. */
+body .rhino-header .rhino-about-dropdown>button {
+ background:transparent !important;
+ border:0 !important;
+ box-shadow:none !important;
+ transform:none !important;
+ border-radius:0;
+}
+body .rhino-about-dropdown>button .ui-line-icon { transition:transform 180ms ease; }
+body .rhino-about-dropdown>button[aria-expanded='true'] .ui-line-icon { transform:rotate(180deg); }
+
+/* Hidden at the top: removed from pointer, keyboard and accessibility navigation. */
+body .site-back-to-top[hidden] { display:none !important; }

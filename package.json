@@ -1,0 +1,20 @@
+{
+  "name": "lulamile-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/generate-page-artwork.mjs && node scripts/build-interactive-scenes.mjs && node scripts/build-reference-ui.mjs && node scripts/prepare-deploy.mjs",
+    "test": "node scripts/check-unified-site.mjs && node scripts/check-services.mjs && node scripts/check-links.mjs && node scripts/check-publication.mjs",
+    "preview": "python3 -m http.server 3000 --bind 0.0.0.0 --directory dist"
+  },
+  "dependencies": {
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

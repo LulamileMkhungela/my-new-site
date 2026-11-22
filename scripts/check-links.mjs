@@ -64,25 +64,22 @@ for (const page of PAGES) {
   }
 }
 
-/* Case studies: every id in the generated data must render, and every image
-   name must look like a file the fetcher can ask for. */
-const data = fs.readFileSync(path.join(ROOT, 'assets/js/projects.data.js'), 'utf8');
-const ids = [...data.matchAll(/"slug":\s*"([^"]+)"/g)].map((m) => m[1]);
+/* The public portfolio uses owner data, not the historical reference bundle. */
+const projects = JSON.parse(fs.readFileSync(path.join(ROOT,'assets/js/portfolio.projects.json'),'utf8'));
+const localProjects = projects.filter(project=>project.details);
 const images = new Set();
-const walk = (value) => {
-  if (!value) return;
-  if (typeof value === 'string') {
-    if (/\.(webp|png|jpe?g|svg)$/i.test(value)) images.add(value);
-    return;
+for (const project of projects) {
+  for (const image of [project.image,project.previewImage,...(project.details?.gallery||[]).map(item=>item.src)].filter(Boolean)) {
+    images.add(image);
+    if (!exists(image)) {console.log('Missing owner image: '+image);failures++;}
   }
-  if (typeof value === 'object') Object.values(value).forEach(walk);
-};
-walk(JSON.parse(data.slice(data.indexOf('{'), data.lastIndexOf('}') + 1)));
-
-console.log(`\n${ids.length} case studies: ${ids.join(', ')}`);
-const local = [...images].filter((name) => exists(`assets/img/projects/${name}`));
-console.log(`${images.size} images referenced · ${local.length} local · ${images.size - local.length} served from the live site`);
-console.log('run scripts/fetch-assets.sh to pull the rest in');
+  if (project.details&&!exists(project.href+'/index.html')) {console.log('Missing project route: '+project.href);failures++;}
+  for (const href of [project.type==='external'?project.href:null,...Object.values(project.categoryActions||{}).map(action=>action.href),...(project.details?.links||[]).map(link=>link.href)].filter(Boolean)) {
+    try {if(!['https:','mailto:'].includes(new URL(href).protocol))throw new Error('Not HTTPS');}catch {console.log('Invalid external project link: '+href);failures++;}
+  }
+}
+console.log(`\n${projects.length} owner projects; ${localProjects.length} local case studies/overviews`);
+console.log(`${images.size} portfolio images referenced; all must exist locally`);
 
 if (failures) {
   console.log(`\n${failures} problem(s)`);

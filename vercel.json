@@ -1,0 +1,118 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build && npm test",
+  "outputDirectory": "dist",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://usdgvwhhpqriqenjanpe.supabase.co; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services.html",
+      "destination": "/services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/work.html",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/work",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about.html",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools.html",
+      "destination": "/tools/",
+      "statusCode": 301
+    },
+    {
+      "source": "/website-design-conversion",
+      "destination": "/services/website-design/",
+      "statusCode": 301
+    },
+    {
+      "source": "/brand-strategy-and-amazon-growth",
+      "destination": "/services/ecommerce/",
+      "statusCode": 301
+    },
+    {
+      "source": "/microfinance-impact-consulting",
+      "destination": "/product-design-strategy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/project/pasio-banking-app",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/project/field-assist-app",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/project/elaro-solar-webapp",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/graphic/pasio-marketing-prints",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/amazon/culina-craftique",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "source": "/amazon/ELVD-Wellness",
+      "destination": "/portfolio/",
+      "statusCode": 301
+    }
+  ]
+}

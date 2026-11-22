@@ -1,0 +1,72 @@
+/* Authoritative navy/emerald palette. Also inlined in generated HTML so a stale
+   cached stylesheet or stored light-mode preference cannot restore light pages. */
+:root, :root.light, :root.dark {
+  color-scheme: dark !important;
+  --background: 210 32.258% 12.157%; --foreground: 195 33.333% 95.294%;
+  --card: 207.5 30.769% 15.294%; --card-foreground: 195 33.333% 95.294%;
+  --popover: 207.5 30.769% 15.294%; --popover-foreground: 195 33.333% 95.294%;
+  --muted: 207 25% 19%; --muted-foreground: 204 20% 72%;
+  --secondary: 207 25% 19%; --secondary-foreground: 195 33% 95%;
+  --accent: 157 30% 20%; --accent-foreground: 195 33% 95%;
+  --border: 207 20% 27%; --input: 207 20% 27%;
+  --hero-accent: 155.825 100% 40.392%; --ring: 155.825 100% 40.392%;
+  --primary: 155.825 100% 40.392%; --primary-foreground: 155 50% 10%;
+  --destructive: 0 65% 55%; --destructive-foreground: 0 0% 100%;
+}
+html, body, #root { background-color: #151f29; color: #eff5f7; min-height: 100%; }
+
+main { background-color: #151f29; color: #eff5f7; }
+.unified-page, .svc-page, .unified-about-copy { background-color: #151f29; color: #eff5f7; }
+.svc-page :is(.svc-card,.svc-scope,.svc-cta), .unified-page .unified-tool { background-color: #1b2833; }
+
+/* One reference-led surface system, shared by every route and content panel. */
+:root {
+  --site-navy: #151f29;
+  --site-green: #00ce7b;
+  --site-glow: radial-gradient(ellipse at 76% 43%,#12463580 0%,#15332f40 38%,transparent 72%);
+  --site-watermark-stroke: #93c2b512;
+  --site-watermark-size: clamp(7rem,23vw,25rem);
+}
+.studio-panel, .hm-panel, .hm-panel:nth-child(even), .hybrid-hero, .pf-hero,
+.unified-about-hero, .contact-intro, .contact-next, .owner-project-hero,
+.unified-empty-page, article.unified-about-copy {
+  background-color: var(--site-navy);
+  position: relative; isolation: isolate;
+}
+.studio-panel::before, .hm-panel::before, .hybrid-hero::before, .pf-hero::before,
+.unified-about-hero::before, .contact-intro::before, .owner-project-hero::before,
+.unified-empty-page::before, article.unified-about-copy::before {
+  content: ''; position: absolute; inset: 0; width:auto; height:auto;
+  z-index: -1; pointer-events:none; background:var(--site-glow);
+}
+.contact-next { background-image:var(--site-glow); }
+/* Existing text nodes and attribute-based variants share identical rendering. */
+.hm-watermark, .pf-watermark, .hybrid-hero-watermark, .contact-next-watermark,
+[data-background-text]::after {
+  position:absolute; z-index:-1; left:3%; top:auto; bottom:7%;
+  color:transparent; -webkit-text-stroke:1px var(--site-watermark-stroke);
+  font:800 var(--site-watermark-size)/.9 Poppins,system-ui,sans-serif;
+  letter-spacing:-.075em; text-transform:uppercase; white-space:nowrap;
+  pointer-events:none; user-select:none;
+}
+[data-background-text] { position:relative; isolation:isolate; overflow:hidden; }
+[data-background-text]::after { content:attr(data-background-text); }
+/* Keep all hero text on the reference's solid / outlined / emerald rhythm. */
+.hybrid-hero h1, .unified-about-hero h1, .contact-intro h1 {
+  font-family:Poppins,system-ui,sans-serif; text-transform:uppercase;
+  font-weight:800; letter-spacing:-.055em; line-height:1.05;
+}
+.hybrid-outline, .hm-outline, .contact-title-outline {
+  color:transparent; -webkit-text-stroke:1px #deebee;
+}
+.hybrid-green, .hm-green { color:var(--site-green); }
+@media(max-width:800px) {
+  :root { --site-watermark-size:35vw; }
+  .hm-watermark, .pf-watermark, .hybrid-hero-watermark,
+  .contact-next-watermark, [data-background-text]::after { bottom:12%; }
+}
+@media(forced-colors:active) {
+  .hybrid-outline, .hm-outline, .contact-title-outline { color:CanvasText; -webkit-text-stroke:0; }
+  .hm-watermark, .pf-watermark, .hybrid-hero-watermark,
+  .contact-next-watermark, [data-background-text]::after { display:none; }
+}
