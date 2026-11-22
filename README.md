@@ -1,4 +1,4 @@
-# Lulamile M — portfolio and services
+# LulaZel — portfolio and digital services
 
 Responsive navy/emerald portfolio with a Digital Rhino–inspired chapter layout,
 original artwork, local owner content, and shared navigation/footer. Digital Rhino
@@ -171,3 +171,28 @@ Additional scripts cover mobile spacing, header/menu behaviour, portfolio action
 WebGL/touch/fallbacks, reduced motion, backgrounds/themes, metadata, mocked enquiry
 feedback and automated accessibility. See `docs/reference-layout-audit.md` for
 layout-reference scope and visual-comparison limitations.
+
+## LulaZel identity and link previews
+
+The original interlocking LZ mark is supplied as `assets/img/logo.svg` (outlined
+wordmark) and `assets/img/favicon.svg` (compact mark). These are original local
+vector drawings, not a stock icon or a font-dependent logo. `social-card.svg` is
+the editable outlined source for the 1200×630 social image.
+`scripts/generate-brand-assets.mjs` reproducibly generates PNG favicon, touch/app
+icons and the sharing image using resvg, as part of every build. Header, manifest,
+browser icons and social metadata identify the site as **LulaZel**. Lulamile
+Mkhungela remains the personal owner/creator in About and structured data.
+
+Website Design includes frontend implementation; there is no extra Frontend Dev
+service. Frontend Dev remains a Portfolio category.
+
+For publicly shared links, use `SITE_URL` for an explicit production HTTPS origin.
+Production Netlify `URL` and Vercel `VERCEL_PROJECT_PRODUCTION_URL` are supported
+fallbacks when the configured URL is blank. Preview deployments remain noindex.
+The generated HTML includes Open Graph and Twitter title/description/image tags
+without requiring JavaScript, with absolute image URLs once an origin is known.
+The image is PNG, 1200×630, with descriptive alt text; image/icon URLs include
+versions to reduce stale caches. Social platforms choose whether/how to display
+previews and can cache older results. A public URL and external crawler access
+are necessary for real WhatsApp/LinkedIn/social preview verification; local
+metadata tests do not prove a live crawler has refreshed its cache.

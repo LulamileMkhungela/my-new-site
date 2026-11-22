@@ -72,6 +72,7 @@ const componentFor=route=>route==='/'?'LocalHomePage':route==='/about'?'LocalAbo
 function htmlFor(route,{alias=false}={}) {
   const meta={...(seo[route]||seo['/404']),...(alias?{noindex:true}:{})};
   const markup=prerender(root,route,componentFor(route),renderData);
+  const brandVersion=createHash('sha256').update(read('assets/img/favicon.svg')).digest('hex').slice(0,10);
   return `<!doctype html>
 <html lang="en-ZA" class="dark">
 <head>
@@ -81,9 +82,9 @@ function htmlFor(route,{alias=false}={}) {
   <meta name="color-scheme" content="dark" />
   <style>${read('assets/css/theme.css')}body{margin:0}</style>
   ${seoHead(publication,route,meta)}
-  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32" />
-  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <link rel="icon" href="/assets/img/favicon.svg?v=${brandVersion}" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon.png?v=${brandVersion}" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=${brandVersion}" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="preload" href="/assets/fonts/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/${cssFilename}" />
@@ -122,6 +123,6 @@ write('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>
 ${publication.url?Object.entries(seo).filter(([,meta])=>!meta.noindex).map(([,meta])=>'  <url><loc>'+escapeHtml(publication.url+meta.canonical)+'</loc></url>').join('\n'):''}
 </urlset>
 `);
-write('site.webmanifest',JSON.stringify({name:publication.name,short_name:'Lulamile M',start_url:'/',display:'browser',background_color:'#151f29',theme_color:'#151f29',icons:[{src:'/assets/img/icon-192.png',sizes:'192x192',type:'image/png'},{src:'/assets/img/icon-512.png',sizes:'512x512',type:'image/png'}]},null,2)+'\n');
+write('site.webmanifest',JSON.stringify({name:publication.name,short_name:'LulaZel',start_url:'/',display:'browser',background_color:'#151f29',theme_color:'#151f29',icons:[{src:'/assets/img/icon-192.png?v='+createHash('sha256').update(read('assets/img/favicon.svg')).digest('hex').slice(0,10),sizes:'192x192',type:'image/png'},{src:'/assets/img/icon-512.png?v='+createHash('sha256').update(read('assets/img/favicon.svg')).digest('hex').slice(0,10),sizes:'512x512',type:'image/png'}]},null,2)+'\n');
 write('assets/js/publication.data.json',JSON.stringify({publication,routes:seo,aliases:legacyRoutes},null,2)+'\n');
 console.log(`Generated ${activeRoutes.length} prerendered pages plus aliases. SEO: ${publication.url||'staging noindex (set SITE_URL for launch)'}`);

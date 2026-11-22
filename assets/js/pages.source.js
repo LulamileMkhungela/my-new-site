@@ -28,7 +28,7 @@ function LocalEnquiryDialog() {
     h('h2',{id:'enquiry-title'},'Let’s make it work.'),h('p',{id:'enquiry-description'},'Tell me a little about your idea. I’ll take it from there.'),
     status==='success'?h('div',{className:'enquiry-success',role:'status'},h(LocalUiIcon,{name:'check'}),h('h3',null,'Message sent.'),h('p',null,'Thanks for getting in touch. I’ll reply to the email address you shared.'),h('button',{type:'button',className:'hybrid-button',onClick:()=>setStatus('idle')},'Send another message')):
     h('form',{action:'https://formspree.io/f/xvkgqalq',method:'POST',className:'unified-contact-form enquiry-form',onSubmit:submit,'aria-busy':status==='sending'},
-      h('input',{type:'hidden',name:'_subject',value:'New website enquiry — Lulamile M'}),
+      h('input',{type:'hidden',name:'_subject',value:'New website enquiry — LulaZel'}),
       h('div',{hidden:true,'aria-hidden':true},h('label',null,'Leave this empty',h('input',{name:'_gotcha',tabIndex:-1,autoComplete:'off'}))),
       h('div',{className:'enquiry-fields'},h('label',null,'Your name',h('input',{name:'name',required:true,autoComplete:'name',placeholder:'Your name',maxLength:100})),h('label',null,'Email address',h('input',{name:'email',type:'email',required:true,autoComplete:'email',placeholder:'you@business.com',maxLength:200}))),
       h('label',null,'Phone number (optional)',h('input',{name:'phone',type:'tel',autoComplete:'tel',placeholder:'+27',maxLength:40})),
@@ -51,7 +51,7 @@ function LocalSiteFooter() {
         action('mail','Email','Email '+localSiteContent.email,'mailto:'+localSiteContent.email),
         action('calendar','Meeting','Meeting — book a meeting with Lulamile','https://calendly.com/lulamile_m/meet-lulamile?month=2026-11',true),
         h('button',{type:'button',className:'footer-contact-icon','aria-label':'Enquiry — open enquiry form',title:'Send an enquiry','aria-haspopup':'dialog','aria-controls':'footer-enquiry',onClick:event=>{const dialog=event.currentTarget.closest('footer').querySelector('#footer-enquiry');dialog.showModal();dialog.querySelector('input[name="name"]')?.focus();}},...iconBody('form','Enquiry')))),
-    h('div',{className:'unified-footer-bottom'},h('p',null,'© '+new Date().getFullYear()+' Lulamile M · South Africa'),h(ve,{to:'/privacy',className:'footer-privacy'},'Privacy & image rights'),
+    h('div',{className:'unified-footer-bottom'},h('p',null,'© '+new Date().getFullYear()+' LulaZel · by Lulamile M · South Africa'),h(ve,{to:'/privacy',className:'footer-privacy'},'Privacy & image rights'),
       h('nav',{'aria-label':'Footer'},h(ve,{to:'/services'},'My Services'),h(ve,{to:'/portfolio'},'Portfolio'),h(ve,{to:'/about'},'About')))),h(LocalEnquiryDialog));
 }
 function LocalPortfolioPage() {

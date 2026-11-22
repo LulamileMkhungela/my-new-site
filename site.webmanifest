@@ -1,18 +1,18 @@
 {
-  "name": "Lulamile Mkhungela",
-  "short_name": "Lulamile M",
+  "name": "LulaZel",
+  "short_name": "LulaZel",
   "start_url": "/",
   "display": "browser",
   "background_color": "#151f29",
   "theme_color": "#151f29",
   "icons": [
     {
-      "src": "/assets/img/icon-192.png",
+      "src": "/assets/img/icon-192.png?v=da58f953a6",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/img/icon-512.png",
+      "src": "/assets/img/icon-512.png?v=da58f953a6",
       "sizes": "512x512",
       "type": "image/png"
     }

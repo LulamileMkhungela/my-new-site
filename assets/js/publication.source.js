@@ -12,7 +12,8 @@ function LocalSeo() {
     h('meta',{property:'og:title',content:meta.title}),h('meta',{property:'og:description',content:meta.description}),
     url&&h('meta',{property:'og:url',content:url}),
     localPublication.url&&h('meta',{property:'og:image',content:localPublication.url+localPublication.socialImage}),
+    localPublication.url&&h('meta',{property:'og:image:type',content:'image/png'}),localPublication.url&&h('meta',{property:'og:image:width',content:'1200'}),localPublication.url&&h('meta',{property:'og:image:height',content:'630'}),localPublication.url&&h('meta',{property:'og:image:alt',content:localPublication.socialImageAlt}),
     meta.schema&&h('script',{type:'application/ld+json'},JSON.stringify(meta.schema)),
     h('meta',{name:'twitter:card',content:'summary_large_image'}),h('meta',{name:'twitter:title',content:meta.title}),h('meta',{name:'twitter:description',content:meta.description}),
-    localPublication.url&&h('meta',{name:'twitter:image',content:localPublication.url+localPublication.socialImage}));
+    localPublication.url&&h('meta',{name:'twitter:image',content:localPublication.url+localPublication.socialImage}),localPublication.url&&h('meta',{name:'twitter:image:alt',content:localPublication.socialImageAlt}));
 }
