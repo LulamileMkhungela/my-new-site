@@ -18,7 +18,7 @@ body :is(button,.hybrid-button,.svc-button,.hm-link-primary,.studio-link-primary
  transform-origin:center;
 }
 /* Emerald faces have a lit upper bevel and a darker extruded base. */
-body :is(.hybrid-button,.svc-button-accent,.hm-link-primary,.studio-link-primary,.pf-page .pf-copy-prompt,.pf-action-bar:not(.pf-action-unavailable)) {
+body :is(.hybrid-button,.hm-link-primary,.studio-link-primary,.pf-page .pf-copy-prompt,.pf-action-bar:not(.pf-action-unavailable)) {
  --depth-edge:#007344;
  background-color:#00ce7b;
  background-image:linear-gradient(155deg,#62edb2 0%,#15d98b 34%,#00bf70 74%,#00a962 100%);
@@ -48,7 +48,7 @@ body :is(.pf-category-toggle,.site-back-to-top,.rhino-menu-button,.scene-control
  background-image:linear-gradient(145deg,#34564b,#112821);
 }
 /* Supporting surfaces have quieter depth than the primary controls. */
-body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.svc-card,.studio-service-row) {
+body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.studio-service-row) {
  background-image:linear-gradient(145deg,#ffffff08,#ffffff01 46%,#00000017);
  border:1px solid #819f9740;
  border-top-color:#9ab8ad4a;
@@ -118,7 +118,7 @@ body .rhino-about-dropdown>button {
 }
 
 /* Dimensional display typography: selectable HTML text, no duplicate DOM copy. */
-body :is(main h1,.hm-title,.studio-title,.contact-next h2,.pf-category-heading h2,.hm-restored-heading h2,.unified-footer-cta h2) {
+body :is(main h1,.hm-title,.studio-title,.contact-next h2,.pf-category-heading h2,.hm-restored-heading h2) {
  --type-highlight:#ffffff80;
  --type-side-1:#9aafa6;
  --type-side-2:#638276;
@@ -155,7 +155,7 @@ body :is(.hm-outline,.studio-outline,.hybrid-outline,.contact-title-outline) {
  }
 }
 @media(forced-colors:active), print {
- body :is(main h1,.hm-title,.studio-title,.contact-next h2,.pf-category-heading h2,.hm-restored-heading h2,.unified-footer-cta h2,.hm-green,.studio-green,.hybrid-green,.hm-outline,.studio-outline,.hybrid-outline,.contact-title-outline) {
+ body :is(main h1,.hm-title,.studio-title,.contact-next h2,.pf-category-heading h2,.hm-restored-heading h2,.hm-green,.studio-green,.hybrid-green,.hm-outline,.studio-outline,.hybrid-outline,.contact-title-outline) {
   text-shadow:none;filter:none;
  }
 }

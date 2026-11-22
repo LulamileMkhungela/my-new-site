@@ -1,5 +1,5 @@
-/** Shared visual bridge: portfolio typography + Digital Rhino-inspired contrast.
- * Built into reference-ui.js. All content and artwork retain Lulamile branding.
+/** Shared icons, navigation and Digital Rhino-inspired layout helpers.
+ * Built into site-app.js. All content and artwork retain Lulamile branding.
  */
 function LocalUiIcon({name='arrow-up-right',className=''}) {
   const h=g.createElement;
@@ -38,7 +38,7 @@ function LocalServiceNav({active=''}) {
 }
 /** Original local vector instead of the old sculpture placeholder. */
 function LocalDigitalVisual({label='Design × technology',icon='grid'}) {
-  const h=g.createElement,kind=({grid:'studio',layout:'design',flow:'automation',portfolio:'portfolio',toolkit:'toolkit',search:'search',target:'advertising'})[icon]||'systems';
+  const h=g.createElement,kind=({portfolio:'portfolio',toolkit:'toolkit'})[icon];
   return h('div',{key:kind,className:'hybrid-visual studio-original-visual','data-scene-kind':kind,'aria-hidden':true},
     h('img',{src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'',width:640,height:570,fetchPriority:'high'}),h('div',{className:'hybrid-visual-caption'},h('span'),label));
 }
@@ -58,35 +58,6 @@ function LocalHybridHero({eyebrow,line1,line2,line3,description,primary,secondar
       h(LocalDigitalVisual,{label,icon})),
     h('div',{className:'hybrid-hero-bottom'},h('span',null,'South Africa · Anywhere remote'),h('span',null,'Independent thinking. Connected solutions.')));
 }
-function LocalHomeHero() {
-  const h=g.createElement;
-  return h(g.Fragment,null,
-    h(LocalHybridHero,{
-      eyebrow:'Designer · Founder · Builder',line1:'Great ideas.',line2:'Deserve great',line3:'design.',
-      description:'I help founders and businesses build products, brands and digital systems that people understand, trust and use.',
-      primary:{href:'/services',label:'Explore services'},secondary:{href:'/portfolio',label:'See the work'},
-      label:'Strategy meets execution',icon:'flow'
-    },h('p',{className:'hybrid-hero-role'},'Product design · Web development · Systems & AI')),
-    h('div',{className:'hybrid-proof-strip'},
-      h('div',null,h('strong',null,'5+'),h('span',null,'Years of experience')),
-      h('div',null,h('strong',null,'30+'),h('span',null,'Projects delivered')),
-      h('div',null,h('strong',null,localServiceCatalogue.services.length+localStrategyServices.length),h('span',null,'Connected services')),
-      h(ve,{to:'/services',className:'hybrid-proof-link'},'From first idea to what’s next ',h('span',{'aria-hidden':true},'↗'))));
-}
-function LocalHomeServices() {
-  const h=g.createElement;
-  const groups=[...localServiceCatalogue.groups.map(group=>({
-    title:group.label,items:localServiceCatalogue.services.filter(item=>item.group===group.id).map(item=>({title:item.title,path:'/services/'+item.slug}))
-  })),{title:'Product & strategy',items:localStrategyServices}];
-  return h('section',{className:'hybrid-home-services',id:'services','aria-labelledby':'home-services-title'},
-    h('div',{className:'hybrid-home-services-inner'},
-      h('div',{className:'hybrid-home-services-heading'},h('div',null,h('p',{className:'svc-kicker'},'Design thinking. Digital doing.'),
-        h('h2',{id:'home-services-title'},'One partner.',h('br'),h('span',null,'More possibilities.'))),h(ve,{to:'/services',className:'svc-back'},'Explore all '+(localServiceCatalogue.services.length+localStrategyServices.length)+' services ↗')),
-      h('div',{className:'hybrid-home-services-grid'},...groups.map((group,index)=>h('article',{key:group.title},
-        h('span',{className:'hybrid-service-number'},'0'+(index+1)),h('h3',null,group.title),
-        h('ul',null,...group.items.map(item=>h('li',{key:item.path},h(ve,{to:item.path},item.title,h('span',{'aria-hidden':true},'↗'))))))))));
-}
-/** Compact WhatsApp invitation, inspired by the supplied outlined callout. */
 function LocalHeaderContactCard({mobile=false}) {
   const h=g.createElement;
   return h('a',{href:'https://wa.me/27837195064',target:'_blank',rel:'noopener noreferrer',className:mobile?'rhino-contact rhino-contact-mobile':'rhino-contact','aria-label':'Let’s talk on WhatsApp — +27 83 719 5064'},

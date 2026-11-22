@@ -70,7 +70,7 @@ export function prerender(root,route,component,data){
  };
  const parsed=new URL(route,'https://static.invalid');
  const context={...data,URLSearchParams,Date,g:{createElement:(type,props,...children)=>typeof type==='function'?type({...props,children}):({type,props:props||{},children}),Fragment:'fragment',useState:v=>[v,()=>{}],useEffect:()=>{},useRef:v=>({current:v})},Qt:()=>({pathname:parsed.pathname,search:parsed.search}),va:()=>()=>{},XA:'metadata',ve:'link'};
- const source=['services','hybrid','pages','portfolio','home'].map(name=>fs.readFileSync(path.join(root,`assets/js/${name}.reference.js`),'utf8')).join('\n');
+ const source=['services','hybrid','pages','portfolio','home'].map(name=>fs.readFileSync(path.join(root,`assets/js/${name}.source.js`),'utf8')).join('\n');
  const tree=vm.runInNewContext(source+'\nvar Bn=LocalSiteHeader;var zn=LocalSiteFooter;'+component+'();',context,{timeout:3000});
  return serialize(tree);
 }

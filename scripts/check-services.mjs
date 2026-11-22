@@ -1,5 +1,5 @@
 /** Dependency-free checks for the services catalogue, renderer and deep links.
- * Run after generation: node scripts/build-reference-ui.mjs && node scripts/check-services.mjs
+ * Run after generation: node scripts/build-site.mjs && node scripts/check-services.mjs
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -28,7 +28,7 @@ function render(url) {
       {path:'/product-design-strategy', title:'Product Design & Strategy', summary:'Product strategy'}
     ]
   };
-  return vm.runInNewContext(read('assets/js/services.reference.js')+'\n'+read('assets/js/hybrid.reference.js')+'\nLocalServicesPage();',context);
+  return vm.runInNewContext(read('assets/js/services.source.js')+'\n'+read('assets/js/hybrid.source.js')+'\nLocalServicesPage();',context);
 }
 const overview = render('/services');
 const overviewNodes = nodes(overview);
@@ -64,7 +64,7 @@ for (const service of catalogue.services) {
   assert.equal(elements.filter(n=>n.props.className==='svc-feature').length,6);
   assert.ok(elements.some(n=>n.props.to==='/services'),'Back link missing');
   assert.ok(elements.some(n=>n.props.to==='/contact'),'Contact CTA missing');
-  assert.ok(read(route.slice(1)+'/index.html').includes('/assets/js/reference-ui.js'));
+  assert.ok(read(route.slice(1)+'/index.html').includes('/assets/js/site-app.js'));
   console.log('✓ '+route);
 }
 const website=text(render('/services/website-design'));
@@ -84,10 +84,10 @@ const basic = render('/services/basic-graphic-design');
 assert.ok(text(basic).includes('Full rebrands'));
 assert.ok(text(basic).includes('excluded'));
 assert.ok(read('services.html').includes('"/services.html":"/services"'),'Legacy services URL must reach the new catalogue');
-const bundle = read('assets/js/reference-ui.js');
-assert.ok(bundle.includes('path:"/services",element:l.jsx(LocalServicesPage,{})'));
-assert.ok(bundle.includes('path:"/services/:slug",element:l.jsx(LocalServicesPage,{})'));
-assert.ok(bundle.includes("{label:'My Services',href:'/services'}"));
+const bundle = read('assets/js/site-app.js');
+assert.ok(read('assets/js/app.source.js').includes("path:'/services',element:h(LocalServicesPage)"));
+assert.ok(read('assets/js/app.source.js').includes("path:'/services/:slug',element:h(LocalServicesPage)"));
+assert.ok(read("assets/js/hybrid.source.js").includes("{label:'My Services',href:'/services'}"));
 console.log('✓ Concise overview, all detail pages, scope, related links, metadata and legacy entry point');
 
 assert.ok(text(website).includes("HTML email design & development"));

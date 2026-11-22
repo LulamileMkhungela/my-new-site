@@ -21,9 +21,6 @@
 .unified-about-close { font-weight: 600; }
 .unified-about-copy .hybrid-button { margin-top: 1rem; }
 .unified-contact-page { background: #151f29; color: #edf5f6; padding-block: 4rem; }
-.unified-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-.unified-contact-email { display: inline-block; color: #00ce7b; font-size: .95rem; margin: 1rem 0; }
-.unified-contact-location { color: #9aafbc; font-size: .7rem; }
 .unified-contact-form { padding: 2rem; border-radius: .85rem; border: 1px solid #ffffff20; background: #1b2833; }
 .unified-contact-form h2 { font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; letter-spacing: -.025em; }
 .unified-contact-form label { display: block; font-size: .73rem; font-weight: 500; margin-top: 1rem; }
@@ -43,10 +40,10 @@
 .unified-empty-page { padding-block: 5rem; }
 .unified-empty-page h1 { margin-bottom: 2rem; }
 @media (max-width: 850px) {
-  .unified-about-grid, .unified-contact-grid { gap: 2rem; }
+  .unified-about-grid { gap: 2rem; }
 }
 @media (max-width: 650px) {
-  .unified-about-grid, .unified-contact-grid, .unified-tool-grid { grid-template-columns: 1fr; }
+  .unified-about-grid, .unified-tool-grid { grid-template-columns: 1fr; }
   .unified-about-hero, .unified-contact-page { padding-block: 2.5rem; }
   .unified-about-grid img { max-height: 450px; aspect-ratio: 4/4; }
   .unified-contact-form { padding: 1.3rem; }
@@ -117,9 +114,7 @@ body { font-family: Poppins,system-ui,sans-serif; }
 .unified-page h1, .unified-page h2, .unified-page h3,
 .unified-contact-page h1, .svc-page h1, .svc-page h2, .svc-page h3 { font-family: Poppins,system-ui,sans-serif; }
 .unified-page a:not([class]) { color: #00ce7b; }
-.svc-page :is(.svc-card,.svc-scope,.svc-cta), .unified-page .unified-tool { background-color: #1b2833; }
-.svc-page .svc-card { transition: border-color .2s, transform .2s, box-shadow .2s; }
-.svc-page .svc-card:hover { background-color: #20362f; }
+ .unified-page .unified-tool { background-color: #1b2833; }
 /* Avoid iOS zooming into small enquiry fields when a keyboard opens. */
 @media (max-width: 700px) {
   .unified-contact-form :is(input,select,textarea) { font-size: 16px; }
@@ -129,23 +124,19 @@ body { font-family: Poppins,system-ui,sans-serif; }
 .contact-intro h1 { font-size: clamp(3rem,5.5vw,5rem); line-height: 1.05; letter-spacing: -.045em; font-weight: 650; }
 .contact-intro .hybrid-hero-description { margin-block: 1.75rem; }
 .contact-direct { display: grid; margin-block: 2rem; }
-.contact-direct a,.contact-secondary a { display:flex; align-items:center; gap:1rem; border-bottom:1px solid #ffffff24; padding:1rem 0; color:#eff5f7; min-width:0; }
+.contact-direct a { display:flex; align-items:center; gap:1rem; border-bottom:1px solid #ffffff24; padding:1rem 0; color:#eff5f7; min-width:0; }
 .contact-direct a>span { flex:1; font-size:.7rem; color:#a8bcc6; }
 .contact-direct strong { display:block; color:#eff5f7; font-size:clamp(.85rem,1.6vw,1.15rem); font-weight:500; overflow-wrap:anywhere; }
-.contact-direct a>.ui-line-icon:first-child,.contact-secondary a>.ui-line-icon:first-child { color:#00ce7b; }
-.contact-direct a:hover strong,.contact-secondary a:hover { color:#00ce7b; }
+.contact-direct a>.ui-line-icon:first-child { color:#00ce7b; }
+.contact-direct a:hover strong { color:#00ce7b; }
 .contact-art img { display:block; width:100%; height:auto; }
 .contact-art p { text-align:center; color:#a8bcc6; font-size:.58rem; letter-spacing:.16em; }
 .contact-next { border-block:1px solid #ffffff24; padding-block:4rem; scroll-margin-top:170px; }
-.contact-next h2,.unified-contact-grid>section h2 { font-size:clamp(2rem,3.6vw,3.5rem); line-height:1.15; margin-block:1.25rem; letter-spacing:-.035em; }
+.contact-next h2 { font-size:clamp(2rem,3.6vw,3.5rem); line-height:1.15; margin-block:1.25rem; letter-spacing:-.035em; }
 .contact-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2.5rem; margin-block:3rem; }
 .contact-steps h3 { font-size:1.05rem; font-weight:600; margin-block:1rem; }
 .contact-steps p,.contact-next>p:last-child { color:#a8bcc6; line-height:1.85; font-size:.87rem; }
 .contact-next a { color:#00ce7b; }
-.contact-secondary { margin-block:2rem; }
-.contact-secondary a { font-size:.85rem; }
-.contact-secondary a>.ui-line-icon:last-child { margin-left:auto; }
-#contact-enquiry { scroll-margin-top:170px; }
 @media(max-width:800px) {
  .contact-intro { grid-template-columns:1fr; gap:1rem; padding-block:3rem; }
  .contact-art { max-width:440px; width:100%; margin:auto; }

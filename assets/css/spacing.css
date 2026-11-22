@@ -1,7 +1,7 @@
 /* Final spacing pass: dimensional faces need room inside their raised edges. */
 :root { --control-inset:clamp(1rem,1.5vw,1.25rem); --control-icon-gap:.85rem; }
 body .contact-direct { gap:.8rem; }
-body :is(.contact-direct,.contact-secondary) a {
+body :is(.contact-direct) a {
  padding:1.1rem var(--control-inset);
  gap:var(--control-icon-gap);
  border-radius:6px;

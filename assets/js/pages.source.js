@@ -144,14 +144,6 @@ function LocalNotFoundPage() {
   const h=g.createElement;
   return h(LocalPageFrame,{title:'Page not found',description:'This page could not be found.',className:'unified-page'},h('section',{className:'unified-container unified-empty-page','data-background-text':'NOT FOUND'},h('p',{className:'hybrid-eyebrow'},'404 / Page not found'),h('h1',null,'Let’s get you back on track.'),h(ve,{to:'/',className:'hybrid-button'},'Back to Home ↗')));
 }
-function LocalPortfolioTeaser() {
-  const h=g.createElement;
-  return h('section',{id:'home-work',className:'hybrid-home-services'},h('div',{className:'unified-container hybrid-home-services-heading'},
-    h('div',null,h('p',{className:'svc-kicker'},'Selected work / Real-world challenges'),h('h2',null,'The thinking is important.',h('br'),h('span',null,'The work is the proof.'))),
-    h(ve,{to:'/portfolio',className:'hybrid-button'},'Explore Portfolio',h('span',{'aria-hidden':true},'↗'))));
-}
-
-/** Replaces the captured floating music player throughout the shared app. */
 function LocalBackToTop() {
   const h=g.createElement,[visible,setVisible]=g.useState(false),returning=g.useRef(false),{pathname}=Qt();
   g.useEffect(()=>{

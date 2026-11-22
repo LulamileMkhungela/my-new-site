@@ -4,9 +4,7 @@
  *
  *   node scripts/check-links.mjs
  *
- * Exits non-zero on a broken link or a page-level script error. Missing local
- * images are reported but do not fail the run — those fall back to the live
- * site, and `scripts/fetch-assets.sh` fills them in.
+ * Exits non-zero on missing current assets, broken links or heading errors.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -46,7 +44,7 @@ for (const page of PAGES) {
   /* Local scripts and stylesheets must be real files. */
   for (const match of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g)) {
     const file = match[1];
-    if (file.startsWith('assets/img/')) continue; /* images fall back to the live site */
+    if (file.startsWith('assets/img/')) continue; /* owner image data is checked below */
     if (!exists(file)) issues.push(`missing asset → ${file}`);
   }
 

@@ -17,7 +17,7 @@ html, body, #root { background-color: #151f29; color: #eff5f7; min-height: 100%;
 
 main { background-color: #151f29; color: #eff5f7; }
 .unified-page, .svc-page, .unified-about-copy { background-color: #151f29; color: #eff5f7; }
-.svc-page :is(.svc-card,.svc-scope,.svc-cta), .unified-page .unified-tool { background-color: #1b2833; }
+ .unified-page .unified-tool { background-color: #1b2833; }
 
 /* One reference-led surface system, shared by every route and content panel. */
 :root {

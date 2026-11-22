@@ -85,8 +85,6 @@
 .scene-stage>canvas { touch-action:pan-y; cursor:grab; border-radius:12px; }
 .scene-stage>canvas:active { cursor:grabbing; }
 .scene-stage>canvas:focus-visible { outline:2px solid #00ce7b; outline-offset:-5px; }
-.scene-shell[data-state='ready'] .scene-stage>img { visibility:hidden; }
-.scene-shell[data-state='fallback'] .scene-stage>canvas { display:none; }
 .scene-controls { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:.55rem; padding:.5rem .4rem; color:#a6bdb5; font:500 .55rem/1.6 Poppins,sans-serif; }
 .scene-controls span { flex-basis:100%; text-align:center; }
 .scene-controls button { min-height:38px; padding:.4rem .8rem; border:1px solid #79a18d55; border-radius:30px; background:#142e28; color:#d7e9da; cursor:pointer; font:inherit; }

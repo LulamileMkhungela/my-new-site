@@ -1,0 +1,241 @@
+{
+  "intro": {
+    "lede": "Eight free tools for builders — the skills, templates, conventions and workflows that turn a fuzzy idea into something a coding agent can actually build. Every one of them ships in the package."
+  },
+  "tools": [
+    {
+      "id": "prd-creator",
+      "name": "PRD Creator",
+      "kind": "Agent skill",
+      "blurb": "Turns a fuzzy idea into a locked PRD plus build-ready milestone prompts and a milestone log.",
+      "ships": ".agents/skills/prd-creator/ + _build_plan/prd.md and one prompt per milestone",
+      "steps": [
+        {
+          "title": "Brain dump intake"
+        },
+        {
+          "title": "Format choice"
+        },
+        {
+          "title": "Core purpose"
+        },
+        {
+          "title": "Top-level features (in scope)"
+        },
+        {
+          "title": "Top-level out-of-scope"
+        },
+        {
+          "title": "Tech stack & starter template"
+        },
+        {
+          "title": "External integrations & credentials"
+        },
+        {
+          "title": "Data model"
+        },
+        {
+          "title": "Per-feature scoping"
+        },
+        {
+          "title": "Milestone breakout"
+        },
+        {
+          "title": "Write files"
+        }
+      ]
+    },
+    {
+      "id": "skill-builder",
+      "name": "Skill Builder",
+      "kind": "Agent skill",
+      "blurb": "Interviews you about a repeatable process, then designs, writes and verifies a portable skill.",
+      "ships": ".agents/skills/skill-builder/",
+      "steps": [
+        {
+          "title": "Understand the process"
+        },
+        {
+          "title": "Interview the user"
+        },
+        {
+          "title": "Design the shape"
+        },
+        {
+          "title": "Build it"
+        },
+        {
+          "title": "Save it"
+        },
+        {
+          "title": "Verify & hand off"
+        }
+      ]
+    },
+    {
+      "id": "design-system",
+      "name": "Design System",
+      "kind": "Agent skill",
+      "blurb": "Scaffolds a real design system into a React + Tailwind app, with a preview page and agent rules.",
+      "ships": ".agents/skills/design-system/ (50 reference files)",
+      "steps": [
+        {
+          "title": "Detect target codebase state"
+        },
+        {
+          "title": "Confirm route"
+        },
+        {
+          "title": "Branding defaults"
+        },
+        {
+          "title": "(re-run only) Scope"
+        },
+        {
+          "title": "Write files"
+        },
+        {
+          "title": "Update agent instructions"
+        },
+        {
+          "title": "Scan for existing UI to migrate"
+        },
+        {
+          "title": "Wrap up"
+        }
+      ]
+    },
+    {
+      "id": "favicon-creator",
+      "name": "Favicon Creator",
+      "kind": "Agent skill",
+      "blurb": "Generates the full favicon set from one icon and wires the meta tags into the codebase.",
+      "ships": ".agents/skills/favicon-creator/ + favicon.svg (the set is built by the skill)",
+      "steps": [
+        {
+          "title": "Gather inputs from the user"
+        },
+        {
+          "title": "Locate the layout file"
+        },
+        {
+          "title": "Determine the public asset directory"
+        },
+        {
+          "title": "Generate the SVG for browser tabs"
+        },
+        {
+          "title": "Generate the raster source SVG"
+        },
+        {
+          "title": "Rasterize all sizes"
+        },
+        {
+          "title": "Wire up the meta tags"
+        },
+        {
+          "title": "Report what changed"
+        }
+      ]
+    },
+    {
+      "id": "starter",
+      "name": "Starter",
+      "kind": "Template",
+      "blurb": "The Rails + React starter: conventions, agent instructions and deployment notes, already canonical.",
+      "ships": "template/starter/",
+      "steps": [
+        {
+          "title": "Clone the template and bundle install"
+        },
+        {
+          "title": "Set the app name and credentials"
+        },
+        {
+          "title": "Create the database and run the seed"
+        },
+        {
+          "title": "Start the dev processes and open the app"
+        },
+        {
+          "title": "Read AGENTS.md before the first agent session"
+        },
+        {
+          "title": "Deploy with the Hatchbox guide"
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "name": "Agents canon",
+      "kind": "Convention",
+      "blurb": "One canonical home for skills and instructions: .agents/skills + AGENTS.md, with symlinks for the holdouts.",
+      "ships": ".agents/ + AGENTS.md + scripts/link-agents.sh",
+      "steps": [
+        {
+          "title": "Install every skill into .agents/skills/"
+        },
+        {
+          "title": "Write agent instructions to AGENTS.md"
+        },
+        {
+          "title": "Point CLAUDE.md at AGENTS.md"
+        },
+        {
+          "title": "Symlink .claude/skills to ../.agents/skills"
+        },
+        {
+          "title": "Never store a real skill inside a tool-specific path"
+        },
+        {
+          "title": "Bake the setup into the template repo"
+        }
+      ]
+    },
+    {
+      "id": "standards",
+      "name": "Standards",
+      "kind": "Workflow",
+      "blurb": "Standards, specs and shaping for the coding agent, captured once and injected everywhere.",
+      "ships": "standards/ + .agents/commands/prodops/ (the five standards commands)",
+      "steps": [
+        {
+          "title": "Install"
+        },
+        {
+          "title": "Discover"
+        },
+        {
+          "title": "Inject"
+        },
+        {
+          "title": "Shape"
+        }
+      ]
+    },
+    {
+      "id": "prodops",
+      "name": "ProdOps flow",
+      "kind": "Workflow",
+      "blurb": "Plan and design a real app in five stages, then export a handoff a coding agent can build from.",
+      "ships": "product-plan/ + .agents/commands/prodops/ (the ten stage commands)",
+      "steps": [
+        {
+          "title": "Product"
+        },
+        {
+          "title": "Data Shape"
+        },
+        {
+          "title": "Design"
+        },
+        {
+          "title": "Sections"
+        },
+        {
+          "title": "Export"
+        }
+      ]
+    }
+  ]
+}

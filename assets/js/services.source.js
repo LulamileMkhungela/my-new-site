@@ -1,5 +1,5 @@
-/** Custom service views inside the captured portfolio shell.
- * Consumed by scripts/build-reference-ui.mjs; not loaded separately.
+/** Current page-exclusive service directory and detail views.
+ * Consumed by scripts/build-site.mjs; not loaded separately.
  */
 function LocalServiceIcon({name}) {
   const paths = {
@@ -55,17 +55,17 @@ function LocalServicesPage() {
         h(LocalStudioVisual,{kind:group.art,eager:index===0,caption:group.label+' · Original vector study'})),h(LocalStudioPager,{sections:groups,current:index,next:groups[index+1]?.id}))))) ,h(zn));
   }
   const presentation={
-    'web-hosting':{intro:['Business web','hosting.','Ready for more.'],features:['Built to','perform.','Ready to recover.'],contact:['The right','hosting.','Starts with you.'],art:'hosting',featureLabel:'Hosting features',subtitle:'Performance. Protection. Recovery.',mark:'A STRONG FOUNDATION'},
-    'website-design':{intro:['Website','design.','With purpose.'],features:['Look sharp.','Work hard.','Make it easy.'],contact:['Your vision.','My craft.','Let’s build.'],art:'website-design',featureLabel:'Design & development',subtitle:'Thought through. From the start.',mark:'DESIGNED AROUND YOU'},
-    ecommerce:{intro:['Ecommerce.','Built to','sell online.'],features:['Easy to find.','Easy to buy.','Built for you.'],contact:['Your store.','Next chapter.','Starts here.'],art:'websites',featureLabel:'Your online store',subtitle:'From first look to checkout.',mark:'SELL ONLINE'},
-    'business-systems':{intro:['Business','systems.','Built for you.'],features:['Less friction.','More control.','Your system.'],contact:['Your challenge.','My starting','point.'],art:'systems',featureLabel:'What could we build?',subtitle:'Your processes. Your possibilities.',mark:'BUILT AROUND YOUR BUSINESS'},
-    'workflow-automation':{intro:['Workflow','automation.','Practical AI.'],features:['Less repeat.','More flow.','Your way.'],contact:['Your process.','Next level.','Let’s connect.'],art:'automation',featureLabel:'What could work better?',subtitle:'Small tasks. Connected processes.',mark:'KEEP MOVING'},
-    'ai-assistants':{intro:['AI assistants.','Real support.','Your business.'],features:['Help customers.','Support teams.','Make it useful.'],contact:['Your knowledge.','Your assistant.','Let’s shape it.'],art:'assistants',featureLabel:'AI assistants',subtitle:'Purposeful work. Practical detail.',mark:'USEFUL AI'},
-    'basic-graphic-design':{intro:['Basic graphic','design.','Your brand.'],features:['Look distinct.','Stay consistent.','Be remembered.'],contact:['Your message.','My design.','Let’s create.'],art:'design',featureLabel:'Basic graphic design',subtitle:'Purposeful work. Practical detail.',mark:'YOUR BRAND'},
-    'seo-and-search':{intro:['SEO & search.','Get discovered.','Build relevance.'],features:['Strong basics.','Build relevance.','Keep improving.'],contact:['Your audience.','Your priorities.','Let’s get clear.'],art:'search',featureLabel:'SEO & search',subtitle:'Purposeful work. Practical detail.',mark:'GET FOUND'},
-    'google-ads':{intro:['Google Ads.','Relevant reach.','Clear goals.'],features:['Right audience.','Clear message.','Track the value.'],contact:['Your offer.','Your goals.','Let’s plan.'],art:'advertising',featureLabel:'Google Ads',subtitle:'Purposeful work. Practical detail.',mark:'RELEVANT REACH'}
+    'web-hosting':{intro:['Business web','hosting.','Ready for more.'],features:['Built to','perform.','Ready to recover.'],contact:['The right','hosting.','Starts with you.'],featureLabel:'Hosting features',subtitle:'Performance. Protection. Recovery.',mark:'A STRONG FOUNDATION'},
+    'website-design':{intro:['Website','design.','With purpose.'],features:['Look sharp.','Work hard.','Make it easy.'],contact:['Your vision.','My craft.','Let’s build.'],featureLabel:'Design & development',subtitle:'Thought through. From the start.',mark:'DESIGNED AROUND YOU'},
+    ecommerce:{intro:['Ecommerce.','Built to','sell online.'],features:['Easy to find.','Easy to buy.','Built for you.'],contact:['Your store.','Next chapter.','Starts here.'],featureLabel:'Your online store',subtitle:'From first look to checkout.',mark:'SELL ONLINE'},
+    'business-systems':{intro:['Business','systems.','Built for you.'],features:['Less friction.','More control.','Your system.'],contact:['Your challenge.','My starting','point.'],featureLabel:'What could we build?',subtitle:'Your processes. Your possibilities.',mark:'BUILT AROUND YOUR BUSINESS'},
+    'workflow-automation':{intro:['Workflow','automation.','Practical AI.'],features:['Less repeat.','More flow.','Your way.'],contact:['Your process.','Next level.','Let’s connect.'],featureLabel:'What could work better?',subtitle:'Small tasks. Connected processes.',mark:'KEEP MOVING'},
+    'ai-assistants':{intro:['AI assistants.','Real support.','Your business.'],features:['Help customers.','Support teams.','Make it useful.'],contact:['Your knowledge.','Your assistant.','Let’s shape it.'],featureLabel:'AI assistants',subtitle:'Purposeful work. Practical detail.',mark:'USEFUL AI'},
+    'basic-graphic-design':{intro:['Basic graphic','design.','Your brand.'],features:['Look distinct.','Stay consistent.','Be remembered.'],contact:['Your message.','My design.','Let’s create.'],featureLabel:'Basic graphic design',subtitle:'Purposeful work. Practical detail.',mark:'YOUR BRAND'},
+    'seo-and-search':{intro:['SEO & search.','Get discovered.','Build relevance.'],features:['Strong basics.','Build relevance.','Keep improving.'],contact:['Your audience.','Your priorities.','Let’s get clear.'],featureLabel:'SEO & search',subtitle:'Purposeful work. Practical detail.',mark:'GET FOUND'},
+    'google-ads':{intro:['Google Ads.','Relevant reach.','Clear goals.'],features:['Right audience.','Clear message.','Track the value.'],contact:['Your offer.','Your goals.','Let’s plan.'],featureLabel:'Google Ads',subtitle:'Purposeful work. Practical detail.',mark:'RELEVANT REACH'}
   };
-  const design=presentation[service.slug]||{intro:['Product design.','Clear strategy.','Better products.'],features:['Understand.','Define.','Design.'],contact:['Your challenge.','Clear direction.','Let’s shape it.'],art:'strategy',featureLabel:'Product design & strategy',subtitle:'Research. Direction. Useful design.',mark:'PRODUCT STRATEGY'};
+  const design=presentation[service.slug]||{intro:['Product design.','Clear strategy.','Better products.'],features:['Understand.','Define.','Design.'],contact:['Your challenge.','Clear direction.','Let’s shape it.'],featureLabel:'Product design & strategy',subtitle:'Research. Direction. Useful design.',mark:'PRODUCT STRATEGY'};
   // Each complete composition belongs to one page only. Home and Contact
   // keep their original artwork; service chapters never borrow it.
   const introArtwork={
@@ -96,10 +96,3 @@ function LocalServicesPage() {
 }
 
 /** Compatibility only: retired offerings never render as separate services. */
-function LocalRetiredServicePage() {
-  const navigate=va();
-  const pathname=Qt().pathname.replace(/\/$/,'');
-  const destination=localRetiredServiceRoutes[pathname]||'/services';
-  g.useEffect(()=>navigate(destination,{replace:true}),[destination,navigate]);
-  return null;
-}

@@ -1,4 +1,4 @@
-/** Dependency-free rendering/data checks. Run after build-reference-ui.mjs. */
+/** Dependency-free rendering/data checks. Run after build-site.mjs. */
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -8,12 +8,12 @@ const root=path.resolve(import.meta.dirname,'..');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
 const json=name=>JSON.parse(read(name));
 const data={window:{}};
-vm.runInNewContext(read('assets/js/data.js'),data);
-vm.runInNewContext(read('assets/js/tools.data.js'),data);
+data.window.SITE=JSON.parse(read('assets/js/site.content.json'));
+data.window.TOOLS_DATA=JSON.parse(read('assets/js/tools.content.json'));
 const catalogue=json('assets/js/services.catalogue.json');
 const strategies=json('assets/js/strategy.services.json');
 const categories=json('assets/js/portfolio.categories.json');
-const projects=json('assets/js/portfolio.data.json');
+const projects=json('assets/js/portfolio.projects.json');
 const nodes=tree=>Array.isArray(tree)?tree.flatMap(nodes):tree&&typeof tree==='object'?[tree,...nodes(tree.children)]:[];
 const text=tree=>Array.isArray(tree)?tree.map(text).join(' '):tree===null||tree===undefined?'':typeof tree==='object'?text(tree.children):String(tree);
 function render(component,url='/'){
@@ -24,7 +24,7 @@ function render(component,url='/'){
     Qt:()=>({pathname:parsed.pathname,search:parsed.search}),va:()=>value=>navigation.push(value),XA:'metadata',ve:'link',Bn:'header',zn:'footer',URLSearchParams,
     localServiceCatalogue:catalogue,localStrategyServices:strategies,localPortfolioCategories:categories,localPortfolioProjects:projects,localSiteContent:data.window.SITE,localToolsContent:data.window.TOOLS_DATA,localHomeContent:json('assets/js/home.content.json'),localHomeArtworkVersion:'test'
   };
-  const tree=vm.runInNewContext(read('assets/js/services.reference.js')+'\n'+read('assets/js/hybrid.reference.js')+'\n'+read('assets/js/pages.reference.js')+'\n'+read('assets/js/portfolio.reference.js')+'\n'+read('assets/js/home.reference.js')+'\n'+component+'();',context);
+  const tree=vm.runInNewContext(read('assets/js/services.source.js')+'\n'+read('assets/js/hybrid.source.js')+'\n'+read('assets/js/pages.source.js')+'\n'+read('assets/js/portfolio.source.js')+'\n'+read('assets/js/home.source.js')+'\n'+component+'();',context);
   return {tree,navigation,elements:nodes(tree)};
 }
 for(const service of strategies){
@@ -72,8 +72,8 @@ assert.ok(!footerView.elements.some(node=>node.props.id==='footer-call-options')
 const backToTop=render('LocalBackToTop');
 assert.ok(backToTop.elements.some(node=>node.type==='button'&&node.props['aria-label']==='Back to top'));
 assert.ok(backToTop.elements.some(node=>node.type==='button'&&node.props.hidden===true&&node.props.tabIndex===-1),'Back to top starts hidden and outside tab order');
-assert.ok(read('assets/js/reference-ui.js').includes('function sP(){return l.jsx(LocalBackToTop,{})}'));
-assert.ok(!read('assets/js/reference-ui.js').includes('Open ambient music player'));
+assert.ok(read('assets/js/app.source.js').includes('h(LocalBackToTop)'));
+assert.ok(!read('assets/js/site-app.js').includes('Open ambient music player'));
 console.log('✓ Footer: three navigation links, labelled contacts, enquiry dialog and floating Back to top');
 const homeView=render('LocalHomePage');
 assert.equal(homeView.elements.filter(node=>node.type==='h1').length,1);
@@ -85,7 +85,7 @@ assert.ok(homeView.elements.some(node=>node.props.href==='#hosting'));
 assert.ok(homeView.elements.some(node=>node.type==='img'&&node.props.src==='/assets/img/lulamile.webp'));
 assert.ok(!/Google reviews|Our Services|Let’s Connect|5\+ years|30\+ projects/i.test(text(homeView.tree)));
 for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies]) assert.ok(homeView.elements.some(node=>node.props.to===service.path),'Home links to '+service.path);
-assert.ok(read('assets/js/reference-ui.js').includes('path:"/",element:l.jsx(LocalHomePage,{})'));
+assert.ok(read('assets/js/app.source.js').includes("path:'/',element:h(LocalHomePage)"));
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-process-card').length,3);
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,6);
 for(const step of data.window.SITE.process) {assert.ok(text(homeView.tree).includes(step.title));assert.ok(text(homeView.tree).includes(step.body));}
@@ -96,7 +96,7 @@ assert.equal(new Set(art.map(node=>node.props.src)).size,7);
 for(const node of art) {const svg=read(node.props.src.slice(1).split('?')[0]);assert.ok(svg.includes('<svg'));assert.ok(!svg.includes('<image'));}
 assert.equal(strategies.length,1);
 assert.equal(strategies[0].title,'Product Design & Strategy');
-const redirects=json('assets/js/services.redirects.json');
+const redirects=Object.fromEntries(Object.entries(json('assets/js/legacy.routes.json')).filter(([route])=>['/website-design-conversion','/brand-strategy-and-amazon-growth','/microfinance-impact-consulting'].includes(route)));
 for(const [old,target] of Object.entries(redirects)) {
  assert.ok(!homeView.elements.some(node=>node.props.to===old));
  assert.ok(read(old.slice(1)+'/index.html').includes(JSON.stringify(old)+':'+JSON.stringify(target)));
@@ -141,7 +141,7 @@ for(const project of projects.filter(item=>item.details)) {
  const result=render('LocalProjectPage',project.href);
  assert.equal(result.elements.filter(node=>node.type==='h1').length,1);
  assert.ok(text(result.tree).includes(project.client));
- assert.ok(read(project.href.slice(1)+'/index.html').includes('/assets/js/reference-ui.js'));
+ assert.ok(read(project.href.slice(1)+'/index.html').includes('/assets/js/site-app.js'));
 }
 console.log('✓ Owner portfolio: correct category actions, no linked coming-soon cards, thirteen local project pages');
 for(const weight of [400,500,600,700,800]) assert.ok(fs.existsSync(path.join(root,`assets/fonts/poppins-latin-${weight}-normal.woff2`)));
@@ -165,15 +165,15 @@ for(const component of ['LocalAboutPage','LocalContactPage','LocalToolsPage']){
   console.log('✓ Shared app page: '+component);
 }
 const html=read('index.html');
-for(const name of ['work.html','services.html','about.html','contact.html','tools.html','case-study.html','404.html'])assert.ok(read(name).includes('/assets/js/reference-ui.js?v='),'One runtime for '+name);
+for(const name of ['work.html','services.html','about.html','contact.html','tools.html','case-study.html','404.html'])assert.ok(read(name).includes('/assets/js/site-app.js?v='),'One runtime for '+name);
 assert.ok(!html.includes('assets/js/shell.js'));
 assert.ok(html.includes('"/work.html":"/portfolio"'));
-assert.ok(read('portfolio/index.html').includes('/assets/js/reference-ui.js?v='));
+assert.ok(read('portfolio/index.html').includes('/assets/js/site-app.js?v='));
 console.log('✓ Exact main navigation, legacy URL compatibility and one shared runtime');
 
-assert.ok(!read("assets/js/reference-ui.js").includes("l.jsx(hA,{})"),"No upstream Analytics mount");
-assert.ok(!read("assets/js/reference-ui.js").includes("l.jsx(SA,{})"),"No upstream Speed Insights mount");
-assert.ok(read("assets/js/reference-ui.js").includes("function oP({children:e}){return l.jsx(l.Fragment,{children:e})}"),"No delayed route remount curtains");
+assert.ok(!read("assets/js/site-app.js").includes("l.jsx(hA,{})"),"No upstream Analytics mount");
+assert.ok(!read("assets/js/site-app.js").includes("l.jsx(SA,{})"),"No upstream Speed Insights mount");
+assert.ok(!read("assets/js/app.source.js").includes("setTimeout"),"No delayed route remount curtains");
 
 for(const id of ["lawmania","ai-lifeos","onescreen-business"]){
  const project=projects.find(item=>item.id===id);assert.deepEqual(project.platforms,["Web","Mobile"]);assert.equal(project.status,"Coming soon");assert.equal(project.href,null);
