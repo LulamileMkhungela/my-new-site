@@ -103,7 +103,7 @@ function LocalSiteHeader() {
   return h('header',{className:'rhino-header',ref:headerRef,onClick:event=>{if(event.target.closest('a'))setOpen(false);}},
     h('a',{href:'#main',className:'rhino-skip'},'Skip to content'),
     h('div',{className:'rhino-header-main'},
-      h(ve,{to:'/',className:'rhino-wordmark','aria-label':'LulaZel — Home'},h('img',{src:'/assets/img/logo.svg',alt:'LulaZel',width:252,height:64,fetchPriority:'high'})),
+      h(ve,{to:'/',className:'rhino-wordmark','aria-label':'LulaZel — Home'},h('img',{src:'/assets/img/logo.svg?v=abstract-1',alt:'LulaZel',width:248,height:80,fetchPriority:'high'})),
       h('nav',{className:'rhino-primary','aria-label':'Main navigation'},...links.filter(item=>item.href!=='/about').map(item=>h(ve,{key:item.href,to:item.href,className:active(item)?'is-active':'','aria-current':active(item)?'page':undefined},item.label)),h(LocalContactDropdown,{pathname})),
       h('div',{className:'rhino-header-actions'},h(ve,{to:'/services',className:'rhino-mobile-services'},'My Services'),
         h(LocalHeaderContactCard,{}),

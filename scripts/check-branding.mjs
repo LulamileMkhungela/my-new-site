@@ -10,5 +10,7 @@ for(const [route,meta]of Object.entries(routes)){
 const schema=structuredData(production,'/',routes['/'])['@graph'];assert.equal(schema.find(n=>n['@type']==='WebSite').name,'LulaZel');assert.equal(schema.find(n=>n['@type']==='Person').name,'Lulamile Mkhungela');
 const dims=p=>{const b=fs.readFileSync(p);assert.equal(b.subarray(1,4).toString(),'PNG');return[b.readUInt32BE(16),b.readUInt32BE(20)];};
 for(const [name,size]of [['favicon.png',32],['apple-touch-icon.png',180],['icon-192.png',192],['icon-512.png',512]])assert.deepEqual(dims('dist/assets/img/'+name),[size,size]);assert.deepEqual(dims('dist/assets/img/social-card.png'),[1200,630]);
-assert.equal(json('dist/site.webmanifest').short_name,'LulaZel');assert.ok(read('index.html').includes('/assets/img/favicon.svg?v='));assert.ok(read('index.html').includes('/assets/img/logo.svg'));assert.ok(!read('index.html').includes('>LM<'));
+for(const file of ['assets/img/logo.svg','assets/img/favicon.svg','assets/img/social-card.svg']){const svg=read(file);assert.ok(!svg.includes('<image'),'Logo must be real vector paths');assert.ok(!svg.includes('M10 11h11v30h9L20 53H10z'),'Rejected LZ monogram must not return');}
+assert.ok(read('assets/img/logo.svg').includes('abstract studio symbol'));
+assert.equal(json('dist/site.webmanifest').short_name,'LulaZel');assert.ok(read('index.html').includes('/assets/img/favicon.svg?v='));assert.ok(read('index.html').includes('/assets/img/logo.svg?v=abstract-1'));assert.ok(!read('index.html').includes('>LM<'));
 console.log('✓ LulaZel logo/icons, manifest, 31 branded route titles and complete absolute social metadata with a configured origin; personal owner and service scope preserved');

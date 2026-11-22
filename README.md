@@ -174,11 +174,12 @@ layout-reference scope and visual-comparison limitations.
 
 ## LulaZel identity and link previews
 
-The original interlocking LZ mark is supplied as `assets/img/logo.svg` (outlined
-wordmark) and `assets/img/favicon.svg` (compact mark). These are original local
-vector drawings, not a stock icon or a font-dependent logo. `social-card.svg` is
+The selected abstract studio symbol and outlined wordmark are supplied as `assets/img/logo.svg` (outlined
+wordmark) and `assets/img/favicon.svg` (abstract mark). These are clean local vector paths adapted from the selected design, not
+embedded raster images or a font-dependent wordmark. `social-card.svg` is
 the editable outlined source for the 1200×630 social image.
-`scripts/generate-brand-assets.mjs` reproducibly generates PNG favicon, touch/app
+The selected concept proof is retained under `design/` for design provenance only;
+it is not deployed. `scripts/generate-brand-assets.mjs` reproducibly generates PNG favicon, touch/app
 icons and the sharing image using resvg, as part of every build. Header, manifest,
 browser icons and social metadata identify the site as **LulaZel**. Lulamile
 Mkhungela remains the personal owner/creator in About and structured data.
