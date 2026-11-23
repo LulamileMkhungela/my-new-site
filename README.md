@@ -240,3 +240,28 @@ remain a single vertical column with gaps at every breakpoint.
 `check-discuss-spacing-browser.mjs` exercises every service CTA position at
 320/390/768/1440px, verifies visible Contact headings, panel insets, no horizontal
 overflow, and Contact anchor clearance. Use `TEST_WIDTHS=1440` to run one width.
+
+### Home chapter index and recommendations
+
+Home has a fixed bottom index linking 01–11 to its real sections. Native hash
+links work before hydration and without JavaScript. With JavaScript, scroll and
+resize events are animation-frame throttled: the current section gets
+`aria-current="location"`, while the emerald progress bar tracks 0–100% of page
+scroll. The rail is Home-only, keeps sticky-header clearance, reserves footer
+space and sits below Back to top. It does not hijack wheel/touch scrolling.
+
+The testimonial section uses an original CSS quote sculpture, a three-line
+heading and two scroll-snap cards on desktop (one on mobile). Previous/next,
+native swiping/scrolling, keyboard arrows/Home/End and expandable full notes are
+supported. No autoplay. All six supplied quotes, attribution and dates remain
+unchanged. There are no invented stars, Google marks or verification claims.
+No hosting, external review service, database or API credentials are needed for
+these supplied recommendations. Add approved quotes/attributions in
+`assets/js/site.content.json`; publish names/photos only with permission. A live
+third-party review feed is a separate integration and is not configured here.
+
+Run `AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x node scripts/check-home-chapters-browser.mjs`
+with the preview running. It checks all 11 destinations and header clearance,
+active-section/manual scrolling, progress endpoints, mobile/desktop card counts,
+carousel controls, keyboard, full original quotes and no-JS fallbacks at
+320/390/768/1440px, plus normal-motion scrolling and route cleanup.

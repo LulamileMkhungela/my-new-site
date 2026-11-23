@@ -88,6 +88,15 @@ for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.s
 assert.ok(read('assets/js/app.source.js').includes("path:'/',element:h(LocalHomePage)"));
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-process-card').length,3);
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,6);
+const chapterNav=homeView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Home sections');
+const chapterLinks=nodes(chapterNav).filter(node=>node.type==='a');
+assert.equal(chapterLinks.length,11);
+assert.deepEqual(chapterLinks.map(node=>text(node)),Array.from({length:11},(_,i)=>String(i+1).padStart(2,'0')));
+for(const link of chapterLinks)assert.ok(homeView.elements.some(node=>node.type==='section'&&'#'+node.props.id===link.props.href),'Chapter links own real Home sections');
+assert.ok(homeView.elements.some(node=>node.props.role==='progressbar'&&node.props['aria-label']==='Page scroll progress'));
+assert.ok(homeView.elements.some(node=>node.props['aria-roledescription']==='carousel'));
+assert.ok(!homeView.elements.some(node=>node.props.className==='hm-testimonial-card'&&/Google|★|verified/i.test(text(node))),'Do not invent third-party ratings or verification');
+
 for(const step of data.window.SITE.process) {assert.ok(text(homeView.tree).includes(step.title));assert.ok(text(homeView.tree).includes(step.body));}
 assert.deepEqual(homeView.elements.filter(node=>node.type==='blockquote').map(node=>text(node)),Array.from(data.window.SITE.testimonials,person=>person.message));
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-personal-mark').length,0,'No repeated owner-name stamp in Home chapters');

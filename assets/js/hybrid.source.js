@@ -7,6 +7,8 @@ function LocalUiIcon({name='arrow-up-right',className=''}) {
     'arrow-up-right':['M5 19 19 5M5 5h14v14'],
     'arrow-up':['M12 21V3M5 10l7-7 7 7'],
     'arrow-down':['M12 3v18M5 14l7 7 7-7'],
+    'arrow-left':['M21 12H3M10 5l-7 7 7 7'],
+    'arrow-right':['M3 12h18M14 5l7 7-7 7'],
     'chevron-down':['m6 9 6 6 6-6'],
     'plus':['M12 5v14M5 12h14'],
     'minus':['M5 12h14'],
