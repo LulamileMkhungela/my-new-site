@@ -147,6 +147,7 @@ const lulafind=projects.find(project=>project.id==='lulafind');
 assert.equal(lulafind.apkUrl,'https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing');
 assert.equal(lulafind.status,'Android APK');
 const lunia=projects.find(project=>project.id==='lunianetwork');
+assert.equal(lunia.status,undefined,'No separate Google Play availability label');
 assert.match(lunia.cardDescription,/2019.*2024.*no longer updating/);
 assert.match(lunia.details.sections[1].paragraphs.join(' '),/2024 because I was no longer updating/);
 const oneScreen=projects.find(project=>project.id==='onescreen-business');
