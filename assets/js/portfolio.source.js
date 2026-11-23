@@ -96,6 +96,8 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
   const linked=!groupedDownload&&!freePrompt&&action.type!=='coming-soon'&&!!action.href;
   const web=category==='website'||category==='frontend-dev';
   const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.androidReleaseUrl?'Android release':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
+  const cardDescription=category==='home'?(project.homeCardDescription??project.cardDescription):project.cardDescription;
+  const projectLabel=category==='home'?(project.homeProjectLabel??project.projectLabel):project.projectLabel;
   const descriptionId='pf-description-'+category+'-'+project.id;
   const body=h(g.Fragment,null,
     h('div',{className:'pf-card-art',ref:previewRef},
@@ -103,8 +105,8 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
       project.image&&h('img',{src:previewImage,onLoad:measurePreview,alt:project.imageAlt||project.client+' project preview',loading:'lazy',decoding:'async',className:project.imageFit==='contain'?'pf-image-contain':undefined,onError:event=>{if(project.imageRemote&&!event.currentTarget.dataset.localFallback){event.currentTarget.dataset.localFallback='true';event.currentTarget.src=project.image;}else event.currentTarget.style.display='none';}})),
     h('div',{className:'pf-card-info'},h('h3',{className:'pf-compact-name'},project.client),
       h('p',{className:'sr-only',id:descriptionId},project.description),
-      project.cardDescription&&h('p',{className:'pf-history-description'},project.cardDescription),
-      project.projectLabel&&h('p',{className:'pf-card-status'},project.projectLabel),
+      cardDescription&&h('p',{className:'pf-history-description'},cardDescription),
+      projectLabel&&h('p',{className:'pf-card-status'},projectLabel),
       project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
       project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · '))),
     action.type==='coming-soon'||groupedDownload?null:freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):

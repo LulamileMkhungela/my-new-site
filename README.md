@@ -394,8 +394,9 @@ and app details, rather than occupying a separate action row. Home previews use 
 without stretching: app art retains its proportions and website captures crop
 or pan naturally. Five-across desktop/horizontal mobile layouts are preserved.
 
-Home/Portfolio show **Personal Web project** under LulaGazette; Delivery App
-has no extra project label. DesignOps is **Personal project**; AddmoreDigital
+Home/Portfolio show **Personal Web project** under LulaGazette. On Home only,
+Delivery App shows **Ai prompt app** and Ai-LifeOS hides its short summary;
+Portfolio app summaries remain unchanged. DesignOps is **Personal project**; AddmoreDigital
 and SNB are **Work project**. The premium design-app prompt is named
 **Design App Home screen flow**, retaining its Selar destination.
 

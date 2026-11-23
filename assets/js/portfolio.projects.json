@@ -387,7 +387,8 @@
       "appStore": null,
       "googlePlay": null
     },
-    "cardDescription": "Budgeting, grocery planning and life admin for South African households, with records kept on the device."
+    "cardDescription": "Budgeting, grocery planning and life admin for South African households, with records kept on the device.",
+    "homeCardDescription": ""
   },
   {
     "id": "onescreen-business",
@@ -861,7 +862,8 @@
     "featured": true,
     "homeOrder": 4,
     "imageAlt": "Delivery App comparison: Claude, ChatGPT and Figma Make parcel-tracking home screens",
-    "imageFit": "contain"
+    "imageFit": "contain",
+    "homeProjectLabel": "Ai prompt app"
   },
   {
     "id": "prompt-food-delivery-app-home-screen",
