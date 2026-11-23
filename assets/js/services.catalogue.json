@@ -1,0 +1,503 @@
+{
+  "groups": [
+    {
+      "id": "web",
+      "title": "Get your business online",
+      "label": "Web & ecommerce"
+    },
+    {
+      "id": "systems",
+      "title": "Make everyday work easier",
+      "label": "Systems & AI"
+    },
+    {
+      "id": "growth",
+      "title": "Reach the right people",
+      "label": "Design & marketing"
+    }
+  ],
+  "services": [
+    {
+      "slug": "web-hosting",
+      "group": "web",
+      "title": "Web Hosting",
+      "icon": "server",
+      "summary": "A dependable home for your website or online store.",
+      "intro": "A dependable technical foundation for your website or store, from choosing a suitable host to a checked deployment. Hosting, security, backups and server-side performance are scoped around your platform and visitors.",
+      "tags": [
+        "Hosting setup",
+        "SSL",
+        "Backups"
+      ],
+      "features": [
+        [
+          "Storage & resources",
+          "Choose storage and processing capacity suited to your platform, expected traffic and customer locations."
+        ],
+        [
+          "Deployment & server setup",
+          "Configure the hosting environment, connect your domain and agree the steps for a safe website launch or migration."
+        ],
+        [
+          "Technical performance",
+          "Review server location, caching, compression and delivery settings supported by your platform. Diagnose hosting-related loading problems, separately from page design."
+        ],
+        [
+          "SSL & HTTPS",
+          "Set up encrypted connections and check domain redirects so visitors reach the intended secure website."
+        ],
+        [
+          "Protection & updates",
+          "Agree malware protection, platform updates, monitoring and the division of maintenance responsibilities."
+        ],
+        [
+          "Backups & recovery",
+          "Confirm backup frequency, retention, restore steps and pre-launch rollback arrangements."
+        ]
+      ],
+      "note": "Provider specifications, uptime terms, resources, renewals and support are confirmed before you commit. Hosting covers the technical foundation; page layouts, landing pages and conversion UX belong to Website Design. Results are not guaranteed.",
+      "prepare": [
+        "Your platform, website address and domain/DNS/deployment access",
+        "Expected traffic, storage, customer locations and known technical performance issues",
+        "Email, backup, migration and support requirements"
+      ],
+      "related": [
+        "website-design",
+        "ecommerce"
+      ],
+      "source": "https://digitalrhino.co.za/web-hosting/"
+    },
+    {
+      "slug": "website-design",
+      "group": "web",
+      "title": "Website Design",
+      "icon": "layout",
+      "summary": "Responsive websites, landing pages and HTML email design with clear customer journeys.",
+      "intro": "Help visitors understand your offer and take a useful next step. Bring website design and conversion review together: clear positioning, thoughtful page structure, useful content and responsive interactions—not just a good-looking homepage.",
+      "tags": [
+        "Website design",
+        "Landing pages",
+        "Conversion UX"
+      ],
+      "features": [
+        [
+          "Website & conversion review",
+          "Identify unclear messages, confusing navigation and barriers to enquiry or purchase. Use available analytics and customer feedback to prioritise improvements."
+        ],
+        [
+          "Positioning & content structure",
+          "Clarify your audience, value proposition and the questions your pages need to answer. Organise messages, page hierarchy and copy direction around those needs."
+        ],
+        [
+          "Focused landing pages",
+          "Design clear service, product or campaign pages with relevant benefits, supporting evidence and a purposeful call to action."
+        ],
+        [
+          "Responsive & accessible UX",
+          "Improve readability, navigation and form interactions across screen sizes. Consider language, accessibility and first-time digital users."
+        ],
+        [
+          "Trust & useful integrations",
+          "Make contact details, evidence, booking tools and enquiry forms easy to find and use. Agree integration requirements before the build."
+        ],
+        [
+          "Measurement & iteration",
+          "Agree useful events and consent requirements, then review available traffic and enquiry data to guide changes. Conversion results depend on the offer, audience and wider experience."
+        ]
+      ],
+      "note": "Pages, copy, analytics, testing, revisions and implementation are scoped upfront. Hosting and server-side setup are scoped under Web Hosting. Conversion lifts are not guaranteed. Email work covers agreed templates, client testing and platform integration; campaign sending, subscriber consent, unsubscribe handling and ongoing email-platform costs are agreed separately.",
+      "prepare": [
+        "Your website, audience, offer and main conversion goal",
+        "Priority pages, available content, known pain points and analytics",
+        "Brand assets, integrations, budget and timeline; for email: platform, template types and priority email clients"
+      ],
+      "related": [
+        "web-hosting",
+        "seo-and-search"
+      ],
+      "source": "https://digitalrhino.co.za/website-design/",
+      "specialisms": [
+        [
+          "Marketing & SaaS websites",
+          "A coherent multi-page site with brand-aligned layouts, clear benefits and a practical path to enquiry."
+        ],
+        [
+          "Portfolio & personal websites",
+          "Positioning, case-study structure and a site that helps people understand your work and get in touch."
+        ],
+        [
+          "HTML email design & development",
+          "Brand-aligned newsletters, campaign emails and transactional templates, designed for mobile and built in HTML with email-safe layouts, inline styles and useful text fallbacks. Compatibility checks for agreed email clients and platform handover are scoped with the project."
+        ],
+        [
+          "Search-ready build & handover",
+          "Descriptive metadata, logical headings, internal links and optimised images. Coordinate deployment, HTTPS and server configuration with Web Hosting."
+        ]
+      ]
+    },
+    {
+      "slug": "ecommerce",
+      "group": "web",
+      "title": "Ecommerce",
+      "icon": "bag",
+      "summary": "Online stores with an easy journey from product to checkout.",
+      "intro": "An online store designed around your catalogue, customers and fulfilment process. Help shoppers find the right product, understand it and complete their purchase.",
+      "tags": [
+        "Product discovery",
+        "Payments",
+        "Orders"
+      ],
+      "features": [
+        [
+          "Product discovery",
+          "Useful categories, product information and options that make browsing straightforward. Clarify product benefits, audience and the reasons to choose your offer."
+        ],
+        [
+          "Mobile shopping",
+          "Responsive product, navigation and cart layouts for shoppers on any screen."
+        ],
+        [
+          "Checkout & payments",
+          "A clear checkout flow and suitable payment gateway integration."
+        ],
+        [
+          "Orders & delivery",
+          "Stock, order and delivery rules configured around how you fulfil purchases."
+        ],
+        [
+          "Search foundations",
+          "Descriptive product and category pages with logical headings and internal links."
+        ],
+        [
+          "Connected operations",
+          "Scope courier, accounting or stock integrations around available interfaces."
+        ]
+      ],
+      "note": "Payment provider fees, catalogue entry, delivery rules, integrations and ongoing support are agreed separately in the scope. Marketplace account access, listing assets and platform fees are separately agreed. Sales are not guaranteed.",
+      "prepare": [
+        "Your products, catalogue size and current store",
+        "Customer locations, payment and delivery needs",
+        "Existing tools, budget and launch goals"
+      ],
+      "related": [
+        "web-hosting",
+        "workflow-automation"
+      ],
+      "source": "https://digitalrhino.co.za/ecommerce-website-development/",
+      "specialisms": [
+        [
+          "Product & marketplace content",
+          "Structure titles, benefits and product information for your store or existing Amazon listings. Plan listing imagery, simple graphics and A+ content direction within an agreed scope."
+        ],
+        [
+          "Offer & competitor review",
+          "Review competing offers and customer questions to strengthen positioning and the path from browsing to purchase."
+        ],
+        [
+          "Storefront & conversion review",
+          "Use available sales, traffic and conversion data to prioritise catalogue, content and storefront improvements. Inventory or account work is separately agreed."
+        ]
+      ]
+    },
+    {
+      "slug": "business-systems",
+      "group": "systems",
+      "title": "Business Systems",
+      "icon": "grid",
+      "summary": "Custom tools, portals and dashboards built around your operations.",
+      "intro": "Replace disconnected spreadsheets or awkward workarounds with a focused business tool. Start with the people, tasks and information that need to work better together.",
+      "tags": [
+        "Custom tools",
+        "Portals",
+        "Dashboards"
+      ],
+      "features": [
+        [
+          "Sales & customers",
+          "Customer records, leads, quotations and follow-ups tailored to your sales process."
+        ],
+        [
+          "Jobs & operations",
+          "Job cards, scheduling, bookings and project tracking for day-to-day coordination. Include field-team task flows and service handovers where needed."
+        ],
+        [
+          "Stock & assets",
+          "Inventory, supplier information, purchasing and equipment records."
+        ],
+        [
+          "People & admin",
+          "Internal forms, onboarding, requests and approvals with role-appropriate access. Map who owns each step so work does not get lost between teams."
+        ],
+        [
+          "Self-service portals",
+          "Customer, supplier or staff access to relevant requests, information and updates."
+        ],
+        [
+          "Reports & integrations",
+          "Useful dashboards and connections to existing tools where interfaces allow."
+        ]
+      ],
+      "note": "These are possible modules, not a fixed package. Requirements, permissions, data migration and support are scoped before development. Stakeholder access, inclusive language needs and rollout priorities are agreed with your team; this is systems design, not financial or legal consulting.",
+      "prepare": [
+        "Your users, daily tasks and biggest bottlenecks",
+        "Existing tools, data and access requirements",
+        "Priorities, budget and rollout needs"
+      ],
+      "related": [
+        "workflow-automation",
+        "ai-assistants"
+      ],
+      "source": "https://digitalrhino.co.za/business-systems/"
+    },
+    {
+      "slug": "workflow-automation",
+      "group": "systems",
+      "title": "Workflow Automation & AI",
+      "icon": "flow",
+      "summary": "Connect your tools and cut repetitive work—with AI where useful.",
+      "intro": "Automate a repeated task or connect a process across your tools. Keep people in control, with clear rules, review points and a plan for exceptions.",
+      "tags": [
+        "Connected tools",
+        "Less admin",
+        "Human oversight"
+      ],
+      "features": [
+        [
+          "Leads & follow-ups",
+          "Capture enquiries, update records, assign tasks and trigger reminders."
+        ],
+        [
+          "Orders & operations",
+          "Connect orders, stock changes and notifications using agreed business rules."
+        ],
+        [
+          "Approvals & admin",
+          "Route requests and documents to the right person with status tracking."
+        ],
+        [
+          "Document processing",
+          "Extract or classify information with validation before updating records."
+        ],
+        [
+          "Assisted communication",
+          "Draft replies and summarise conversations for human review."
+        ],
+        [
+          "Data & reporting",
+          "Synchronise records, build reports and flag failed tasks for attention."
+        ]
+      ],
+      "note": "Integration availability, permissions, AI review, usage costs and monitoring are agreed before rollout. Not every workflow needs AI.",
+      "prepare": [
+        "The repeated task and tools involved",
+        "Approval rules, sensitive data and exceptions",
+        "Expected volume, budget and support needs"
+      ],
+      "related": [
+        "business-systems",
+        "ai-assistants"
+      ],
+      "source": "https://digitalrhino.co.za/workflow-automation/"
+    },
+    {
+      "slug": "ai-assistants",
+      "group": "systems",
+      "title": "AI Assistants",
+      "icon": "chat",
+      "summary": "Help customers and teams find answers in your business knowledge.",
+      "intro": "A focused assistant or chatbot grounded in approved information. Define what it can answer, what it can access and when a person should take over.",
+      "tags": [
+        "Useful answers",
+        "Your knowledge",
+        "Human handover"
+      ],
+      "features": [
+        [
+          "Customer questions",
+          "Answer common product, service and process questions from approved sources."
+        ],
+        [
+          "Lead qualification",
+          "Collect relevant enquiry details and prepare context for your team."
+        ],
+        [
+          "Internal knowledge",
+          "Help staff find guidance they are authorised to access."
+        ],
+        [
+          "Team assistance",
+          "Summarise information, prepare drafts and guide routine tasks with review."
+        ],
+        [
+          "Connected actions",
+          "Scope bookings, status lookups or handovers through available integrations."
+        ],
+        [
+          "Testing & boundaries",
+          "Test representative questions, define limits and provide a human escalation path."
+        ]
+      ],
+      "note": "AI can make mistakes. Approved sources, access controls, usage costs and ongoing response review are part of the agreed scope.",
+      "prepare": [
+        "Who needs help and what they ask",
+        "Knowledge sources, access rules and handover contact",
+        "Integrations, expected usage and review needs"
+      ],
+      "related": [
+        "business-systems",
+        "workflow-automation"
+      ],
+      "source": "https://digitalrhino.co.za/ai-assistants-chatbots/"
+    },
+    {
+      "slug": "basic-graphic-design",
+      "group": "growth",
+      "title": "Basic Graphic Design",
+      "icon": "pen",
+      "summary": "Simple, consistent graphics for social, digital and print.",
+      "intro": "Everyday design support using your existing brand or a simple agreed visual direction. Ideal for a clear message and practical assets—not a full brand strategy or complex identity project.",
+      "tags": [
+        "Social posts",
+        "Flyers",
+        "Simple layouts"
+      ],
+      "features": [
+        [
+          "Simple logo & touch-ups",
+          "A straightforward logo concept or minor updates to an existing mark."
+        ],
+        [
+          "Colour & type basics",
+          "A small colour and typography reference for consistent everyday use."
+        ],
+        [
+          "Simple marketing layouts",
+          "Clean one-page documents, basic presentations and promotional materials."
+        ],
+        [
+          "Social graphics",
+          "Static posts, simple adverts and reusable templates in agreed sizes."
+        ],
+        [
+          "Flyers & business cards",
+          "Basic print layouts prepared to the printer’s supplied specifications."
+        ],
+        [
+          "Banners & digital assets",
+          "Simple website banners, image resizing and format adaptations."
+        ]
+      ],
+      "note": "Basic design only. Full rebrands, extensive identity systems, complex illustration, animation, printing and advanced packaging are excluded. Concepts, revisions, formats and usage rights are agreed upfront.",
+      "prepare": [
+        "Your message, audience and required sizes",
+        "Existing logo, colours, images and final copy",
+        "Deliverables, revisions, budget and deadline"
+      ],
+      "related": [
+        "website-design",
+        "google-ads"
+      ],
+      "source": "https://digitalrhino.co.za/graphic-design/"
+    },
+    {
+      "slug": "seo-and-search",
+      "group": "growth",
+      "title": "SEO & Search",
+      "icon": "search",
+      "summary": "Help relevant customers discover your business through search.",
+      "intro": "Prioritised technical and content improvements around what your customers are searching for. Focus on useful pages, a sound website structure and meaningful measures of progress.",
+      "tags": [
+        "Technical SEO",
+        "Content",
+        "Measurement"
+      ],
+      "features": [
+        [
+          "Website review",
+          "Find structural, technical and content issues that may limit discoverability."
+        ],
+        [
+          "Search intent",
+          "Research relevant terms and questions for your services and target markets. Review competing offers and customer language to focus on relevant intent, not just traffic."
+        ],
+        [
+          "On-page improvements",
+          "Refine titles, headings, internal links and page content."
+        ],
+        [
+          "Technical foundations",
+          "Review indexing, crawlability, redirects, canonicals and performance priorities."
+        ],
+        [
+          "Content planning",
+          "Plan useful service pages and supporting topics based on real customer questions. Align product information and brand messages across your website and existing marketplace listings where agreed."
+        ],
+        [
+          "Measurement & review",
+          "Review visibility, relevant traffic and tracked enquiries to guide further work."
+        ]
+      ],
+      "note": "SEO is ongoing work, not a promise of first place. Priorities, content responsibilities and reporting are agreed around your goals.",
+      "prepare": [
+        "Your website, key services and target locations",
+        "Available search data and known site issues",
+        "Content resources, budget and reporting needs"
+      ],
+      "related": [
+        "website-design",
+        "google-ads"
+      ],
+      "source": "https://digitalrhino.co.za/seo-and-search/"
+    },
+    {
+      "slug": "google-ads",
+      "group": "growth",
+      "title": "Google Ads",
+      "icon": "target",
+      "summary": "Focused campaigns with clear enquiry or sales goals.",
+      "intro": "Connect your offer, audience, keywords and landing page in a focused paid campaign. Use meaningful conversion data to decide what to improve—not clicks alone.",
+      "tags": [
+        "Targeting",
+        "Ad creative",
+        "Conversion tracking"
+      ],
+      "features": [
+        [
+          "Campaign planning",
+          "Define your offer, audience, target locations and goals. Clarify positioning and practical customer-acquisition priorities before spending."
+        ],
+        [
+          "Keyword targeting",
+          "Research relevant searches and exclude unsuitable terms with negative keywords."
+        ],
+        [
+          "Ads & assets",
+          "Write clear messages and prepare supporting assets around your offer."
+        ],
+        [
+          "Landing page alignment",
+          "Check the destination page matches the advert and makes the next step easy."
+        ],
+        [
+          "Conversion measurement",
+          "Plan enquiry or sales tracking with appropriate consent arrangements."
+        ],
+        [
+          "Ongoing optimisation",
+          "Review search terms, budgets and results to refine campaign priorities."
+        ]
+      ],
+      "note": "Advertising spend and management fees are separate. Results depend on your market, offer, website and budget; leads or sales are not guaranteed.",
+      "prepare": [
+        "Your offer, audience and customer locations",
+        "Website, existing campaigns and conversion goals",
+        "Ad budget, management scope and reporting needs"
+      ],
+      "related": [
+        "website-design",
+        "seo-and-search"
+      ],
+      "source": "https://digitalrhino.co.za/google-ad-campaigns/"
+    }
+  ]
+}

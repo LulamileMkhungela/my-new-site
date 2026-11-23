@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Set SITE_URL and rebuild when the production domain is ready.

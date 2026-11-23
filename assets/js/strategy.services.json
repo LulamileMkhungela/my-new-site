@@ -1,0 +1,56 @@
+[
+  {
+    "path": "/product-design-strategy",
+    "slug": "product-design-strategy",
+    "group": "strategy",
+    "title": "Product Design & Strategy",
+    "icon": "layout",
+    "summary": "Define the right product, then design an experience people can use.",
+    "intro": "Turn a business problem into a clear product direction and a usable digital experience. From early discovery to a developer-ready design, focus on what matters to your users and your business.",
+    "headline": [
+      "Clarity first.",
+      "Better products."
+    ],
+    "tags": [
+      "Research",
+      "UX & UI design",
+      "Design systems"
+    ],
+    "features": [
+      [
+        "Discovery & research",
+        "Understand your users, business goals and the problem worth solving through interviews, audits and focused research. Field interviews, observation and usability sessions can be included when representative users are available."
+      ],
+      [
+        "Product direction",
+        "Prioritise the right features and define a practical scope for your MVP or next product release."
+      ],
+      [
+        "Journeys & structure",
+        "Map user flows, organise information and simplify the steps people take to complete a task. Map operational touchpoints as well as customer screens."
+      ],
+      [
+        "Interface design",
+        "Create clear, accessible screens for websites, mobile apps and operational tools, using a consistent visual language. Consider local language, literacy, accessibility and low-connectivity contexts."
+      ],
+      [
+        "Prototypes & testing",
+        "Explore interactions with clickable prototypes and use feedback to improve the design before development. Test with the people and field teams who will actually use the service."
+      ],
+      [
+        "Systems & handover",
+        "Prepare reusable components, interaction notes and developer-ready designs with support for implementation."
+      ]
+    ],
+    "note": "Research depth, screen count, testing, revisions and handover are agreed upfront. Production development is scoped separately. Project examples live in Portfolio, not on this service page. Inclusive service design and field research are included here when relevant; this is design support, not financial or legal advice.",
+    "prepare": [
+      "Your product idea, audience and business goals",
+      "Current screens, research or known user problems",
+      "Priority features, budget and delivery expectations"
+    ],
+    "related": [
+      "business-systems",
+      "website-design"
+    ]
+  }
+]

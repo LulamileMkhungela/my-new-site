@@ -1,0 +1,18 @@
+{
+  "/index.html": "/",
+  "/services.html": "/services",
+  "/work.html": "/portfolio",
+  "/work": "/portfolio",
+  "/about.html": "/about",
+  "/contact.html": "/contact",
+  "/tools.html": "/tools",
+  "/website-design-conversion": "/services/website-design",
+  "/brand-strategy-and-amazon-growth": "/services/ecommerce",
+  "/microfinance-impact-consulting": "/product-design-strategy",
+  "/project/pasio-banking-app": "/portfolio",
+  "/project/field-assist-app": "/portfolio",
+  "/project/elaro-solar-webapp": "/portfolio",
+  "/graphic/pasio-marketing-prints": "/portfolio",
+  "/amazon/culina-craftique": "/portfolio",
+  "/amazon/ELVD-Wellness": "/portfolio"
+}

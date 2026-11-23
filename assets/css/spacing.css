@@ -1,0 +1,84 @@
+/* Final spacing pass: dimensional faces need room inside their raised edges. */
+:root { --control-inset:clamp(1rem,1.5vw,1.25rem); --control-icon-gap:.85rem; }
+body .contact-direct { gap:.8rem; }
+body :is(.contact-direct) a {
+ padding:1.1rem var(--control-inset);
+ gap:var(--control-icon-gap);
+ border-radius:6px;
+}
+body .contact-direct a>span { min-width:0; }
+body .contact-direct a>.ui-line-icon { flex-shrink:0; }
+body .contact-extra-actions { gap:.9rem; margin-top:0; }
+body .contact-extra-actions :is(a,button) {
+ padding:.7rem 1rem;
+ gap:.65rem;
+ min-height:46px;
+ border-radius:5px;
+}
+/* Maintain comfortable icon insets on all primary/action-bar faces. */
+body :is(.hybrid-button,.svc-button,.hm-link-primary,.studio-link-primary) { padding-inline:1.25rem; gap:1rem; }
+body :is(.pf-page,.pf-featured) :is(.pf-action-bar,.pf-copy-prompt) { padding-inline:1rem; gap:.65rem; }
+body .scene-controls { gap:.75rem; padding:.75rem .75rem .9rem; }
+body .scene-controls button { min-height:44px; padding:.6rem 1rem; }
+body .enquiry-close { width:44px; height:44px; }
+body .rhino-about-dropdown>button { width:36px; }
+/* Only the icon frame is raised; the outer footer label is not a second box. */
+body button.footer-contact-icon,
+body button.footer-contact-icon:hover,
+body button.footer-contact-icon:active {
+ padding:0;
+ border:0;
+ background:none;
+ box-shadow:none;
+ transform:none;
+}
+/* Horizontal browsing keeps an inset at either end, including the last link. */
+body .rhino-header .hybrid-service-nav-inner { scroll-padding-inline:1.5rem; }
+body .rhino-header .hybrid-service-nav-inner>a:last-child { margin-inline-end:.75rem; }
+body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-padding-inline:.4rem; }
+body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
+/* Page/track gutters frame open project previews; controls own their padding. */
+body :is(.pf-page,.pf-featured) .pf-grid { padding:1rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
+body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:12px; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:0; }
+body :is(.pf-page,.pf-featured) .pf-card-link { flex:1; min-width:0; }
+body :is(.pf-page,.pf-featured) .pf-card-art { flex-shrink:0; }
+body :is(.pf-page,.pf-featured) .pf-card-info { padding-block:1rem; }
+body :is(.pf-page,.pf-featured) .pf-card :is(.pf-action-bar,.pf-copy-prompt) {
+ min-height:44px; margin-top:auto; padding:.7rem .75rem; gap:.5rem;
+ font-size:.6rem; letter-spacing:.04em;
+}
+body :is(.pf-page,.pf-featured) .pf-card h3.pf-compact-name {
+ margin:0; font-size:.7rem; line-height:1.65;
+ white-space:normal; overflow:visible; overflow-wrap:anywhere; text-overflow:clip;
+}
+body :is(.pf-page,.pf-featured) .pf-card :is(.pf-platforms,.pf-card-status,.pf-copy-status) {
+ margin:.5rem 0 0; line-height:1.75; overflow-wrap:anywhere;
+}
+body :is(.pf-page,.pf-featured) .pf-card .pf-copy-status:empty { margin:0; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-copy-fallback { max-width:100%; margin:1rem 0 0; }
+
+@media(max-width:600px) {
+ body .contact-extra-actions { gap:.85rem .75rem; }
+ body .contact-extra-actions :is(a,button) { padding:.7rem .9rem; }
+ body .scene-controls { padding-inline:.25rem; }
+}
+/* About's disclosure is deliberately flat/2D, unlike the raised action buttons. */
+body .rhino-header .rhino-about-dropdown>button {
+ background:transparent !important;
+ border:0 !important;
+ box-shadow:none !important;
+ transform:none !important;
+ border-radius:0;
+}
+body .rhino-about-dropdown>button .ui-line-icon { transition:transform 180ms ease; }
+body .rhino-about-dropdown>button[aria-expanded='true'] .ui-line-icon { transform:rotate(180deg); }
+
+/* Hidden at the top: removed from pointer, keyboard and accessibility navigation. */
+body .site-back-to-top[hidden] { display:none !important; }
+
+/* Anchor targets use the measured two-row header, not a guessed fixed offset. */
+:root { --site-header-height:146px; }
+html { scroll-padding-top:calc(var(--site-header-height) + 24px); }
+body main :is(#main,#home,#hosting,#web,#systems,#growth,#service-intro,#service-features,#service-contact,#contact-intro,#contact-next,#portfolio-projects,#toolkit) { scroll-margin-top:0; }
+@media(max-width:800px) { :root { --site-header-height:135px; } }

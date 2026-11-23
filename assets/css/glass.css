@@ -1,0 +1,153 @@
+/* LulaZel glass system. Keep document/chapters navy; frost surfaces, never text
+   or artwork. No animated filters or full-screen blur. Every outlined panel owns inner padding. */
+:root {
+ --glass-blur:18px;
+ --glass-inset:clamp(1.25rem,2.2vw,2rem);
+ --glass-alpha:.82;
+ --glass-panel-alpha:.64;
+ --glass-line:rgba(177,226,217,.22);
+ --glass-shine:inset 0 1px 0 rgba(238,255,249,.16),inset 1px 0 0 rgba(238,255,249,.055);
+ --glass-shadow:0 18px 45px rgba(2,12,20,.22);
+ --site-glow:radial-gradient(ellipse at 82% 25%,#167c5942 0%,transparent 58%),radial-gradient(ellipse at 8% 90%,#486f9e26 0%,transparent 54%);
+}
+/* More opaque fallback is intentional when backdrop-filter is unsupported. */
+body .rhino-header {
+ background:linear-gradient(115deg,#23453b25,#ffffff05),#162630;
+ border-bottom-color:var(--glass-line);
+ box-shadow:0 12px 36px #020c1429,inset 0 1px 0 #eafff00c;
+}
+body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog) {
+ background:linear-gradient(135deg,#83dfbf12,#ffffff04 55%,#0b172630),#1a2c36;
+ border-color:var(--glass-line);
+ box-shadow:var(--glass-shine),0 24px 64px #020c1459;
+ border-radius:14px;
+}
+body .rhino-mobile-menu { border-radius:0 0 18px 18px; }
+/* Sheets stay inside their columns; real padding protects the content edges. */
+body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div) {
+ position:relative;
+ isolation:isolate;
+ min-width:0;
+ padding:var(--glass-inset);
+}
+body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+ content:'';
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ pointer-events:none;
+ border:1px solid var(--glass-line);
+ border-radius:24px;
+ background:linear-gradient(135deg,#a4f5d810,transparent 48%,#87b9f20a),#1b2b36;
+ box-shadow:var(--glass-shine),var(--glass-shadow);
+}
+body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
+body .contact-direct a,
+body .contact-steps article {
+ background:linear-gradient(135deg,#c8ffe80a,#ffffff02 60%,#7db8e708),#1b2b36;
+ border-color:var(--glass-line);
+ border-radius:14px;
+ box-shadow:var(--glass-shine),0 10px 26px #020c1424;
+}
+/* A single outline frames each whole project; no glass fill, shadow or rounding. */
+body :is(.pf-page,.pf-featured) .pf-card {
+ background:none; border:1px solid #8cc8b052; border-radius:0; box-shadow:none; outline:0; overflow:visible;
+}
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art {
+ border:0; border-radius:0; outline:0; box-shadow:none;
+}
+body .owner-project-meta { padding-inline:1rem; }
+body .owner-project-section { padding-inline:1rem; }
+body .contact-steps article { padding:1.15rem; }
+body .contact-next .contact-steps { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
+body .scene-controls { background:#1b2b36b8; }
+body .unified-footer {
+ background:linear-gradient(115deg,#15534229,transparent 55%,#35557e1a),#14232e;
+ border-top-color:var(--glass-line);
+ box-shadow:inset 0 1px 0 #d9fff20a;
+}
+/* Long-form About/privacy/error pages keep a quiet, readable glass sheet. */
+body :is(section.unified-about-copy,article.unified-about-copy,.unified-empty-page) {
+ border-radius:20px;
+ background-image:linear-gradient(135deg,#a4f5d80a,transparent 55%,#87b9f208);
+ box-shadow:inset 0 0 0 1px var(--glass-line),var(--glass-shine);
+}
+body section.unified-about-copy {
+ padding:clamp(1.75rem,4vw,3rem) clamp(1.25rem,4vw,3rem);
+ margin-block:clamp(1.5rem,4vw,3rem);
+}
+body .unified-empty-page { padding-inline:var(--glass-inset); }
+body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div) :is(h1,h2) { overflow-wrap:anywhere; }
+body :is(.hm-title,.svc-page .studio-title,.pf-hero h1,.hybrid-hero h1) { font-size:clamp(1.85rem,3.5vw,3.65rem); }
+body .contact-intro h1 { font-size:clamp(1.85rem,4.7vw,4.6rem); }
+/* Glass controls retain their dimensional edge and accessible emerald face. */
+body :is(.hybrid-button,.svc-button,.hm-link-primary,.studio-link-primary),
+body :is(.pf-page,.pf-featured) :is(.pf-copy-prompt,.pf-action-bar:not(.pf-action-unavailable)) {
+ background-image:linear-gradient(140deg,#b8f9de80 0%,#28d9922b 42%,#004c322b 100%);
+ background-color:#00ce7b;
+ border-top-color:#c6ffdfb3;
+ box-shadow:inset 0 1px 0 #eafff68c,inset 1px 0 0 #eafff629,0 4px 0 #00633d,0 9px 24px #001e1652;
+}
+body :is(.contact-extra-actions a,.contact-extra-actions button,.footer-icon-frame,.site-back-to-top),
+body .rhino-header .rhino-contact {
+ background:linear-gradient(135deg,#9debd71a,#152c2980),#19352fcf;
+ border-color:#74e8bb5c;
+ box-shadow:var(--glass-shine),0 4px 0 #071e18b3,0 8px 22px #020c1433;
+}
+body .enquiry-dialog :is(input:not([type=hidden]),select,textarea) {
+ background:#10212acc;
+ border-color:#c5f5e52e;
+ box-shadow:inset 0 2px 8px #020c1426;
+}
+body .enquiry-dialog :is(input,select,textarea):focus-visible { border-color:#00ce7b; outline:2px solid #00ce7b; outline-offset:3px; }
+body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
+/* Progressive enhancement is confined to bounded panels and sticky chrome. */
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+ body .rhino-header,
+ body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog) {
+  background-color:rgb(21 34 44 / var(--glass-alpha));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(135%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(135%);
+ }
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+  background-color:rgb(25 43 54 / var(--glass-panel-alpha));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(125%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(125%);
+ }
+ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
+  body .contact-direct a,
+ body .contact-steps article {
+  background-color:rgb(25 43 54 / var(--glass-alpha));
+  -webkit-backdrop-filter:blur(var(--glass-blur));
+  backdrop-filter:blur(var(--glass-blur));
+ }
+}
+@media(hover:hover) and (pointer:fine) {
+ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool):hover { border-color:#8bf1c65c; box-shadow:var(--glass-shine),0 15px 36px #020c1440; }
+ body .contact-direct a:hover { background-color:#214b40; }
+ body .site-back-to-top:hover { background-color:#245b47; color:#effff6; }
+}
+@media(max-width:800px) {
+ :root { --glass-blur:10px; --glass-panel-alpha:.78; }
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { inset:0; border-radius:18px; }
+}
+@media(max-width:400px) {
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { inset:0; }
+}
+/* User preference wins over translucency. Reduced motion keeps this static. */
+@media(prefers-reduced-transparency:reduce) {
+ :root { --glass-blur:0px; --glass-alpha:1; --glass-panel-alpha:1; }
+ body .rhino-header,
+ body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog,.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
+ body .contact-direct a,body .contact-steps article,
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+  -webkit-backdrop-filter:none; backdrop-filter:none; background-color:#1b2b36;
+ }
+}
+@media(forced-colors:active) {
+ body .rhino-header,body .unified-footer,
+ body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog,.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls,.contact-direct a,.contact-steps article),
+  body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+  background:Canvas; color:CanvasText; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; border-color:CanvasText;
+ }
+}

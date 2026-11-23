@@ -1,0 +1,1 @@
+Design a fashion e-commerce app home screen. Hero: new arrivals carousel, product grid with garments, search, cart icon, bottom nav Home / Search / Wishlist / Cart. Cream and camel palette, elegant serif and sans typography, flat case-study style.

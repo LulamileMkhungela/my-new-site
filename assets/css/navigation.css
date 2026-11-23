@@ -1,0 +1,102 @@
+/* Persistent two-tier navigation shared by portfolio and static pages. */
+.rhino-header { position: sticky; top: 0; z-index: 100; background: #151f29; color: #f4f7f8; font-family: Inter, system-ui, sans-serif; border-bottom: 1px solid #ffffff18; }
+.rhino-header *, .rhino-header *::before, .rhino-header *::after { box-sizing: border-box; }
+.rhino-header a { text-decoration: none; }
+.rhino-header-main { max-width: 1440px; padding: 1.1rem clamp(1.5rem,5vw,5rem); margin: auto; min-height: 88px; display: flex; align-items: center; gap: 2rem; }
+.rhino-wordmark { display: inline-flex; align-items: center; gap: .7rem; color: #f4f7f8; font-size: clamp(1.3rem,2.2vw,2rem); font-weight: 400; letter-spacing: -.06em; line-height: 1; white-space: nowrap; }
+
+.rhino-primary { display: flex; align-items: center; gap: 2rem; margin-left: auto; }
+.rhino-primary a { font-size: .76rem; font-weight: 700; color: #eff4f5; white-space: nowrap; padding: .75rem 0; }
+.rhino-primary a:hover, .rhino-primary a.is-active, .rhino-primary a[aria-current='page'] { color: #00d17b; }
+.rhino-header-actions { display: flex; align-items: center; gap: 1rem; }
+.rhino-header .rhino-contact { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-width: 135px; color: #0b2920; background: #00cc79; padding: 1rem 1.2rem; font-size: .75rem; font-weight: 800; border-radius: 0; white-space: nowrap; }
+.rhino-contact:hover { background: #25e799; }
+.rhino-menu-button, .rhino-mobile-services { display: none; }
+.rhino-header .hybrid-service-nav { background: transparent; color: #f2f5f7; border-top: 1px solid #ffffff14; border-bottom: none; position: relative; z-index: auto; }
+.rhino-header .hybrid-service-nav-inner { display: flex; align-items: center; gap: 1.75rem; max-width: 1280px; margin: auto; overflow-x: auto; padding: 1rem 1.5rem; scrollbar-width: thin; scrollbar-color: #00ce7b66 transparent; }
+.rhino-header .hybrid-service-nav a { flex: 0 0 auto; font-size: .68rem; font-weight: 650; line-height: 1.6; color: #e7edf0; padding: .15rem 0; white-space: nowrap; }
+.rhino-header .hybrid-service-nav a:hover, .rhino-header .hybrid-service-nav a.is-active { color: #00d17b; }
+.rhino-header a:focus-visible, .rhino-header button:focus-visible { outline: 2px solid #00d17b; outline-offset: 5px; }
+.rhino-skip { position: absolute; left: 1rem; top: -100px; padding: 1rem; color: #10251c; background: #00d17b; z-index: 110; }
+.rhino-skip:focus { top: .5rem; }
+.rhino-mobile-menu { display: none; }
+@media (max-width: 1050px) {
+  .rhino-header-main { padding-inline: 1.5rem; gap: 1.2rem; }
+  .rhino-primary { gap: 1.3rem; }
+}
+@media (max-width: 800px) {
+  .rhino-header-main { min-height: 76px; padding: .9rem 1.25rem; gap: .75rem; justify-content: space-between; }
+  .rhino-primary { display: none; }
+  .rhino-wordmark { font-size: 1.4rem; gap: .5rem; }
+
+  .rhino-header .rhino-contact { display: none; }
+  .rhino-header .rhino-mobile-services { display: inline-block; font-size: .72rem; font-weight: 700; color: #00d17b; padding: .6rem 0; white-space: nowrap; }
+  .rhino-menu-button { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #ffffff35; border-radius: 3px; background: transparent; color: #f2f5f7; cursor: pointer; font-size: 1.2rem; }
+  .rhino-header-actions { gap: .8rem; }
+  .rhino-mobile-menu { display: flex; flex-direction: column; gap: .25rem; padding: .75rem 1.5rem 1rem; border-top: 1px solid #ffffff18; }
+  .rhino-mobile-menu[hidden] { display: none; }
+  .rhino-mobile-menu a { padding: .7rem 0; font-size: .9rem; color: #eff4f5; }
+  .rhino-mobile-menu a[aria-current='page'] { color: #00d17b; }
+  .rhino-header .hybrid-service-nav-inner { padding: .7rem 1.25rem; gap: 1.3rem; }
+  .rhino-header .hybrid-service-nav a { font-size: .66rem; }
+}
+@media (prefers-reduced-motion: reduce) { .rhino-header * { scroll-behavior: auto !important; transition: none !important; } }
+
+/* Supplied WhatsApp invitation, scaled for the existing 88px header. */
+.rhino-header .rhino-contact {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: flex-start;
+  gap: 0; width: 194px; min-width: 0; min-height: 60px; padding: 7px 12px;
+  border: 1.5px solid #00ce7b; border-radius: 19px 19px 5px 19px;
+  background: #101c24; color: #f0f5f5; font-family: Poppins,sans-serif;
+  transition: background .2s,border-color .2s;
+}
+.rhino-contact-symbol { display: grid; place-items: center; flex: 0 0 44px; height: 40px; margin-right: 13px; padding-right: 12px; border-right: 1px solid #a2b8bb40; color: #00ce7b; }
+.rhino-header .rhino-contact .rhino-contact-symbol .ui-line-icon { width: 29px; height: 29px; stroke-width: 1.4; }
+.rhino-contact-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.rhino-contact-eyebrow { font-size: 6.5px; font-weight: 500; line-height: 1.4; letter-spacing: .24em; text-transform: uppercase; color: #b2c4cb; }
+.rhino-contact-copy strong { font-size: 19px; font-weight: 750; letter-spacing: -.04em; line-height: 1.15; }
+.rhino-contact-channel { font-size: 6.5px; font-weight: 500; letter-spacing: .24em; line-height: 1.4; text-transform: uppercase; color: #00ce7b; }
+.rhino-header .rhino-contact:hover { background: #17342b; border-color: #44e89e; }
+@media (min-width: 801px) and (max-width: 1050px) {
+  .rhino-header-main { gap: 1rem; }.rhino-primary { gap: 1.1rem; }
+  .rhino-header .rhino-contact { width: 178px; padding-inline: 10px; }.rhino-contact-symbol { flex-basis: 37px; margin-right: 10px; padding-right: 10px; }
+  .rhino-contact-copy strong { font-size: 18px; }
+}
+@media (max-width: 800px) {
+  .rhino-header-actions > .rhino-contact { display: none; }
+  .rhino-header .rhino-contact-mobile { display: flex; width: 194px; padding: 8px 12px; margin-block: .65rem .25rem; }
+}
+
+@media (min-width: 801px) { .rhino-header-main { padding-block: .8rem; } }
+
+/* Compact invitation: six pixels narrower and shorter than the previous card. */
+.rhino-header .rhino-contact { width: 188px; min-height: 54px; padding: 5px 10px; }
+.rhino-contact-copy strong { font-size: 17px; }
+.rhino-contact-eyebrow, .rhino-contact-channel { font-size: 6px; }
+.rhino-contact-copy { gap: 2px; }
+.rhino-contact-symbol { height: 36px; }
+@media (min-width: 801px) and (max-width: 1050px) { .rhino-header .rhino-contact { width: 172px; } .rhino-contact-copy strong { font-size: 16px; } }
+/* Comfortable touch targets without crowding narrow phone headers. */
+@media (max-width: 800px) {
+  .rhino-menu-button { width: 44px; height: 44px; }
+  .rhino-header .rhino-mobile-services { min-height: 44px; display: inline-flex; align-items: center; }
+  .rhino-header .hybrid-service-nav-inner { padding-block: .35rem; }
+  .rhino-header .hybrid-service-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+}
+@media (max-width: 380px) {
+  .rhino-header-main { padding-inline: 1rem; }
+  .rhino-header-actions { gap: .5rem; }
+  .rhino-wordmark { font-size: 1.25rem; gap: .4rem; }
+
+}
+.rhino-about-dropdown { display:flex; align-items:center; position:relative; }
+.rhino-about-dropdown>button { display:grid; place-items:center; background:transparent; border:0; color:#eff5f7; width:28px; min-height:44px; cursor:pointer; }
+.rhino-about-dropdown>button .ui-line-icon { width:14px; height:14px; }
+.rhino-about-links { position:absolute; top:100%; right:0; width:170px; padding:.4rem 1rem; background:#1b2833; border:1px solid #ffffff24; border-radius:4px; box-shadow:0 12px 28px #0005; z-index:120; }
+.rhino-primary .rhino-about-links a { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:44px; }
+.rhino-about-links .ui-line-icon { width:16px; height:16px; }
+@media(min-width:801px) and (max-width:1050px) { .rhino-primary { gap:1rem; } }
+
+.rhino-wordmark img { width:176px; height:auto; flex-shrink:0; }
+@media(max-width:800px) { .rhino-wordmark img { width:142px; } }
+@media(max-width:360px) { .rhino-wordmark img { width:122px; } }

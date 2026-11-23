@@ -1,0 +1,230 @@
+{
+  "publication": {
+    "url": "",
+    "name": "LulaZel",
+    "title": "LulaZel — Devzigner, Design & Frontend Development",
+    "description": "Design and development, end to end. LulaZel brings product thinking, interface design and frontend development together for websites and apps. South Africa & remote.",
+    "locale": "en_ZA",
+    "language": "en-ZA",
+    "email": "mkhungela.l@gmail.com",
+    "telephone": "+27837195064",
+    "linkedin": "https://www.linkedin.com/in/lulamile-mkhungela/",
+    "socialImage": "/assets/img/social-card.png?v=34b5cec853",
+    "ownerName": "Lulamile Mkhungela",
+    "socialImageAlt": "LulaZel — Ideas into digital impact. Websites, product design, business systems and practical AI."
+  },
+  "routes": {
+    "/": {
+      "title": "LulaZel — Devzigner, Design & Frontend Development",
+      "description": "Design and development, end to end. LulaZel brings product thinking, interface design and frontend development together for websites and apps. South Africa & remote.",
+      "canonical": "/",
+      "schema": null
+    },
+    "/about": {
+      "title": "About Lulamile Mkhungela | LulaZel",
+      "description": "Meet Lulamile Mkhungela, a South African devzigner combining product design and frontend development to create websites and apps end to end.",
+      "canonical": "/about/",
+      "schema": null
+    },
+    "/contact": {
+      "title": "Let’s Talk | LulaZel",
+      "description": "Discuss your website, product design or business systems project with LulaZel. Send an enquiry, call or connect on WhatsApp.",
+      "canonical": "/contact/",
+      "schema": null
+    },
+    "/portfolio": {
+      "title": "Portfolio | LulaZel",
+      "description": "Explore LulaZel’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.",
+      "canonical": "/portfolio/",
+      "schema": null
+    },
+    "/services": {
+      "title": "My Services | LulaZel",
+      "description": "Product design, websites, ecommerce, business systems, automation, AI and digital marketing services from LulaZel.",
+      "canonical": "/services/",
+      "schema": null
+    },
+    "/privacy": {
+      "title": "Privacy & image rights | LulaZel",
+      "description": "How portfolio enquiries, third-party services, personal information and image rights are handled.",
+      "canonical": "/privacy/",
+      "schema": null
+    },
+    "/tools": {
+      "title": "Tools | LulaZel",
+      "description": "A collection of practical design and development resources.",
+      "noindex": true,
+      "canonical": "/tools/",
+      "schema": null
+    },
+    "/404": {
+      "title": "Page not found | LulaZel",
+      "description": "This page could not be found. Explore services and projects from LulaZel.",
+      "noindex": true,
+      "canonical": "/404/",
+      "schema": null
+    },
+    "/services/web-hosting": {
+      "title": "Web Hosting | LulaZel",
+      "description": "A dependable home for your website or online store.",
+      "canonical": "/services/web-hosting/",
+      "schema": null
+    },
+    "/services/website-design": {
+      "title": "Website Design | LulaZel",
+      "description": "Responsive websites, landing pages and HTML email design with clear customer journeys.",
+      "canonical": "/services/website-design/",
+      "schema": null
+    },
+    "/services/ecommerce": {
+      "title": "Ecommerce | LulaZel",
+      "description": "Online stores with an easy journey from product to checkout.",
+      "canonical": "/services/ecommerce/",
+      "schema": null
+    },
+    "/services/business-systems": {
+      "title": "Business Systems | LulaZel",
+      "description": "Custom tools, portals and dashboards built around your operations.",
+      "canonical": "/services/business-systems/",
+      "schema": null
+    },
+    "/services/workflow-automation": {
+      "title": "Workflow Automation & AI | LulaZel",
+      "description": "Connect your tools and cut repetitive work—with AI where useful.",
+      "canonical": "/services/workflow-automation/",
+      "schema": null
+    },
+    "/services/ai-assistants": {
+      "title": "AI Assistants | LulaZel",
+      "description": "Help customers and teams find answers in your business knowledge.",
+      "canonical": "/services/ai-assistants/",
+      "schema": null
+    },
+    "/services/basic-graphic-design": {
+      "title": "Basic Graphic Design | LulaZel",
+      "description": "Simple, consistent graphics for social, digital and print.",
+      "canonical": "/services/basic-graphic-design/",
+      "schema": null
+    },
+    "/services/seo-and-search": {
+      "title": "SEO & Search | LulaZel",
+      "description": "Help relevant customers discover your business through search.",
+      "canonical": "/services/seo-and-search/",
+      "schema": null
+    },
+    "/services/google-ads": {
+      "title": "Google Ads | LulaZel",
+      "description": "Focused campaigns with clear enquiry or sales goals.",
+      "canonical": "/services/google-ads/",
+      "schema": null
+    },
+    "/product-design-strategy": {
+      "title": "Product Design & Strategy | LulaZel",
+      "description": "Define the right product, then design an experience people can use.",
+      "canonical": "/product-design-strategy/",
+      "schema": null
+    },
+    "/project/nerdma": {
+      "title": "Nerdma | LulaZel",
+      "description": "Website redesign and product dashboards that connect Nerdma’s governance, risk and sustainability offer.",
+      "canonical": "/project/nerdma/",
+      "schema": null
+    },
+    "/project/snb": {
+      "title": "SNB | LulaZel",
+      "description": "Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.",
+      "canonical": "/project/snb/",
+      "schema": null
+    },
+    "/project/foodiezone": {
+      "title": "FoodieZone | LulaZel",
+      "description": "An ordering PWA designed around a local kitchen, a clear menu and an easier path to reorder.",
+      "canonical": "/project/foodiezone/",
+      "schema": null
+    },
+    "/project/sesyme": {
+      "title": "Sesyme | LulaZel",
+      "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
+      "canonical": "/project/sesyme/",
+      "schema": null
+    },
+    "/project/lunianetwork": {
+      "title": "LuniaNetwork | LulaZel",
+      "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because I was no longer updating it.",
+      "canonical": "/project/lunianetwork/",
+      "schema": null
+    },
+    "/project/lulafind": {
+      "title": "LulaFind | LulaZel",
+      "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
+      "canonical": "/project/lulafind/",
+      "schema": null
+    },
+    "/project/prodops": {
+      "title": "ProdOps | LulaZel",
+      "description": "A role-based product workspace connecting business, design, development, quality and delivery.",
+      "canonical": "/project/prodops/",
+      "schema": null
+    },
+    "/project/forma": {
+      "title": "Forma Design System | LulaZel",
+      "description": "A work-in-progress design-to-code system connecting Figma, typed tokens, React, Angular and Storybook.",
+      "canonical": "/project/forma/",
+      "schema": null
+    },
+    "/project/prompt-service-provider-app": {
+      "title": "Service Provider App | LulaZel",
+      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "canonical": "/project/prompt-service-provider-app/",
+      "schema": null
+    },
+    "/project/prompt-finance-homescreen": {
+      "title": "Finance homescreen | LulaZel",
+      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "canonical": "/project/prompt-finance-homescreen/",
+      "schema": null
+    },
+    "/project/prompt-delivery-app": {
+      "title": "Delivery App | LulaZel",
+      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "canonical": "/project/prompt-delivery-app/",
+      "schema": null
+    },
+    "/project/prompt-food-delivery-app-home-screen": {
+      "title": "Food delivery app home screen | LulaZel",
+      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "canonical": "/project/prompt-food-delivery-app-home-screen/",
+      "schema": null
+    },
+    "/project/prompt-oto-e-commerce-website": {
+      "title": "OtO e-commerce website | LulaZel",
+      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "canonical": "/project/prompt-oto-e-commerce-website/",
+      "schema": null
+    },
+    "/project/prompt-fashion-shopping-app-home-screen": {
+      "title": "Fashion shopping app home screen | LulaZel",
+      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "canonical": "/project/prompt-fashion-shopping-app-home-screen/",
+      "schema": null
+    }
+  },
+  "aliases": {
+    "/index.html": "/",
+    "/services.html": "/services",
+    "/work.html": "/portfolio",
+    "/work": "/portfolio",
+    "/about.html": "/about",
+    "/contact.html": "/contact",
+    "/tools.html": "/tools",
+    "/website-design-conversion": "/services/website-design",
+    "/brand-strategy-and-amazon-growth": "/services/ecommerce",
+    "/microfinance-impact-consulting": "/product-design-strategy",
+    "/project/pasio-banking-app": "/portfolio",
+    "/project/field-assist-app": "/portfolio",
+    "/project/elaro-solar-webapp": "/portfolio",
+    "/graphic/pasio-marketing-prints": "/portfolio",
+    "/amazon/culina-craftique": "/portfolio",
+    "/amazon/ELVD-Wellness": "/portfolio"
+  }
+}

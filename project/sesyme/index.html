@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-ZA" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#151f29" />
+  <meta name="color-scheme" content="dark" />
+  <style>/* Authoritative navy/emerald palette. Also inlined in generated HTML so a stale
+   cached stylesheet or stored light-mode preference cannot restore light pages. */
+:root, :root.light, :root.dark {
+  color-scheme: dark !important;
+  --background: 210 32.258% 12.157%; --foreground: 195 33.333% 95.294%;
+  --card: 207.5 30.769% 15.294%; --card-foreground: 195 33.333% 95.294%;
+  --popover: 207.5 30.769% 15.294%; --popover-foreground: 195 33.333% 95.294%;
+  --muted: 207 25% 19%; --muted-foreground: 204 20% 72%;
+  --secondary: 207 25% 19%; --secondary-foreground: 195 33% 95%;
+  --accent: 157 30% 20%; --accent-foreground: 195 33% 95%;
+  --border: 207 20% 27%; --input: 207 20% 27%;
+  --hero-accent: 155.825 100% 40.392%; --ring: 155.825 100% 40.392%;
+  --primary: 155.825 100% 40.392%; --primary-foreground: 155 50% 10%;
+  --destructive: 0 65% 55%; --destructive-foreground: 0 0% 100%;
+}
+html, body, #root { background-color: #151f29; color: #eff5f7; min-height: 100%; }
+
+main { background-color: #151f29; color: #eff5f7; }
+.unified-page, .svc-page, .unified-about-copy { background-color: #151f29; color: #eff5f7; }
+ .unified-page .unified-tool { background-color: #1b2833; }
+
+/* One reference-led surface system, shared by every route and content panel. */
+:root {
+  --site-navy: #151f29;
+  --site-green: #00ce7b;
+  --site-glow: radial-gradient(ellipse at 76% 43%,#12463580 0%,#15332f40 38%,transparent 72%);
+  --site-watermark-stroke: #93c2b512;
+  --site-watermark-size: clamp(7rem,23vw,25rem);
+}
+.studio-panel, .hm-panel, .hm-panel:nth-child(even), .hybrid-hero, .pf-hero,
+.unified-about-hero, .contact-intro, .contact-next, .owner-project-hero,
+.unified-empty-page, article.unified-about-copy {
+  background-color: var(--site-navy);
+  position: relative; isolation: isolate;
+}
+.studio-panel::before, .hm-panel::before, .hybrid-hero::before, .pf-hero::before,
+.unified-about-hero::before, .contact-intro::before, .owner-project-hero::before,
+.unified-empty-page::before, article.unified-about-copy::before {
+  content: ''; position: absolute; inset: 0; width:auto; height:auto;
+  z-index: -1; pointer-events:none; background:var(--site-glow);
+}
+.contact-next { background-image:var(--site-glow); }
+/* Existing text nodes and attribute-based variants share identical rendering. */
+.hm-watermark, .pf-watermark, .hybrid-hero-watermark, .contact-next-watermark,
+[data-background-text]::after {
+  position:absolute; z-index:-1; left:3%; top:auto; bottom:7%;
+  color:transparent; -webkit-text-stroke:1px var(--site-watermark-stroke);
+  font:800 var(--site-watermark-size)/.9 Poppins,system-ui,sans-serif;
+  letter-spacing:-.075em; text-transform:uppercase; white-space:nowrap;
+  pointer-events:none; user-select:none;
+}
+[data-background-text] { position:relative; isolation:isolate; overflow:hidden; }
+[data-background-text]::after { content:attr(data-background-text); }
+/* Keep all hero text on the reference's solid / outlined / emerald rhythm. */
+.hybrid-hero h1, .unified-about-hero h1, .contact-intro h1 {
+  font-family:Poppins,system-ui,sans-serif; text-transform:uppercase;
+  font-weight:800; letter-spacing:-.055em; line-height:1.05;
+}
+.hybrid-outline, .hm-outline, .contact-title-outline {
+  color:transparent; -webkit-text-stroke:1px #deebee;
+}
+.hybrid-green, .hm-green { color:var(--site-green); }
+@media(max-width:800px) {
+  :root { --site-watermark-size:35vw; }
+  .hm-watermark, .pf-watermark, .hybrid-hero-watermark,
+  .contact-next-watermark, [data-background-text]::after { bottom:12%; }
+}
+@media(forced-colors:active) {
+  .hybrid-outline, .hm-outline, .contact-title-outline { color:CanvasText; -webkit-text-stroke:0; }
+  .hm-watermark, .pf-watermark, .hybrid-hero-watermark,
+  .contact-next-watermark, [data-background-text]::after { display:none; }
+}
+body{margin:0}</style>
+  <title data-rh="true">Sesyme | LulaZel</title>
+  <meta data-rh="true" name="description" content="A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience." />
+  <meta data-rh="true" name="robots" content="noindex,follow" />
+  <meta data-rh="true" property="og:type" content="website" />
+  <meta data-rh="true" property="og:locale" content="en_ZA" />
+  <meta data-rh="true" property="og:site_name" content="LulaZel" />
+  <meta data-rh="true" property="og:title" content="Sesyme | LulaZel" />
+  <meta data-rh="true" property="og:description" content="A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience." />
+  <meta data-rh="true" name="twitter:card" content="summary_large_image" />
+  <meta data-rh="true" name="twitter:title" content="Sesyme | LulaZel" />
+  <meta data-rh="true" name="twitter:description" content="A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience." />
+  <link rel="icon" href="/assets/img/favicon.svg?v=00dacd30ce" type="image/svg+xml" />
+  <link rel="icon" href="/assets/img/favicon.png?v=00dacd30ce" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=00dacd30ce" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/assets/fonts/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/site-fe5b796c1b.css" />
+  <script>(function(){var routes={"/index.html":"/","/services.html":"/services","/work.html":"/portfolio","/work":"/portfolio","/about.html":"/about","/contact.html":"/contact","/tools.html":"/tools","/website-design-conversion":"/services/website-design","/brand-strategy-and-amazon-growth":"/services/ecommerce","/microfinance-impact-consulting":"/product-design-strategy","/project/pasio-banking-app":"/portfolio","/project/field-assist-app":"/portfolio","/project/elaro-solar-webapp":"/portfolio","/graphic/pasio-marketing-prints":"/portfolio","/amazon/culina-craftique":"/portfolio","/amazon/ELVD-Wellness":"/portfolio"},projects={"nerdma":"/project/nerdma","snb":"/project/snb","foodiezone":"/project/foodiezone","sesyme":"/project/sesyme","lunianetwork":"/project/lunianetwork","lulafind":"/project/lulafind","prodops":"/project/prodops","forma":"/project/forma","prompt-service-provider-app":"/project/prompt-service-provider-app","prompt-finance-homescreen":"/project/prompt-finance-homescreen","prompt-delivery-app":"/project/prompt-delivery-app","prompt-food-delivery-app-home-screen":"/project/prompt-food-delivery-app-home-screen","prompt-oto-e-commerce-website":"/project/prompt-oto-e-commerce-website","prompt-fashion-shopping-app-home-screen":"/project/prompt-fashion-shopping-app-home-screen"},target=routes[location.pathname]||routes[location.pathname.endsWith('/')?location.pathname.slice(0,-1):location.pathname];if(location.pathname==='/case-study.html'){target=projects[new URLSearchParams(location.search).get('id')]||'/portfolio';history.replaceState(null,'',target+location.hash);}else if(target){history.replaceState(null,'',target+location.search+location.hash);}})();</script>
+  <script type="module" src="/assets/js/site-app.js?v=fe5b796c1b"></script>
+  <script type="module" src="/assets/js/site-behaviour-b3d718f763.js"></script>
+</head>
+<body>
+  <div id="root"><header class="rhino-header"><a href="#main" class="rhino-skip">Skip to content</a><div class="rhino-header-main"><a href="/" class="rhino-wordmark" aria-label="LulaZel — Home"><img src="/assets/img/logo.svg?v=abstract-1" alt="LulaZel" width="248" height="80" fetchpriority="high"></a><nav class="rhino-primary" aria-label="Main navigation"><a href="/" class="">Home</a><a href="/services" class="">My Services</a><a href="/portfolio" class="is-active" aria-current="page">Portfolio</a><div class="rhino-about-dropdown"><a href="/about" class="">About</a><button type="button" aria-label="About and contact links" aria-controls="rhino-about-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div></nav><div class="rhino-header-actions"><a href="/services" class="rhino-mobile-services">My Services</a><a href="https://wa.me/27837195064" target="_blank" rel="noopener noreferrer" class="rhino-contact" aria-label="Let’s talk on WhatsApp — +27 83 719 5064"><span class="rhino-contact-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.8 7.3L3 20l1.2-4.5a8.5 8.5 0 1 1 16.3-4z"></path><path d="M8 7c-1 3 2 7 6 8l2-2-3-1-1 1-2-2 1-1-1-3H8z"></path></svg></span><span class="rhino-contact-copy"><span class="rhino-contact-eyebrow">Have an idea?</span><strong>Let’s talk</strong><span class="rhino-contact-channel">On WhatsApp</span></span></a><button type="button" class="rhino-menu-button" aria-label="Open navigation" aria-controls="rhino-mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button></div></div><nav class="hybrid-service-nav" aria-label="Explore services"><div class="hybrid-service-nav-inner"><a href="/services/web-hosting" class="">Web Hosting</a><a href="/services/website-design" class="">Website Design</a><a href="/services/ecommerce" class="">Ecommerce</a><a href="/services/business-systems" class="">Business Systems</a><a href="/services/workflow-automation" class="">Workflow Automation &amp; AI</a><a href="/services/ai-assistants" class="">AI Assistants</a><a href="/services/basic-graphic-design" class="">Basic Graphic Design</a><a href="/services/seo-and-search" class="">SEO &amp; Search</a><a href="/services/google-ads" class="">Google Ads</a><a href="/product-design-strategy" class="">Product Design &amp; Strategy</a></div></nav></header><main id="main" class="owner-project"><section class="owner-project-hero" data-background-text="SESYME"><div class="unified-container"><a href="/portfolio?filter=apps#portfolio-category-apps" class="owner-project-back">← Back to portfolio</a><p class="hybrid-eyebrow">Project overview</p><h1>Sesyme</h1><p class="owner-project-tagline">Learning, in your pocket.</p><p class="owner-project-intro">A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.</p><dl class="owner-project-meta"><div><dt>Role</dt><dd>UI/UX &amp; Android development</dd></div><div><dt>Context</dt><dd>Sesyme · Employment project · 2019</dd></div><div><dt>Status</dt><dd>Previous work</dd></div></dl><figure class="owner-project-cover is-contain"><img src="/assets/img/portfolio/sesyme.jpeg" alt="Sesyme project preview" fetchpriority="high"><figcaption>Original project material. See the notes below for context.</figcaption></figure></div></section><div class="unified-container owner-project-content"><section class="owner-project-section"><div><p class="hybrid-eyebrow">01 / Project notes</p><h2>Work project · 2019</h2></div><div><p>I created this app while working at Sesyme in 2019. It is a co-learning platform for university students, combining question-and-answer learning with a digital reading experience.</p></div></section><section class="owner-project-section"><div><p class="hybrid-eyebrow">02 / Project notes</p><h2>Historical project</h2></div><div><p>This page documents work from that role. The original imagery is retained as historical project material; no current app download or store availability is claimed.</p></div></section><a href="/portfolio?filter=apps#portfolio-category-apps" class="owner-project-back">← All projects</a></div></main><footer class="unified-footer"><div class="unified-container"><div class="unified-footer-top"><div><p class="hybrid-eyebrow">Have something in mind?</p><h2>Let’s make it <span>work.</span></h2></div><div class="footer-contact-icons" role="group" aria-label="Ways to connect"><a href="https://www.linkedin.com/in/lulamile-mkhungela/" class="footer-contact-icon" aria-label="Connect with Lulamile on LinkedIn" title="Connect with Lulamile on LinkedIn" target="_blank" rel="noopener noreferrer"><span class="footer-icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M4 9h4v12H4zM6 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4M12 21V9h4v2c1-3 6-3 6 2v8h-4v-7c0-3-2-3-2 0v7"></path></svg></span><span class="footer-icon-label">LinkedIn</span></a><a href="tel:+27837195064" class="footer-contact-icon" aria-label="Call +27 83 719 5064" title="Call +27 83 719 5064"><span class="footer-icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M6 3 3 5c0 8 6 14 14 16l4-4-5-3-2 2c-3-1-5-3-6-6l2-2-4-5z"></path></svg></span><span class="footer-icon-label">Call</span></a><a href="mailto:mkhungela.l@gmail.com" class="footer-contact-icon" aria-label="Email mkhungela.l@gmail.com" title="Email mkhungela.l@gmail.com"><span class="footer-icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M3 5h18v14H3zM3 6l9 7 9-7"></path></svg></span><span class="footer-icon-label">Email</span></a><a href="https://calendly.com/lulamile_m/meet-lulamile?month=2026-11" class="footer-contact-icon" aria-label="Meeting — book a meeting with Lulamile" title="Meeting — book a meeting with Lulamile" target="_blank" rel="noopener noreferrer"><span class="footer-icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M4 5h16v16H4zM8 3v4M16 3v4M4 10h16M8 14h2M14 14h2M8 17h2"></path></svg></span><span class="footer-icon-label">Meeting</span></a><button type="button" class="footer-contact-icon" aria-label="Enquiry — open enquiry form" title="Send an enquiry" aria-haspopup="dialog" aria-controls="footer-enquiry"><span class="footer-icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="M5 3h10l4 4v14H5zM14 3v5h5M8 12h8M8 16h5"></path></svg></span><span class="footer-icon-label">Enquiry</span></button></div></div><div class="unified-footer-bottom"><p>© 2026 LulaZel · by Lulamile M · South Africa</p><a href="/privacy" class="footer-privacy">Privacy &amp; image rights</a><nav aria-label="Footer"><a href="/services">My Services</a><a href="/portfolio">Portfolio</a><a href="/about">About</a></nav></div></div><dialog id="footer-enquiry" class="enquiry-dialog" aria-labelledby="enquiry-title" aria-describedby="enquiry-description"><div class="enquiry-dialog-heading"><p class="hybrid-eyebrow">A good place to start</p><button type="button" class="enquiry-close" aria-label="Close enquiry form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="m5 5 14 14M19 5 5 19"></path></svg></button></div><h2 id="enquiry-title">Let’s make it work.</h2><p id="enquiry-description">Tell me a little about your idea. I’ll take it from there.</p><form action="https://formspree.io/f/xvkgqalq" method="POST" class="unified-contact-form enquiry-form"><input type="hidden" name="_subject" value="New website enquiry — LulaZel"><div hidden aria-hidden="true"><label>Leave this empty<input name="_gotcha" tabindex="-1" autocomplete="off"></label></div><div class="enquiry-fields"><label>Your name<input name="name" required autocomplete="name" placeholder="Your name" maxlength="100"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@business.com" maxlength="200"></label></div><label>Phone number (optional)<input name="phone" type="tel" autocomplete="tel" placeholder="+27" maxlength="40"></label><label>I’m interested in<select name="service" value=""><option value="">Let’s work it out together</option><option value="Web Hosting">Web Hosting</option><option value="Website Design">Website Design</option><option value="Ecommerce">Ecommerce</option><option value="Business Systems">Business Systems</option><option value="Workflow Automation &amp; AI">Workflow Automation &amp; AI</option><option value="AI Assistants">AI Assistants</option><option value="Basic Graphic Design">Basic Graphic Design</option><option value="SEO &amp; Search">SEO &amp; Search</option><option value="Google Ads">Google Ads</option><option value="Product Design &amp; Strategy">Product Design &amp; Strategy</option></select></label><label>What do you have in mind?<textarea name="message" required rows="4" placeholder="Your idea, goals and rough timeline…" maxlength="5000"></textarea></label><p class="unified-form-note">Your details and message are sent via Formspree so I can respond to your enquiry. <a href="/privacy">Privacy notice</a></p><p class="enquiry-status" role="status" aria-live="polite"></p><button type="submit" class="hybrid-button">Send enquiry<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="ui-line-icon " aria-hidden="true"><path d="m3 3 18 9-18 9 4-9-4-9zM7 12h14"></path></svg></button></form></dialog></footer></div>
+  <noscript><p>JavaScript enables filtering, navigation menus and inline enquiry feedback. You can still browse the links, submit an enquiry or <a href="mailto:mkhungela.l@gmail.com">email LulaZel</a>.</p></noscript>
+</body>
+</html>
