@@ -68,7 +68,8 @@
     "href": "https://addmoredigital.co.za/",
     "image": "/assets/img/portfolio/addmoredigital.webp",
     "actionLabel": "Visit website",
-    "previewScroll": true
+    "previewScroll": true,
+    "status": "Work project"
   },
   {
     "id": "snb",
@@ -83,7 +84,7 @@
     "href": "/project/snb",
     "image": "/assets/img/portfolio/snb.webp",
     "year": "2019",
-    "status": "Client project",
+    "status": "Work project",
     "details": {
       "role": "UI/UX & Web Designer · Sesyme & SmartServe",
       "context": "SnB Chartered Accountants & Auditors",
@@ -492,7 +493,8 @@
     "href": "https://6aeb486eccc5e1d03000a127--designopss.netlify.app/",
     "image": "/assets/img/portfolio/designops.webp",
     "actionLabel": "Open demo",
-    "previewScroll": true
+    "previewScroll": true,
+    "status": "Personal project"
   },
   {
     "id": "financial-inclusion-hackathon",
@@ -707,8 +709,8 @@
   },
   {
     "id": "prompt-halfman-design-app-home-screen-flow",
-    "client": "HalfMan Design App Home screen flow",
-    "title": "HalfMan Design App Home screen flow",
+    "client": "Design App Home screen flow",
+    "title": "Design App Home screen flow",
     "description": "Premium design resource. R220 · Prompt + Figma file. Explore the listing in my shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
@@ -859,8 +861,7 @@
     "featured": true,
     "homeOrder": 4,
     "imageAlt": "Delivery App comparison: Claude, ChatGPT and Figma Make parcel-tracking home screens",
-    "imageFit": "contain",
-    "projectLabel": "Mobile app AI prompt"
+    "imageFit": "contain"
   },
   {
     "id": "prompt-food-delivery-app-home-screen",

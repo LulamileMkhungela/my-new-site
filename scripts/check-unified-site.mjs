@@ -137,7 +137,10 @@ for(const id of ['nerdma','foodiezone','lulagazette']){
 }
 const delivery=projects.find(project=>project.id==='prompt-delivery-app');
 assert.equal(projects.find(project=>project.id==='lulagazette').projectLabel,'Personal Web project');
-assert.equal(delivery.projectLabel,'Mobile app AI prompt');
+assert.equal(delivery.projectLabel,undefined);
+for(const [id,label] of [['designops','Personal project'],['addmoredigital','Work project'],['snb','Work project']])assert.equal(projects.find(project=>project.id===id).status,label);
+const designPrompt=projects.find(project=>project.id==='prompt-halfman-design-app-home-screen-flow');
+assert.equal(designPrompt.client,'Design App Home screen flow');assert.equal(designPrompt.title,designPrompt.client);assert.equal(designPrompt.href,'https://selar.com/m/le-loux');
 assert.equal(delivery.client,'Delivery App');assert.ok(delivery.details.prompt.includes('Track your parcel'));
 assert.ok(delivery.details.prompt.includes('Johannesburg to Durban'));assert.equal(delivery.image,'/assets/img/portfolio/prompt-delivery-app.jpg');
 

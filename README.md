@@ -394,10 +394,10 @@ and app details, rather than occupying a separate action row. Home previews use 
 without stretching: app art retains its proportions and website captures crop
 or pan naturally. Five-across desktop/horizontal mobile layouts are preserved.
 
-Home/Portfolio also show the project labels **Personal Web project** under
-LulaGazette and **Mobile app AI prompt** under Delivery App. These labels are
-separate from release status and do not imply the AI exploration is a shipped
-mobile app.
+Home/Portfolio show **Personal Web project** under LulaGazette; Delivery App
+has no extra project label. DesignOps is **Personal project**; AddmoreDigital
+and SNB are **Work project**. The premium design-app prompt is named
+**Design App Home screen flow**, retaining its Selar destination.
 
 `check-app-downloads-browser.mjs` checks exact APK destinations/status, absence
 of ZIP/review confusion, genuinely disabled store controls on current apps, historical descriptions,

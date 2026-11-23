@@ -15,7 +15,7 @@ try{
   const section=page.locator('#home-portfolio'),cards=section.locator('.pf-card');
   assert.deepEqual(await cards.evaluateAll(els=>els.map(el=>el.dataset.project)),ids);
   assert.equal(await section.locator('[data-project="lulagazette"] .pf-card-status').textContent(),'Personal Web project');
-  assert.equal(await section.locator('[data-project="prompt-delivery-app"] .pf-card-status').textContent(),'Mobile app AI prompt');
+  assert.equal(await section.locator('[data-project="prompt-delivery-app"] .pf-card-status').count(),0);
   assert.equal(await section.locator('[data-project="ai-lifeos"] .pf-store-links button:disabled').count(),2);
   await page.waitForFunction(()=>document.querySelector('.hm-chapter-rail a[aria-current="location"]')?.getAttribute('href')==='#home-portfolio');
   const layout=await section.locator('.hm-project-previews').evaluate(el=>{
