@@ -1020,7 +1020,7 @@ main { background-color: #151f29; color: #eff5f7; }
 :is(.hybrid-button,.svc-button,.hm-link-primary,.rhino-contact,.site-back-to-top):focus-visible {
  transform:translateY(-2px); box-shadow:0 8px 22px #00ce7b20;
 }
-:is(.pf-card,.unified-tool):focus-visible,
+.unified-tool:focus-visible,
 :is(.hm-testimonial-card,.unified-tool):focus-within { border-color:#00ce7b90; box-shadow:0 12px 28px #06121a55; }
 :is(input,select,textarea) { transition:border-color var(--motion-fast),box-shadow var(--motion-fast); }
 :is(input,select,textarea):focus-visible { box-shadow:0 0 0 3px #00ce7b22; }
@@ -1031,10 +1031,7 @@ main { background-color: #151f29; color: #eff5f7; }
  .rhino-contact:hover .rhino-contact-symbol .ui-line-icon { transform:rotate(-8deg) scale(1.06); }
  .site-back-to-top:hover .ui-line-icon { transform:translateY(-3px); }
  :is(.rhino-primary,.hybrid-service-nav,.unified-footer-bottom) a:hover::after { transform:scaleX(1); }
- :is(.pf-card):not(.pf-card-static):hover,
  :is(.unified-tool,.hm-process-card,.hm-testimonial-card):hover { transform:translateY(-5px); border-color:#00ce7b70; box-shadow:0 15px 32px #06121a66; }
- .pf-card:not(.pf-card-static):hover .pf-card-art img { transform:scale(1.04); }
- .pf-card-static:hover .pf-card-art img { transform:none; }
  .hm-visual:hover .hm-vector-art,.contact-art:hover img,.contact-next-visual:hover img { transform:translateY(-6px) rotate(-1deg) scale(1.015); }
  .unified-about-grid>img:hover { transform:scale(1.015); }
  .footer-contact-icon:hover .footer-icon-frame { transform:translateY(-4px); box-shadow:0 7px 20px #00ce7b15; }
@@ -1137,14 +1134,7 @@ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.studio-service-row
  border-radius:8px;
 }
 body .studio-service-row { margin-bottom:.75rem; padding:1rem; }
-/* Project images keep their exact row dimensions and screenshot scrolling. */
-body :is(.pf-page,.pf-featured) .pf-card .pf-card-art {
- border:0;
- outline:1px solid #aacbbc38;
- outline-offset:-1px;
- border-radius:5px;
- box-shadow:inset 0 1px 0 #ffffff20,0 4px 0 #0a1b20,0 9px 16px #00000030;
-}
+/* Project thumbnails stay flat; only action controls retain tactile depth. */
 body :is(.pf-page,.pf-featured) .pf-card .pf-action-bar { margin-bottom:5px; }
 body :is(.pf-page,.pf-featured) .pf-card .pf-action-unavailable {
  background-image:linear-gradient(145deg,#30464c,#1b2e35);
@@ -1280,10 +1270,10 @@ body .rhino-header .hybrid-service-nav-inner { scroll-padding-inline:1.5rem; }
 body .rhino-header .hybrid-service-nav-inner>a:last-child { margin-inline-end:.75rem; }
 body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-padding-inline:.4rem; }
 body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
-/* Real inner gutters protect glass cards; track padding protects raised edges. */
+/* Page/track gutters frame open project previews; controls own their padding. */
 body :is(.pf-page,.pf-featured) .pf-grid { padding:.5rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
-body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:12px; }
-body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:8px; }
+body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:0 0 8px; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:0; }
 body :is(.pf-page,.pf-featured) .pf-card-link { flex:1; min-width:0; }
 body :is(.pf-page,.pf-featured) .pf-card-art { flex-shrink:0; }
 body :is(.pf-page,.pf-featured) .pf-card-info { padding-block:1rem; }
@@ -1370,7 +1360,6 @@ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.conta
  box-shadow:var(--glass-shine),var(--glass-shadow);
 }
 body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
-body :is(.pf-page,.pf-featured) .pf-card,
 body .contact-direct a,
 body .contact-steps article {
  background:linear-gradient(135deg,#c8ffe80a,#ffffff02 60%,#7db8e708),#1b2b36;
@@ -1378,9 +1367,13 @@ body .contact-steps article {
  border-radius:14px;
  box-shadow:var(--glass-shine),0 10px 26px #020c1424;
 }
-/* Inset outlines do not change five-across Portfolio sizing or text wrapping. */
-body :is(.pf-page,.pf-featured) .pf-card { outline:1px solid var(--glass-line); outline-offset:-1px; overflow:hidden; }
-body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:8px; }
+/* Projects are open thumbnails + captions/actions, never frosted containers. */
+body :is(.pf-page,.pf-featured) .pf-card {
+ background:none; border:0; border-radius:0; box-shadow:none; outline:0; overflow:visible;
+}
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art {
+ border:0; border-radius:0; outline:0; box-shadow:none;
+}
 body .owner-project-meta { padding-inline:1rem; }
 body .owner-project-section { padding-inline:1rem; }
 body .contact-steps article { padding:1.15rem; }
@@ -1440,8 +1433,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
   backdrop-filter:blur(var(--glass-blur)) saturate(125%);
  }
  body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
- body :is(.pf-page,.pf-featured) .pf-card,
- body .contact-direct a,
+  body .contact-direct a,
  body .contact-steps article {
   background-color:rgb(25 43 54 / var(--glass-alpha));
   -webkit-backdrop-filter:blur(var(--glass-blur));
@@ -1449,8 +1441,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
  }
 }
 @media(hover:hover) and (pointer:fine) {
- body :is(.hm-process-card,.hm-testimonial-card,.unified-tool):hover,
- body :is(.pf-page,.pf-featured) .pf-card:hover { border-color:#8bf1c65c; box-shadow:var(--glass-shine),0 15px 36px #020c1440; }
+ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool):hover { border-color:#8bf1c65c; box-shadow:var(--glass-shine),0 15px 36px #020c1440; }
  body .contact-direct a:hover { background-color:#214b40; }
  body .site-back-to-top:hover { background-color:#245b47; color:#effff6; }
 }
@@ -1466,7 +1457,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
  :root { --glass-blur:0px; --glass-alpha:1; --glass-panel-alpha:1; }
  body .rhino-header,
  body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog,.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
- body :is(.pf-page,.pf-featured) .pf-card,body .contact-direct a,body .contact-steps article,
+ body .contact-direct a,body .contact-steps article,
  body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
   -webkit-backdrop-filter:none; backdrop-filter:none; background-color:#1b2b36;
  }
@@ -1474,8 +1465,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
 @media(forced-colors:active) {
  body .rhino-header,body .unified-footer,
  body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog,.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls,.contact-direct a,.contact-steps article),
- body :is(.pf-page,.pf-featured) .pf-card,
- body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+  body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
   background:Canvas; color:CanvasText; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; border-color:CanvasText;
  }
 }

@@ -279,17 +279,21 @@ Existing Home 08/09 wording, personal-name limits and supplied testimonials stay
 unchanged. The Home browser suite also guards unboxed copy, page gutters and
 transparent active-number treatment at every tested width, with/without JS.
 
-### Portfolio card spacing
+### Open project previews and spacing
 
-Portfolio cards have 12px inner gutters around images, actions and captions,
-44px minimum actions below the project name/details, a clear details-to-action
-gap, and a protected bottom inset.
-Names wrap instead of being truncated against the glass border. Cards stretch
-to equal heights within each horizontal row; the existing five-visible desktop
-layout and mobile horizontal browsing remain. Tracks have 4px edge clearance
-for card outlines, and copy feedback/manual fallback stay inside their card.
-Preview-pan distance uses the actual inset frame's fractional dimensions so
-full-page screenshots still align correctly at the end of their hover pan.
+Home and Portfolio project previews intentionally have **no outer card**:
+transparent background, no border/outline, no shadow, no rounding, and no frosted
+backdrop. Rectangular thumbnails, wrapping names/details and actions sit directly
+on the navy page. Shared page gutters and 4px track clearance keep the gallery
+away from viewport edges; 1rem details padding, 44px actions and bottom clearance
+keep the content comfortable without inventing a box around it. Hover does not
+restore a card shell. Testimonial cards and other requested glass surfaces stay.
+
+Project columns stretch to equal heights within each horizontal row; the existing
+five-visible desktop layout and mobile horizontal browsing remain. Copy feedback
+and selectable fallback stay within their project column. Preview-pan distance
+uses the actual frame's fractional dimensions so full-page screenshots still
+align correctly at the end of their hover pan.
 
 `check-portfolio-spacing-browser.mjs` checks every category/card at
 320/390/768/1024/1120/1440px with JavaScript on and off: inner/outer gutters,
@@ -321,3 +325,14 @@ mobile scrolling, spacing/action order, correct destinations, Coming soon,
 inline prompt copy and Nerdma navigation at 320/390/768/1024/1440px. The static,
 Portfolio spacing/browse/detail, prompt-card and Home chapter suites cover the
 shared component and navigation regressions.
+
+### Current scroll behavior
+
+Scrolling remains browser-native (wheel, touch and keyboard), with visible
+chapter links, scroll-driven active numbering/progress, and progressive chapter
+entrances. No full-page snapping or wheel interception was added in the project
+unboxing pass. Digital Rhino's exact scroll easing, timing and transition
+behavior has not been verified or claimed as an exact match. Still screenshots
+establish visual layout, not motion timing. Reduced-motion and no-JS fallbacks
+remain supported. The Home/Portfolio suites now assert transparent, borderless,
+shadow-free project columns in addition to geometry/actions/navigation.

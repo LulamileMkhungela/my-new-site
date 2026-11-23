@@ -37,10 +37,10 @@ body .rhino-header .hybrid-service-nav-inner { scroll-padding-inline:1.5rem; }
 body .rhino-header .hybrid-service-nav-inner>a:last-child { margin-inline-end:.75rem; }
 body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-padding-inline:.4rem; }
 body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
-/* Real inner gutters protect glass cards; track padding protects raised edges. */
+/* Page/track gutters frame open project previews; controls own their padding. */
 body :is(.pf-page,.pf-featured) .pf-grid { padding:.5rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
-body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:12px; }
-body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:8px; }
+body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:0 0 8px; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:0; }
 body :is(.pf-page,.pf-featured) .pf-card-link { flex:1; min-width:0; }
 body :is(.pf-page,.pf-featured) .pf-card-art { flex-shrink:0; }
 body :is(.pf-page,.pf-featured) .pf-card-info { padding-block:1rem; }

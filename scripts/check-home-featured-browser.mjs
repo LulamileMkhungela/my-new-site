@@ -18,11 +18,12 @@ try{
   const layout=await section.locator('.hm-project-previews').evaluate(el=>{
    const r=el.getBoundingClientRect(),cards=[...el.children].map(card=>{
     const b=card.getBoundingClientRect(),img=card.querySelector('.pf-card-art').getBoundingClientRect(),info=card.querySelector('.pf-card-info').getBoundingClientRect(),action=card.querySelector('.pf-action-bar,.pf-copy-prompt').getBoundingClientRect();
-    return{left:b.left,right:b.right,top:b.top,padding:img.left-b.left,imageBottom:img.bottom,infoTop:info.top,infoBottom:info.bottom,actionTop:action.top,actionBottom:action.bottom,bottom:b.bottom};
+    const style=getComputedStyle(card);
+    return{background:style.backgroundColor,shadow:style.boxShadow,border:style.borderTopWidth,radius:style.borderRadius,left:b.left,right:b.right,top:b.top,padding:img.left-b.left,imageBottom:img.bottom,infoTop:info.top,infoBottom:info.bottom,actionTop:action.top,actionBottom:action.bottom,bottom:b.bottom};
    });return{left:r.left,right:innerWidth-r.right,visible:cards.filter(c=>c.left>=r.left-1&&c.right<=r.right+1).length,cards};
   });
   assert.ok(layout.left>=23&&layout.right>=23);
-  for(const card of layout.cards){assert.ok(card.padding>=11.5);assert.ok(card.infoTop>=card.imageBottom-.5&&card.actionTop>=card.infoBottom-.5);assert.ok(card.bottom-card.actionBottom>=11.5);assert.ok(Math.abs(card.top-layout.cards[0].top)<1);}
+  for(const card of layout.cards){assert.ok(Math.abs(card.padding)<.5);assert.equal(card.background,'rgba(0, 0, 0, 0)');assert.equal(card.shadow,'none');assert.equal(card.border,'0px');assert.equal(card.radius,'0px');assert.ok(card.infoTop>=card.imageBottom-.5&&card.actionTop>=card.infoBottom-.5);assert.ok(card.bottom-card.actionBottom>=7.5);assert.ok(Math.abs(card.top-layout.cards[0].top)<1);}
   if(width>900)assert.equal(layout.visible,5);else assert.ok(layout.visible>=1);
   assert.equal(await section.locator('[data-project="ai-lifeos"] a,[data-project="ai-lifeos"] button').count(),0);
   assert.equal(await section.locator('[data-project="ai-lifeos"] .pf-action-unavailable').textContent(),'Coming soon');

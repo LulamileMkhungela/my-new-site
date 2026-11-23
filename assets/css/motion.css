@@ -27,7 +27,7 @@
 :is(.hybrid-button,.svc-button,.hm-link-primary,.rhino-contact,.site-back-to-top):focus-visible {
  transform:translateY(-2px); box-shadow:0 8px 22px #00ce7b20;
 }
-:is(.pf-card,.unified-tool):focus-visible,
+.unified-tool:focus-visible,
 :is(.hm-testimonial-card,.unified-tool):focus-within { border-color:#00ce7b90; box-shadow:0 12px 28px #06121a55; }
 :is(input,select,textarea) { transition:border-color var(--motion-fast),box-shadow var(--motion-fast); }
 :is(input,select,textarea):focus-visible { box-shadow:0 0 0 3px #00ce7b22; }
@@ -38,10 +38,7 @@
  .rhino-contact:hover .rhino-contact-symbol .ui-line-icon { transform:rotate(-8deg) scale(1.06); }
  .site-back-to-top:hover .ui-line-icon { transform:translateY(-3px); }
  :is(.rhino-primary,.hybrid-service-nav,.unified-footer-bottom) a:hover::after { transform:scaleX(1); }
- :is(.pf-card):not(.pf-card-static):hover,
  :is(.unified-tool,.hm-process-card,.hm-testimonial-card):hover { transform:translateY(-5px); border-color:#00ce7b70; box-shadow:0 15px 32px #06121a66; }
- .pf-card:not(.pf-card-static):hover .pf-card-art img { transform:scale(1.04); }
- .pf-card-static:hover .pf-card-art img { transform:none; }
  .hm-visual:hover .hm-vector-art,.contact-art:hover img,.contact-next-visual:hover img { transform:translateY(-6px) rotate(-1deg) scale(1.015); }
  .unified-about-grid>img:hover { transform:scale(1.015); }
  .footer-contact-icon:hover .footer-icon-frame { transform:translateY(-4px); box-shadow:0 7px 20px #00ce7b15; }
