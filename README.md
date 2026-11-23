@@ -383,7 +383,9 @@ and LuniaNetwork (personal app published in 2019, removed from Google Play in
 2024 because it was no longer being updated) show their descriptions and overview links instead of store placeholders.
 
 All six app cards include short factual product descriptions, including unreleased
-projects, so their information areas are not empty.
+projects, so their information areas are not empty. Card summaries use equal-height
+three-line slots with overflow clamped; complete descriptions remain in accessible
+project copy and on available detail pages.
 
 Coming soon is a small corner badge on the whole-project border, freeing the
 bottom row for compact 44px store controls. APK downloads (and OneScreen’s

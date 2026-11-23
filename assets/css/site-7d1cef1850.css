@@ -672,7 +672,13 @@ body :is(.pf-page,.pf-featured) .pf-card .pf-release-badge {
  background:#152c2a; color:#a6e2c7; border:1px solid #74c5a46b; border-radius:3px;
  box-shadow:none; font:600 .52rem/1.5 Poppins,sans-serif; letter-spacing:.05em; text-transform:uppercase;
 }
+/* Equal three-line summary slots keep app/web cards aligned. Full copy stays
+   in the accessible project description and on the project detail page. */
 .pf-history-description { font-size:.65rem; line-height:1.8; color:#b5c9ce; margin:.65rem 0 0; }
+.pf-card :is(.pf-history-description,.pf-card-description) {
+ display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3;
+ line-clamp:3; overflow:hidden; min-height:5.4em; max-height:5.4em; line-height:1.8;
+}
 /* Taller Home windows preserve proportions: fit app concepts, crop short web covers,
    and retain natural-height panning for genuinely tall website captures. */
 .pf-featured .pf-card .pf-card-art { aspect-ratio:4/3; }

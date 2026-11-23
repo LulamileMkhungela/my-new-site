@@ -17,6 +17,9 @@ for(const javaScriptEnabled of[true,false]){
     const card=page.locator('.pf-card[data-project="'+project.id+'"]');
     assert.equal(await card.locator('.pf-history-description').textContent(),project.cardDescription);
     assert.equal(await card.locator('.pf-history-description').evaluate(el=>{const r=el.getBoundingClientRect(),c=el.closest('.pf-card').getBoundingClientRect();return r.left>=c.left+12&&r.right<=c.right-12&&el.scrollWidth<=el.clientWidth+1;}),true,project.id+' description fits');
+    const summary=await card.locator('.pf-history-description').evaluate(el=>{const style=getComputedStyle(el);return{height:el.getBoundingClientRect().height,line:parseFloat(style.lineHeight),clamp:style.webkitLineClamp,overflow:style.overflow};});
+    assert.equal(summary.clamp,'3');assert.equal(summary.overflow,'hidden');
+    assert.ok(Math.abs(summary.height-summary.line*3)<1,project.id+' reserves exactly three description lines');
     if(!project.historical)for(const store of['App Store','Google Play']){
      const control=card.getByRole('button',{name:store+' — '+project.client+' (link not added yet)',exact:true});
      assert.equal(await control.isDisabled(),true);assert.equal(await control.locator('svg').count(),1);assert.equal(await control.getAttribute('href'),null);
