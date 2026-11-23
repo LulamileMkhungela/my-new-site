@@ -197,3 +197,22 @@ versions to reduce stale caches. Social platforms choose whether/how to display
 previews and can cache older results. A public URL and external crawler access
 are necessary for real WhatsApp/LinkedIn/social preview verification; local
 metadata tests do not prove a live crawler has refreshed its cache.
+
+## Site-wide glass surfaces
+
+`assets/css/glass.css` is the final material layer, composed after spacing and
+dimensional rules. Sticky navigation, menus, chapter-copy sheets, cards, contact
+actions, long-form content, scene controls, footer and enquiry dialog share navy
+glass, emerald highlights and soft inset edges. Decorative copy sheets are
+pointer-transparent pseudo-elements: they neither resize text nor intercept
+links. Images/canvas, logo artwork and text itself are not blurred. Portfolio
+row dimensions, About's flat chevron and scroll-dependent Back to top are retained.
+
+Blur is restricted to bounded surfaces (18px desktop, 10px mobile), with no
+animated filters or page-sized fixed blur layers. Opaque navy fallbacks remain
+readable without backdrop-filter; reduced-transparency and forced-colours
+preferences remove blur and supply solid surfaces. Reduced motion remains static.
+`check-glass-browser.mjs` checks all 31 routes at 320px/1440px, plus five visible
+Portfolio cards, Contact dialog/navigation, unfiltered text, intact branding and
+the reduced-transparency fallback. Automated axe checks do not replace manual
+assistive-technology and real-device testing.

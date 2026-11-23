@@ -7,7 +7,7 @@ const page=await browser.newPage({viewport:{width:1440,height:1000}});
 page.on('pageerror',e=>errors.push(e.message));
 await page.route('**/*',r=>r.request().url().startsWith(root)?r.continue():r.abort());
 const cases={'/':'studio','/services/':'web-services','/services/web-hosting/':'hosting-service','/services/website-design/':'website-design','/services/ecommerce/':'commerce-service','/services/business-systems/':'system-service','/services/workflow-automation/':'workflow-service','/services/ai-assistants/':'assistant-service','/services/basic-graphic-design/':'graphic-service','/services/seo-and-search/':'search','/services/google-ads/':'advertising','/product-design-strategy/':'strategy','/portfolio/':'portfolio','/tools/':'toolkit'};
-for(const[route,kind]of Object.entries(cases)){
+for(const[route,kind]of Object.entries(cases).filter(([route])=>!process.env.SCENE_ROUTES||process.env.SCENE_ROUTES.split(',').includes(route))){
  await page.goto(root+route,{waitUntil:'load'});
  const shell=page.locator(`.scene-shell[data-scene='${kind}'][data-state=ready]`).first();await shell.waitFor();await page.waitForFunction(k=>document.querySelector(`.scene-shell[data-scene='${k}']`)?.dataset.rotation!==undefined,kind);
  const canvas=shell.locator('canvas');assert.ok((await canvas.boundingBox()).width>200);

@@ -50,8 +50,8 @@ const declarations=Object.entries(renderData).map(([name,value])=>'const '+name+
 const result=await build({stdin:{contents:declarations+'\n'+pageSource+'\n'+read('assets/js/app.source.js'),resolveDir:path.join(root,'assets/js'),sourcefile:'app.entry.js'},bundle:true,write:false,format:'esm',target:'es2020',minify:true,legalComments:'eof',define:{'process.env.NODE_ENV':'"production"'}});
 const bundle=result.outputFiles[0].text;
 write('assets/js/site-app.js',bundle);
-const cssSources=['foundation','services','hybrid','navigation','pages','portfolio','home','studio','theme','motion','dimensional','spacing'].map(name=>read('assets/css/'+name+'.css')).join('\n');
-const [{css}]=await new PurgeCSS().purge({content:[{raw:pageSource+read('assets/js/site-behaviour.js')+read('assets/js/interactive-scenes.source.js')+JSON.stringify(renderData),extension:'js'}],css:[{raw:cssSources}],safelist:{standard:[/^scene-/,/^hm-visual-/,/^studio-visual-/,/^is-/,/^motion-/,/^pf-card-/,/^dark$/,/^light$/]}});
+const cssSources=['foundation','services','hybrid','navigation','pages','portfolio','home','studio','theme','motion','dimensional','spacing','glass'].map(name=>read('assets/css/'+name+'.css')).join('\n');
+const [{css}]=await new PurgeCSS().purge({dynamicAttributes:['data-scrollable'],content:[{raw:pageSource+read('assets/js/site-behaviour.js')+read('assets/js/interactive-scenes.source.js')+JSON.stringify(renderData),extension:'js'}],css:[{raw:cssSources}],safelist:{standard:[/^scene-/,/^hm-visual-/,/^studio-visual-/,/^is-/,/^motion-/,/^pf-card-/,/^dark$/,/^light$/]}});
 const sceneFiles=fs.readdirSync(path.join(root,'assets/js')).filter(file=>/^interactive-scenes-[a-f0-9]{10}\.js$/.test(file));
 if(sceneFiles.length!==1)throw new Error('Build exactly one versioned 3D engine first');
 const sceneFilename=sceneFiles[0];

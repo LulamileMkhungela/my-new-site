@@ -18,5 +18,7 @@ const distributionText=bundle+read('dist/site.webmanifest')+read('scripts/prepar
 // page ownership in check-publication; every portfolio raster/SVG is literal.
 for(const name of fs.readdirSync(path.join(root,'assets/img/portfolio'))){assert.ok(distributionText.includes(name),'Unreferenced portfolio image: '+name);assert.ok(exists('dist/assets/img/portfolio/'+name));}
 const stylesheet=read('dist/assets/css/'+css[0]);
+assert.ok(stylesheet.includes('var(--preview-travel'),'Runtime-measured website preview panning must survive CSS pruning');
+for(const token of ['--glass-blur','--glass-panel-alpha','backdrop-filter:blur','prefers-reduced-transparency:reduce','forced-colors:active'])assert.ok(stylesheet.includes(token),'Compiled glass fallback/style missing: '+token);
 for(const font of fs.readdirSync(path.join(root,'assets/fonts')).filter(name=>name.endsWith('.woff2')))assert.ok(stylesheet.includes(font),'Unused font: '+font);
 console.log('✓ No old UI/source mirror, unused portfolio images/fonts, or duplicate deployed JS/CSS');
