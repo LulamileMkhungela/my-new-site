@@ -52,7 +52,7 @@ body .contact-steps article {
 }
 /* Inset outlines do not change five-across Portfolio sizing or text wrapping. */
 body .pf-page .pf-card { outline:1px solid var(--glass-line); outline-offset:-1px; overflow:hidden; }
-body .pf-page .pf-card-art { border-radius:13px 13px 0 0; }
+body .pf-page .pf-card .pf-card-art { border-radius:8px; }
 body .owner-project-meta { padding-inline:1rem; }
 body .owner-project-section { padding-inline:1rem; }
 body .contact-steps article { padding:1.15rem; }

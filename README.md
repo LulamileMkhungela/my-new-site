@@ -278,3 +278,23 @@ Website Design still covers frontend development; no extra service was added.
 Existing Home 08/09 wording, personal-name limits and supplied testimonials stay
 unchanged. The Home browser suite also guards unboxed copy, page gutters and
 transparent active-number treatment at every tested width, with/without JS.
+
+### Portfolio card spacing
+
+Portfolio cards have 12px inner gutters around images, actions and captions,
+44px minimum actions, a clear action-to-title gap, and a protected bottom inset.
+Names wrap instead of being truncated against the glass border. Cards stretch
+to equal heights within each horizontal row; the existing five-visible desktop
+layout and mobile horizontal browsing remain. Tracks have 4px edge clearance
+for card outlines, and copy feedback/manual fallback stay inside their card.
+Preview-pan distance uses the actual inset frame's fractional dimensions so
+full-page screenshots still align correctly at the end of their hover pan.
+
+`check-portfolio-spacing-browser.mjs` checks every category/card at
+320/390/768/1024/1120/1440px with JavaScript on and off: inner/outer gutters,
+wrapping captions, no clipping, action height/gaps, one-row geometry, five visible
+desktop cards where available, end-of-track clearance and no page overflow.
+The browse and prompt-card browser suites additionally cover preview panning,
+reduced motion, category collapse/filtering, inline copy and embedded-preview
+clipboard fallback. Remote cover requests are blocked during browser checks;
+these use the existing local cover fallback instead.

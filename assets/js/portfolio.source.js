@@ -44,7 +44,8 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
   const measurePreview=()=>{
     const frame=previewRef.current,img=frame?.querySelector('img');
     if(!frame||!img?.naturalWidth||!project.previewScroll)return;
-    const distance=Math.max(0,frame.clientWidth*img.naturalHeight/img.naturalWidth-frame.clientHeight);
+    const bounds=frame.getBoundingClientRect();
+    const distance=Math.max(0,bounds.width*img.naturalHeight/img.naturalWidth-bounds.height);
     frame.style.setProperty('--preview-travel',distance+'px');
     frame.style.setProperty('--preview-duration',Math.min(24,Math.max(6,distance/40))+'s');
     frame.dataset.scrollable=distance>1?'true':'false';
