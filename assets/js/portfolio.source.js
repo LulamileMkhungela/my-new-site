@@ -51,10 +51,12 @@ function LocalUseCopyStatus() {
 function LocalAppDownloads({project,showApk=false}) {
   const h=g.createElement;
   if(project.historical)return null;
+  const downloadUrl=project.apkUrl||project.androidReleaseUrl;
   const stores=[{id:'appStore',label:'App Store',icon:'app-store'},{id:'googlePlay',label:'Google Play',icon:'google-play'}];
   return h('div',{className:'pf-app-downloads'},
-    showApk&&(project.apkUrl||project.androidReleaseUrl)&&h('a',{href:project.apkUrl||project.androidReleaseUrl,target:'_blank',rel:'noopener noreferrer',className:'hybrid-button pf-apk-download','aria-label':(project.apkUrl?'Download Android APK':'Android release')+' — '+project.client},project.apkUrl?'Download APK':'Android release',h(LocalUiIcon,{name:'download'})),
-    h('div',{className:'pf-store-links',role:'group','aria-label':project.client+' app stores'},...stores.map(store=>{
+    h('div',{className:'pf-store-links'+(downloadUrl?' pf-store-links-with-apk':''),role:'group','aria-label':project.client+' app downloads'},
+      downloadUrl&&h('a',{href:downloadUrl,target:'_blank',rel:'noopener noreferrer',className:'pf-store-control pf-apk-download','aria-label':(project.apkUrl?(showApk?'Download Android APK':'Download APK'):'Android release')+' — '+project.client,title:project.apkUrl?'Download Android APK':'Open Android release'},h(LocalUiIcon,{name:'download'}),h('span',{className:'pf-download-label'},showApk?(project.apkUrl?'Download APK':'Android release'):(project.apkUrl?'APK':'Android'))),
+      ...stores.map(store=>{
       const url=project.storeLinks?.[store.id],label=store.label+' — '+project.client+(url?'':' (link not added yet)');
       const children=[h(LocalUiIcon,{name:store.icon,key:'icon'}),h('span',{key:'label'},store.label)];
       return url?h('a',{key:store.id,href:url,target:'_blank',rel:'noopener noreferrer',className:'pf-store-control','aria-label':label},...children):
@@ -90,7 +92,8 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
     catch {setCopyStatus('Copy unavailable. Select and copy the prompt below.');}
   };
   const action=LocalProjectAction(project,category);
-  const linked=!freePrompt&&action.type!=='coming-soon'&&!!action.href;
+  const groupedDownload=!!(project.apkUrl||project.androidReleaseUrl);
+  const linked=!groupedDownload&&!freePrompt&&action.type!=='coming-soon'&&!!action.href;
   const web=category==='website'||category==='frontend-dev';
   const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.androidReleaseUrl?'Android release':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
   const descriptionId='pf-description-'+category+'-'+project.id;
@@ -104,7 +107,7 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
       project.cardDescription&&h('p',{className:'pf-history-description'},project.cardDescription),
       project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
       project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · '))),
-    action.type==='coming-soon'?null:freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
+    action.type==='coming-soon'||groupedDownload?null:freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
       h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:project.apkUrl||project.androidReleaseUrl?'download':'arrow-up-right'})));
   return h('article',{className:'pf-card','data-project':project.id,'data-prompt-tier':project.promptTier,'data-web-preview':project.previewScroll?'true':undefined},
     linked?h(action.type==='external'?'a':ve,action.type==='external'?{href:action.href,target:'_blank',rel:'noopener noreferrer',className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId}:{to:action.href,className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId},body):h('div',{className:freePrompt?'pf-card-link pf-card-free':'pf-card-link pf-card-static'},body),

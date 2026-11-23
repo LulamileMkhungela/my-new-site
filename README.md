@@ -386,7 +386,9 @@ All six app cards include short factual product descriptions, including unreleas
 projects, so their information areas are not empty.
 
 Coming soon is a small corner badge on the whole-project border, freeing the
-bottom row for compact 44px store controls. Home previews use taller 4:3 windows
+bottom row for compact 44px store controls. APK downloads (and OneScreen’s
+Android release) share that same row with App Store and Google Play, on cards
+and app details, rather than occupying a separate action row. Home previews use taller 4:3 windows
 without stretching: app art retains its proportions and website captures crop
 or pan naturally. Five-across desktop/horizontal mobile layouts are preserved.
 

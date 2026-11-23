@@ -21,10 +21,11 @@ for(const javaScriptEnabled of[true,false]){
      const control=card.getByRole('button',{name:store+' — '+project.client+' (link not added yet)',exact:true});
      assert.equal(await control.isDisabled(),true);assert.equal(await control.locator('svg').count(),1);assert.equal(await control.getAttribute('href'),null);
     }
-    assert.equal(await card.locator('.pf-store-links a').count(),0);
+    assert.equal(await card.locator('.pf-store-links a').count(),project.apkUrl||project.androidReleaseUrl?1:0);
+    if(project.apkUrl||project.androidReleaseUrl)assert.equal(await card.locator('.pf-action-bar').count(),0,'No separate download row');
     if(project.type==='coming-soon')assert.equal(await card.locator('a,button:not(:disabled)').count(),0);
     if(project.historical){assert.equal(await card.locator('.pf-app-downloads').count(),0);assert.ok((await card.textContent()).includes('2019'));continue;}
-    const geometry=await card.locator('.pf-store-links').evaluate(el=>{const r=el.getBoundingClientRect();return [...el.children].every(c=>{const b=c.getBoundingClientRect();return b.left>=r.left-.5&&b.right<=r.right+.5&&b.height>=44&&c.scrollWidth<=c.clientWidth+1;});});assert.equal(geometry,true,project.id+' store controls fit');
+    const geometry=await card.locator('.pf-store-links').evaluate(el=>{const r=el.getBoundingClientRect();return [...el.children].every(c=>{const b=c.getBoundingClientRect();return b.left>=r.left-.5&&b.right<=r.right+.5&&Math.abs(b.top-r.top)<1&&Math.abs(b.bottom-r.bottom)<1&&b.height>=44&&c.scrollWidth<=c.clientWidth+1;});});assert.equal(geometry,true,project.id+' store controls fit');
    }
    const release=page.locator('[data-project="onescreen-business"]');
    assert.equal(await release.getByRole('link',{name:'Android release — OneScreen Business'}).getAttribute('href'),apps.find(p=>p.id==='onescreen-business').androidReleaseUrl);
@@ -37,6 +38,8 @@ for(const javaScriptEnabled of[true,false]){
    if(javaScriptEnabled)await page.locator('.site-back-to-top').waitFor({state:'attached'});
    assert.equal(await page.getByRole('link',{name:'Download Android APK — LulaFind'}).getAttribute('href'),apk);
    assert.equal(await page.locator('main .pf-store-links button:disabled').count(),2);
+   assert.equal(await page.locator('main .pf-store-links .pf-apk-download').count(),1);
+   assert.equal(await page.locator('main .pf-store-links').evaluate(el=>{const boxes=[...el.children].map(c=>c.getBoundingClientRect());return boxes.length===3&&boxes.every(r=>Math.abs(r.top-boxes[0].top)<1&&r.height>=44);}),true,'Detail download and stores share a row');
    assert.equal(await page.locator('main a[href$="main.zip"]').count(),0);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
    assert.ok(!(await page.locator('main').textContent()).includes('Pending Google Play'));

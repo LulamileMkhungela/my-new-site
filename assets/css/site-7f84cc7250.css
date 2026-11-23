@@ -657,7 +657,11 @@ body .pf-store-control:disabled { opacity:.5; cursor:not-allowed; transform:none
 .owner-project-hero .pf-app-downloads { max-width:420px; margin-block:1.5rem 2rem; }
 .owner-project-hero .pf-store-control { font-size:.7rem; }
 .owner-project-hero .pf-store-note { font-size:.65rem; }
-.pf-apk-download { display:flex; margin-bottom:1.25rem; }
+.pf-store-links.pf-store-links-with-apk { grid-template-columns:repeat(3,minmax(0,1fr)); }
+body .pf-store-control.pf-apk-download { margin:0; background:#00c57a; color:#08251d; font-weight:600; }
+.pf-card .pf-store-control.pf-apk-download>.pf-download-label { display:block; font-size:.5rem; line-height:1; }
+.pf-card .pf-store-control.pf-apk-download { gap:.2rem; }
+
 /* Store icons are one 44px row; historical apps offer descriptions, not installs. */
 .pf-card .pf-app-downloads { margin-top:.75rem; padding:0; border:0; }
 .pf-card .pf-store-control { min-height:44px; padding:.5rem; }

@@ -81,7 +81,7 @@ assert.equal(homeView.elements.filter(node=>node.type==='main').length,1);
 assert.equal(homeView.elements.filter(node=>(node.props.className||'').split(' ').includes('hm-panel')).length,11);
 assert.deepEqual(homeView.elements.filter(node=>node.props.className==='pf-card').map(node=>node.props['data-project']),['ai-lifeos','nerdma','lulagazette','prompt-delivery-app','foodiezone']);
 for(const card of homeView.elements.filter(node=>node.props.className==='pf-card')){
- const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt','pf-release-badge'].includes(name)));
+ const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt','pf-release-badge','pf-apk-download'].includes(name)));
  assert.ok(title>=0&&action>title,'Names/details precede project actions, including Home features');
 }
 
