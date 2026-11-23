@@ -21,14 +21,14 @@ function LocalStudioTitle({lines,level='h2',id}) {
   const h=g.createElement;
   return h(level,{className:'studio-title',id},...lines.map((line,index)=>h('span',{key:index,className:index===1?'studio-outline':index===2?'studio-green':''},line)));
 }
-function LocalStudioVisual({kind='studio',caption='Lulamile M · Independent digital partner',eager=false}) {
+function LocalStudioVisual({kind='studio',caption='LulaZel · Independent digital partner',eager=false}) {
   const h=g.createElement;
-  return h('figure',{key:kind,className:'studio-visual','data-reveal':'art','data-scene-kind':kind},h('img',{src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'Original '+kind+' vector illustration by Lulamile M',width:640,height:570,loading:eager?'eager':'lazy',decoding:'async',fetchPriority:eager?'high':undefined}),h('figcaption',null,h('i',{'aria-hidden':true}),caption));
+  return h('figure',{key:kind,className:'studio-visual','data-reveal':'art','data-scene-kind':kind},h('img',{src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'Original '+kind+' vector illustration for LulaZel',width:640,height:570,loading:eager?'eager':'lazy',decoding:'async',fetchPriority:eager?'high':undefined}),h('figcaption',null,h('i',{'aria-hidden':true}),caption));
 }
 function LocalStudioPager({sections,current,next}) {
   const h=g.createElement;
   return h('div',{className:'studio-panel-bottom'},h('a',{href:'#'+(next||sections[0].id)},next?'Scroll to explore ↓':'Back to overview ↑'),
-    h('nav',{'aria-label':'Page chapters'},...sections.map((section,index)=>h('a',{key:section.id,href:'#'+section.id,'aria-label':'Chapter '+(index+1)+': '+section.label,'aria-current':index===current?'step':undefined},String(index+1).padStart(2,'0')))),h(ve,{to:'/about'},'More about Lulamile ↓'));
+    h('nav',{'aria-label':'Page chapters'},...sections.map((section,index)=>h('a',{key:section.id,href:'#'+section.id,'aria-label':'Chapter '+(index+1)+': '+section.label,'aria-current':index===current?'step':undefined},String(index+1).padStart(2,'0')))),h(ve,{to:'/about'},'About the designer ↓'));
 }
 function LocalServicesPage() {
   const h=g.createElement;

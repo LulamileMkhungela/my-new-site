@@ -94,7 +94,7 @@ function htmlFor(route,{alias=false}={}) {
 </head>
 <body>
   <div id="root">${markup}</div>
-  <noscript><p>JavaScript enables filtering, navigation menus and inline enquiry feedback. You can still browse the links, submit an enquiry or <a href="mailto:${site.email}">email Lulamile</a>.</p></noscript>
+  <noscript><p>JavaScript enables filtering, navigation menus and inline enquiry feedback. You can still browse the links, submit an enquiry or <a href="mailto:${site.email}">email LulaZel</a>.</p></noscript>
 </body>
 </html>
 `;

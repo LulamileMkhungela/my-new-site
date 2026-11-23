@@ -34,7 +34,7 @@ function LocalHomeTestimonials() {
 function LocalHomePage() {
   const h=g.createElement;
   const content=localHomeContent;
-  const label=(number,eyebrow)=>h('div',{className:'hm-section-label'},h('p',{className:'hybrid-eyebrow'},h('span'),number+' / '+eyebrow),h('p',{className:'hm-personal-mark'},localSiteContent.name+' · Designer / Founder / Builder'));
+  const label=(number,eyebrow)=>h('div',{className:'hm-section-label'},h('p',{className:'hybrid-eyebrow'},h('span'),number+' / '+eyebrow));
   const section=item=>h('section',{key:item.id,id:item.id,className:'hm-panel hm-service-panel','aria-labelledby':'hm-heading-'+item.id},
     h('div',{className:'hm-watermark','aria-hidden':true},item.watermark),
     h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label(item.number,item.eyebrow),h(LocalHomeTitle,{lines:item.lines,id:'hm-heading-'+item.id}),h('p',{className:'hm-description'},item.description),

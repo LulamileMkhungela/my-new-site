@@ -3,7 +3,7 @@
     "url": "",
     "name": "LulaZel",
     "title": "LulaZel — Websites, Products & Digital Systems",
-    "description": "LulaZel turns ideas into digital impact: websites, product design, business systems and practical AI by Lulamile Mkhungela. Based in South Africa, working remotely.",
+    "description": "LulaZel turns ideas into digital impact: websites, product design, business systems and practical AI. Based in South Africa, working remotely.",
     "locale": "en_ZA",
     "language": "en-ZA",
     "email": "mkhungela.l@gmail.com",
@@ -16,7 +16,7 @@
   "routes": {
     "/": {
       "title": "LulaZel — Websites, Products & Digital Systems",
-      "description": "LulaZel turns ideas into digital impact: websites, product design, business systems and practical AI by Lulamile Mkhungela. Based in South Africa, working remotely.",
+      "description": "LulaZel turns ideas into digital impact: websites, product design, business systems and practical AI. Based in South Africa, working remotely.",
       "canonical": "/",
       "schema": null
     },
@@ -28,19 +28,19 @@
     },
     "/contact": {
       "title": "Let’s Talk | LulaZel",
-      "description": "Discuss your website, product design or business systems project with Lulamile Mkhungela. Send an enquiry, call or connect on WhatsApp.",
+      "description": "Discuss your website, product design or business systems project with LulaZel. Send an enquiry, call or connect on WhatsApp.",
       "canonical": "/contact/",
       "schema": null
     },
     "/portfolio": {
       "title": "Portfolio | LulaZel",
-      "description": "Explore Lulamile Mkhungela’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.",
+      "description": "Explore LulaZel’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.",
       "canonical": "/portfolio/",
       "schema": null
     },
     "/services": {
       "title": "My Services | LulaZel",
-      "description": "Product design, websites, ecommerce, business systems, automation, AI and digital marketing services by Lulamile Mkhungela.",
+      "description": "Product design, websites, ecommerce, business systems, automation, AI and digital marketing services from LulaZel.",
       "canonical": "/services/",
       "schema": null
     },
@@ -59,7 +59,7 @@
     },
     "/404": {
       "title": "Page not found | LulaZel",
-      "description": "This page could not be found. Explore services and projects by Lulamile Mkhungela.",
+      "description": "This page could not be found. Explore services and projects from LulaZel.",
       "noindex": true,
       "canonical": "/404/",
       "schema": null

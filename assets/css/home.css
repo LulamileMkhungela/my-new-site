@@ -8,7 +8,6 @@
 .hm-copy { position: relative; z-index: 2; min-width: 0; }
 .hm-section-label { margin-bottom: 1.8rem; }
 .hm-section-label .hybrid-eyebrow { margin: 0 0 .65rem; font-family: Poppins,sans-serif; font-size: .55rem; font-weight: 700; letter-spacing: .17em; line-height: 1.8; }
-.hm-personal-mark { color: #a8b9c5; font-size: .44rem; letter-spacing: .18em; line-height: 1.8; text-transform: uppercase; margin: 0; }
 .hm-title { font-family: Poppins,sans-serif; font-size: clamp(2.25rem,3.55vw,3.65rem); line-height: 1.08; font-weight: 800; letter-spacing: -.04em; text-transform: uppercase; margin: 0 0 1.5rem; }
 .hm-title > span { display: block; }
 .hm-outline { color: transparent; -webkit-text-stroke: 1px #e1e9ee; font-weight: 700; }

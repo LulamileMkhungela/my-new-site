@@ -90,6 +90,13 @@ assert.equal(homeView.elements.filter(node=>node.props.className==='hm-process-c
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,6);
 for(const step of data.window.SITE.process) {assert.ok(text(homeView.tree).includes(step.title));assert.ok(text(homeView.tree).includes(step.body));}
 assert.deepEqual(homeView.elements.filter(node=>node.type==='blockquote').map(node=>text(node)),Array.from(data.window.SITE.testimonials,person=>person.message));
+assert.equal(homeView.elements.filter(node=>node.props.className==='hm-personal-mark').length,0,'No repeated owner-name stamp in Home chapters');
+for(const component of ['LocalContactPage','LocalPortfolioPage','LocalToolsPage','LocalPrivacyPage']){
+ const view=render(component);assert.ok(!/Lulamile/i.test(text(view.elements.find(node=>node.type==='main'))),'No repeated personal-name labels on '+component);
+}
+for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies])assert.ok(!/Lulamile/i.test(text(render('LocalServicesPage',service.path).tree)),'Services use brand rather than repeated owner names');
+assert.ok(text(footerView.tree).includes('by Lulamile M'));
+assert.ok(text(render('LocalAboutPage').tree).includes('About / Lulamile M'));
 const art=homeView.elements.filter(node=>node.props.className==='hm-vector-art');
 assert.equal(art.length,7);
 assert.equal(new Set(art.map(node=>node.props.src)).size,7);

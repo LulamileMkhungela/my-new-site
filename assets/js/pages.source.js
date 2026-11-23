@@ -70,7 +70,7 @@ function LocalPortfolioPage() {
     if(id&&(/^(portfolio-projects|pf-free-title)$/.test(id)||id.startsWith('portfolio-category-')))requestAnimationFrame(()=>document.getElementById(id)?.scrollIntoView({behavior:'instant',block:'start'}));
   },[selected,location.hash]);
 
-  return h(LocalPageFrame,{title:'Portfolio',description:'Websites, apps, frontend work and product-design projects by Lulamile Mkhungela.',className:'pf-page'},
+  return h(LocalPageFrame,{title:'Portfolio',description:'Websites, apps, frontend work and product-design projects from LulaZel.',className:'pf-page'},
     h('section',{className:'pf-hero'},h('div',{className:'unified-container pf-hero-inner'},
       h('div',{className:'pf-hero-copy'},h('p',{className:'hybrid-eyebrow'},h('span'),'01 / My Portfolio'),
         h('p',{className:'pf-hero-overline'},'Real challenges. Individual solutions.'),
@@ -103,9 +103,9 @@ function LocalAboutPage() {
 }
 function LocalContactPage() {
   const h=g.createElement;
-  return h(LocalPageFrame,{title:'Let’s Talk',description:'Discuss your next website, product or digital project with Lulamile M.',className:'unified-contact-page'},
+  return h(LocalPageFrame,{title:'Let’s Talk',description:'Discuss your next website, product or digital project with LulaZel.',className:'unified-contact-page'},
     h('section',{className:'contact-intro unified-container',id:'contact-intro','data-background-text':'LET’S TALK'},
-      h('div',{className:'contact-intro-copy'},h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'01 / Contact Lulamile'),h('p',{className:'contact-section-subtitle'},'South Africa & remote enquiries welcome.'),
+      h('div',{className:'contact-intro-copy'},h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'01 / Contact LulaZel'),h('p',{className:'contact-section-subtitle'},'South Africa & remote enquiries welcome.'),
         h('h1',null,h('span',null,'Let’s talk.'),h('span',{className:'contact-title-outline'},'Your ideas.'),h('span',{className:'hybrid-green'},'Our next step.')),
         h('p',{className:'hybrid-hero-description'},'Tell me what needs to work better and where you want to go. From a first idea to a clearer digital direction, a conversation is a good place to start. Share your time zone and a convenient time if you’d like to arrange a call.'),
         h('div',{className:'contact-direct'},
@@ -123,7 +123,7 @@ function LocalContactPage() {
       h('div',{className:'contact-next-layout'},
         h('figure',{className:'contact-next-visual'},
           h('img',{src:'/assets/img/portfolio/contact-next-step.svg?v='+localHomeArtworkVersion,alt:'Three dimensional milestones connect a conversation, a compass and a destination flag',width:640,height:570,loading:'lazy'}),
-          h('figcaption',null,h('span',{'aria-hidden':true}),'Contact Lulamile')),
+          h('figcaption',null,h('span',{'aria-hidden':true}),'Contact LulaZel')),
         h('div',{className:'contact-next-copy'},
           h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'02 / What happens next'),
           h('p',{className:'contact-section-subtitle'},'Clear communication. From the start.'),
@@ -131,7 +131,7 @@ function LocalContactPage() {
           h('div',{className:'contact-steps'},...[['Tell me what you need','Share your business, goals, current tools and any examples that help explain the project.'],['Agree a practical scope','We clarify requirements, deliverables, responsibilities, budget and timing before work begins.'],['Plan the work together','We agree review points, communication and the steps toward launch or handover.']].map(([title,copy],index)=>h('article',{key:title},h('h3',null,'0'+(index+1)+' / '+title),h('p',null,copy)))),
           h('p',{className:'contact-next-note'},'You don’t need a complete technical brief. Explore ',h(ve,{to:'/services'},'my digital services'),' or simply describe the problem you want to solve.'),
           h('a',{href:'#contact-intro',className:'contact-back'},'↺ Back to contact details'))),
-      h('div',{className:'contact-section-bottom'},h('a',{href:'#contact-intro'},'Back to contact details ↑'),h('span',null,'01 — ',h('strong',null,'02')),h(ve,{to:'/about'},'More about Lulamile ↓'))));
+      h('div',{className:'contact-section-bottom'},h('a',{href:'#contact-intro'},'Back to contact details ↑'),h('span',null,'01 — ',h('strong',null,'02')),h(ve,{to:'/about'},'About the designer ↓'))));
 
 }
 function LocalToolsPage() {
@@ -168,13 +168,13 @@ function LocalBackToTop() {
 
 function LocalPrivacyPage() {
   const h=g.createElement;
-  return h(LocalPageFrame,{title:'Privacy & image rights',description:'How enquiries and images are handled on Lulamile Mkhungela’s portfolio.',className:'unified-page'},
+  return h(LocalPageFrame,{title:'Privacy & image rights',description:'How enquiries and images are handled on LulaZel.',className:'unified-page'},
     h('article',{className:'unified-container unified-about-copy','data-background-text':'YOUR PRIVACY'},h('p',{className:'hybrid-eyebrow'},'Privacy & image rights'),h('h1',null,'Your details. Your choices.'),
-      h('h2',null,'Who to contact'),h('p',null,'This portfolio is operated by Lulamile Mkhungela in South Africa. For privacy questions, correction or deletion requests, email ',h('a',{href:'mailto:mkhungela.l@gmail.com'},'mkhungela.l@gmail.com'),'.'),
+      h('h2',null,'Who to contact'),h('p',null,'LulaZel is an independent practice based in South Africa. For privacy questions, correction or deletion requests, email ',h('a',{href:'mailto:mkhungela.l@gmail.com'},'mkhungela.l@gmail.com'),'.'),
       h('h2',null,'When you send an enquiry'),h('p',null,'The contact forms send your name, email, selected service, message and optional phone number to Formspree to deliver your enquiry. This information is used to respond and discuss your request. Please do not submit passwords, identity numbers, financial records or sensitive personal information.'),
       h('p',null,'Formspree processes submissions on its infrastructure, which may be outside South Africa. Its own privacy policy applies to that processing. You can email directly instead. Request access, correction or deletion using the email above; relevant legal or business-record obligations may affect what can be removed.'),h('a',{href:'https://formspree.io/legal/privacy-policy/',target:'_blank',rel:'noopener noreferrer'},'Formspree privacy policy'),
       h('h2',null,'External services and display preferences'),h('p',null,'WhatsApp, LinkedIn, Calendly, shop links and other external project destinations have their own privacy terms. Some original premium cover images load from external storage, which receives the ordinary network information needed to deliver them. The site may store display preferences in your browser. No advertising or analytics tracking is intentionally installed in this release.'),
       h('h2',null,'Images and design resources'),h('p',null,'Portfolio images and brand marks remain the property of their respective owners. They are displayed to document the work, not offered as an image library. Do not reuse them without permission. Free prompt text is intentionally available to copy or download; premium products are accessed through the linked shop.'),
-      h('p',null,'Image right-click and dragging are discouraged, but browser-visible images cannot be made impossible to save or capture. For reuse permission, contact Lulamile.'),
+      h('p',null,'Image right-click and dragging are discouraged, but browser-visible images cannot be made impossible to save or capture. For reuse permission, contact LulaZel.'),
       h('p',null,'Last updated: 21 November 2026.')));
 }

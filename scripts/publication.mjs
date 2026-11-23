@@ -18,12 +18,12 @@ export function seoRoutes(config,catalogue,strategies,projects){
  const routes={
   '/':{title:config.title,description:config.description},
   '/about':record('About Lulamile Mkhungela','Meet Lulamile Mkhungela, a South African designer, founder and builder working across product design, websites and business systems.'),
-  '/contact':record('Let’s Talk','Discuss your website, product design or business systems project with Lulamile Mkhungela. Send an enquiry, call or connect on WhatsApp.'),
-  '/portfolio':record('Portfolio','Explore Lulamile Mkhungela’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.'),
-  '/services':record('My Services','Product design, websites, ecommerce, business systems, automation, AI and digital marketing services by Lulamile Mkhungela.'),
+  '/contact':record('Let’s Talk','Discuss your website, product design or business systems project with LulaZel. Send an enquiry, call or connect on WhatsApp.'),
+  '/portfolio':record('Portfolio','Explore LulaZel’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.'),
+  '/services':record('My Services','Product design, websites, ecommerce, business systems, automation, AI and digital marketing services from LulaZel.'),
   '/privacy':record('Privacy & image rights','How portfolio enquiries, third-party services, personal information and image rights are handled.'),
   '/tools':record('Tools','A collection of practical design and development resources.',{noindex:true}),
-  '/404':record('Page not found','This page could not be found. Explore services and projects by Lulamile Mkhungela.',{noindex:true})
+  '/404':record('Page not found','This page could not be found. Explore services and projects from LulaZel.',{noindex:true})
  };
  for(const service of [...catalogue.services,...strategies])routes[service.path||'/services/'+service.slug]=record(service.title,service.summary);
  for(const project of projects.filter(p=>p.details))routes[project.href]=record(project.client,project.description);

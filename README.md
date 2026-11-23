@@ -216,3 +216,14 @@ preferences remove blur and supply solid surfaces. Reduced motion remains static
 Portfolio cards, Contact dialog/navigation, unfiltered text, intact branding and
 the reduced-transparency fallback. Automated axe checks do not replace manual
 assistive-technology and real-device testing.
+
+### Brand-first copy
+
+Repeated personal-name stamps have been removed from Home chapter labels, service
+pagers/illustration labels, Contact copy, generic page/social descriptions and
+repeated project-role labels. LulaZel is the primary brand. The personal name
+remains in the dedicated About page, Home biography and footer attribution.
+Original testimonial quotes, factual project provenance and identity-bearing
+contact destinations/structured data are not rewritten as marketing copy.
+`check-name-density-browser.mjs` checks the main brand-first routes at mobile and
+desktop widths, with explicit exceptions for About content and original quotes.
