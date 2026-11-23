@@ -95,7 +95,7 @@ function LocalPortfolioPage() {
 }
 function LocalAboutPage() {
   const h=g.createElement;
-  return h(LocalPageFrame,{title:'About',description:'Lulamile M — designer, founder and builder based in South Africa.',className:'unified-page'},
+  return h(LocalPageFrame,{title:'About',description:'Lulamile M — devzigner, designer and frontend developer based in South Africa.',className:'unified-page'},
     h('section',{className:'unified-about-hero','data-background-text':'ABOUT LULAMILE'},h('div',{className:'unified-container unified-about-grid'},
       h('div',null,h('p',{className:'hybrid-eyebrow'},h('span'),'About / Lulamile M'),h('h1',null,'Curious by nature.',h('br'),h('span',{className:'hybrid-outline'},'Designer by craft.'),h('br'),h('span',{className:'hybrid-green'},'Builder at heart.')),h('p',{className:'hybrid-hero-description'},localSiteContent.about.intro)),
       h('img',{src:'/assets/img/lulamile.webp',alt:'Lulamile M',width:900,height:900}))),

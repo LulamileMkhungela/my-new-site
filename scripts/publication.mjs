@@ -17,7 +17,7 @@ export function seoRoutes(config,catalogue,strategies,projects){
  const record=(title,description,extra={})=>({title:title+' | '+config.name,description,...extra});
  const routes={
   '/':{title:config.title,description:config.description},
-  '/about':record('About Lulamile Mkhungela','Meet Lulamile Mkhungela, a South African designer, founder and builder working across product design, websites and business systems.'),
+  '/about':record('About Lulamile Mkhungela','Meet Lulamile Mkhungela, a South African devzigner combining product design and frontend development to create websites and apps end to end.'),
   '/contact':record('Let’s Talk','Discuss your website, product design or business systems project with LulaZel. Send an enquiry, call or connect on WhatsApp.'),
   '/portfolio':record('Portfolio','Explore LulaZel’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.'),
   '/services':record('My Services','Product design, websites, ecommerce, business systems, automation, AI and digital marketing services from LulaZel.'),
@@ -33,7 +33,7 @@ export function seoRoutes(config,catalogue,strategies,projects){
 export function structuredData(config,p,meta){
  if(!config.url||meta.noindex)return null;
  const origin=config.url,url=origin+meta.canonical;
- const data=[{'@type':'Person','@id':origin+'/#person',name:config.ownerName,url:origin+'/about/',email:config.email,telephone:config.telephone,sameAs:[config.linkedin],jobTitle:'Designer, Founder & Builder'}, {'@type':'WebSite','@id':origin+'/#website',name:config.name,url:origin+'/',inLanguage:config.language,publisher:{'@id':origin+'/#person'}}, {'@type':'WebPage','@id':url+'#webpage',name:meta.title,description:meta.description,url,inLanguage:config.language,isPartOf:{'@id':origin+'/#website'},about:{'@id':origin+'/#person'}}];
+ const data=[{'@type':'Person','@id':origin+'/#person',name:config.ownerName,url:origin+'/about/',email:config.email,telephone:config.telephone,sameAs:[config.linkedin],jobTitle:'Devzigner — Designer & Frontend Developer'}, {'@type':'WebSite','@id':origin+'/#website',name:config.name,url:origin+'/',inLanguage:config.language,publisher:{'@id':origin+'/#person'}}, {'@type':'WebPage','@id':url+'#webpage',name:meta.title,description:meta.description,url,inLanguage:config.language,isPartOf:{'@id':origin+'/#website'},about:{'@id':origin+'/#person'}}];
  if(p!=='/')data.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:origin+'/'},{'@type':'ListItem',position:2,name:meta.title.split(' | ')[0],item:url}]});
  if(p.startsWith('/services/')||p==='/product-design-strategy')data.push({'@type':'Service',name:meta.title.split(' | ')[0],description:meta.description,url,provider:{'@id':origin+'/#person'},areaServed:{'@type':'Country',name:'South Africa'}});
  return {'@context':'https://schema.org','@graph':data};

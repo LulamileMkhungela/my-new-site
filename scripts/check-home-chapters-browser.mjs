@@ -15,6 +15,11 @@ for(const javaScriptEnabled of [true,false]){
    if(javaScriptEnabled)await page.locator('.site-back-to-top').waitFor({state:'attached'});
    const nav=page.getByRole('navigation',{name:'Home sections'}),links=nav.getByRole('link');
    assert.equal(await links.count(),11);
+   assert.ok((await page.locator('#home').textContent()).includes('Devzigner / Design + Frontend Development'));
+   const surfaces=await page.locator('.hm-copy').evaluateAll(els=>els.map(el=>({sheet:getComputedStyle(el,'::after').content,background:getComputedStyle(el).backgroundColor,shadow:getComputedStyle(el).boxShadow,padding:getComputedStyle(el).paddingLeft,left:el.getBoundingClientRect().left})));
+   for(const surface of surfaces){assert.equal(surface.sheet,'none');assert.equal(surface.background,'rgba(0, 0, 0, 0)');assert.equal(surface.shadow,'none');assert.equal(surface.padding,'0px');assert.ok(surface.left>=23,'Retain page gutters without cards');}
+   assert.equal(await links.first().evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)','Current number is not a card');
+   assert.equal(await page.locator('.hm-chapter-rail').evaluate(el=>getComputedStyle(el).borderTopWidth),'0px');
    let previous=0;
    for(let i=0;i<11;i++){
     const link=links.nth(i),target=await link.getAttribute('href');

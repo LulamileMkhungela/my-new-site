@@ -201,9 +201,12 @@ metadata tests do not prove a live crawler has refreshed its cache.
 ## Site-wide glass surfaces
 
 `assets/css/glass.css` is the final material layer, composed after spacing and
-dimensional rules. Sticky navigation, menus, chapter-copy sheets, cards, contact
-actions, long-form content, scene controls, footer and enquiry dialog share navy
-glass, emerald highlights and soft inset edges. Decorative copy sheets are
+dimensional rules. Sticky navigation, menus, inner-page copy sheets, cards,
+contact actions, long-form content, scene controls, footer and enquiry dialog
+share navy glass, emerald highlights and soft inset edges. Home's numbered
+chapters intentionally use an open, unboxed composition: no frosted copy sheet,
+card border or inset. The active Home number is colour-only, not a filled chip;
+the bottom rail blends into the page rather than forming a bordered panel. Decorative copy sheets are
 pointer-transparent pseudo-elements contained within padded columns: they never
 intercept links. Copy panels have responsive inner insets so text and controls do
 not touch their glass edges. Images/canvas, logo artwork and text itself are not blurred. Portfolio
@@ -265,3 +268,13 @@ with the preview running. It checks all 11 destinations and header clearance,
 active-section/manual scrolling, progress endpoints, mobile/desktop card counts,
 carousel controls, keyboard, full original quotes and no-JS fallbacks at
 320/390/768/1440px, plus normal-motion scrolling and route cleanup.
+
+### Devzigner positioning
+
+Home's introduction and the dedicated About intro describe the owner as a
+**devzigner**: designing and developing end-to-end digital experiences, with a
+strong frontend focus. Home/About SEO and Person job title reflect that framing.
+Website Design still covers frontend development; no extra service was added.
+Existing Home 08/09 wording, personal-name limits and supplied testimonials stay
+unchanged. The Home browser suite also guards unboxed copy, page gutters and
+transparent active-number treatment at every tested width, with/without JS.

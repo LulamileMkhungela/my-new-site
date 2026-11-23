@@ -24,13 +24,13 @@ body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog) {
 }
 body .rhino-mobile-menu { border-radius:0 0 18px 18px; }
 /* Sheets stay inside their columns; real padding protects the content edges. */
-body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div) {
+body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div) {
  position:relative;
  isolation:isolate;
  min-width:0;
  padding:var(--glass-inset);
 }
-body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
  content:'';
  position:absolute;
  inset:0;
@@ -74,7 +74,7 @@ body section.unified-about-copy {
  margin-block:clamp(1.5rem,4vw,3rem);
 }
 body .unified-empty-page { padding-inline:var(--glass-inset); }
-body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div) :is(h1,h2) { overflow-wrap:anywhere; }
+body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div) :is(h1,h2) { overflow-wrap:anywhere; }
 body :is(.hm-title,.svc-page .studio-title,.pf-hero h1,.hybrid-hero h1) { font-size:clamp(1.85rem,3.5vw,3.65rem); }
 body .contact-intro h1 { font-size:clamp(1.85rem,4.7vw,4.6rem); }
 /* Glass controls retain their dimensional edge and accessible emerald face. */
@@ -106,7 +106,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
   -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(135%);
   backdrop-filter:blur(var(--glass-blur)) saturate(135%);
  }
- body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
   background-color:rgb(25 43 54 / var(--glass-panel-alpha));
   -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(125%);
   backdrop-filter:blur(var(--glass-blur)) saturate(125%);
@@ -128,10 +128,10 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
 }
 @media(max-width:800px) {
  :root { --glass-blur:10px; --glass-panel-alpha:.78; }
- body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { inset:0; border-radius:18px; }
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { inset:0; border-radius:18px; }
 }
 @media(max-width:400px) {
- body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { inset:0; }
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { inset:0; }
 }
 /* User preference wins over translucency. Reduced motion keeps this static. */
 @media(prefers-reduced-transparency:reduce) {
@@ -139,7 +139,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
  body .rhino-header,
  body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog,.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls),
  body .pf-page .pf-card,body .contact-direct a,body .contact-steps article,
- body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
   -webkit-backdrop-filter:none; backdrop-filter:none; background-color:#1b2b36;
  }
 }
@@ -147,7 +147,7 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
  body .rhino-header,body .unified-footer,
  body :is(.rhino-mobile-menu,.rhino-about-links,.enquiry-dialog,.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt,.scene-controls,.contact-direct a,.contact-steps article),
  body .pf-page .pf-card,
- body :is(.hm-copy,.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after {
   background:Canvas; color:CanvasText; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; border-color:CanvasText;
  }
 }

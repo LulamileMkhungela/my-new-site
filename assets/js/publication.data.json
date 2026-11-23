@@ -2,8 +2,8 @@
   "publication": {
     "url": "",
     "name": "LulaZel",
-    "title": "LulaZel — Websites, Products & Digital Systems",
-    "description": "LulaZel turns ideas into digital impact: websites, product design, business systems and practical AI. Based in South Africa, working remotely.",
+    "title": "LulaZel — Devzigner, Design & Frontend Development",
+    "description": "Design and development, end to end. LulaZel brings product thinking, interface design and frontend development together for websites and apps. South Africa & remote.",
     "locale": "en_ZA",
     "language": "en-ZA",
     "email": "mkhungela.l@gmail.com",
@@ -15,14 +15,14 @@
   },
   "routes": {
     "/": {
-      "title": "LulaZel — Websites, Products & Digital Systems",
-      "description": "LulaZel turns ideas into digital impact: websites, product design, business systems and practical AI. Based in South Africa, working remotely.",
+      "title": "LulaZel — Devzigner, Design & Frontend Development",
+      "description": "Design and development, end to end. LulaZel brings product thinking, interface design and frontend development together for websites and apps. South Africa & remote.",
       "canonical": "/",
       "schema": null
     },
     "/about": {
       "title": "About Lulamile Mkhungela | LulaZel",
-      "description": "Meet Lulamile Mkhungela, a South African designer, founder and builder working across product design, websites and business systems.",
+      "description": "Meet Lulamile Mkhungela, a South African devzigner combining product design and frontend development to create websites and apps end to end.",
       "canonical": "/about/",
       "schema": null
     },

@@ -6,6 +6,10 @@
 .hm-panel-inner { display: grid; grid-template-columns: 1.12fr 1fr; gap: 4rem; align-items: center; min-height: 710px; padding-block: 6rem; }
 .hm-hero .hm-panel-inner { min-height: clamp(610px,calc(100svh - 200px),820px); padding-block: 4rem; }
 .hm-copy { position: relative; z-index: 2; min-width: 0; }
+/* Home chapters are open compositions, not frosted copy cards. */
+body .hm-page .hm-copy { padding:0; background:none; border:0; border-radius:0; box-shadow:none; }
+body .hm-page .hm-copy::after { content:none; }
+.hm-copy :is(h1,h2) { overflow-wrap:anywhere; }
 .hm-section-label { margin-bottom: 1.8rem; }
 .hm-section-label .hybrid-eyebrow { margin: 0 0 .65rem; font-family: Poppins,sans-serif; font-size: .55rem; font-weight: 700; letter-spacing: .17em; line-height: 1.8; }
 .hm-title { font-family: Poppins,sans-serif; font-size: clamp(2.25rem,3.55vw,3.65rem); line-height: 1.08; font-weight: 800; letter-spacing: -.04em; text-transform: uppercase; margin: 0 0 1.5rem; }
@@ -143,13 +147,13 @@ body .hm-testimonials .hm-testimonial-card:hover { transform:none; }
 .hm-quote-art-caption { position:absolute; bottom:0; font-size:.48rem; letter-spacing:.2em; text-transform:uppercase; color:#b1c7c2; }
 /* Visible chapter index + continuous page progress, matching the reference rhythm. */
 body .hm-page .hm-panel { scroll-margin-top:0; }
-.hm-chapter-rail { position:fixed; z-index:45; bottom:0; inset-inline:0; display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:2rem; align-items:center; min-height:72px; padding:10px clamp(24px,5vw,80px) calc(10px + env(safe-area-inset-bottom)); background:linear-gradient(0deg,#14202bf5,#14202be8); border-top:1px solid #b3f8db1a; }
+.hm-chapter-rail { position:fixed; z-index:45; bottom:0; inset-inline:0; display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:2rem; align-items:center; min-height:72px; padding:10px clamp(24px,5vw,80px) calc(10px + env(safe-area-inset-bottom)); background:linear-gradient(0deg,#151f29 0%,#151f29ed 65%,#151f2900 100%); border:0; border-radius:0; box-shadow:none; }
 .hm-chapter-rail nav { min-width:0; }
 .hm-chapter-rail ol { display:grid; grid-template-columns:repeat(11,minmax(0,1fr)); gap:0; margin:0; padding:0; list-style:none; }
-.hm-chapter-rail a { display:grid; place-items:center; position:relative; min-width:32px; min-height:44px; font-size:.63rem; letter-spacing:.1em; color:#c8d7dc; border-radius:6px; }
-.hm-chapter-rail a:hover { color:#69edb3; background:#9fffd90a; }
-.hm-chapter-rail a[aria-current='location'] { color:#38e99c; background:#00ce7b12; font-weight:700; }
-.hm-chapter-rail a[aria-current='location']::after { content:''; width:4px; height:4px; position:absolute; bottom:4px; border-radius:50%; background:#00ce7b; }
+.hm-chapter-rail a { display:grid; place-items:center; position:relative; min-width:32px; min-height:44px; font-size:.63rem; letter-spacing:.1em; color:#c8d7dc; border-radius:0; }
+.hm-chapter-rail a:hover { color:#69edb3; background:transparent; }
+.hm-chapter-rail a[aria-current='location'] { color:#38e99c; background:transparent; font-weight:700; }
+.hm-chapter-rail a[aria-current='location']::after { content:none; }
 .hm-rail-hint,.hm-rail-current { display:flex; align-items:center; gap:1rem; font-size:.48rem; letter-spacing:.17em; line-height:1.6; text-transform:uppercase; color:#b1c1cb; }
 .hm-rail-hint svg { width:12px; height:12px; color:#00ce7b; }
 .hm-rail-current { justify-content:flex-end; text-align:right; }
