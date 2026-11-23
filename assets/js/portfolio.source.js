@@ -30,6 +30,7 @@ async function LocalCopyPrompt(text) {
 
 /** Owner projects: live redirects, case studies, overviews and non-linked releases. */
 function LocalProjectAction(project,category='all') {
+  if(project.apkUrl)return {type:'external',href:project.apkUrl,label:'Download APK'};
   if(project.siteUrl)return {type:'external',href:project.siteUrl,label:'Visit site'};
   const override=project.categoryActions?.[category];
   const type=override?.type||project.type;
@@ -44,6 +45,20 @@ function LocalUseCopyStatus() {
     if(message==='Prompt copied.')timer.current=setTimeout(()=>setStatus(''),2000);
   };
   return [status,announce];
+}
+/** App-store placeholders stay genuinely disabled until the owner adds each URL. */
+function LocalAppDownloads({project,showApk=false}) {
+  const h=g.createElement;
+  const stores=[{id:'appStore',label:'App Store',icon:'app-store'},{id:'googlePlay',label:'Google Play',icon:'google-play'}];
+  return h('div',{className:'pf-app-downloads'},
+    showApk&&project.apkUrl&&h('a',{href:project.apkUrl,target:'_blank',rel:'noopener noreferrer',className:'hybrid-button pf-apk-download','aria-label':'Download Android APK — '+project.client},'Download APK',h(LocalUiIcon,{name:'download'})),
+    h('div',{className:'pf-store-links',role:'group','aria-label':project.client+' app stores'},...stores.map(store=>{
+      const url=project.storeLinks?.[store.id],label=store.label+' — '+project.client+(url?'':' (link not added yet)');
+      const children=[h(LocalUiIcon,{name:store.icon,key:'icon'}),h('span',{key:'label'},store.label)];
+      return url?h('a',{key:store.id,href:url,target:'_blank',rel:'noopener noreferrer',className:'pf-store-control','aria-label':label},...children):
+        h('button',{key:store.id,type:'button',disabled:true,className:'pf-store-control','aria-label':label,title:store.label+' link not added yet'},...children);
+    })),
+    !stores.some(store=>project.storeLinks?.[store.id])&&h('p',{className:'pf-store-note'},'Store links not added yet'));
 }
 /** Compact reference-style thumbnail and action bar, with no long card copy. */
 function LocalPortfolioCard({project,index,total,category='all'}) {
@@ -75,7 +90,7 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
   const action=LocalProjectAction(project,category);
   const linked=!freePrompt&&action.type!=='coming-soon'&&!!action.href;
   const web=category==='website'||category==='frontend-dev';
-  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
+  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
   const descriptionId='pf-description-'+category+'-'+project.id;
   const body=h(g.Fragment,null,
     h('div',{className:'pf-card-art',ref:previewRef},
@@ -83,14 +98,16 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
       project.image&&h('img',{src:previewImage,onLoad:measurePreview,alt:project.imageAlt||project.client+' project preview',loading:'lazy',decoding:'async',className:project.imageFit==='contain'?'pf-image-contain':undefined,onError:event=>{if(project.imageRemote&&!event.currentTarget.dataset.localFallback){event.currentTarget.dataset.localFallback='true';event.currentTarget.src=project.image;}else event.currentTarget.style.display='none';}})),
     h('div',{className:'pf-card-info'},h('h3',{className:'pf-compact-name'},project.client),
       h('p',{className:'sr-only',id:descriptionId},project.description),
+      project.projectLabel&&h('p',{className:'pf-card-status'},project.projectLabel),
       project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
       project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · '))),
     freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
-      h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:'arrow-up-right'})));
+      h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:project.apkUrl?'download':'arrow-up-right'})));
   return h('article',{className:'pf-card','data-project':project.id,'data-prompt-tier':project.promptTier,'data-web-preview':project.previewScroll?'true':undefined},
     linked?h(action.type==='external'?'a':ve,action.type==='external'?{href:action.href,target:'_blank',rel:'noopener noreferrer',className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId}:{to:action.href,className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId},body):h('div',{className:freePrompt?'pf-card-link pf-card-free':'pf-card-link pf-card-static'},body),
     freePrompt&&h('p',{className:'pf-copy-status',role:'status','aria-live':'polite'},copyStatus),
-    freePrompt&&copyStatus.startsWith('Copy unavailable')&&h('pre',{className:'pf-copy-fallback',tabIndex:0,'aria-label':'Select prompt — '+project.client},project.details.prompt));
+    freePrompt&&copyStatus.startsWith('Copy unavailable')&&h('pre',{className:'pf-copy-fallback',tabIndex:0,'aria-label':'Select prompt — '+project.client},project.details.prompt),
+    project.categories.includes('apps')&&h(LocalAppDownloads,{project}));
 }
 function LocalProjectPage() {
   const h=g.createElement;
@@ -104,6 +121,7 @@ function LocalProjectPage() {
       h('p',{className:'hybrid-eyebrow'},project.type==='overview'?'Project overview':'Selected work / Case study'),
       h('h1',null,project.client),h('p',{className:'owner-project-tagline'},project.title),h('p',{className:'owner-project-intro'},project.description),
       h('dl',{className:'owner-project-meta'},h('div',null,h('dt',null,'Role'),h('dd',null,details.role)),h('div',null,h('dt',null,'Context'),h('dd',null,details.context)),h('div',null,h('dt',null,'Status'),h('dd',null,project.status||'Selected project'))),
+      project.categories.includes('apps')&&h(LocalAppDownloads,{project,showApk:true}),
       project.image&&h('figure',{className:'owner-project-cover '+(project.imageFit==='contain'?'is-contain':'')},h('img',{src:project.image,alt:project.client+' project preview',fetchPriority:'high'}),h('figcaption',null,project.promptTier?'AI-assisted UI exploration from the original design library; not a shipped product.':project.id==='prodops'?'Actual local build of ProdOps, displaying the repository’s worked example.':project.id==='forma'?'Design-system illustration from the original portfolio; not a product screenshot.':project.type==='overview'?'Original project material. See the notes below for context.':'Project visual imported from the original portfolio.')))),
     h('div',{className:'unified-container owner-project-content'},...details.sections.map((section,index)=>h('section',{className:'owner-project-section',key:section.title},h('div',null,h('p',{className:'hybrid-eyebrow'},String(index+1).padStart(2,'0')+' / '+(project.type==='overview'?'Project notes':'The story')),h('h2',null,section.title)),h('div',null,...section.paragraphs.map((paragraph,i)=>h('p',{key:i},paragraph))))),
       details.prompt&&h(LocalPromptContent,{details}),

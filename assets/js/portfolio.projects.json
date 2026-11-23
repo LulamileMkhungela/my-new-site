@@ -278,6 +278,10 @@
           "caption": "Original Sesyme product mockups, imported from the supplied portfolio."
         }
       ]
+    },
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
     }
   },
   {
@@ -319,6 +323,10 @@
           "caption": "Historical listing image from the original portfolio—not a current store availability claim."
         }
       ]
+    },
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
     }
   },
   {
@@ -339,7 +347,11 @@
       "Mobile"
     ],
     "imageFit": "contain",
-    "imageAlt": "Lawmania app feed with legal questions, topic filters and Feed, Diary, Learn and Saved navigation"
+    "imageAlt": "Lawmania app feed with legal questions, topic filters and Feed, Diary, Learn and Saved navigation",
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    }
   },
   {
     "id": "ai-lifeos",
@@ -361,7 +373,11 @@
     ],
     "imageAlt": "Ai-LifeOS web dashboard showing Today, safe-to-spend setup, daily actions and reminders",
     "featured": true,
-    "homeOrder": 1
+    "homeOrder": 1,
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    }
   },
   {
     "id": "onescreen-business",
@@ -381,7 +397,11 @@
       "Web",
       "Mobile"
     ],
-    "imageAlt": "OneScreen Business home screen with talk-or-type business entry, record a sale, snap a slip and business navigation"
+    "imageAlt": "OneScreen Business home screen with talk-or-type business entry, record a sale, snap a slip and business navigation",
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    }
   },
   {
     "id": "lulafind",
@@ -395,7 +415,7 @@
     "external": false,
     "href": "/project/lulafind",
     "image": "/assets/img/portfolio/lulafind.png",
-    "status": "Pending Google Play review",
+    "status": "Android APK",
     "imageFit": "contain",
     "details": {
       "role": "Product & app development",
@@ -410,16 +430,11 @@
         {
           "title": "Release status",
           "paragraphs": [
-            "Pending Google Play app review, as supplied by the project owner. The ZIP link below downloads the public project source, not an approved Play Store release or an installable APK."
+            "A direct Android APK download link is provided below. App Store and Google Play links have not been added yet. The APK is a separate download, not a store release."
           ]
         }
       ],
-      "links": [
-        {
-          "label": "Download source ZIP",
-          "href": "https://github.com/LulamileMkhungela/LulaFind/archive/refs/heads/main.zip"
-        }
-      ],
+      "links": [],
       "gallery": [
         {
           "src": "/assets/img/portfolio/lulafind.png",
@@ -427,7 +442,12 @@
           "caption": "Home-interface capture supplied in the LulaFind repository’s design documentation."
         }
       ]
-    }
+    },
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    },
+    "apkUrl": "https://github.com/LulamileMkhungela/LulaFind/releases/download/apk-latest/LulaFind.apk"
   },
   {
     "id": "lulagazette",
@@ -445,7 +465,8 @@
     "previewScroll": true,
     "featured": true,
     "homeOrder": 3,
-    "siteUrl": "https://lulamilemkhungela.github.io/LulaGazette/"
+    "siteUrl": "https://lulamilemkhungela.github.io/LulaGazette/",
+    "projectLabel": "Personal Web project"
   },
   {
     "id": "designops",
@@ -827,7 +848,8 @@
     "featured": true,
     "homeOrder": 4,
     "imageAlt": "Delivery App comparison: Claude, ChatGPT and Figma Make parcel-tracking home screens",
-    "imageFit": "contain"
+    "imageFit": "contain",
+    "projectLabel": "Mobile app AI prompt"
   },
   {
     "id": "prompt-food-delivery-app-home-screen",

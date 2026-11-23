@@ -14,6 +14,9 @@ try{
   await page.locator('.site-back-to-top').waitFor({state:'attached'});
   const section=page.locator('#home-portfolio'),cards=section.locator('.pf-card');
   assert.deepEqual(await cards.evaluateAll(els=>els.map(el=>el.dataset.project)),ids);
+  assert.equal(await section.locator('[data-project="lulagazette"] .pf-card-status').textContent(),'Personal Web project');
+  assert.equal(await section.locator('[data-project="prompt-delivery-app"] .pf-card-status').textContent(),'Mobile app AI prompt');
+  assert.equal(await section.locator('[data-project="ai-lifeos"] .pf-store-links button:disabled').count(),2);
   await page.waitForFunction(()=>document.querySelector('.hm-chapter-rail a[aria-current="location"]')?.getAttribute('href')==='#home-portfolio');
   const layout=await section.locator('.hm-project-previews').evaluate(el=>{
    const r=el.getBoundingClientRect(),cards=[...el.children].map(card=>{
@@ -25,7 +28,7 @@ try{
   assert.ok(layout.left>=23&&layout.right>=23);
   for(const card of layout.cards){assert.ok(card.padding>=12.5);assert.equal(card.background,'rgba(0, 0, 0, 0)');assert.equal(card.shadow,'none');assert.equal(card.border,'1px');assert.equal(card.radius,'0px');assert.ok(card.infoTop>=card.imageBottom-.5&&card.actionTop>=card.infoBottom-.5);assert.ok(card.bottom-card.actionBottom>=7.5);assert.ok(Math.abs(card.top-layout.cards[0].top)<1);}
   if(width>900)assert.equal(layout.visible,5);else assert.ok(layout.visible>=1);
-  assert.equal(await section.locator('[data-project="ai-lifeos"] a,[data-project="ai-lifeos"] button').count(),0);
+  assert.equal(await section.locator('[data-project="ai-lifeos"] a,[data-project="ai-lifeos"] button:not(:disabled)').count(),0);
   assert.equal(await section.locator('[data-project="ai-lifeos"] .pf-action-unavailable').textContent(),'Coming soon');
   assert.equal(await section.locator('[data-project="nerdma"] a').getAttribute('href'),'https://www.nerdma.co.za');
   assert.equal(await section.locator('[data-project="lulagazette"] a').getAttribute('href'),'https://lulamilemkhungela.github.io/LulaGazette/');

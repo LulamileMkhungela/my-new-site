@@ -228,3 +228,20 @@
 @media(prefers-reduced-motion:reduce) {
  :is(.pf-page,.pf-featured) .pf-card[data-web-preview='true'] .pf-card-art img { transform:none !important; transition:none; }
 }
+
+/* App availability: real APK download, store placeholders without dead links. */
+.pf-app-downloads { margin-top:1rem; padding-top:1rem; border-top:1px solid #8cc8b030; min-width:0; }
+.pf-store-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+body .pf-store-control { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.4rem; min-width:0; min-height:60px; padding:.6rem .25rem; border-radius:4px; background-color:#19332d; color:#c3d9d0; text-align:center; font:500 .55rem/1.5 Poppins,sans-serif; }
+.pf-store-control .ui-line-icon { width:20px; height:20px; }
+body .pf-store-control:disabled { opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
+.pf-store-note { font-size:.52rem; line-height:1.7; color:#a3b9b2; margin:.7rem 0 0; }
+.owner-project-hero .pf-app-downloads { max-width:420px; margin-block:1.5rem 2rem; }
+.owner-project-hero .pf-store-control { font-size:.7rem; }
+.owner-project-hero .pf-store-note { font-size:.65rem; }
+.pf-apk-download { display:flex; margin-bottom:1.25rem; }
+/* Keep Home's mixed five-project row compact: store names remain in aria labels. */
+.pf-featured .pf-app-downloads { margin-top:.75rem; padding-top:.75rem; }
+.pf-featured .pf-store-links { display:flex; gap:.65rem; }
+.pf-featured .pf-store-control { width:44px; min-height:44px; padding:.5rem; }
+.pf-featured .pf-store-control>span,.pf-featured .pf-store-note { display:none; }

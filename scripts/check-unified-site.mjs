@@ -136,11 +136,24 @@ for(const id of ['nerdma','foodiezone','lulagazette']){
  assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href===project.siteUrl&&node.props.target==='_blank'&&node.props['aria-label']==='Visit site — '+project.client));
 }
 const delivery=projects.find(project=>project.id==='prompt-delivery-app');
+assert.equal(projects.find(project=>project.id==='lulagazette').projectLabel,'Personal Web project');
+assert.equal(delivery.projectLabel,'Mobile app AI prompt');
 assert.equal(delivery.client,'Delivery App');assert.ok(delivery.details.prompt.includes('Track your parcel'));
 assert.ok(delivery.details.prompt.includes('Johannesburg to Durban'));assert.equal(delivery.image,'/assets/img/portfolio/prompt-delivery-app.jpg');
 
 assert.ok(!text(portfolioView.tree).includes('Archive'));
 assert.ok(!JSON.stringify(projects).includes('shubhamranjan'));
+const lulafind=projects.find(project=>project.id==='lulafind');
+assert.equal(lulafind.apkUrl,'https://github.com/LulamileMkhungela/LulaFind/releases/download/apk-latest/LulaFind.apk');
+assert.equal(lulafind.status,'Android APK');
+assert.ok(!JSON.stringify(lulafind).includes('Pending Google Play'));assert.ok(!JSON.stringify(lulafind).includes('main.zip'));
+for(const project of projects.filter(project=>project.categories.includes('apps'))){
+ assert.deepEqual(project.storeLinks,{appStore:null,googlePlay:null});
+ const card=portfolioView.elements.find(node=>node.props['data-project']===project.id),descendants=nodes(card);
+ assert.equal(descendants.filter(node=>node.type==='button'&&node.props.disabled===true&&node.props.className==='pf-store-control').length,2);
+ if(project.id==='lulafind')assert.ok(descendants.some(node=>node.type==='a'&&node.props.href===project.apkUrl&&node.props['aria-label']==='Download APK — LulaFind'));
+}
+
 const prompts=projects.filter(project=>project.categories.includes('ai-prompt'));
 assert.deepEqual(prompts.map(project=>project.promptTier),[...Array(5).fill('premium'),...Array(6).fill('free')]);
 assert.deepEqual(prompts.filter(project=>project.promptTier==='free').map(project=>project.client),['Service Provider App','Finance homescreen','Delivery App','Food delivery app home screen','OtO e-commerce website','Fashion shopping app home screen']);

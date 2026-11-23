@@ -12,7 +12,7 @@ for(const width of [320,768,1440]){
    await img.scrollIntoViewIfNeeded();await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth===640&&el.naturalHeight===570));assert.ok((await img.getAttribute('src')).includes('?v='));
   }
   if(route.includes('filter=apps'))for(const id of ['lawmania','ai-lifeos','onescreen-business']){
-   const card=page.locator(`[data-project="${id}"]`);assert.equal(await card.locator('a,button,.pf-open-icon').count(),0);assert.equal(await card.locator('.pf-platforms').innerText(),'Cross-platform · Web · Mobile');assert.equal(await card.locator('.pf-action-unavailable').textContent(),'Coming soon');
+   const card=page.locator(`[data-project="${id}"]`);assert.equal(await card.locator('a,button:not(:disabled),.pf-open-icon').count(),0);assert.equal(await card.locator('.pf-platforms').innerText(),'Cross-platform · Web · Mobile');assert.equal(await card.locator('.pf-action-unavailable').textContent(),'Coming soon');
    const img=card.locator('img');await img.scrollIntoViewIfNeeded();await img.evaluate(el=>el.decode());if(id==='ai-lifeos')assert.ok((await img.getAttribute('src')).endsWith('/ai-lifeos-dashboard.png'));
   }
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' overflows at '+width);

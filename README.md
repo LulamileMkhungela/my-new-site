@@ -73,15 +73,15 @@ a current destination; they do not load the old UI.
 
 ## Portfolio content safeguards
 
-30 unique owner projects/resources yield 31 category entries (categories overlap):
-Website 7, Product Design 4, Apps 6, Frontend Dev 4 and AI Prompt 10. Category tabs
+31 unique owner projects/resources yield 32 category entries (categories overlap):
+Website 8, Product Design 4, Apps 6, Frontend Dev 3 and AI Prompt 11. Category tabs
 persist in the URL. Lawmania, Ai-LifeOS and OneScreen are labelled Coming soon,
 include web/mobile platforms, and have no fabricated cases or repository links.
 HeritageBites remains in testing/in progress; editorial GBV imagery is labelled.
-LulaFind remains pending review. ProdOps is a documentation-based overview with a
+LulaFind uses the owner-supplied Android APK link, with store links disabled. ProdOps is a documentation-based overview with a
 prefilled email request, not a public repository link.
 
-AI Prompt lists five premium resources before five free prompts. Premium cards
+AI Prompt lists five premium resources before six free prompts. Premium cards
 link to the shop; no premium prompt text is shipped. Free cards copy inline with
 a selection-based fallback for embedded previews, and offer manual copy/download
 if both clipboard methods fail. Website previews scroll naturally on hover or
@@ -357,3 +357,34 @@ after 2000ms. Repeated successes restart that timer; unmount cleans it up. Failu
 messages and manual-copy text do not auto-dismiss. The prompt browser suite uses
 Playwright's controlled clock for timing checks, alongside real clipboard and
 embedded-preview fallback checks.
+
+### APK and app-store availability
+
+LulaFind's primary action is **Download APK**, using the exact URL supplied by the
+owner in `apkUrl`. Its preview/detail status is **Android APK**, not Coming soon
+or Pending Google Play review. The old source-ZIP action was removed so visitors
+do not confuse source code with an installable app. The integration did not
+publish a release or verify installation: the supplied public APK URL returned
+HTTP 404 during this change, and the GitHub integration could not inspect that
+repository's release. Confirm public repo/release/asset access before launch.
+
+All six Apps projects have App Store and Google Play icon controls, including
+Home's Ai-LifeOS feature and available local app-overview pages. Both are native
+**disabled** buttons while `storeLinks.appStore` / `storeLinks.googlePlay` are
+`null`, with explicit accessible names and no fake hrefs. Add the real listing
+URL to the relevant project's `storeLinks` field when ready; that control then
+becomes a normal external link. Existing unreleased apps stay Coming soon.
+The Home variant uses compact labelled-for-assistive-technology icons to avoid
+overfilling the mixed five-project row. No store availability is implied.
+
+Home/Portfolio also show the project labels **Personal Web project** under
+LulaGazette and **Mobile app AI prompt** under Delivery App. These labels are
+separate from release status and do not imply the AI exploration is a shipped
+mobile app.
+
+`check-app-downloads-browser.mjs` checks exact APK destinations/status, absence
+of ZIP/review confusion, genuinely disabled store controls on all app projects,
+LulaFind detail controls and responsive geometry at five widths with JS on/off.
+The Home-featured suite additionally guards both project labels and disabled
+Home store icons. APK responses are not mocked or counted as successful downloads
+by these UI tests; external navigation is blocked.
