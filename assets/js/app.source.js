@@ -6,11 +6,34 @@ import {HelmetProvider,Helmet as XA} from 'react-helmet-async';
 
 const Bn=LocalSiteHeader,zn=LocalSiteFooter;
 function LocalRouteEffects(){
- const {pathname,hash}=Qt();
+ const {pathname,hash}=Qt(),previousPath=g.useRef(null);
  g.useLayoutEffect(()=>{
-  if(hash){const target=document.getElementById(decodeURIComponent(hash.slice(1)));if(target)target.scrollIntoView();}
-  else window.scrollTo({top:0,behavior:'instant'});
+  const header=document.querySelector('.rhino-header');
+  const measure=()=>document.documentElement.style.setProperty('--site-header-height',Math.ceil(header?.getBoundingClientRect().height||144)+'px');
+  measure();
+  const observer=typeof ResizeObserver==='function'?new ResizeObserver(measure):null;
+  if(header)observer?.observe(header);
+  window.addEventListener('resize',measure,{passive:true});
+  return()=>{observer?.disconnect();window.removeEventListener('resize',measure);};
  },[pathname]);
+ g.useLayoutEffect(()=>{
+  if(previousPath.current!==null&&previousPath.current!==pathname){
+   const main=document.getElementById('main');
+   main?.setAttribute('tabindex','-1');main?.focus({preventScroll:true});
+  }
+  previousPath.current=pathname;
+  const place=()=>{
+   let id='';try{id=decodeURIComponent(hash.slice(1));}catch{}
+   const target=id&&document.getElementById(id);
+   if(target)target.scrollIntoView({behavior:'instant',block:'start'});
+   else window.scrollTo({top:0,behavior:'instant'});
+  };
+  place();
+  // One follow-up frame avoids retaining the old chapter's scroll position
+  // while the replacement route and late image dimensions finish committing.
+  const frame=requestAnimationFrame(place);
+  return()=>cancelAnimationFrame(frame);
+ },[pathname,hash]);
  return null;
 }
 function LocalApplication(){

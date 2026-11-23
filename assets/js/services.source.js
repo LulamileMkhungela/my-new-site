@@ -85,7 +85,7 @@ function LocalServicesPage() {
       h('div',{className:'studio-copy','data-reveal':'copy'},label('02',design.featureLabel,design.subtitle),h(LocalStudioTitle,{lines:design.features}),
         h('div',{className:'studio-feature-list'},...service.features.map(([title,body],index)=>h('article',{className:'svc-feature',key:title},h('span',{className:'studio-feature-number'},String(index+1).padStart(2,'0')),h('h3',null,title),h('p',null,body)))),
         service.specialisms&&h('details',{className:'studio-specialisms'},h('summary',null,'Focused support & additional options'),...service.specialisms.map(([title,body])=>h('div',{key:title},h('h3',null,title),h('p',null,body)))),
-        h('p',{className:'studio-scope'},service.note),h('a',{href:'#service-contact',className:'studio-text-link'},'Discuss your requirements',h(LocalUiIcon,{name:'arrow-up-right'}))),
+        h('p',{className:'studio-scope'},service.note),h(ve,{to:'/contact',className:'studio-text-link'},'Discuss your requirements',h(LocalUiIcon,{name:'arrow-up-right'}))),
       h(LocalStudioVisual,{kind:featureArtwork.kind,caption:featureArtwork.caption})),h(LocalStudioPager,{sections,current:1,next:'service-contact'}))),
     panel('service-contact','YOUR NEXT STEP',h(g.Fragment,null,h('div',{className:'studio-panel-inner'},
       h('div',{className:'studio-copy','data-reveal':'copy'},label('03','Your next digital project','A clear plan. A personal approach.'),h(LocalStudioTitle,{lines:design.contact}),h('p',{className:'studio-description'},'Tell me what needs to work better. We’ll agree the requirements, content responsibilities, budget and timeline before design, build and review.'),

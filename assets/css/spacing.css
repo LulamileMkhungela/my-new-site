@@ -57,3 +57,9 @@ body .rhino-about-dropdown>button[aria-expanded='true'] .ui-line-icon { transfor
 
 /* Hidden at the top: removed from pointer, keyboard and accessibility navigation. */
 body .site-back-to-top[hidden] { display:none !important; }
+
+/* Anchor targets use the measured two-row header, not a guessed fixed offset. */
+:root { --site-header-height:146px; }
+html { scroll-padding-top:calc(var(--site-header-height) + 24px); }
+body main :is(#main,#home,#hosting,#web,#systems,#growth,#service-intro,#service-features,#service-contact,#contact-intro,#contact-next,#portfolio-projects,#toolkit) { scroll-margin-top:0; }
+@media(max-width:800px) { :root { --site-header-height:135px; } }

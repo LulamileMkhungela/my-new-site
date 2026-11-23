@@ -204,8 +204,9 @@ metadata tests do not prove a live crawler has refreshed its cache.
 dimensional rules. Sticky navigation, menus, chapter-copy sheets, cards, contact
 actions, long-form content, scene controls, footer and enquiry dialog share navy
 glass, emerald highlights and soft inset edges. Decorative copy sheets are
-pointer-transparent pseudo-elements: they neither resize text nor intercept
-links. Images/canvas, logo artwork and text itself are not blurred. Portfolio
+pointer-transparent pseudo-elements contained within padded columns: they never
+intercept links. Copy panels have responsive inner insets so text and controls do
+not touch their glass edges. Images/canvas, logo artwork and text itself are not blurred. Portfolio
 row dimensions, About's flat chevron and scroll-dependent Back to top are retained.
 
 Blur is restricted to bounded surfaces (18px desktop, 10px mobile), with no
@@ -227,3 +228,15 @@ Original testimonial quotes, factual project provenance and identity-bearing
 contact destinations/structured data are not rewritten as marketing copy.
 `check-name-density-browser.mjs` checks the main brand-first routes at mobile and
 desktop widths, with explicit exceptions for About content and original quotes.
+
+### Discuss navigation and panel insets
+
+Every service Discuss CTA links to `/contact`, including prerendered/no-JS links.
+Route changes reset scroll and move keyboard focus to main without scrolling it;
+a follow-up animation frame handles route layout changes. Hash navigation uses a
+measured sticky-header height plus a 24px clearance. About biography and shared
+chapter sheets have real responsive inner padding, and Contact's three steps
+remain a single vertical column with gaps at every breakpoint.
+`check-discuss-spacing-browser.mjs` exercises every service CTA position at
+320/390/768/1440px, verifies visible Contact headings, panel insets, no horizontal
+overflow, and Contact anchor clearance. Use `TEST_WIDTHS=1440` to run one width.
