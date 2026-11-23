@@ -151,6 +151,8 @@ assert.match(lunia.cardDescription,/2019.*2024.*no longer updating/);
 assert.match(lunia.details.sections[1].paragraphs.join(' '),/2024 because I was no longer updating/);
 const oneScreen=projects.find(project=>project.id==='onescreen-business');
 assert.equal(oneScreen.androidReleaseUrl,'https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk');
+assert.equal(oneScreen.status,undefined);
+assert.equal(projects.find(project=>project.id==='sesyme').projectLabel,'Mobile');
 assert.equal(oneScreen.type,'external');assert.ok(!oneScreen.apkUrl,'Do not invent an uninspected APK asset name');
 for(const id of ['sesyme','lunianetwork']){const project=projects.find(item=>item.id===id);assert.equal(project.year,'2019');assert.equal(project.historical,true);assert.ok(project.cardDescription.length>40);}
 

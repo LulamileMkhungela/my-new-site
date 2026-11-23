@@ -285,7 +285,7 @@
     },
     "historical": true,
     "year": "2019",
-    "projectLabel": "Work project · 2019",
+    "projectLabel": "Mobile",
     "cardDescription": "A student co-learning and reading app I created while working at Sesyme in 2019."
   },
   {
@@ -401,7 +401,6 @@
     "external": true,
     "href": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
     "image": "/assets/img/portfolio/onescreen-business-home.png",
-    "status": "Android release · v2.1.0",
     "imageFit": "contain",
     "platforms": [
       "Web",
