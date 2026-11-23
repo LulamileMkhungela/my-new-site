@@ -81,7 +81,7 @@ assert.equal(homeView.elements.filter(node=>node.type==='main').length,1);
 assert.equal(homeView.elements.filter(node=>(node.props.className||'').split(' ').includes('hm-panel')).length,11);
 assert.deepEqual(homeView.elements.filter(node=>node.props.className==='pf-card').map(node=>node.props['data-project']),['ai-lifeos','nerdma','lulagazette','prompt-delivery-app','foodiezone']);
 for(const card of homeView.elements.filter(node=>node.props.className==='pf-card')){
- const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt'].includes(name)));
+ const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt','pf-release-badge'].includes(name)));
  assert.ok(title>=0&&action>title,'Names/details precede project actions, including Home features');
 }
 
@@ -144,13 +144,18 @@ assert.ok(delivery.details.prompt.includes('Johannesburg to Durban'));assert.equ
 assert.ok(!text(portfolioView.tree).includes('Archive'));
 assert.ok(!JSON.stringify(projects).includes('shubhamranjan'));
 const lulafind=projects.find(project=>project.id==='lulafind');
-assert.equal(lulafind.apkUrl,'https://github.com/LulamileMkhungela/LulaFind/releases/download/apk-latest/LulaFind.apk');
+assert.equal(lulafind.apkUrl,'https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing');
 assert.equal(lulafind.status,'Android APK');
+const oneScreen=projects.find(project=>project.id==='onescreen-business');
+assert.equal(oneScreen.androidReleaseUrl,'https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk');
+assert.equal(oneScreen.type,'external');assert.ok(!oneScreen.apkUrl,'Do not invent an uninspected APK asset name');
+for(const id of ['sesyme','lunianetwork']){const project=projects.find(item=>item.id===id);assert.equal(project.year,'2019');assert.equal(project.historical,true);assert.ok(project.cardDescription.length>40);}
+
 assert.ok(!JSON.stringify(lulafind).includes('Pending Google Play'));assert.ok(!JSON.stringify(lulafind).includes('main.zip'));
 for(const project of projects.filter(project=>project.categories.includes('apps'))){
  assert.deepEqual(project.storeLinks,{appStore:null,googlePlay:null});
  const card=portfolioView.elements.find(node=>node.props['data-project']===project.id),descendants=nodes(card);
- assert.equal(descendants.filter(node=>node.type==='button'&&node.props.disabled===true&&node.props.className==='pf-store-control').length,2);
+ assert.equal(descendants.filter(node=>node.type==='button'&&node.props.disabled===true&&node.props.className==='pf-store-control').length,project.historical?0:2);
  if(project.id==='lulafind')assert.ok(descendants.some(node=>node.type==='a'&&node.props.href===project.apkUrl&&node.props['aria-label']==='Download APK — LulaFind'));
 }
 
@@ -161,7 +166,7 @@ for(const project of prompts) {
  if(project.promptTier==='premium') {assert.equal(project.type,'external');assert.equal(project.href,'https://selar.com/m/le-loux');assert.ok(!project.details?.prompt);}
  else {assert.ok(project.details.prompt.length>100);assert.equal(read(project.details.promptDownload.slice(1)).trim(),project.details.prompt);}
 }
-for(const id of ['lawmania','ai-lifeos','onescreen-business']) {
+for(const id of ['lawmania','ai-lifeos']) {
  const project=projects.find(item=>item.id===id);assert.equal(project.type,'coming-soon');assert.ok(project.description.length>100);assert.ok(!project.href);assert.ok(!project.sourcePending);
 }
 assert.ok(projects.find(item=>item.id==='heritagebites').status.includes('Testing link'));
@@ -219,7 +224,7 @@ assert.ok(!read("assets/js/site-app.js").includes("l.jsx(hA,{})"),"No upstream A
 assert.ok(!read("assets/js/site-app.js").includes("l.jsx(SA,{})"),"No upstream Speed Insights mount");
 assert.ok(!read("assets/js/app.source.js").includes("setTimeout"),"No delayed route remount curtains");
 
-for(const id of ["lawmania","ai-lifeos","onescreen-business"]){
+for(const id of ["lawmania","ai-lifeos"]){
  const project=projects.find(item=>item.id===id);assert.deepEqual(project.platforms,["Web","Mobile"]);assert.equal(project.status,"Coming soon");assert.equal(project.href,null);
 }
 assert.equal(projects.find(item=>item.id==="lawmania").image,"/assets/img/portfolio/lawmania-feed.png");

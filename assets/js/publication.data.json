@@ -144,13 +144,13 @@
     },
     "/project/sesyme": {
       "title": "Sesyme | LulaZel",
-      "description": "A co-learning app for university students, with question-and-answer learning and a digital reading experience.",
+      "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
       "canonical": "/project/sesyme/",
       "schema": null
     },
     "/project/lunianetwork": {
       "title": "LuniaNetwork | LulaZel",
-      "description": "An app for finding loved ones or items and connecting with other people.",
+      "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was later removed from Google Play.",
       "canonical": "/project/lunianetwork/",
       "schema": null
     },

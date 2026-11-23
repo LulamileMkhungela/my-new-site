@@ -31,6 +31,7 @@ async function LocalCopyPrompt(text) {
 /** Owner projects: live redirects, case studies, overviews and non-linked releases. */
 function LocalProjectAction(project,category='all') {
   if(project.apkUrl)return {type:'external',href:project.apkUrl,label:'Download APK'};
+  if(project.androidReleaseUrl)return {type:'external',href:project.androidReleaseUrl,label:'Android release'};
   if(project.siteUrl)return {type:'external',href:project.siteUrl,label:'Visit site'};
   const override=project.categoryActions?.[category];
   const type=override?.type||project.type;
@@ -49,9 +50,10 @@ function LocalUseCopyStatus() {
 /** App-store placeholders stay genuinely disabled until the owner adds each URL. */
 function LocalAppDownloads({project,showApk=false}) {
   const h=g.createElement;
+  if(project.historical)return null;
   const stores=[{id:'appStore',label:'App Store',icon:'app-store'},{id:'googlePlay',label:'Google Play',icon:'google-play'}];
   return h('div',{className:'pf-app-downloads'},
-    showApk&&project.apkUrl&&h('a',{href:project.apkUrl,target:'_blank',rel:'noopener noreferrer',className:'hybrid-button pf-apk-download','aria-label':'Download Android APK — '+project.client},'Download APK',h(LocalUiIcon,{name:'download'})),
+    showApk&&(project.apkUrl||project.androidReleaseUrl)&&h('a',{href:project.apkUrl||project.androidReleaseUrl,target:'_blank',rel:'noopener noreferrer',className:'hybrid-button pf-apk-download','aria-label':(project.apkUrl?'Download Android APK':'Android release')+' — '+project.client},project.apkUrl?'Download APK':'Android release',h(LocalUiIcon,{name:'download'})),
     h('div',{className:'pf-store-links',role:'group','aria-label':project.client+' app stores'},...stores.map(store=>{
       const url=project.storeLinks?.[store.id],label=store.label+' — '+project.client+(url?'':' (link not added yet)');
       const children=[h(LocalUiIcon,{name:store.icon,key:'icon'}),h('span',{key:'label'},store.label)];
@@ -90,7 +92,7 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
   const action=LocalProjectAction(project,category);
   const linked=!freePrompt&&action.type!=='coming-soon'&&!!action.href;
   const web=category==='website'||category==='frontend-dev';
-  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
+  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.androidReleaseUrl?'Android release':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
   const descriptionId='pf-description-'+category+'-'+project.id;
   const body=h(g.Fragment,null,
     h('div',{className:'pf-card-art',ref:previewRef},
@@ -99,15 +101,17 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
     h('div',{className:'pf-card-info'},h('h3',{className:'pf-compact-name'},project.client),
       h('p',{className:'sr-only',id:descriptionId},project.description),
       project.projectLabel&&h('p',{className:'pf-card-status'},project.projectLabel),
+      project.cardDescription&&h('p',{className:'pf-history-description'},project.cardDescription),
       project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
       project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · '))),
-    freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
-      h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:project.apkUrl?'download':'arrow-up-right'})));
+    action.type==='coming-soon'?null:freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
+      h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:project.apkUrl||project.androidReleaseUrl?'download':'arrow-up-right'})));
   return h('article',{className:'pf-card','data-project':project.id,'data-prompt-tier':project.promptTier,'data-web-preview':project.previewScroll?'true':undefined},
     linked?h(action.type==='external'?'a':ve,action.type==='external'?{href:action.href,target:'_blank',rel:'noopener noreferrer',className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId}:{to:action.href,className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId},body):h('div',{className:freePrompt?'pf-card-link pf-card-free':'pf-card-link pf-card-static'},body),
     freePrompt&&h('p',{className:'pf-copy-status',role:'status','aria-live':'polite'},copyStatus),
     freePrompt&&copyStatus.startsWith('Copy unavailable')&&h('pre',{className:'pf-copy-fallback',tabIndex:0,'aria-label':'Select prompt — '+project.client},project.details.prompt),
-    project.categories.includes('apps')&&h(LocalAppDownloads,{project}));
+    project.categories.includes('apps')&&h(LocalAppDownloads,{project}),
+    action.type==='coming-soon'&&h('span',{className:'pf-release-badge pf-action-unavailable'},'Coming soon'));
 }
 function LocalProjectPage() {
   const h=g.createElement;

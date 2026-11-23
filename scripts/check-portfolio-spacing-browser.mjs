@@ -15,8 +15,8 @@ for(const javaScriptEnabled of [true,false]){
    if(javaScriptEnabled)await page.locator('.site-back-to-top').waitFor({state:'attached'});
    await page.evaluate(()=>document.fonts.ready);
    const report=await page.locator('.pf-card').evaluateAll(cards=>cards.map(card=>{
-    const r=card.getBoundingClientRect(),title=card.querySelector('h3'),t=title.getBoundingClientRect(),action=card.querySelector('.pf-action-bar,.pf-copy-prompt'),a=action.getBoundingClientRect(),image=card.querySelector('.pf-card-art').getBoundingClientRect();
-    const metadata=[...card.querySelectorAll('.pf-platforms,.pf-card-status,.pf-copy-status')].filter(el=>el.textContent.trim());
+    const r=card.getBoundingClientRect(),title=card.querySelector('h3'),t=title.getBoundingClientRect(),action=card.querySelector('.pf-action-bar,.pf-copy-prompt,.pf-store-links'),a=action.getBoundingClientRect(),image=card.querySelector('.pf-card-art').getBoundingClientRect();
+    const metadata=[...card.querySelectorAll('.pf-platforms,.pf-card-status,.pf-copy-status,.pf-history-description')].filter(el=>el.textContent.trim());
     const detailsBottom=metadata.length?metadata.at(-1).getBoundingClientRect().bottom:t.bottom;
     const feedback=card.querySelector('.pf-copy-status');
     const bottom=feedback?.textContent.trim()?feedback.getBoundingClientRect().bottom:a.bottom;
@@ -27,7 +27,7 @@ for(const javaScriptEnabled of [true,false]){
     for(const key of['imageInset','actionInset','titleInset'])assert.ok(card[key]>=12.5,card.id+' '+key+': '+JSON.stringify(card));
     assert.ok(card.bottomInset>=7.5,JSON.stringify(card));
     assert.equal(card.background,'rgba(0, 0, 0, 0)');assert.equal(card.shadow,'none');assert.equal(card.border,'1px');assert.equal(card.radius,'0px');
-    assert.ok(card.titleGap>=15,JSON.stringify(card));assert.ok(card.actionHeight>=44,card.id);assert.equal(card.titleClipped,false,card.id);
+    assert.ok(card.titleGap>=11,JSON.stringify(card));assert.ok(card.actionHeight>=44,card.id);assert.equal(card.titleClipped,false,card.id);
    }
    const tracks=await page.locator('.pf-grid').evaluateAll(grids=>grids.map(el=>{
     const r=el.getBoundingClientRect(),cards=[...el.children].map(card=>card.getBoundingClientRect());

@@ -240,8 +240,19 @@ body .pf-store-control:disabled { opacity:.5; cursor:not-allowed; transform:none
 .owner-project-hero .pf-store-control { font-size:.7rem; }
 .owner-project-hero .pf-store-note { font-size:.65rem; }
 .pf-apk-download { display:flex; margin-bottom:1.25rem; }
-/* Keep Home's mixed five-project row compact: store names remain in aria labels. */
-.pf-featured .pf-app-downloads { margin-top:.75rem; padding-top:.75rem; }
-.pf-featured .pf-store-links { display:flex; gap:.65rem; }
-.pf-featured .pf-store-control { width:44px; min-height:44px; padding:.5rem; }
-.pf-featured .pf-store-control>span,.pf-featured .pf-store-note { display:none; }
+/* Store icons are one 44px row; historical apps offer descriptions, not installs. */
+.pf-card .pf-app-downloads { margin-top:.75rem; padding:0; border:0; }
+.pf-card .pf-store-control { min-height:44px; padding:.5rem; }
+.pf-card .pf-store-control>span,.pf-card .pf-store-note { display:none; }
+.pf-featured .pf-store-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+body :is(.pf-page,.pf-featured) .pf-card .pf-release-badge {
+ position:absolute; top:-10px; right:12px; z-index:3; padding:.3rem .6rem;
+ background:#152c2a; color:#a6e2c7; border:1px solid #74c5a46b; border-radius:3px;
+ box-shadow:none; font:600 .52rem/1.5 Poppins,sans-serif; letter-spacing:.05em; text-transform:uppercase;
+}
+.pf-history-description { font-size:.65rem; line-height:1.8; color:#b5c9ce; margin:.65rem 0 0; }
+/* Taller Home windows preserve proportions: fit app concepts, crop short web covers,
+   and retain natural-height panning for genuinely tall website captures. */
+.pf-featured .pf-card .pf-card-art { aspect-ratio:4/3; }
+.pf-featured .pf-card[data-web-preview='true'] .pf-card-art img { height:100%; object-fit:cover; }
+.pf-featured .pf-card[data-web-preview='true'] .pf-card-art[data-scrollable='true'] img { height:auto; object-fit:contain; }

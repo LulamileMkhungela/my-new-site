@@ -75,7 +75,7 @@ a current destination; they do not load the old UI.
 
 31 unique owner projects/resources yield 32 category entries (categories overlap):
 Website 8, Product Design 4, Apps 6, Frontend Dev 3 and AI Prompt 11. Category tabs
-persist in the URL. Lawmania, Ai-LifeOS and OneScreen are labelled Coming soon,
+persist in the URL. Lawmania and Ai-LifeOS are labelled Coming soon,
 include web/mobile platforms, and have no fabricated cases or repository links.
 HeritageBites remains in testing/in progress; editorial GBV imagery is labelled.
 LulaFind uses the owner-supplied Android APK link, with store links disabled. ProdOps is a documentation-based overview with a
@@ -360,22 +360,32 @@ embedded-preview fallback checks.
 
 ### APK and app-store availability
 
-LulaFind's primary action is **Download APK**, using the exact URL supplied by the
-owner in `apkUrl`. Its preview/detail status is **Android APK**, not Coming soon
-or Pending Google Play review. The old source-ZIP action was removed so visitors
-do not confuse source code with an installable app. The integration did not
-publish a release or verify installation: the supplied public APK URL returned
-HTTP 404 during this change, and the GitHub integration could not inspect that
-repository's release. Confirm public repo/release/asset access before launch.
+LulaFind's primary action is **Download APK**, using the owner's exact Google
+Drive share URL in `apkUrl`. Its preview/detail status is **Android APK**, not
+Coming soon or Pending Google Play review. The detail page explains saving the
+APK and approving installation on Android; it cannot install on iOS. The old
+GitHub/source-ZIP targets are no longer used. Drive permissions and actual device
+installation have not been verified.
 
-All six Apps projects have App Store and Google Play icon controls, including
-Home's Ai-LifeOS feature and available local app-overview pages. Both are native
+OneScreen's **Android release** action opens the owner's exact GitHub release
+page for `v2.1.0-apk`. The public page returned HTTP 404 and the integration
+could not inspect its assets, so no APK asset filename is invented. Supply a
+public direct APK URL to offer a direct download. No iOS build/distribution link
+was supplied; an Android APK cannot serve as an iOS installer.
+
+Current app projects have App Store and Google Play icon controls, including
+Home's Ai-LifeOS feature and LulaFind's local overview. Both are native
 **disabled** buttons while `storeLinks.appStore` / `storeLinks.googlePlay` are
 `null`, with explicit accessible names and no fake hrefs. Add the real listing
 URL to the relevant project's `storeLinks` field when ready; that control then
-becomes a normal external link. Existing unreleased apps stay Coming soon.
-The Home variant uses compact labelled-for-assistive-technology icons to avoid
-overfilling the mixed five-project row. No store availability is implied.
+becomes a normal external link. Historical Sesyme (employment project, 2019)
+and LuniaNetwork (personal app published in 2019, later removed from Google
+Play) show their descriptions and overview links instead of store placeholders.
+
+Coming soon is a small corner badge on the whole-project border, freeing the
+bottom row for compact 44px store controls. Home previews use taller 4:3 windows
+without stretching: app art retains its proportions and website captures crop
+or pan naturally. Five-across desktop/horizontal mobile layouts are preserved.
 
 Home/Portfolio also show the project labels **Personal Web project** under
 LulaGazette and **Mobile app AI prompt** under Delivery App. These labels are
@@ -383,7 +393,7 @@ separate from release status and do not imply the AI exploration is a shipped
 mobile app.
 
 `check-app-downloads-browser.mjs` checks exact APK destinations/status, absence
-of ZIP/review confusion, genuinely disabled store controls on all app projects,
+of ZIP/review confusion, genuinely disabled store controls on current apps, historical descriptions,
 LulaFind detail controls and responsive geometry at five widths with JS on/off.
 The Home-featured suite additionally guards both project labels and disabled
 Home store icons. APK responses are not mocked or counted as successful downloads

@@ -40,7 +40,7 @@ body .hm-page .hm-copy::after { content:none; }
 .hm-portfolio-heading { display: grid; grid-template-columns: 1.25fr 1fr; align-items: end; gap: 4rem; margin-bottom: 2.5rem; }
 .hm-portfolio-heading .hm-title { margin-bottom: 0; }
 .hm-portfolio-heading .hm-link { margin-top: .5rem; }
-.hm-project-previews { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1.25rem; align-items:stretch; padding:.5rem 4px 1.25rem; }
+.hm-project-previews { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1.25rem; align-items:stretch; padding:1rem 4px 1.25rem; }
 @media(max-width:900px) {
  .hm-project-previews { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:min(78vw,280px); overflow-x:auto; gap:1rem; scroll-snap-type:x proximity; scroll-padding-inline:4px; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:#00ce7b66 transparent; }
  .hm-project-previews .pf-card { scroll-snap-align:start; }

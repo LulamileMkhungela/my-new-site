@@ -38,7 +38,7 @@ body .rhino-header .hybrid-service-nav-inner>a:last-child { margin-inline-end:.7
 body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-padding-inline:.4rem; }
 body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
 /* Page/track gutters frame open project previews; controls own their padding. */
-body :is(.pf-page,.pf-featured) .pf-grid { padding:.5rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
+body :is(.pf-page,.pf-featured) .pf-grid { padding:1rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
 body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:12px; }
 body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:0; }
 body :is(.pf-page,.pf-featured) .pf-card-link { flex:1; min-width:0; }

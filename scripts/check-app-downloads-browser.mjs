@@ -4,7 +4,7 @@ import C from '@sparticuz/chromium';
 import {chromium} from 'playwright-core';
 const origin=process.env.TEST_ORIGIN||'http://127.0.0.1:3000';
 const apps=JSON.parse(fs.readFileSync('assets/js/portfolio.projects.json')).filter(p=>p.categories.includes('apps'));
-const apk='https://github.com/LulamileMkhungela/LulaFind/releases/download/apk-latest/LulaFind.apk';
+const apk='https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing';
 for(const javaScriptEnabled of[true,false]){
  const browser=await chromium.launch({args:C.args,executablePath:await C.executablePath(),headless:true});
  try{
@@ -15,14 +15,18 @@ for(const javaScriptEnabled of[true,false]){
    if(javaScriptEnabled)await page.locator('.site-back-to-top').waitFor({state:'attached'});
    for(const project of apps){
     const card=page.locator('.pf-card[data-project="'+project.id+'"]');
-    for(const store of['App Store','Google Play']){
+    if(!project.historical)for(const store of['App Store','Google Play']){
      const control=card.getByRole('button',{name:store+' — '+project.client+' (link not added yet)',exact:true});
      assert.equal(await control.isDisabled(),true);assert.equal(await control.locator('svg').count(),1);assert.equal(await control.getAttribute('href'),null);
     }
     assert.equal(await card.locator('.pf-store-links a').count(),0);
     if(project.type==='coming-soon')assert.equal(await card.locator('a,button:not(:disabled)').count(),0);
+    if(project.historical){assert.equal(await card.locator('.pf-app-downloads').count(),0);assert.ok((await card.textContent()).includes('2019'));continue;}
     const geometry=await card.locator('.pf-store-links').evaluate(el=>{const r=el.getBoundingClientRect();return [...el.children].every(c=>{const b=c.getBoundingClientRect();return b.left>=r.left-.5&&b.right<=r.right+.5&&b.height>=44&&c.scrollWidth<=c.clientWidth+1;});});assert.equal(geometry,true,project.id+' store controls fit');
    }
+   const release=page.locator('[data-project="onescreen-business"]');
+   assert.equal(await release.getByRole('link',{name:'Android release — OneScreen Business'}).getAttribute('href'),apps.find(p=>p.id==='onescreen-business').androidReleaseUrl);
+   assert.equal(await release.locator('.pf-release-badge').count(),0);
    const find=page.locator('[data-project="lulafind"]');
    assert.equal(await find.getByRole('link',{name:'Download APK — LulaFind'}).getAttribute('href'),apk);
    assert.equal(await find.locator('.pf-card-status').textContent(),'Android APK');
@@ -35,7 +39,7 @@ for(const javaScriptEnabled of[true,false]){
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
    assert.ok(!(await page.locator('main').textContent()).includes('Pending Google Play'));
    if(javaScriptEnabled&&width===1440)await page.screenshot({path:'/tmp/lulafind-apk-store-controls.png'});
-   console.log('✓ LulaFind APK URL/status, no source-ZIP confusion, disabled App Store/Google Play on all six app projects, controls fit: '+width+'px; JS '+javaScriptEnabled);
+   console.log('✓ LulaFind APK URL/status, no source-ZIP confusion, disabled stores on current apps, historical descriptions only, controls fit: '+width+'px; JS '+javaScriptEnabled);
   }
   assert.deepEqual(errors,[]);
  }finally{await browser.close();}

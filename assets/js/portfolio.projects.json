@@ -243,7 +243,7 @@
     "id": "sesyme",
     "client": "Sesyme",
     "title": "Learning, in your pocket.",
-    "description": "A co-learning app for university students, with question-and-answer learning and a digital reading experience.",
+    "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
     "categories": [
       "apps"
     ],
@@ -255,18 +255,18 @@
     "imageFit": "contain",
     "details": {
       "role": "UI/UX & Android development",
-      "context": "Sesyme · Mobile learning",
+      "context": "Sesyme · Employment project · 2019",
       "sections": [
         {
-          "title": "Project overview",
+          "title": "Work project · 2019",
           "paragraphs": [
-            "Sesyme is presented in the original portfolio as a co-learning platform for university students. The supplied product mockup shows a reading library across laptop, tablet and mobile."
+            "I created this app while working at Sesyme in 2019. It is a co-learning platform for university students, combining question-and-answer learning with a digital reading experience."
           ]
         },
         {
-          "title": "Available material",
+          "title": "Historical project",
           "paragraphs": [
-            "The public repository identifies this as the Sesyme mobile app. This page brings together the original portfolio’s product imagery and that repository context; it does not claim new adoption or learning-outcome results."
+            "This page documents work from that role. The original imagery is retained as historical project material; no current app download or store availability is claimed."
           ]
         }
       ],
@@ -282,13 +282,17 @@
     "storeLinks": {
       "appStore": null,
       "googlePlay": null
-    }
+    },
+    "historical": true,
+    "year": "2019",
+    "projectLabel": "Work project · 2019",
+    "cardDescription": "A student co-learning and reading app I created while working at Sesyme in 2019."
   },
   {
     "id": "lunianetwork",
     "client": "LuniaNetwork",
     "title": "Helping people find and reconnect.",
-    "description": "An app for finding loved ones or items and connecting with other people.",
+    "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was later removed from Google Play.",
     "categories": [
       "apps"
     ],
@@ -296,22 +300,22 @@
     "external": false,
     "href": "/project/lunianetwork",
     "image": "/assets/img/portfolio/lunianetwork.jpg",
-    "status": "Previous work",
+    "status": "No longer on Google Play",
     "imageFit": "contain",
     "details": {
       "role": "App development",
-      "context": "LuniaNetwork · Community & social",
+      "context": "Personal project · Community & social · 2019",
       "sections": [
         {
-          "title": "Project overview",
+          "title": "Personal app · 2019",
           "paragraphs": [
-            "The historical Google Play listing in the original portfolio describes LuniaNetwork as an application for finding loved ones or items and connecting with other people."
+            "I developed and published LuniaNetwork as a personal app in 2019. It helped people find loved ones or items and connect with other people."
           ]
         },
         {
-          "title": "Available evidence",
+          "title": "Publication history",
           "paragraphs": [
-            "The listing screenshot credits Lulamile Mkhungela as the developer. It is shown as historical project material; present store availability and user figures have not been verified."
+            "The app was published on Google Play and was later removed. The original listing screenshot is retained as historical material, not a claim of current availability. No download or active store link is offered here."
           ]
         }
       ],
@@ -327,7 +331,11 @@
     "storeLinks": {
       "appStore": null,
       "googlePlay": null
-    }
+    },
+    "historical": true,
+    "year": "2019",
+    "projectLabel": "Personal app · 2019",
+    "cardDescription": "I developed and published this personal app in 2019. It was later removed from Google Play."
   },
   {
     "id": "lawmania",
@@ -387,11 +395,11 @@
     "categories": [
       "apps"
     ],
-    "type": "coming-soon",
-    "external": false,
-    "href": null,
+    "type": "external",
+    "external": true,
+    "href": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
     "image": "/assets/img/portfolio/onescreen-business-home.png",
-    "status": "Coming soon",
+    "status": "Android release · v2.1.0",
     "imageFit": "contain",
     "platforms": [
       "Web",
@@ -401,7 +409,8 @@
     "storeLinks": {
       "appStore": null,
       "googlePlay": null
-    }
+    },
+    "androidReleaseUrl": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk"
   },
   {
     "id": "lulafind",
@@ -430,7 +439,7 @@
         {
           "title": "Release status",
           "paragraphs": [
-            "A direct Android APK download link is provided below. App Store and Google Play links have not been added yet. The APK is a separate download, not a store release."
+            "The Android APK is shared through Google Drive. Open the download, save the APK, then approve installation on your Android device. This APK cannot be installed on iOS. App Store and Google Play listing links have not been added."
           ]
         }
       ],
@@ -447,7 +456,7 @@
       "appStore": null,
       "googlePlay": null
     },
-    "apkUrl": "https://github.com/LulamileMkhungela/LulaFind/releases/download/apk-latest/LulaFind.apk"
+    "apkUrl": "https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing"
   },
   {
     "id": "lulagazette",

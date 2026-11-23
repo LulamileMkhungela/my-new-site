@@ -20,7 +20,7 @@ try{
   await page.waitForFunction(()=>document.querySelector('.hm-chapter-rail a[aria-current="location"]')?.getAttribute('href')==='#home-portfolio');
   const layout=await section.locator('.hm-project-previews').evaluate(el=>{
    const r=el.getBoundingClientRect(),cards=[...el.children].map(card=>{
-    const b=card.getBoundingClientRect(),img=card.querySelector('.pf-card-art').getBoundingClientRect(),info=card.querySelector('.pf-card-info').getBoundingClientRect(),action=card.querySelector('.pf-action-bar,.pf-copy-prompt').getBoundingClientRect();
+    const b=card.getBoundingClientRect(),img=card.querySelector('.pf-card-art').getBoundingClientRect(),info=card.querySelector('.pf-card-info').getBoundingClientRect(),action=card.querySelector('.pf-action-bar,.pf-copy-prompt,.pf-store-links').getBoundingClientRect();
     const style=getComputedStyle(card);
     return{background:style.backgroundColor,shadow:style.boxShadow,border:style.borderTopWidth,radius:style.borderRadius,left:b.left,right:b.right,top:b.top,padding:img.left-b.left,imageBottom:img.bottom,infoTop:info.top,infoBottom:info.bottom,actionTop:action.top,actionBottom:action.bottom,bottom:b.bottom};
    });return{left:r.left,right:innerWidth-r.right,visible:cards.filter(c=>c.left>=r.left-1&&c.right<=r.right+1).length,cards};
