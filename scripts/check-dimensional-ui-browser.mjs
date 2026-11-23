@@ -17,7 +17,7 @@ for(const width of [320,390,768,1440]){
  for(const route of ['/','/services/','/portfolio/?filter=ai-prompt','/tools/','/contact/']){
   await page.goto(root+route,{waitUntil:'load'});await page.locator('.site-back-to-top').waitFor({state:'attached'});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Overflow '+route+' '+width);
   if(route==='/services/'){const row=page.locator('.studio-service-row').first();assert.ok((await row.evaluate(el=>getComputedStyle(el).backgroundImage)).includes('linear-gradient'));}
-  if(route.includes('ai-prompt')){assert.equal(await page.locator('.pf-copy-prompt').count(),5);assert.ok((await page.locator('.pf-copy-prompt').first().evaluate(el=>getComputedStyle(el).boxShadow)).includes('inset'));}
+  if(route.includes('ai-prompt')){assert.equal(await page.locator('.pf-copy-prompt').count(),6);assert.ok((await page.locator('.pf-copy-prompt').first().evaluate(el=>getComputedStyle(el).boxShadow)).includes('inset'));}
  }
  console.log('✓ Tactile buttons/cards/tabs/footer, no page overflow across five routes at '+width);
 }

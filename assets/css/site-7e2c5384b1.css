@@ -1135,7 +1135,7 @@ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.studio-service-row
 }
 body .studio-service-row { margin-bottom:.75rem; padding:1rem; }
 /* Project thumbnails stay flat; only action controls retain tactile depth. */
-body :is(.pf-page,.pf-featured) .pf-card .pf-action-bar { margin-bottom:5px; }
+body :is(.pf-page,.pf-featured) .pf-card :is(.pf-action-bar,.pf-copy-prompt) { margin-bottom:5px; }
 body :is(.pf-page,.pf-featured) .pf-card .pf-action-unavailable {
  background-image:linear-gradient(145deg,#30464c,#1b2e35);
  box-shadow:inset 0 1px 0 #ffffff10;
@@ -1272,7 +1272,7 @@ body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-pa
 body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
 /* Page/track gutters frame open project previews; controls own their padding. */
 body :is(.pf-page,.pf-featured) .pf-grid { padding:.5rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
-body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:0 0 8px; }
+body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:12px; }
 body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:0; }
 body :is(.pf-page,.pf-featured) .pf-card-link { flex:1; min-width:0; }
 body :is(.pf-page,.pf-featured) .pf-card-art { flex-shrink:0; }
@@ -1367,9 +1367,9 @@ body .contact-steps article {
  border-radius:14px;
  box-shadow:var(--glass-shine),0 10px 26px #020c1424;
 }
-/* Projects are open thumbnails + captions/actions, never frosted containers. */
+/* A single outline frames each whole project; no glass fill, shadow or rounding. */
 body :is(.pf-page,.pf-featured) .pf-card {
- background:none; border:0; border-radius:0; box-shadow:none; outline:0; overflow:visible;
+ background:none; border:1px solid #8cc8b052; border-radius:0; box-shadow:none; outline:0; overflow:visible;
 }
 body :is(.pf-page,.pf-featured) .pf-card .pf-card-art {
  border:0; border-radius:0; outline:0; box-shadow:none;

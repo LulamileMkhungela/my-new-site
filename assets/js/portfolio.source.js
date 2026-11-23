@@ -30,14 +30,25 @@ async function LocalCopyPrompt(text) {
 
 /** Owner projects: live redirects, case studies, overviews and non-linked releases. */
 function LocalProjectAction(project,category='all') {
+  if(project.siteUrl)return {type:'external',href:project.siteUrl,label:'Visit site'};
   const override=project.categoryActions?.[category];
   const type=override?.type||project.type;
   return {type,href:override?.href||project.href,label:override?.label||project.actionLabel||(type==='coming-soon'?'Coming soon':type==='external'?'Open project':type==='overview'?'View project':'View case study')};
 }
+/** Success messages expire; errors/manual-copy instructions stay until retried. */
+function LocalUseCopyStatus() {
+  const [status,setStatus]=g.useState(''),timer=g.useRef(null);
+  g.useEffect(()=>()=>clearTimeout(timer.current),[]);
+  const announce=message=>{
+    clearTimeout(timer.current);setStatus(message);
+    if(message==='Prompt copied.')timer.current=setTimeout(()=>setStatus(''),2000);
+  };
+  return [status,announce];
+}
 /** Compact reference-style thumbnail and action bar, with no long card copy. */
 function LocalPortfolioCard({project,index,total,category='all'}) {
   const h=g.createElement,freePrompt=project.promptTier==='free';
-  const [copyStatus,setCopyStatus]=g.useState('');
+  const [copyStatus,setCopyStatus]=LocalUseCopyStatus();
   const previewRef=g.useRef(null);
   const previewImage=project.previewImage||project.imageRemote||project.image;
   // Render full-page captures at their natural aspect ratio, never stretched.
@@ -64,7 +75,7 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
   const action=LocalProjectAction(project,category);
   const linked=!freePrompt&&action.type!=='coming-soon'&&!!action.href;
   const web=category==='website'||category==='frontend-dev';
-  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':action.type==='external'?(web?'Visit website':'Open project'):'View project';
+  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
   const descriptionId='pf-description-'+category+'-'+project.id;
   const body=h(g.Fragment,null,
     h('div',{className:'pf-card-art',ref:previewRef},
@@ -104,7 +115,7 @@ function LocalProjectPage() {
 /** Free resources only: premium prompt text is never included in runtime data. */
 function LocalPromptContent({details}) {
   const h=g.createElement;
-  const [status,setStatus]=g.useState('');
+  const [status,setStatus]=LocalUseCopyStatus();
   const copy=async()=>{
     try {await LocalCopyPrompt(details.prompt);setStatus('Prompt copied.');}
     catch {setStatus('Copy is unavailable here. Select the prompt text below or download the text file.');}

@@ -13,4 +13,4 @@ for(const [name,size]of [['favicon.png',32],['apple-touch-icon.png',180],['icon-
 for(const file of ['assets/img/logo.svg','assets/img/favicon.svg','assets/img/social-card.svg']){const svg=read(file);assert.ok(!svg.includes('<image'),'Logo must be real vector paths');assert.ok(!svg.includes('M10 11h11v30h9L20 53H10z'),'Rejected LZ monogram must not return');}
 assert.ok(read('assets/img/logo.svg').includes('abstract studio symbol'));
 assert.equal(json('dist/site.webmanifest').short_name,'LulaZel');assert.ok(read('index.html').includes('/assets/img/favicon.svg?v='));assert.ok(read('index.html').includes('/assets/img/logo.svg?v=abstract-1'));assert.ok(!read('index.html').includes('>LM<'));
-console.log('✓ LulaZel logo/icons, manifest, 31 branded route titles and complete absolute social metadata with a configured origin; personal owner and service scope preserved');
+console.log('✓ LulaZel logo/icons, manifest, branded route titles and complete absolute social metadata with a configured origin; personal owner and service scope preserved');

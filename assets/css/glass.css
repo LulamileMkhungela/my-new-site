@@ -49,9 +49,9 @@ body .contact-steps article {
  border-radius:14px;
  box-shadow:var(--glass-shine),0 10px 26px #020c1424;
 }
-/* Projects are open thumbnails + captions/actions, never frosted containers. */
+/* A single outline frames each whole project; no glass fill, shadow or rounding. */
 body :is(.pf-page,.pf-featured) .pf-card {
- background:none; border:0; border-radius:0; box-shadow:none; outline:0; overflow:visible;
+ background:none; border:1px solid #8cc8b052; border-radius:0; box-shadow:none; outline:0; overflow:visible;
 }
 body :is(.pf-page,.pf-featured) .pf-card .pf-card-art {
  border:0; border-radius:0; outline:0; box-shadow:none;

@@ -52,7 +52,8 @@
     },
     "previewScroll": true,
     "featured": true,
-    "homeOrder": 2
+    "homeOrder": 2,
+    "siteUrl": "https://www.nerdma.co.za"
   },
   {
     "id": "addmoredigital",
@@ -188,7 +189,8 @@
     },
     "previewScroll": true,
     "featured": true,
-    "homeOrder": 5
+    "homeOrder": 5,
+    "siteUrl": "https://loux91.github.io/foodiezone/"
   },
   {
     "id": "heritagebites",
@@ -433,16 +435,17 @@
     "title": "Legal information, easier to navigate.",
     "description": "A searchable civic legal-information library, with source documents beside their summaries.",
     "categories": [
-      "frontend-dev"
+      "website"
     ],
     "type": "external",
     "external": true,
     "href": "https://lulamilemkhungela.github.io/LulaGazette/",
     "image": "/assets/img/portfolio/lulagazette.webp",
-    "actionLabel": "Open project",
+    "actionLabel": "Visit site",
     "previewScroll": true,
     "featured": true,
-    "homeOrder": 3
+    "homeOrder": 3,
+    "siteUrl": "https://lulamilemkhungela.github.io/LulaGazette/"
   },
   {
     "id": "designops",
@@ -790,6 +793,43 @@
     }
   },
   {
+    "id": "prompt-delivery-app",
+    "client": "Delivery App",
+    "title": "Delivery App",
+    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "categories": [
+      "ai-prompt"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/prompt-delivery-app",
+    "image": "/assets/img/portfolio/prompt-delivery-app.jpg",
+    "status": "Free",
+    "format": "Free prompt",
+    "actionLabel": "Copy prompt",
+    "promptTier": "free",
+    "details": {
+      "role": "AI-assisted UI exploration",
+      "context": "Free prompt · AI-assisted UI exploration",
+      "sections": [
+        {
+          "title": "About this exploration",
+          "paragraphs": [
+            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+          ]
+        }
+      ],
+      "gallery": [],
+      "links": [],
+      "prompt": "Design 3 delivery app home screens in black iPhone frames, side by side, same content, different layouts, no labels. Canvas: light grey #E5E5E7, generous space between phones, extra empty space at the top for labels. Style: light mode only, brand dark red #8E1B24, pale rose #F7EEEE for soft cards, text black #111318 and grey #7C8089, fonts Manrope for UI and Bricolage Grotesque for headings and tracking numbers, generous gaps between sections. Label the three phones above the frames — left 'Claude', centre 'ChatGPT', right 'Figma Make' — in bold type. Images: random female portrait round crop for avatar, 3D stacked cardboard boxes with dark red tape and small red location pin, 3D white delivery van with dark red side stripe and box on roof. Content: header 'Good morning, Hello Lula, Send, track and receive with ease, portrait avatar, bell with a red dot'; search 'Track your parcel' with scan button; actions 'Send parcel, Track order, Schedule, More'; shipment '#TRK782910, Electronics 2.4 kg, Johannesburg to Durban, In transit, picked up 12 Oct 10:24, arriving tomorrow 2:30 PM'; steps 'Picked up, In transit, Out for delivery, Delivered'; promo 'Need a pickup? We'll come to you.'; nav 'Home, Orders, Send, Locations, Profile'. Screen 1: 4 rounded-square action tiles with labels, Send parcel in dark red; full dark red shipment card with white 'In transit' badge, Johannesburg to Durban route with dashed line and truck marker, 4-step tracker with ticks; pale rose promo card with 'Book pickup' button in black and large van image on the right; bottom bar with labels and raised round dark red Send button in the middle. Screen 2: pill chip actions, Send parcel in dark red; pale rose shipment card with tracking number large and parcel image on the right, white inner panel with vertical timeline and arrival-time tag; outlined promo row with van thumbnail and round black arrow button; floating white pill nav, Home highlighted, round dark red Send button. Screen 3 (deliberately weaker): cramped spacing, small text, thin grey borders everywhere; 4 outlined boxes with red icons; plain outlined shipment card, thin red progress bar, step labels underneath, arrival time in red; two near-identical outlined promo rows with small red buttons; flat bottom bar, no highlighted Send button.",
+      "promptDownload": "/assets/prompts/prompt-delivery-app.txt"
+    },
+    "featured": true,
+    "homeOrder": 4,
+    "imageAlt": "Delivery App comparison: Claude, ChatGPT and Figma Make parcel-tracking home screens",
+    "imageFit": "contain"
+  },
+  {
     "id": "prompt-food-delivery-app-home-screen",
     "client": "Food delivery app home screen",
     "title": "Food delivery app home screen",
@@ -820,9 +860,7 @@
       "links": [],
       "prompt": "Design a food delivery app home. Status 9:41, location header '45 Commissioner St, Johannesburg CBD', search 'Search for restaurants, groceries, and more', category row Restaurants / Groceries / Convenience / Pharmacy, promo 'Get 40% off your first order — Free delivery fee on orders R15+ — Use code GET40', store rows 'Nando's — R3.99 delivery' and 'Mugg & Bean — R2.99 delivery' with star ratings, bottom tabs Home / Search / Orders. Cream UI with red-orange accents, flat Figma style.",
       "promptDownload": "/assets/prompts/prompt-food-delivery-app-home-screen.txt"
-    },
-    "featured": true,
-    "homeOrder": 4
+    }
   },
   {
     "id": "prompt-oto-e-commerce-website",

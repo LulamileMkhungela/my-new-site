@@ -281,13 +281,12 @@ transparent active-number treatment at every tested width, with/without JS.
 
 ### Open project previews and spacing
 
-Home and Portfolio project previews intentionally have **no outer card**:
-transparent background, no border/outline, no shadow, no rounding, and no frosted
-backdrop. Rectangular thumbnails, wrapping names/details and actions sit directly
-on the navy page. Shared page gutters and 4px track clearance keep the gallery
-away from viewport edges; 1rem details padding, 44px actions and bottom clearance
-keep the content comfortable without inventing a box around it. Hover does not
-restore a card shell. Testimonial cards and other requested glass surfaces stay.
+Home and Portfolio project groups have a single 1px outline around the whole
+project, including its thumbnail, name/details, action and copy feedback. There
+is no glass fill, shadow or rounded shell. Inner padding keeps content off the
+outline, while page gutters and 4px track clearance protect viewport edges.
+Actions remain below the details, at least 44px high. Testimonial cards and other
+requested glass surfaces are unchanged.
 
 Project columns stretch to equal heights within each horizontal row; the existing
 five-visible desktop layout and mobile horizontal browsing remain. Copy feedback
@@ -308,21 +307,22 @@ these use the existing local cover fallback instead.
 
 Home's five featured projects are explicitly ordered with `featured` and
 `homeOrder` in `assets/js/portfolio.projects.json`: Ai-LifeOS, Nerdma, LulaGazette,
-Food delivery app home screen (free AI prompt), then FoodieZone. The old
+Delivery App (the parcel-tracking free AI prompt), then FoodieZone. The old
 three-case-study limit is removed. Desktop shows all five in one row; smaller
 screens browse that same ordered row horizontally. Home and Portfolio now share
 the same card component and inset styles (`pf-featured` / `pf-page`).
 
-Cards render image, project name/details, then action—rather than placing the
-action above the caption. Ai-LifeOS stays non-linked Coming soon; Nerdma and
-FoodieZone open their existing project pages; LulaGazette opens its existing
-external site. The food-delivery card copies the real free prompt inline,
+Project groups render image, project name/details, then action. Ai-LifeOS stays
+non-linked Coming soon. Nerdma, FoodieZone and LulaGazette say **Visit site** and
+open their existing live websites in a new tab. Their local case-study URLs,
+where present, are retained. LulaGazette belongs to Website, not Frontend Dev.
+The Delivery App copies its original free parcel-tracking prompt inline,
 including denied-clipboard/manual-selection fallback, without navigating away.
 No project status or case study was invented to feature these items.
 
 `check-home-featured-browser.mjs` verifies exact order/count, five desktop cards,
 mobile scrolling, spacing/action order, correct destinations, Coming soon,
-inline prompt copy and Nerdma navigation at 320/390/768/1024/1440px. The static,
+inline prompt copy/expiry and live-site destinations at 320/390/768/1024/1440px. The static,
 Portfolio spacing/browse/detail, prompt-card and Home chapter suites cover the
 shared component and navigation regressions.
 
@@ -334,5 +334,26 @@ entrances. No full-page snapping or wheel interception was added in the project
 unboxing pass. Digital Rhino's exact scroll easing, timing and transition
 behavior has not been verified or claimed as an exact match. Still screenshots
 establish visual layout, not motion timing. Reduced-motion and no-JS fallbacks
-remain supported. The Home/Portfolio suites now assert transparent, borderless,
-shadow-free project columns in addition to geometry/actions/navigation.
+remain supported. The Home/Portfolio suites now assert transparent, outlined,
+shadow-free project groups in addition to geometry/actions/navigation.
+
+### Delivery App source and copy feedback
+
+The featured Delivery App is **not** the food-ordering prompt. Its original cover
+and prompt were imported from the owner's earlier portfolio:
+`LulamileMkhungela/portfolio.github.io`,
+`public/images/promptsite-covers/delivery-app-concepts.jpg` (Git blob
+`0103c35c8c8ad7b08288b0549967b27f412cd18f`) and the **Delivery App** entry in
+`portfolio/lula-design-library.html`. The cover is stored locally as
+`assets/img/portfolio/prompt-delivery-app.jpg`; the verbatim prompt is in
+`assets/prompts/prompt-delivery-app.txt` and project data. It compares three
+parcel-tracking UI concepts. The separate food-delivery prompt remains available
+in AI Prompt rather than being deleted or mislabeled. There are now five premium
+and six free prompts, with the same premium access restrictions.
+
+`LocalUseCopyStatus` shares feedback behavior between project previews and prompt
+detail pages: successful **Prompt copied.** text and **Copied!** button state reset
+after 2000ms. Repeated successes restart that timer; unmount cleans it up. Failure
+messages and manual-copy text do not auto-dismiss. The prompt browser suite uses
+Playwright's controlled clock for timing checks, alongside real clipboard and
+embedded-preview fallback checks.

@@ -79,7 +79,7 @@ const homeView=render('LocalHomePage');
 assert.equal(homeView.elements.filter(node=>node.type==='h1').length,1);
 assert.equal(homeView.elements.filter(node=>node.type==='main').length,1);
 assert.equal(homeView.elements.filter(node=>(node.props.className||'').split(' ').includes('hm-panel')).length,11);
-assert.deepEqual(homeView.elements.filter(node=>node.props.className==='pf-card').map(node=>node.props['data-project']),['ai-lifeos','nerdma','lulagazette','prompt-food-delivery-app-home-screen','foodiezone']);
+assert.deepEqual(homeView.elements.filter(node=>node.props.className==='pf-card').map(node=>node.props['data-project']),['ai-lifeos','nerdma','lulagazette','prompt-delivery-app','foodiezone']);
 for(const card of homeView.elements.filter(node=>node.props.className==='pf-card')){
  const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt'].includes(name)));
  assert.ok(title>=0&&action>title,'Names/details precede project actions, including Home features');
@@ -129,12 +129,21 @@ assert.ok(portfolioView.elements.some(node=>node.props.href==='#portfolio-projec
 assert.ok(portfolioView.elements.some(node=>node.props.className==='pf-hero-overline'));
 assert.equal(portfolioView.elements.filter(node=>node.props.className==='pf-open-icon').length,0);
 assert.ok(portfolioView.elements.filter(node=>node.type==='svg').every(node=>node.props['aria-hidden']===true));
-assert.equal(projects.length,30);
+assert.equal(projects.length,31);
+assert.deepEqual(projects.find(project=>project.id==='lulagazette').categories,['website']);
+for(const id of ['nerdma','foodiezone','lulagazette']){
+ const project=projects.find(item=>item.id===id),card=homeView.elements.find(node=>node.props['data-project']===id);
+ assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href===project.siteUrl&&node.props.target==='_blank'&&node.props['aria-label']==='Visit site — '+project.client));
+}
+const delivery=projects.find(project=>project.id==='prompt-delivery-app');
+assert.equal(delivery.client,'Delivery App');assert.ok(delivery.details.prompt.includes('Track your parcel'));
+assert.ok(delivery.details.prompt.includes('Johannesburg to Durban'));assert.equal(delivery.image,'/assets/img/portfolio/prompt-delivery-app.jpg');
+
 assert.ok(!text(portfolioView.tree).includes('Archive'));
 assert.ok(!JSON.stringify(projects).includes('shubhamranjan'));
 const prompts=projects.filter(project=>project.categories.includes('ai-prompt'));
-assert.deepEqual(prompts.map(project=>project.promptTier),[...Array(5).fill('premium'),...Array(5).fill('free')]);
-assert.deepEqual(prompts.filter(project=>project.promptTier==='free').map(project=>project.client),['Service Provider App','Finance homescreen','Food delivery app home screen','OtO e-commerce website','Fashion shopping app home screen']);
+assert.deepEqual(prompts.map(project=>project.promptTier),[...Array(5).fill('premium'),...Array(6).fill('free')]);
+assert.deepEqual(prompts.filter(project=>project.promptTier==='free').map(project=>project.client),['Service Provider App','Finance homescreen','Delivery App','Food delivery app home screen','OtO e-commerce website','Fashion shopping app home screen']);
 for(const project of prompts) {
  if(project.promptTier==='premium') {assert.equal(project.type,'external');assert.equal(project.href,'https://selar.com/m/le-loux');assert.ok(!project.details?.prompt);}
  else {assert.ok(project.details.prompt.length>100);assert.equal(read(project.details.promptDownload.slice(1)).trim(),project.details.prompt);}
@@ -152,20 +161,20 @@ for(const category of ['website','product-design','apps','frontend-dev']) {
   const card=result.elements.find(node=>node.props['data-project']===project.id);
   const descendants=nodes(card);
   if(project.type==='coming-soon')assert.equal(descendants.filter(node=>node.type==='a'||node.type==='link').length,0);
-  else if(project.categoryActions?.[category]?.type==='external'||project.type==='external')assert.ok(descendants.some(node=>node.type==='a'&&node.props.target==='_blank'&&node.props.rel==='noopener noreferrer'));
+  else if(project.siteUrl||project.categoryActions?.[category]?.type==='external'||project.type==='external')assert.ok(descendants.some(node=>node.type==='a'&&node.props.target==='_blank'&&node.props.rel==='noopener noreferrer'));
  }
 }
 const websiteFood=render('LocalPortfolioPage','/portfolio?filter=website').elements.find(node=>node.props['data-project']==='foodiezone');
 assert.ok(nodes(websiteFood).some(node=>node.props.href==='https://loux91.github.io/foodiezone/'));
 const productFood=render('LocalPortfolioPage','/portfolio?filter=product-design').elements.find(node=>node.props['data-project']==='foodiezone');
-assert.ok(nodes(productFood).some(node=>node.props.to==='/project/foodiezone'));
+assert.ok(nodes(productFood).some(node=>node.props.href==='https://loux91.github.io/foodiezone/'&&text(node).includes('Visit site')));
 for(const project of projects.filter(item=>item.details)) {
  const result=render('LocalProjectPage',project.href);
  assert.equal(result.elements.filter(node=>node.type==='h1').length,1);
  assert.ok(text(result.tree).includes(project.client));
  assert.ok(read(project.href.slice(1)+'/index.html').includes('/assets/js/site-app.js'));
 }
-console.log('✓ Owner portfolio: correct category actions, no linked coming-soon cards, thirteen local project pages');
+console.log('✓ Owner portfolio: correct category actions, no linked coming-soon cards, fourteen local project pages');
 for(const weight of [400,500,600,700,800]) assert.ok(fs.existsSync(path.join(root,`assets/fonts/poppins-latin-${weight}-normal.woff2`)));
 const nav=render('LocalSiteHeader','/portfolio');
 const primary=nav.elements.find(node=>node.props.className==='rhino-primary');

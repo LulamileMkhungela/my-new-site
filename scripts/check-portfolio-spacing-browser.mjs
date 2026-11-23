@@ -24,9 +24,9 @@ for(const javaScriptEnabled of [true,false]){
     return{background:style.backgroundColor,shadow:style.boxShadow,border:style.borderTopWidth,radius:style.borderRadius,id:card.dataset.project,imageInset:Math.min(image.left-r.left,r.right-image.right,image.top-r.top),actionInset:Math.min(a.left-r.left,r.right-a.right),titleInset:Math.min(t.left-r.left,r.right-t.right),titleGap:a.top-detailsBottom,bottomInset:r.bottom-bottom,titleClipped:title.scrollWidth>title.clientWidth+1||title.scrollHeight>title.clientHeight+1,actionHeight:a.height};
    }));
    for(const card of report){
-    for(const key of['imageInset','actionInset','titleInset'])assert.ok(card[key]>=-.5,card.id+' '+key+': '+JSON.stringify(card));
+    for(const key of['imageInset','actionInset','titleInset'])assert.ok(card[key]>=12.5,card.id+' '+key+': '+JSON.stringify(card));
     assert.ok(card.bottomInset>=7.5,JSON.stringify(card));
-    assert.equal(card.background,'rgba(0, 0, 0, 0)');assert.equal(card.shadow,'none');assert.equal(card.border,'0px');assert.equal(card.radius,'0px');
+    assert.equal(card.background,'rgba(0, 0, 0, 0)');assert.equal(card.shadow,'none');assert.equal(card.border,'1px');assert.equal(card.radius,'0px');
     assert.ok(card.titleGap>=15,JSON.stringify(card));assert.ok(card.actionHeight>=44,card.id);assert.equal(card.titleClipped,false,card.id);
    }
    const tracks=await page.locator('.pf-grid').evaluateAll(grids=>grids.map(el=>{
@@ -45,7 +45,7 @@ for(const javaScriptEnabled of [true,false]){
     await page.waitForTimeout(250);
     await page.screenshot({path:'/tmp/portfolio-spacing-'+width+'.png'});
    }
-   console.log('✓ Portfolio cards: unboxed thumbnails/names/actions, page gutters, full wrapping names, action gaps, one row, desktop five-across and no page overflow: '+width+'px; JS '+javaScriptEnabled);
+   console.log('✓ Portfolio cards: outlined project groups, transparent backgrounds, page gutters, full wrapping names, action gaps, one row, desktop five-across and no page overflow: '+width+'px; JS '+javaScriptEnabled);
   }
   assert.deepEqual(errors,[]);
  }finally{await browser.close();}
