@@ -379,8 +379,11 @@ Home's Ai-LifeOS feature and LulaFind's local overview. Both are native
 `null`, with explicit accessible names and no fake hrefs. Add the real listing
 URL to the relevant project's `storeLinks` field when ready; that control then
 becomes a normal external link. Historical Sesyme (employment project, 2019)
-and LuniaNetwork (personal app published in 2019, later removed from Google
-Play) show their descriptions and overview links instead of store placeholders.
+and LuniaNetwork (personal app published in 2019, removed from Google Play in
+2024 because it was no longer being updated) show their descriptions and overview links instead of store placeholders.
+
+All six app cards include short factual product descriptions, including unreleased
+projects, so their information areas are not empty.
 
 Coming soon is a small corner badge on the whole-project border, freeing the
 bottom row for compact 44px store controls. Home previews use taller 4:3 windows

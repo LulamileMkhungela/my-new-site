@@ -146,6 +146,9 @@ assert.ok(!JSON.stringify(projects).includes('shubhamranjan'));
 const lulafind=projects.find(project=>project.id==='lulafind');
 assert.equal(lulafind.apkUrl,'https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing');
 assert.equal(lulafind.status,'Android APK');
+const lunia=projects.find(project=>project.id==='lunianetwork');
+assert.match(lunia.cardDescription,/2019.*2024.*no longer updating/);
+assert.match(lunia.details.sections[1].paragraphs.join(' '),/2024 because I was no longer updating/);
 const oneScreen=projects.find(project=>project.id==='onescreen-business');
 assert.equal(oneScreen.androidReleaseUrl,'https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk');
 assert.equal(oneScreen.type,'external');assert.ok(!oneScreen.apkUrl,'Do not invent an uninspected APK asset name');
@@ -153,6 +156,7 @@ for(const id of ['sesyme','lunianetwork']){const project=projects.find(item=>ite
 
 assert.ok(!JSON.stringify(lulafind).includes('Pending Google Play'));assert.ok(!JSON.stringify(lulafind).includes('main.zip'));
 for(const project of projects.filter(project=>project.categories.includes('apps'))){
+ assert.ok(project.cardDescription?.length>40,'Every app has a short visible description');
  assert.deepEqual(project.storeLinks,{appStore:null,googlePlay:null});
  const card=portfolioView.elements.find(node=>node.props['data-project']===project.id),descendants=nodes(card);
  assert.equal(descendants.filter(node=>node.type==='button'&&node.props.disabled===true&&node.props.className==='pf-store-control').length,project.historical?0:2);

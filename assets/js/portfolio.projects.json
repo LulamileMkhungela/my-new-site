@@ -292,7 +292,7 @@
     "id": "lunianetwork",
     "client": "LuniaNetwork",
     "title": "Helping people find and reconnect.",
-    "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was later removed from Google Play.",
+    "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because I was no longer updating it.",
     "categories": [
       "apps"
     ],
@@ -315,7 +315,7 @@
         {
           "title": "Publication history",
           "paragraphs": [
-            "The app was published on Google Play and was later removed. The original listing screenshot is retained as historical material, not a claim of current availability. No download or active store link is offered here."
+            "I published the app on Google Play in 2019. It was removed in 2024 because I was no longer updating it. The original listing screenshot is retained as historical material; no current download or active store link is offered here."
           ]
         }
       ],
@@ -335,7 +335,7 @@
     "historical": true,
     "year": "2019",
     "projectLabel": "Personal app · 2019",
-    "cardDescription": "I developed and published this personal app in 2019. It was later removed from Google Play."
+    "cardDescription": "A personal app for finding loved ones or items and connecting with people. Published in 2019; removed from Google Play in 2024 because I was no longer updating it."
   },
   {
     "id": "lawmania",
@@ -359,7 +359,8 @@
     "storeLinks": {
       "appStore": null,
       "googlePlay": null
-    }
+    },
+    "cardDescription": "A voice-first South African legal-information app covering everyday rights, customary law and succession. Legal information, not legal advice."
   },
   {
     "id": "ai-lifeos",
@@ -385,7 +386,8 @@
     "storeLinks": {
       "appStore": null,
       "googlePlay": null
-    }
+    },
+    "cardDescription": "Budgeting, grocery planning and life admin for South African households, with records kept on the device."
   },
   {
     "id": "onescreen-business",
@@ -410,7 +412,8 @@
       "appStore": null,
       "googlePlay": null
     },
-    "androidReleaseUrl": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk"
+    "androidReleaseUrl": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
+    "cardDescription": "Record spoken or typed sales and track money, stock and customer debts for small South African businesses."
   },
   {
     "id": "lulafind",
@@ -456,7 +459,8 @@
       "appStore": null,
       "googlePlay": null
     },
-    "apkUrl": "https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing"
+    "apkUrl": "https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing",
+    "cardDescription": "A community search app bringing together missing-person posters, sightings, danger alerts and private chat."
   },
   {
     "id": "lulagazette",

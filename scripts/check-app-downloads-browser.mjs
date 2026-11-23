@@ -15,6 +15,8 @@ for(const javaScriptEnabled of[true,false]){
    if(javaScriptEnabled)await page.locator('.site-back-to-top').waitFor({state:'attached'});
    for(const project of apps){
     const card=page.locator('.pf-card[data-project="'+project.id+'"]');
+    assert.equal(await card.locator('.pf-history-description').textContent(),project.cardDescription);
+    assert.equal(await card.locator('.pf-history-description').evaluate(el=>{const r=el.getBoundingClientRect(),c=el.closest('.pf-card').getBoundingClientRect();return r.left>=c.left+12&&r.right<=c.right-12&&el.scrollWidth<=el.clientWidth+1;}),true,project.id+' description fits');
     if(!project.historical)for(const store of['App Store','Google Play']){
      const control=card.getByRole('button',{name:store+' — '+project.client+' (link not added yet)',exact:true});
      assert.equal(await control.isDisabled(),true);assert.equal(await control.locator('svg').count(),1);assert.equal(await control.getAttribute('href'),null);
@@ -41,6 +43,10 @@ for(const javaScriptEnabled of[true,false]){
    if(javaScriptEnabled&&width===1440)await page.screenshot({path:'/tmp/lulafind-apk-store-controls.png'});
    console.log('✓ LulaFind APK URL/status, no source-ZIP confusion, disabled stores on current apps, historical descriptions only, controls fit: '+width+'px; JS '+javaScriptEnabled);
   }
+  await page.goto(origin+'/project/lunianetwork/');
+  if(javaScriptEnabled)await page.locator('.site-back-to-top').waitFor({state:'attached'});
+  assert.match(await page.locator('main').textContent(),/removed in 2024 because I was no longer updating it/);
+  assert.equal(await page.locator('main .pf-app-downloads').count(),0);
   assert.deepEqual(errors,[]);
  }finally{await browser.close();}
 }
