@@ -27,7 +27,7 @@ for(const javaScriptEnabled of[true,false]){
     assert.equal(await card.locator('.pf-store-links a').count(),project.apkUrl||project.androidReleaseUrl?1:0);
     if(project.apkUrl||project.androidReleaseUrl)assert.equal(await card.locator('.pf-action-bar').count(),0,'No separate download row');
     if(project.type==='coming-soon')assert.equal(await card.locator('a,button:not(:disabled)').count(),0);
-    if(project.historical){assert.equal(await card.locator('.pf-app-downloads').count(),0);assert.ok((await card.textContent()).includes('2019'));continue;}
+    if(project.historical){assert.equal(await card.locator('.pf-card-info').evaluate(el=>el.querySelector('.pf-card-status').getBoundingClientRect().top>=el.querySelector('.pf-history-description').getBoundingClientRect().bottom),true,'Historical app label follows summary');assert.equal(await card.locator('.pf-app-downloads').count(),0);assert.ok((await card.textContent()).includes('2019'));continue;}
     const geometry=await card.locator('.pf-store-links').evaluate(el=>{const r=el.getBoundingClientRect();return [...el.children].every(c=>{const b=c.getBoundingClientRect();return b.left>=r.left-.5&&b.right<=r.right+.5&&Math.abs(b.top-r.top)<1&&Math.abs(b.bottom-r.bottom)<1&&b.height>=44&&c.scrollWidth<=c.clientWidth+1;});});assert.equal(geometry,true,project.id+' store controls fit');
    }
    const release=page.locator('[data-project="onescreen-business"]');

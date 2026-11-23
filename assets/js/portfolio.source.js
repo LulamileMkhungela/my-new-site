@@ -103,8 +103,8 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
       project.image&&h('img',{src:previewImage,onLoad:measurePreview,alt:project.imageAlt||project.client+' project preview',loading:'lazy',decoding:'async',className:project.imageFit==='contain'?'pf-image-contain':undefined,onError:event=>{if(project.imageRemote&&!event.currentTarget.dataset.localFallback){event.currentTarget.dataset.localFallback='true';event.currentTarget.src=project.image;}else event.currentTarget.style.display='none';}})),
     h('div',{className:'pf-card-info'},h('h3',{className:'pf-compact-name'},project.client),
       h('p',{className:'sr-only',id:descriptionId},project.description),
-      project.projectLabel&&h('p',{className:'pf-card-status'},project.projectLabel),
       project.cardDescription&&h('p',{className:'pf-history-description'},project.cardDescription),
+      project.projectLabel&&h('p',{className:'pf-card-status'},project.projectLabel),
       project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
       project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · '))),
     action.type==='coming-soon'||groupedDownload?null:freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
