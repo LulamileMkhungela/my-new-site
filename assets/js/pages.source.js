@@ -169,7 +169,7 @@ function LocalBackToTop() {
 function LocalPrivacyPage() {
   const h=g.createElement;
   return h(LocalPageFrame,{title:'Privacy & image rights',description:'How enquiries and images are handled on LulaZel.',className:'unified-page'},
-    h('article',{className:'unified-container unified-about-copy','data-background-text':'YOUR PRIVACY'},h('p',{className:'hybrid-eyebrow'},'Privacy & image rights'),h('h1',null,'Your details. Your choices.'),
+    h('article',{className:'unified-container unified-about-copy privacy-article','data-background-text':'YOUR PRIVACY'},h('p',{className:'hybrid-eyebrow'},'Privacy & image rights'),h('h1',null,'Your details. Your choices.'),
       h('h2',null,'Who to contact'),h('p',null,'LulaZel is an independent practice based in South Africa. For privacy questions, correction or deletion requests, email ',h('a',{href:'mailto:mkhungela.l@gmail.com'},'mkhungela.l@gmail.com'),'.'),
       h('h2',null,'When you send an enquiry'),h('p',null,'The contact forms send your name, email, selected service, message and optional phone number to Formspree to deliver your enquiry. This information is used to respond and discuss your request. Please do not submit passwords, identity numbers, financial records or sensitive personal information.'),
       h('p',null,'Formspree processes submissions on its infrastructure, which may be outside South Africa. Its own privacy policy applies to that processing. You can email directly instead. Request access, correction or deletion using the email above; relevant legal or business-record obligations may affect what can be removed.'),h('a',{href:'https://formspree.io/legal/privacy-policy/',target:'_blank',rel:'noopener noreferrer'},'Formspree privacy policy'),

@@ -97,6 +97,7 @@ for(const component of ['LocalContactPage','LocalPortfolioPage','LocalToolsPage'
 for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies])assert.ok(!/Lulamile/i.test(text(render('LocalServicesPage',service.path).tree)),'Services use brand rather than repeated owner names');
 assert.ok(text(footerView.tree).includes('by Lulamile M'));
 assert.ok(text(render('LocalAboutPage').tree).includes('About / Lulamile M'));
+assert.ok(render('LocalPrivacyPage').elements.some(node=>node.type==='article'&&node.props.className.includes('privacy-article')),'Privacy has a dedicated inner-padding surface');
 const art=homeView.elements.filter(node=>node.props.className==='hm-vector-art');
 assert.equal(art.length,7);
 assert.equal(new Set(art.map(node=>node.props.src)).size,7);

@@ -197,3 +197,22 @@ body { font-family: Poppins,system-ui,sans-serif; }
  .unified-footer-bottom { grid-template-columns:1fr; justify-items:center; gap:.9rem; text-align:center; }
  .unified-footer-bottom>nav { justify-self:center; justify-content:center; margin-top:0; }
 }
+
+/* The privacy sheet needs inner gutters as well as the outer page container. */
+body .privacy-article {
+ padding:clamp(1.75rem,4vw,3rem) clamp(1.25rem,4vw,3rem);
+ margin-block:clamp(1.5rem,4vw,3rem);
+}
+body .privacy-article h1 {
+ margin-block:.75rem 2.25rem;
+ font-size:clamp(2rem,4.5vw,3.75rem);
+ max-width:15ch;
+ overflow-wrap:anywhere;
+}
+body .privacy-article h2 {
+ margin-block:2rem .85rem;
+ font-size:clamp(1.2rem,2.5vw,1.5rem);
+ line-height:1.4;
+}
+body .privacy-article a { color:#8aebc2; text-decoration:underline; text-underline-offset:.2em; overflow-wrap:anywhere; }
+body .privacy-article>:last-child { margin-bottom:0; }
