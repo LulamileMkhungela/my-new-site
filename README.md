@@ -282,7 +282,8 @@ transparent active-number treatment at every tested width, with/without JS.
 ### Portfolio card spacing
 
 Portfolio cards have 12px inner gutters around images, actions and captions,
-44px minimum actions, a clear action-to-title gap, and a protected bottom inset.
+44px minimum actions below the project name/details, a clear details-to-action
+gap, and a protected bottom inset.
 Names wrap instead of being truncated against the glass border. Cards stretch
 to equal heights within each horizontal row; the existing five-visible desktop
 layout and mobile horizontal browsing remain. Tracks have 4px edge clearance
@@ -298,3 +299,25 @@ The browse and prompt-card browser suites additionally cover preview panning,
 reduced motion, category collapse/filtering, inline copy and embedded-preview
 clipboard fallback. Remote cover requests are blocked during browser checks;
 these use the existing local cover fallback instead.
+
+### Home 08 selected projects and action order
+
+Home's five featured projects are explicitly ordered with `featured` and
+`homeOrder` in `assets/js/portfolio.projects.json`: Ai-LifeOS, Nerdma, LulaGazette,
+Food delivery app home screen (free AI prompt), then FoodieZone. The old
+three-case-study limit is removed. Desktop shows all five in one row; smaller
+screens browse that same ordered row horizontally. Home and Portfolio now share
+the same card component and inset styles (`pf-featured` / `pf-page`).
+
+Cards render image, project name/details, then action—rather than placing the
+action above the caption. Ai-LifeOS stays non-linked Coming soon; Nerdma and
+FoodieZone open their existing project pages; LulaGazette opens its existing
+external site. The food-delivery card copies the real free prompt inline,
+including denied-clipboard/manual-selection fallback, without navigating away.
+No project status or case study was invented to feature these items.
+
+`check-home-featured-browser.mjs` verifies exact order/count, five desktop cards,
+mobile scrolling, spacing/action order, correct destinations, Coming soon,
+inline prompt copy and Nerdma navigation at 320/390/768/1024/1440px. The static,
+Portfolio spacing/browse/detail, prompt-card and Home chapter suites cover the
+shared component and navigation regressions.

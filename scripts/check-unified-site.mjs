@@ -79,7 +79,12 @@ const homeView=render('LocalHomePage');
 assert.equal(homeView.elements.filter(node=>node.type==='h1').length,1);
 assert.equal(homeView.elements.filter(node=>node.type==='main').length,1);
 assert.equal(homeView.elements.filter(node=>(node.props.className||'').split(' ').includes('hm-panel')).length,11);
-assert.equal(homeView.elements.filter(node=>node.props.className==='hm-project-preview').length,3);
+assert.deepEqual(homeView.elements.filter(node=>node.props.className==='pf-card').map(node=>node.props['data-project']),['ai-lifeos','nerdma','lulagazette','prompt-food-delivery-app-home-screen','foodiezone']);
+for(const card of homeView.elements.filter(node=>node.props.className==='pf-card')){
+ const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt'].includes(name)));
+ assert.ok(title>=0&&action>title,'Names/details precede project actions, including Home features');
+}
+
 assert.equal(homeView.elements.filter(node=>node.type==='footer').length,1);
 assert.ok(homeView.elements.some(node=>node.props.href==='#hosting'));
 assert.ok(homeView.elements.some(node=>node.type==='img'&&node.props.src==='/assets/img/lulamile.webp'));

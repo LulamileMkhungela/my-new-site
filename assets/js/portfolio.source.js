@@ -70,14 +70,14 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
     h('div',{className:'pf-card-art',ref:previewRef},
       h('div',{className:'pf-art-fallback','aria-hidden':true},h('span',{className:'pf-art-word'},project.client)),
       project.image&&h('img',{src:previewImage,onLoad:measurePreview,alt:project.imageAlt||project.client+' project preview',loading:'lazy',decoding:'async',className:project.imageFit==='contain'?'pf-image-contain':undefined,onError:event=>{if(project.imageRemote&&!event.currentTarget.dataset.localFallback){event.currentTarget.dataset.localFallback='true';event.currentTarget.src=project.image;}else event.currentTarget.style.display='none';}})),
+    h('div',{className:'pf-card-info'},h('h3',{className:'pf-compact-name'},project.client),
+      h('p',{className:'sr-only',id:descriptionId},project.description),
+      project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
+      project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · '))),
     freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
       h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:'arrow-up-right'})));
   return h('article',{className:'pf-card','data-project':project.id,'data-prompt-tier':project.promptTier,'data-web-preview':project.previewScroll?'true':undefined},
     linked?h(action.type==='external'?'a':ve,action.type==='external'?{href:action.href,target:'_blank',rel:'noopener noreferrer',className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId}:{to:action.href,className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId},body):h('div',{className:freePrompt?'pf-card-link pf-card-free':'pf-card-link pf-card-static'},body),
-    h('h3',{className:'pf-compact-name'},project.client),
-    h('p',{className:'sr-only',id:descriptionId},project.description),
-    project.status&&!['Coming soon','Previous work','Premium','Free'].includes(project.status)&&h('p',{className:'pf-card-status'},project.status),
-    project.platforms&&h('p',{className:'pf-platforms'},'Cross-platform · '+project.platforms.join(' · ')),
     freePrompt&&h('p',{className:'pf-copy-status',role:'status','aria-live':'polite'},copyStatus),
     freePrompt&&copyStatus.startsWith('Copy unavailable')&&h('pre',{className:'pf-copy-fallback',tabIndex:0,'aria-label':'Select prompt — '+project.client},project.details.prompt));
 }

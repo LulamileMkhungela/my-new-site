@@ -17,7 +17,7 @@ body .contact-extra-actions :is(a,button) {
 }
 /* Maintain comfortable icon insets on all primary/action-bar faces. */
 body :is(.hybrid-button,.svc-button,.hm-link-primary,.studio-link-primary) { padding-inline:1.25rem; gap:1rem; }
-body .pf-page :is(.pf-action-bar,.pf-copy-prompt) { padding-inline:1rem; gap:.65rem; }
+body :is(.pf-page,.pf-featured) :is(.pf-action-bar,.pf-copy-prompt) { padding-inline:1rem; gap:.65rem; }
 body .scene-controls { gap:.75rem; padding:.75rem .75rem .9rem; }
 body .scene-controls button { min-height:44px; padding:.6rem 1rem; }
 body .enquiry-close { width:44px; height:44px; }
@@ -38,23 +38,25 @@ body .rhino-header .hybrid-service-nav-inner>a:last-child { margin-inline-end:.7
 body .pf-category-jumps { padding-inline:.4rem; padding-bottom:.85rem; scroll-padding-inline:.4rem; }
 body .pf-category-jumps>a:last-child { margin-inline-end:.4rem; }
 /* Real inner gutters protect glass cards; track padding protects raised edges. */
-body .pf-page .pf-grid { padding:.5rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
-body .pf-page .pf-card { display:flex; flex-direction:column; padding:12px; }
-body .pf-page .pf-card .pf-card-art { border-radius:8px; }
-body .pf-page .pf-card-link { flex:0 0 auto; min-width:0; }
-body .pf-page .pf-card :is(.pf-action-bar,.pf-copy-prompt) {
- min-height:44px; margin-top:12px; padding:.7rem .75rem; gap:.5rem;
+body :is(.pf-page,.pf-featured) .pf-grid { padding:.5rem 4px 1.25rem; align-items:stretch; scroll-padding-inline:4px; }
+body :is(.pf-page,.pf-featured) .pf-card { display:flex; flex-direction:column; padding:12px; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art { border-radius:8px; }
+body :is(.pf-page,.pf-featured) .pf-card-link { flex:1; min-width:0; }
+body :is(.pf-page,.pf-featured) .pf-card-art { flex-shrink:0; }
+body :is(.pf-page,.pf-featured) .pf-card-info { padding-block:1rem; }
+body :is(.pf-page,.pf-featured) .pf-card :is(.pf-action-bar,.pf-copy-prompt) {
+ min-height:44px; margin-top:auto; padding:.7rem .75rem; gap:.5rem;
  font-size:.6rem; letter-spacing:.04em;
 }
-body .pf-page .pf-card h3.pf-compact-name {
- margin:1rem 0 0; font-size:.7rem; line-height:1.65;
+body :is(.pf-page,.pf-featured) .pf-card h3.pf-compact-name {
+ margin:0; font-size:.7rem; line-height:1.65;
  white-space:normal; overflow:visible; overflow-wrap:anywhere; text-overflow:clip;
 }
-body .pf-page .pf-card :is(.pf-platforms,.pf-card-status,.pf-copy-status) {
+body :is(.pf-page,.pf-featured) .pf-card :is(.pf-platforms,.pf-card-status,.pf-copy-status) {
  margin:.5rem 0 0; line-height:1.75; overflow-wrap:anywhere;
 }
-body .pf-page .pf-card .pf-copy-status:empty { margin:0; }
-body .pf-page .pf-card .pf-copy-fallback { max-width:100%; margin:1rem 0 0; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-copy-status:empty { margin:0; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-copy-fallback { max-width:100%; margin:1rem 0 0; }
 
 @media(max-width:600px) {
  body .contact-extra-actions { gap:.85rem .75rem; }

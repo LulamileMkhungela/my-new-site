@@ -13,7 +13,6 @@
     "image": "/assets/img/portfolio/nerdma.webp",
     "year": "2023",
     "status": "Client project",
-    "featured": true,
     "details": {
       "role": "Freelance UI/UX Designer & Developer",
       "context": "Nerdma Systems · Governance, risk and sustainability intelligence",
@@ -51,7 +50,9 @@
       ],
       "gallery": []
     },
-    "previewScroll": true
+    "previewScroll": true,
+    "featured": true,
+    "homeOrder": 2
   },
   {
     "id": "addmoredigital",
@@ -82,7 +83,6 @@
     "image": "/assets/img/portfolio/snb.webp",
     "year": "2019",
     "status": "Client project",
-    "featured": true,
     "details": {
       "role": "UI/UX & Web Designer · Sesyme & SmartServe",
       "context": "SnB Chartered Accountants & Auditors",
@@ -136,7 +136,6 @@
     "href": "/project/foodiezone",
     "image": "/assets/img/portfolio/foodiezone.webp",
     "status": "Client project",
-    "featured": true,
     "categoryActions": {
       "website": {
         "type": "external",
@@ -187,7 +186,9 @@
         }
       ]
     },
-    "previewScroll": true
+    "previewScroll": true,
+    "featured": true,
+    "homeOrder": 5
   },
   {
     "id": "heritagebites",
@@ -356,7 +357,9 @@
       "Web",
       "Mobile"
     ],
-    "imageAlt": "Ai-LifeOS web dashboard showing Today, safe-to-spend setup, daily actions and reminders"
+    "imageAlt": "Ai-LifeOS web dashboard showing Today, safe-to-spend setup, daily actions and reminders",
+    "featured": true,
+    "homeOrder": 1
   },
   {
     "id": "onescreen-business",
@@ -437,7 +440,9 @@
     "href": "https://lulamilemkhungela.github.io/LulaGazette/",
     "image": "/assets/img/portfolio/lulagazette.webp",
     "actionLabel": "Open project",
-    "previewScroll": true
+    "previewScroll": true,
+    "featured": true,
+    "homeOrder": 3
   },
   {
     "id": "designops",
@@ -815,7 +820,9 @@
       "links": [],
       "prompt": "Design a food delivery app home. Status 9:41, location header '45 Commissioner St, Johannesburg CBD', search 'Search for restaurants, groceries, and more', category row Restaurants / Groceries / Convenience / Pharmacy, promo 'Get 40% off your first order — Free delivery fee on orders R15+ — Use code GET40', store rows 'Nando's — R3.99 delivery' and 'Mugg & Bean — R2.99 delivery' with star ratings, bottom tabs Home / Search / Orders. Cream UI with red-orange accents, flat Figma style.",
       "promptDownload": "/assets/prompts/prompt-food-delivery-app-home-screen.txt"
-    }
+    },
+    "featured": true,
+    "homeOrder": 4
   },
   {
     "id": "prompt-oto-e-commerce-website",

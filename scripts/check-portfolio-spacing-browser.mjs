@@ -17,8 +17,10 @@ for(const javaScriptEnabled of [true,false]){
    const report=await page.locator('.pf-card').evaluateAll(cards=>cards.map(card=>{
     const r=card.getBoundingClientRect(),title=card.querySelector('h3'),t=title.getBoundingClientRect(),action=card.querySelector('.pf-action-bar,.pf-copy-prompt'),a=action.getBoundingClientRect(),image=card.querySelector('.pf-card-art').getBoundingClientRect();
     const metadata=[...card.querySelectorAll('.pf-platforms,.pf-card-status,.pf-copy-status')].filter(el=>el.textContent.trim());
-    const bottom=metadata.length?metadata.at(-1).getBoundingClientRect().bottom:t.bottom;
-    return{id:card.dataset.project,imageInset:Math.min(image.left-r.left,r.right-image.right,image.top-r.top),actionInset:Math.min(a.left-r.left,r.right-a.right),titleInset:Math.min(t.left-r.left,r.right-t.right),titleGap:t.top-a.bottom,bottomInset:r.bottom-bottom,titleClipped:title.scrollWidth>title.clientWidth+1||title.scrollHeight>title.clientHeight+1,actionHeight:a.height};
+    const detailsBottom=metadata.length?metadata.at(-1).getBoundingClientRect().bottom:t.bottom;
+    const feedback=card.querySelector('.pf-copy-status');
+    const bottom=feedback?.textContent.trim()?feedback.getBoundingClientRect().bottom:a.bottom;
+    return{id:card.dataset.project,imageInset:Math.min(image.left-r.left,r.right-image.right,image.top-r.top),actionInset:Math.min(a.left-r.left,r.right-a.right),titleInset:Math.min(t.left-r.left,r.right-t.right),titleGap:a.top-detailsBottom,bottomInset:r.bottom-bottom,titleClipped:title.scrollWidth>title.clientWidth+1||title.scrollHeight>title.clientHeight+1,actionHeight:a.height};
    }));
    for(const card of report){
     for(const key of['imageInset','actionInset','titleInset','bottomInset'])assert.ok(card[key]>=11.5,card.id+' '+key+': '+JSON.stringify(card));

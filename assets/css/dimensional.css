@@ -18,7 +18,7 @@ body :is(button,.hybrid-button,.svc-button,.hm-link-primary,.studio-link-primary
  transform-origin:center;
 }
 /* Emerald faces have a lit upper bevel and a darker extruded base. */
-body :is(.hybrid-button,.hm-link-primary,.studio-link-primary,.pf-page .pf-copy-prompt,.pf-action-bar:not(.pf-action-unavailable)) {
+body :is(.hybrid-button,.hm-link-primary,.studio-link-primary,:is(.pf-page,.pf-featured) .pf-copy-prompt,.pf-action-bar:not(.pf-action-unavailable)) {
  --depth-edge:#007344;
  background-color:#00ce7b;
  background-image:linear-gradient(155deg,#62edb2 0%,#15d98b 34%,#00bf70 74%,#00a962 100%);
@@ -57,15 +57,15 @@ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.studio-service-row
 }
 body .studio-service-row { margin-bottom:.75rem; padding:1rem; }
 /* Project images keep their exact row dimensions and screenshot scrolling. */
-body .pf-page .pf-card .pf-card-art,body .hm-project-art {
+body :is(.pf-page,.pf-featured) .pf-card .pf-card-art,body .hm-project-art {
  border:0;
  outline:1px solid #aacbbc38;
  outline-offset:-1px;
  border-radius:5px;
  box-shadow:inset 0 1px 0 #ffffff20,0 4px 0 #0a1b20,0 9px 16px #00000030;
 }
-body .pf-page .pf-card .pf-action-bar { margin-bottom:5px; }
-body .pf-page .pf-card .pf-action-unavailable {
+body :is(.pf-page,.pf-featured) .pf-card .pf-action-bar { margin-bottom:5px; }
+body :is(.pf-page,.pf-featured) .pf-card .pf-action-unavailable {
  background-image:linear-gradient(145deg,#30464c,#1b2e35);
  box-shadow:inset 0 1px 0 #ffffff10;
  border-radius:4px;
