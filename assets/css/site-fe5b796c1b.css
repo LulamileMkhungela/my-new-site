@@ -685,6 +685,9 @@ body :is(.pf-page,.pf-featured) .pf-card .pf-release-badge {
 .pf-featured .pf-card[data-web-preview='true'] .pf-card-art img { height:100%; object-fit:cover; }
 .pf-featured .pf-card[data-web-preview='true'] .pf-card-art[data-scrollable='true'] img { height:auto; object-fit:contain; }
 
+/* Glass note panels need real outside spacing, not just inside padding. */
+.owner-project-content > .owner-project-section { margin-bottom:clamp(1.25rem,3vw,2.5rem); }
+
 /* Home: Digital Rhino-inspired numbered, full-width chapters. Shared footer in pages.css. */
 .hm-page { font-family: Poppins,sans-serif; color: #f1f5f6; background: #151f29; }
 .hm-panel { position: relative; isolation: isolate; overflow: hidden; background: #151f29; border-bottom: 1px solid #ffffff12; scroll-margin-top: 140px; }

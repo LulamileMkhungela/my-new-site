@@ -66,7 +66,7 @@ function LocalAppDownloads({project,showApk=false}) {
 }
 /** Compact reference-style thumbnail and action bar, with no long card copy. */
 function LocalPortfolioCard({project,index,total,category='all'}) {
-  const h=g.createElement,freePrompt=project.promptTier==='free';
+  const h=g.createElement,freePrompt=project.promptTier==='free',location=Qt();
   const [copyStatus,setCopyStatus]=LocalUseCopyStatus();
   const previewRef=g.useRef(null);
   const previewImage=project.previewImage||project.imageRemote||project.image;
@@ -112,7 +112,7 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
     action.type==='coming-soon'||groupedDownload?null:freePrompt?h('button',{type:'button',className:'pf-copy-prompt','aria-label':'Copy prompt — '+project.client,onClick:copyPrompt},copyStatus==='Prompt copied.'?'Copied!':'Copy prompt'):
       h('span',{className:'pf-action-bar'+(linked?'':' pf-action-unavailable')},h('span',null,label),linked&&h(LocalUiIcon,{name:project.apkUrl||project.androidReleaseUrl?'download':'arrow-up-right'})));
   return h('article',{className:'pf-card','data-project':project.id,'data-prompt-tier':project.promptTier,'data-web-preview':project.previewScroll?'true':undefined},
-    linked?h(action.type==='external'?'a':ve,action.type==='external'?{href:action.href,target:'_blank',rel:'noopener noreferrer',className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId}:{to:action.href,className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId},body):h('div',{className:freePrompt?'pf-card-link pf-card-free':'pf-card-link pf-card-static'},body),
+    linked?h(action.type==='external'?'a':ve,action.type==='external'?{href:action.href,target:'_blank',rel:'noopener noreferrer',className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId}:{to:action.href.startsWith('/project/')?action.href.replace(/\/$/,'')+'/':action.href,state:{projectReturn:location.pathname+(location.search||'')+(location.hash||'')},className:'pf-card-link','aria-label':label+' — '+project.client,'aria-describedby':descriptionId},body):h('div',{className:freePrompt?'pf-card-link pf-card-free':'pf-card-link pf-card-static'},body),
     freePrompt&&h('p',{className:'pf-copy-status',role:'status','aria-live':'polite'},copyStatus),
     freePrompt&&copyStatus.startsWith('Copy unavailable')&&h('pre',{className:'pf-copy-fallback',tabIndex:0,'aria-label':'Select prompt — '+project.client},project.details.prompt),
     project.categories.includes('apps')&&h(LocalAppDownloads,{project}),
@@ -120,13 +120,17 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
 }
 function LocalProjectPage() {
   const h=g.createElement;
-  const id=Qt().pathname.replace(/\/$/,'').split('/').pop();
+  const location=Qt(),navigate=va();
+  const id=location.pathname.replace(/\/$/,'').split('/').pop();
   const project=localPortfolioProjects.find(item=>item.id===id&&item.details);
   if(!project)return h(LocalNotFoundPage);
   const details=project.details;
+  const origin=location.state?.projectReturn;
+  const backTo=origin||'/portfolio?filter='+project.categories[0]+'#portfolio-category-'+project.categories[0];
+  const goBack=event=>{if(origin&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&!event.altKey&&event.button===0){event.preventDefault();navigate(-1);}};
   return h(LocalPageFrame,{title:project.client,description:project.description,className:'owner-project'},
     h('section',{className:'owner-project-hero','data-background-text':project.client.toUpperCase()},h('div',{className:'unified-container'},
-      h(ve,{to:'/portfolio?filter='+project.categories[0],className:'owner-project-back'},'← Back to portfolio'),
+      h(ve,{to:backTo,onClick:goBack,className:'owner-project-back'},'← Back to portfolio'),
       h('p',{className:'hybrid-eyebrow'},project.type==='overview'?'Project overview':'Selected work / Case study'),
       h('h1',null,project.client),h('p',{className:'owner-project-tagline'},project.title),h('p',{className:'owner-project-intro'},project.description),
       h('dl',{className:'owner-project-meta'},h('div',null,h('dt',null,'Role'),h('dd',null,details.role)),h('div',null,h('dt',null,'Context'),h('dd',null,details.context)),h('div',null,h('dt',null,'Status'),h('dd',null,project.status||'Selected project'))),
@@ -136,7 +140,7 @@ function LocalProjectPage() {
       details.prompt&&h(LocalPromptContent,{details}),
       ...details.gallery.filter(item=>item.src!==project.image).map(item=>h('figure',{key:item.src,className:'owner-project-figure'},h('img',{src:item.src,alt:item.alt,loading:'lazy',decoding:'async'}),h('figcaption',null,item.caption))),
       details.links.length>0&&h('section',{className:'owner-project-links','aria-label':'Project links'},h('h2',null,'Explore the project'),...details.links.map(link=>h('a',{key:link.href,href:link.href,...(link.href.startsWith('mailto:')?{}:{target:'_blank',rel:'noopener noreferrer'}),className:'hybrid-button'},link.label,h(LocalUiIcon,{name:'arrow-up-right'})))),
-      h(ve,{to:'/portfolio',className:'owner-project-back'},'← All projects')));
+      h(ve,{to:backTo,onClick:goBack,className:'owner-project-back'},'← All projects')));
 }
 
 /** Free resources only: premium prompt text is never included in runtime data. */

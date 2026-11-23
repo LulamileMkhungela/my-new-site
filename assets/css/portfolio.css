@@ -266,3 +266,6 @@ body :is(.pf-page,.pf-featured) .pf-card .pf-release-badge {
 .pf-featured .pf-card .pf-card-art { aspect-ratio:4/3; }
 .pf-featured .pf-card[data-web-preview='true'] .pf-card-art img { height:100%; object-fit:cover; }
 .pf-featured .pf-card[data-web-preview='true'] .pf-card-art[data-scrollable='true'] img { height:auto; object-fit:contain; }
+
+/* Glass note panels need real outside spacing, not just inside padding. */
+.owner-project-content > .owner-project-section { margin-bottom:clamp(1.25rem,3vw,2.5rem); }

@@ -1,3 +1,9 @@
+/** Per-history-entry positions, with a session fallback for refreshed details. */
+const localRoutePositions=new Map();
+function LocalReadRoutePosition(key){
+ if(localRoutePositions.has(key))return localRoutePositions.get(key);
+ try{return JSON.parse(sessionStorage.getItem('lulazel-position-'+key)||'null');}catch{return null;}
+}
 /** One shared application shell for Portfolio, About, Contact and Tools. */
 function LocalPageFrame({title,description,children,className=''}) {
   const h=g.createElement;
@@ -61,11 +67,12 @@ function LocalPortfolioPage() {
   const requested=new URLSearchParams(location.search).get('filter') || 'all';
   const selected=localPortfolioCategories.some(item=>item.id===requested)?requested:'all';
   const visible=localPortfolioProjects.filter(item=>selected==='all'||item.categories.includes(selected));
-  const [collapsed,setCollapsed]=g.useState({});
+  const [collapsed,setCollapsed]=g.useState(()=>{try{return JSON.parse(sessionStorage.getItem('lulazel-collapsed-'+location.key)||'{}');}catch{return {};}});
   const groups=localPortfolioCategories.filter(item=>item.id!=='all'&&(selected==='all'||item.id===selected)).map(category=>({category,projects:localPortfolioProjects.filter(project=>project.categories.includes(category.id))}));
   const renderCards=(projects,category)=>h('div',{className:'pf-grid',role:'region',tabIndex:0,'aria-label':category+' project previews'},...projects.map((project,index)=>h(LocalPortfolioCard,{key:project.id,project,index,total:projects.length,category})));
   const descriptions={website:'Business websites shaped around clear information and a useful next step.','product-design':'Products and experiences shaped around real needs.',apps:'Cross-platform products and mobile experiences.','frontend-dev':'Interfaces, tools and frontend builds.','ai-prompt':'Premium design resources and free prompts to make your own.'};
   g.useEffect(()=>{
+    if(LocalReadRoutePosition(location.key))return;
     const id=location.hash?.slice(1);
     if(id&&(/^(portfolio-projects|pf-free-title)$/.test(id)||id.startsWith('portfolio-category-')))requestAnimationFrame(()=>document.getElementById(id)?.scrollIntoView({behavior:'instant',block:'start'}));
   },[selected,location.hash]);
@@ -87,7 +94,7 @@ function LocalPortfolioPage() {
         const expanded=!collapsed[category.id],region='pf-category-content-'+category.id;
         return h('section',{key:category.id,id:'portfolio-category-'+category.id,className:'pf-category-section','aria-labelledby':'pf-category-title-'+category.id},
           h('div',{className:'pf-category-heading'},h('div',null,h('p',{className:'hybrid-eyebrow'},category.label+' projects'),h('h2',{id:'pf-category-title-'+category.id},category.label+' projects'),h('p',null,descriptions[category.id])),
-            h('button',{type:'button',className:'pf-category-toggle','aria-label':(expanded?'Collapse ':'Expand ')+category.label+' projects','aria-expanded':expanded,'aria-controls':region,onClick:()=>setCollapsed(previous=>({...previous,[category.id]:!previous[category.id]}))},h(LocalUiIcon,{name:expanded?'minus':'plus'}))),
+            h('button',{type:'button',className:'pf-category-toggle','aria-label':(expanded?'Collapse ':'Expand ')+category.label+' projects','aria-expanded':expanded,'aria-controls':region,onClick:()=>setCollapsed(previous=>{const next={...previous,[category.id]:!previous[category.id]};try{sessionStorage.setItem('lulazel-collapsed-'+location.key,JSON.stringify(next));}catch{}return next;})},h(LocalUiIcon,{name:expanded?'minus':'plus'}))),
           h('div',{id:region,className:'pf-category-content',hidden:!expanded},category.id==='ai-prompt'?
             h('div',{className:'pf-prompt-groups'},...['premium','free'].map(tier=>h('section',{key:tier,className:'pf-prompt-group','aria-labelledby':'pf-'+tier+'-title'},h('div',{className:'pf-prompt-group-heading'},h('h3',{id:'pf-'+tier+'-title'},tier==='premium'?'Premium resources':'Free prompts')),renderCards(projects.filter(project=>project.promptTier===tier),category.id)))):renderCards(projects,category.id)));
       }))));

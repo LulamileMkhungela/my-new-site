@@ -406,3 +406,19 @@ LulaFind detail controls and responsive geometry at five widths with JS on/off.
 The Home-featured suite additionally guards both project labels and disabled
 Home store icons. APK responses are not mocked or counted as successful downloads
 by these UI tests; external navigation is blocked.
+
+### Project details: spacing and return navigation
+
+Project-note panels have an outside 20–40px responsive gap, separate from their
+internal padding. Internal project links carry their originating URL; both detail
+Back links use browser history when that origin is known. Per-entry scroll
+snapshots restore vertical position and horizontal project tracks on Back/Forward,
+with a session-storage fallback across detail refreshes. Portfolio filters remain
+in the original URL and collapsed groups are saved per history entry. Canonical
+trailing-slash project links avoid a static-server redirect erasing origin state
+on refresh. Directly opened detail pages fall back to their relevant Portfolio
+category, rather than assuming a previous in-site page exists.
+
+`check-project-return-browser.mjs` checks the top/bottom Back links, browser Back,
+refresh then Back, horizontal track position, filters, collapsed sections,
+direct-entry fallback and visible note-panel gaps at mobile/desktop widths.
