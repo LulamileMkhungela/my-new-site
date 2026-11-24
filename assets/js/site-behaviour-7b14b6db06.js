@@ -250,7 +250,7 @@ if('IntersectionObserver' in window){
  const near=new IntersectionObserver(entries=>{
   if(!requested&&entries.some(entry=>entry.isIntersecting)){
    requested=true;near.disconnect();watch.disconnect();
-   import('./interactive-scenes-c122ae07bc.js').catch(()=>{/* Original SVG remains usable. */});
+   import('./interactive-scenes-086a04a227.js').catch(()=>{/* Original SVG remains usable. */});
   }
  },{rootMargin:'160px'});
  const scan=()=>{for(const img of document.querySelectorAll('.hm-visual img,.studio-visual img,.studio-original-visual img')){

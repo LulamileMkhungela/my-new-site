@@ -114,6 +114,18 @@ add('product-design-strategy-features','Prototype options ready for comparison',
 add('product-design-strategy-brief','A prioritised decision for the next step',[
  G([-.7,-.4,0],[B([0,0,0],[.8,.7,.8],'dark')]),G([.25,-.1,0],[B([0,0,0],[.8,1.3,.8],'green')]),G([1.2,.3,0],[B([0,0,0],[.8,2.1,.8],'ivory')]),
  G([1.2,1.65,0],[C([0,0,0],.045,1.1,'metal'),B([.3,.35,0],[.6,.4,.08],'coral')])]);
+// About: a project kept in motion with the client in the loop, and a clear scope boundary.
+// Contact: questions raised and answered, exclusive to the FAQ section.
+add('about-principles','Your project at the centre of the loop',[
+ G([0,.1,0],[R([0,.1,0],.72,.15,'green'),S([0,.1,0],.34,'lime')]),
+ ...[[-1.35,.85,0,'ivory'],[1.3,.7,.15,'coral'],[0,-1.05,.4,'dark']].map(([x,y,z,c],i)=>G([x,y,z],[B([0,0,0],[.66,.66,.66],c,[0,i*.5,0]),S([0,.5,0],.08,'green')])),
+ G([0,0,0],[L([[-1.35,.85,0],[0,.1,0],[1.3,.7,.15]],'metal',.055),L([[0,.1,0],[0,-1.05,.4]],'metal',.055)])]);
+add('about-scope','A clear boundary around the work',[
+ G([0,.1,0],[B([0,0,0],[1.8,2.2,.16],'ivory'),...[-.5,.1,.7].map(y=>B([.15,y,.12],[.95,.075,.04],'metal')),...[-.5,.1,.7].map(y=>check(-.55,y,.14,.34))]),
+ G([0,.1,0],[R([0,.1,0],1.6,.08,'coral')])]);
+add('contact-faq','Questions answered, in plain language',[
+ G([-.72,.6,0],[B([0,0,0],[1.35,.85,.3],'ivory'),B([-.36,-.5,0],[.3,.35,.3],'ivory'),...[-.35,0,.35].map(x=>S([x,.6,.2],.075,'dark'))]),
+ G([.88,-.55,.4],[B([0,0,0],[1.5,.9,.3],'green'),B([.36,-.53,0],[.3,.33,.3],'green'),L([[-.26,-.56,.22],[-.05,-.74,.22],[.28,-.35,.22]],'dark',.05)])]);
 // Project primitive geometry to native SVG, giving every new model a matching
 // page-exclusive fallback, not a renamed copy of another page's illustration.
 const palette={green:'#00ce7b',ivory:'#f0efd4',dark:'#244d41',lime:'#c8df8a',coral:'#ee9b7b',metal:'#8cbaa2'};
