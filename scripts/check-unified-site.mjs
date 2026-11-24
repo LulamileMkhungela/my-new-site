@@ -106,6 +106,7 @@ assert.ok(homeView.elements.some(node=>node.type==='img'&&node.props.src==='/ass
 assert.ok(!/Google reviews|Our Services|Let’s Connect|5\+ years|30\+ projects/i.test(text(homeView.tree)));
 for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies]) assert.ok(homeView.elements.some(node=>node.props.to===service.path),'Home links to '+service.path);
 assert.ok(read('assets/js/app.source.js').includes("path:'/',element:h(LocalHomePage)"));
+assert.match(read('assets/css/navigation.css'),/\.rhino-mobile-menu\s*\{[^}]*position:absolute; top:100%/,'Mobile menu must overlay, never resize the header and Home stage');
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-process-card').length,3);
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,data.window.SITE.testimonials.length);
 const chapterNav=homeView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Home sections');

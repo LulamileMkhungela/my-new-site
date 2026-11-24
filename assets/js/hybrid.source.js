@@ -37,11 +37,23 @@ function LocalUiIcon({name='arrow-up-right',className=''}) {
   return h('svg',{viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.6,strokeLinecap:'round',strokeLinejoin:'round',className:'ui-line-icon '+className,'aria-hidden':true,focusable:false},...(paths[name]||paths['arrow-up-right']).map((d,index)=>h('path',{d,key:index})));
 }
 function LocalServiceNav({active=''}) {
-  const h=g.createElement;
+  const h=g.createElement,track=g.useRef(null);
+  const [edges,setEdges]=g.useState({start:true,end:false,overflow:false});
+  g.useEffect(()=>{
+    const el=track.current;if(!el)return;
+    const measure=()=>{const next={start:el.scrollLeft<2,end:el.scrollLeft+el.clientWidth>=el.scrollWidth-2,overflow:el.scrollWidth>el.clientWidth+2};setEdges(previous=>Object.keys(next).every(key=>next[key]===previous[key])?previous:next);};
+    const observer=new ResizeObserver(measure);observer.observe(el);
+    el.addEventListener('scroll',measure,{passive:true});measure();
+    return()=>{observer.disconnect();el.removeEventListener('scroll',measure);};
+  },[]);
+  const move=direction=>track.current?.scrollBy({left:direction*track.current.clientWidth*.75,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  const arrow=(direction,label,disabled)=>h('button',{type:'button',className:'service-nav-arrow',hidden:!edges.overflow,disabled,'aria-label':label,onClick:()=>move(direction)},h(LocalUiIcon,{name:direction<0?'arrow-left':'arrow-right'}));
   return h('nav',{className:'hybrid-service-nav','aria-label':'Explore services'},
-    h('div',{className:'hybrid-service-nav-inner'},
+    arrow(-1,'Previous services',edges.start),
+    h('div',{className:'hybrid-service-nav-inner',ref:track},
       ...localServiceCatalogue.services.map(item=>h(ve,{key:item.slug,to:'/services/'+item.slug,className:active===item.slug?'is-active':'','aria-current':active===item.slug?'page':undefined},item.title)),
-      ...localStrategyServices.map(item=>h(ve,{key:item.path,to:item.path,className:active===item.path?'is-active':'','aria-current':active===item.path?'page':undefined},item.title))));
+      ...localStrategyServices.map(item=>h(ve,{key:item.path,to:item.path,className:active===item.path?'is-active':'','aria-current':active===item.path?'page':undefined},item.title))),
+    arrow(1,'More services',edges.end));
 }
 /** Original local vector instead of the old sculpture placeholder. */
 function LocalDigitalVisual({label='Design × technology',icon='grid'}) {
@@ -97,7 +109,7 @@ function LocalSiteHeader() {
     if(!open)return;
     const close=event=>{
       if(event.type==='keydown'&&event.key==='Escape'){
-        setOpen(false);headerRef.current?.querySelector('.rhino-menu-button')?.focus();
+        setOpen(false);headerRef.current?.querySelector('.rhino-menu-button')?.focus({preventScroll:true});
       }else if((event.type==='pointerdown'||event.type==='focusin')&&!headerRef.current?.contains(event.target))setOpen(false);
     };
     const desktop=matchMedia('(min-width: 801px)');
