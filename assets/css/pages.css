@@ -226,3 +226,41 @@ body .privacy-article>:last-child { margin-bottom:0; }
 .page-socials button:disabled { opacity:.5; cursor:default; }
 .contact-invitation { color:#b9c7ce; font-size:.85rem; line-height:1.85; max-width:40rem; margin-top:1rem; }
 .contact-intro h1 { font-size:clamp(2.3rem,4.2vw,4rem); }
+
+/* About: principles and honest scope, built from the shared panel/visual language (watermark, kicker, numbered editorial rows, page-exclusive 3D vector). */
+.unified-about-panel { position:relative; isolation:isolate; overflow:hidden; background:#151f29; color:#eff4f6; border-top:1px solid #ffffff14; }
+.unified-panel-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:3.5rem; align-items:center; padding:3.5rem 0; }
+.unified-art-left>.studio-visual { grid-column:1; grid-row:1; }
+.unified-art-left>.unified-panel-copy { grid-column:2; grid-row:1; }
+.unified-panel-copy { min-width:0; }
+.unified-panel-copy h2 { font-size:clamp(1.6rem,2.4vw,2.3rem); font-weight:500; letter-spacing:-.025em; margin-bottom:1.25rem; max-width:22ch; }
+.unified-panel-copy .svc-kicker { color:#00ce7b; margin-bottom:.9rem; }
+.unified-principles-list, .unified-scope-list { list-style:none; margin:0; padding:0; }
+.unified-principles-list li, .unified-scope-list li { display:grid; grid-template-columns:auto minmax(0,1fr); gap:.15rem 1.25rem; padding:.8rem 0; border-top:1px solid #a8c3c330; }
+.unified-list-number { grid-row:span 2; font-family:'Clash Grotesk',sans-serif; font-size:.68rem; font-weight:600; letter-spacing:.15em; color:#00ce7b; padding-top:.1rem; }
+.unified-principles-list h3, .unified-scope-list h3 { font-size:.88rem; font-weight:600; color:#eef4f5; margin:0; }
+.unified-principles-list p, .unified-scope-list p { color:#afc1ca; font-size:.82rem; line-height:1.75; margin:.2rem 0 0; }
+.unified-scope .unified-list-number { color:#ee9b7b; }
+.unified-scope-intro { color:#b9c7ce; font-size:.86rem; line-height:1.8; max-width:56ch; margin:-.25rem 0 1rem; }
+/* Contact: common questions as a vector + accordion panel, matching the contact page's navy/green system. */
+.unified-faq { position:relative; isolation:isolate; overflow:hidden; background:#151f29; color:#eff4f6; border-top:1px solid #ffffff14; padding:3.5rem 0; scroll-margin-top:9rem; }
+.unified-faq-layout { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:3.5rem; align-items:center; }
+.unified-faq-copy h2 { font-size:clamp(1.6rem,2.4vw,2.3rem); font-weight:500; letter-spacing:-.025em; margin:.9rem 0 1.5rem; }
+.unified-faq-item { border:0; border-top:1px solid #a8c3c330; background:transparent; }
+.unified-faq-item:last-child { border-bottom:1px solid #a8c3c330; }
+.unified-faq-item summary { cursor:pointer; list-style-position:outside; padding:1.05rem .25rem; font-weight:600; font-size:.9rem; color:#eef4f5; transition:color .2s; }
+.unified-faq-item summary:hover { color:#00ce7b; }
+.unified-faq-item summary:focus-visible { outline:2px solid #00ce7b; outline-offset:2px; }
+.unified-faq-item p { padding:0 .25rem 1.05rem; margin:0; color:#b9c7ce; font-size:.85rem; line-height:1.8; max-width:62ch; }
+@media (max-width: 1000px) {
+  .unified-panel-grid, .unified-faq-layout { gap:2rem; }
+}
+@media (max-width: 800px) {
+  .unified-panel-grid, .unified-faq-layout { display:flex; flex-direction:column; align-items:stretch; padding:2.5rem 0; gap:2rem; }
+  .unified-art-left>.studio-visual { order:0; } .unified-art-left>.unified-panel-copy { order:1; }
+  .unified-panel-grid>.studio-visual { order:0; } .unified-panel-grid>.unified-panel-copy { order:1; }
+  .unified-faq-layout>.studio-visual { order:0; }
+  .unified-faq-layout>.unified-faq-copy { order:1; }
+  .unified-faq .studio-visual img, .unified-about-panel .studio-visual img { max-height:320px; max-width:420px; width:100%; margin-inline:auto; }
+  .unified-faq-item summary:focus-visible { outline-width:2px; }
+}
