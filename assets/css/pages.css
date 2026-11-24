@@ -95,11 +95,11 @@ html:has(.enquiry-dialog[open]) { overflow: hidden; }
 @media (max-width: 700px) { .site-back-to-top { right: 16px; bottom: max(16px,env(safe-area-inset-bottom)); } }
 @media (prefers-reduced-motion: reduce) { .site-back-to-top { transition: none; } }
 
-/* Keep all five labelled contact actions on one row on small phones. */
+/* Keep all four labelled contact actions on one row on small phones. */
 .footer-contact-icons { align-items: flex-start; }
 .footer-icon-label { text-align: center; line-height: 1.5; }
 @media (max-width: 380px) {
-  .footer-contact-icons { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); width: 100%; gap: .4rem; }
+  .footer-contact-icons { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); width: 100%; gap: .4rem; }
   .footer-contact-icon { min-width: 0; }
   .footer-icon-label { font-size: .55rem; }
 }
@@ -216,3 +216,13 @@ body .privacy-article h2 {
 }
 body .privacy-article a { color:#8aebc2; text-decoration:underline; text-underline-offset:.2em; overflow-wrap:anywhere; }
 body .privacy-article>:last-child { margin-bottom:0; }
+
+/* Shared, labelled social icons on About and Contact; no guessed profile links. */
+.page-socials { display:flex; flex-wrap:wrap; gap:.65rem 1rem; margin-block:1.5rem; }
+.page-socials :is(a,button) { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:44px; padding:.65rem .8rem; border:1px solid #8cc8b052; border-radius:0; background:transparent; color:#c4d7d4; font:500 .65rem/1.5 Poppins,sans-serif; text-decoration:none; }
+.page-socials .ui-line-icon { width:19px; height:19px; color:#00ce7b; }
+.page-socials a:hover { color:#00ce7b; border-color:#00ce7b; }
+.page-socials a:focus-visible { outline:2px solid #00ce7b; outline-offset:4px; }
+.page-socials button:disabled { opacity:.5; cursor:default; }
+.contact-invitation { color:#b9c7ce; font-size:.85rem; line-height:1.85; max-width:40rem; margin-top:1rem; }
+.contact-intro h1 { font-size:clamp(2.3rem,4.2vw,4rem); }

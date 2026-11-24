@@ -11,7 +11,7 @@
 .studio-subtitle { color:#bcc9ce; font-size:.55rem; line-height:1.8; font-weight:600; text-transform:uppercase; letter-spacing:.22em; margin-top:.6rem; }
 .studio-description { color:#b9c7ce; font-size:.85rem; line-height:1.95; max-width:640px; margin-bottom:1.5rem; }
 .studio-visual { margin:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; }
-.studio-visual img { display:block; width:100%; max-width:580px; max-height:600px; height:auto; object-fit:contain; }
+.studio-visual img { display:block; width:100%; max-width:100%; max-height:700px; height:auto; object-fit:contain; }
 .studio-visual figcaption { display:flex; align-items:center; gap:.6rem; margin-top:.75rem; text-transform:uppercase; color:#a8b7bc; font-size:.48rem; letter-spacing:.18em; text-align:center; line-height:1.8; }
 .studio-visual figcaption i { height:5px; width:5px; background:#00ce7b; border-radius:50%; }
 .studio-art-left>.studio-visual { grid-column:1; grid-row:1; }
@@ -32,6 +32,9 @@
 .studio-link-primary { background:#00ce7b; color:#102b21; padding:.8rem 1.2rem; }
 .studio-text-link { color:#d8e6e8; }.studio-text-link>.ui-line-icon { color:#00ce7b; }
 .studio-back { display:inline-flex; align-items:center; min-height:44px; color:#a8bac3; font-size:.6rem; margin-top:.75rem; }
+/* Back links in an action row share the Discuss link's box and text metrics.
+   The standalone overview back link keeps its separate top spacing. */
+.studio-actions > .studio-back { margin-top:0; min-height:48px; font-size:.67rem; line-height:1.7; }
 .studio-panel-features { grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); padding-block:3.5rem 2rem; }
 .studio-feature-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem 1.5rem; }
 .studio-feature-list .svc-feature { border-top:1px solid #a8c3c330; padding:.8rem 0 0; border-bottom:0; }
@@ -53,7 +56,7 @@
  .studio-panel { scroll-margin-top:150px; }
  .studio-panel-inner,.studio-panel-features { display:flex; flex-direction:column; gap:2rem; padding:2.5rem 0 1.5rem; min-height:0; }
  .studio-copy { width:100%; }.svc-page .studio-title { font-size:clamp(1.85rem,7.7vw,3.5rem); }.studio-description { font-size:.82rem; }
- .studio-visual { width:100%; }.studio-visual img { max-width:420px; max-height:420px; }
+ .studio-visual { width:100%; }.studio-visual img { max-width:100%; max-height:560px; }
  .studio-art-left .studio-visual { order:0; }.studio-art-left .studio-copy { order:1; }
  .studio-panel-bottom { flex-wrap:wrap; letter-spacing:.1em; padding-block:.75rem; gap:.3rem 1rem; }
  .studio-panel-bottom>a:last-child { margin-left:auto; }
@@ -78,16 +81,13 @@
 }
 
 /* True 3D illustrations: keyboard-accessible, drag-to-rotate WebGL scenes. */
-.scene-shell { width:100%; max-width:580px; min-width:0; }
+.scene-shell { width:100%; min-width:0; }
 .hm-visual .scene-shell { max-width:none; }
 .scene-stage { position:relative; width:100%; aspect-ratio:640/570; }
 .scene-stage>img,.scene-stage>canvas { position:absolute; inset:0; width:100% !important; height:100% !important; max-height:none !important; display:block; object-fit:contain; }
 .scene-stage>canvas { touch-action:pan-y; cursor:grab; border-radius:12px; }
 .scene-stage>canvas:active { cursor:grabbing; }
 .scene-stage>canvas:focus-visible { outline:2px solid #00ce7b; outline-offset:-5px; }
-.scene-controls { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:.55rem; padding:.5rem .4rem; color:#a6bdb5; font:500 .55rem/1.6 Poppins,sans-serif; }
-.scene-controls span { flex-basis:100%; text-align:center; }
-.scene-controls button { min-height:38px; padding:.4rem .8rem; border:1px solid #79a18d55; border-radius:30px; background:#142e28; color:#d7e9da; cursor:pointer; font:inherit; }
-.scene-controls button:hover,.scene-controls button[aria-pressed='true'] { border-color:#00ce7b; color:#75e3af; }
-.scene-controls button:focus-visible { outline:2px solid #00ce7b; outline-offset:3px; }
-.scene-controls[hidden] { display:none; }
+/* The SVG is a fallback, not a second illustration behind the live model. */
+.scene-shell[data-state='ready'] .scene-stage>img { visibility:hidden; }
+.scene-shell[data-state='fallback'] .scene-stage>canvas { display:none !important; }

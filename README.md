@@ -58,7 +58,7 @@ chevron is flat/2D, with keyboard, click and mouse-hover access to Contact. Mobi
 navigation closes on selection, Escape, outside click and focus leaving it.
 
 - `/`: illustrated chapters 01–09, selected work, biography, original Process and
-  six testimonials (not Google reviews).
+  seven source-attributed testimonials (not Google reviews).
 - `/services/`: three directory chapters with their own illustrations.
 - `/services/:slug/`: intro, practical features and project requirements.
 - `/product-design-strategy/`: the same three-chapter service structure.
@@ -99,7 +99,7 @@ Contact stays SVG as requested.
   recipes and matching native SVG fallbacks.
 - `assets/js/page-artwork.json` is shared by the new 3D renderer recipes.
 - `assets/js/interactive-scenes.source.js` contains the renderer and original
-  model geometry, with hover/cursor-follow, drag, keyboard and scene controls.
+  model geometry, with subtle pointer tilt, drag rotation and keyboard access—no visible control strip.
 - `scripts/build-interactive-scenes.mjs` bundles the engine under a content hash.
 - `assets/js/site-behaviour.js` progressively loads it near eligible illustrations.
 - `scripts/generate-home-artwork.py` is retained as an artwork authoring tool.
@@ -202,7 +202,7 @@ metadata tests do not prove a live crawler has refreshed its cache.
 
 `assets/css/glass.css` is the final material layer, composed after spacing and
 dimensional rules. Sticky navigation, menus, inner-page copy sheets, cards,
-contact actions, long-form content, scene controls, footer and enquiry dialog
+contact actions, long-form content, illustrations, footer and enquiry dialog
 share navy glass, emerald highlights and soft inset edges. Home's numbered
 chapters intentionally use an open, unboxed composition: no frosted copy sheet,
 card border or inset. The active Home number is colour-only, not a filled chip;
@@ -256,8 +256,8 @@ space and sits below Back to top. It does not hijack wheel/touch scrolling.
 The testimonial section uses an original CSS quote sculpture, a three-line
 heading and two scroll-snap cards on desktop (one on mobile). Previous/next,
 native swiping/scrolling, keyboard arrows/Home/End and expandable full notes are
-supported. No autoplay. All six supplied quotes, attribution and dates remain
-unchanged. There are no invented stars, Google marks or verification claims.
+supported. No autoplay. Quotes and attributions come from the owner’s linked portfolio;
+unknown recommendation dates are not invented. There are no invented stars, Google marks or verification claims.
 No hosting, external review service, database or API credentials are needed for
 these supplied recommendations. Add approved quotes/attributions in
 `assets/js/site.content.json`; publish names/photos only with permission. A live
@@ -275,8 +275,8 @@ Home's introduction and the dedicated About intro describe the owner as a
 **devzigner**: designing and developing end-to-end digital experiences, with a
 strong frontend focus. Home/About SEO and Person job title reflect that framing.
 Website Design still covers frontend development; no extra service was added.
-Existing Home 08/09 wording, personal-name limits and supplied testimonials stay
-unchanged. The Home browser suite also guards unboxed copy, page gutters and
+Home About and the dedicated About page give design and development equal
+weight, using the linked CV for experience. Personal-name limits are retained. The Home browser suite also guards unboxed copy, page gutters and
 transparent active-number treatment at every tested width, with/without JS.
 
 ### Open project previews and spacing
@@ -328,14 +328,65 @@ shared component and navigation regressions.
 
 ### Current scroll behavior
 
-Scrolling remains browser-native (wheel, touch and keyboard), with visible
-chapter links, scroll-driven active numbering/progress, and progressive chapter
-entrances. No full-page snapping or wheel interception was added in the project
-unboxing pass. Digital Rhino's exact scroll easing, timing and transition
-behavior has not been verified or claimed as an exact match. Still screenshots
-establish visual layout, not motion timing. Reduced-motion and no-JS fallbacks
-remain supported. The Home/Portfolio suites now assert transparent, outlined,
-shadow-free project groups in addition to geometry/actions/navigation.
+Home uses **one sticky stage**, not individually sticky sections. Its chapter
+panels are absolutely positioned inside that stage. Render frames only change
+composited transforms, visibility and opacity; they never change layout, sticky
+positions or scroll offsets. This replaces the earlier offset-compensation
+implementation which could appear to vibrate during entry.
+
+The public Digital Rhino implementation was inspected on 2026-11-21:
+- `https://digitalrhino.co.za/wp-content/plugins/digital-rhino-main-pages/site/app.js`
+- `https://digitalrhino.co.za/wp-content/plugins/digital-rhino-main-pages/site/choreography.js`
+- `https://digitalrhino.co.za/wp-content/plugins/digital-rhino-main-pages/site/mobile-layout.js?v=1.0.6`
+- `https://digitalrhino.co.za/wp-content/plugins/digital-rhino-main-pages/site/style.css`
+
+Desktop follows its exponential scroll damping (9/s), alternating 240px text
+travel and 0.65 depth entries for chapters 04/06, with roughly two viewports
+per chapter transition. Fades now overlap continuously: after grouping content
+and artwork, the original text-only visibility windows left blank gaps. Adjacent
+chapter opacities now sum to one on both desktop and mobile, so stopping halfway
+through a transition always leaves at least one chapter at 50% visibility.
+The crossfade is concentrated into 30–70% of transition travel: by 65%, the
+outgoing group is below 5% opacity and the incoming group is above 95%, avoiding
+the previous long, weak ghosting. Mobile uses the same stronger fade while
+retaining its existing movement and full-content reading intervals.
+Hosting, automation and assistants switch copy/art sides as in the reference.
+Each chapter's content and original vector now animate as **one parent group**:
+shared travel, scale, fade and transform origin, on both desktop and mobile.
+There is no independent artwork arrival/rotation or staggered mobile text entry.
+Digital Rhino's mascot, animation clips, models and branding are NOT used.
+The owner-specific portfolio, process and testimonial content is retained.
+This is a source-informed adaptation, not an assertion of identical visuals.
+
+Mobile (≤760px) follows a distinct hold/read/settle/transition timeline: 180px
+hold, enough distance to read the full content, 140px settle, then an outgoing
+shrink/slide and incoming mode-specific reveal. Taller desktop content also gets
+a reading interval rather than being clipped permanently. Stable `svh` stage
+height avoids mobile browser-chrome changes pumping the timeline. Scrolling
+remains native; no wheel/touch interception or snapping. Chapter links and SPA
+history use measured timeline positions rather than absolute-panel rectangles.
+
+Only the current chapter is interactive; inactive chapters are inert. Keyboard
+chapter navigation focuses its destination after settling. Reduced-motion,
+unsupported and no-JS browsers retain readable natural-flow sections; print
+resets the stage. Other pages retain their lightweight directional entrances,
+with Home explicitly excluded to prevent competing animation writers.
+
+`check-scroll-motion-browser.mjs` compares computed transforms/opacity with the
+travel/depth formulas and complementary fade coverage, checks a 76-frame
+monotonic scroll sweep for blank frames, reversals,
+stage/layout movement and idle drift, and tests reverse playback, chapter links,
+keyboard focus, tall-content reading, SPA Back, reduced-motion, print, footer
+access and no-JS visibility. `check-home-webgl-stability-browser.mjs` enables
+real WebGL, verifies mounting/disposal cannot change any chapter height/timeline
+offset, checks that SVG fallbacks are hidden behind ready models, limits live
+contexts to adjacent scenes, and exercises layout-stable GPU fallback recovery.
+Illustrations have no visible instruction strip, separate-parts or reset controls.
+There is no reserved control-row gap. Model bounds are framed to fill their
+viewport with a safe margin; mobile Home artwork can use up to 360px of width.
+Subtle pointer tilt, drag rotation and keyboard arrow/Escape support remain.
+Click-to-separate was removed alongside the control panel. Browser suites need optional Playwright/Chromium.
+
 
 ### Delivery App source and copy feedback
 
@@ -422,3 +473,56 @@ category, rather than assuming a previous in-site page exists.
 `check-project-return-browser.mjs` checks the top/bottom Back links, browser Back,
 refresh then Back, horizontal track position, filters, collapsed sections,
 direct-entry fallback and visible note-panel gaps at mobile/desktop widths.
+
+### Apps ordering, gallery scrolling and biography corrections
+
+Apps start with LulaFind, OneScreen Business, Ai-LifeOS and Lawmania, followed
+by the remaining apps in their previous relative order. This is data ordering,
+so the filtered Apps view and the Apps section of All projects agree.
+`LocalProjectRail` adds previous/next chevrons only to overflowing galleries,
+including Home on small screens. Boundary buttons are disabled; controls remeasure
+on resize, expanding a category and font loading. Horizontal scrolling remains
+native; project rails no longer use scroll snapping or overscroll containment,
+and never cancel wheel/touch events or convert vertical movement to sideways
+movement. Arrows respect reduced motion.
+
+Biography and attribution source checked on 2026-11-21:
+- Owner portfolio: <https://lulamilemkhungela.github.io/portfolio.github.io/index.html>
+- Its CV/About content: <https://github.com/LulamileMkhungela/portfolio.github.io/blob/main/js/desktop.js>
+  (`NOTES_DATA.about` / `NOTES_DATA.cv`). This supports design/UI development
+  through iOCO, including Vodacom/Toyota engagements; FoodieZone, Nerdma,
+  AddmoreDigital; and UI/UX plus Android work at Sesyme/SmartServe and mLab.
+- Recommendations: <https://github.com/LulamileMkhungela/portfolio.github.io/blob/main/js/testimonials-data.js>
+  (`TESTIMONIALS`). The seven messages, names, roles and companies are copied
+  from that source. Digital Academy notes carry programme context (2018–2019),
+  not an invented recommendation date; other dates are omitted.
+
+The incorrect Gojo employment claim and unrelated testimonial attributions were
+removed, not reassigned to another employer. Unsubstantiated millions-of-screens,
+four-year tenure and serveware-brand claims were removed from the About copy.
+Design and development are explicit throughout About, Home About, Portfolio
+intro and About navigation; the owner’s concrete Figma/React/Angular/Ionic work
+replaces vague designer-only positioning.
+
+Browser regression: `AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x node scripts/check-project-rails-browser.mjs`
+checks ordering, responsive arrows, forward/back browsing, category filtering,
+collapse/expand, vertical wheel and mobile touch scrolling, plus About copy.
+
+### Client-focused About and worldwide Contact
+
+The later owner direction supersedes the CV-style About wording above: About
+now explains the value of one design-and-development partner, from understanding
+the brief to interfaces, implementation, integrations, testing and launch. It
+contains no employers, role chronology or technical skills list. Home About is
+also benefit-focused. Contact leads with “Your digital partner. Wherever you
+work.” and invites goals, requirements and time-zone details. The existing two
+Contact sections and original illustrations remain intact.
+
+`site.content.json` → `socialProfiles` powers the same labelled icons on About
+and Contact. LinkedIn is confirmed and live. Facebook and Instagram are null
+until the owner supplies their profile URLs; they render disabled controls, not
+platform-homepage links or guessed handles. Unknown dates/URLs are never invented.
+
+`AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x node scripts/check-about-contact-browser.mjs`
+checks client-focused text, three social icons, confirmed/disabled link states,
+44px targets, the two-section Contact layout and no overflow at 320/390/768/1440px.

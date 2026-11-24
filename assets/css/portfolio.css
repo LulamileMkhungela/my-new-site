@@ -184,7 +184,7 @@
 :is(.pf-page,.pf-featured) .pf-prompt-group+.pf-prompt-group { border:0; padding-top:0; margin-top:2.5rem; }
 @media(max-width:900px) {
  :is(.pf-page,.pf-featured) .pf-projects.unified-container { width:calc(100% - 3rem); }
- :is(.pf-page,.pf-featured) .pf-grid { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:calc((100% - 2rem)/3); gap:1rem; overflow-x:auto; overscroll-behavior-inline:contain; scroll-snap-type:x proximity; padding-bottom:1rem; scrollbar-width:thin; scrollbar-color:#00ce7b66 #152b30; }
+ :is(.pf-page,.pf-featured) .pf-grid { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:calc((100% - 2rem)/3); gap:1rem; overflow-x:auto; overscroll-behavior:auto; scroll-snap-type:none; overflow-y:hidden; padding-bottom:1rem; scrollbar-width:thin; scrollbar-color:#00ce7b66 #152b30; }
  :is(.pf-page,.pf-featured) .pf-card { scroll-snap-align:start; }
  :is(.pf-page,.pf-featured) .pf-category-section+.pf-category-section { margin-top:4.5rem; }
 }
@@ -197,7 +197,7 @@
 :is(.pf-page,.pf-featured) .pf-grid .pf-card:hover { transform:none; box-shadow:none; }
 /* Keep one row: five visible desktop cards; additional projects remain scrollable. */
 @media(min-width:901px) {
- :is(.pf-page,.pf-featured) .pf-grid { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:calc((100% - 96px)/5); overflow-x:auto; overscroll-behavior-inline:contain; scroll-snap-type:x proximity; padding-bottom:.75rem; scrollbar-width:thin; scrollbar-color:#00ce7b66 transparent; }
+ :is(.pf-page,.pf-featured) .pf-grid { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:calc((100% - 96px)/5); overflow-x:auto; overscroll-behavior:auto; scroll-snap-type:none; overflow-y:hidden; padding-bottom:.75rem; scrollbar-width:thin; scrollbar-color:#00ce7b66 transparent; }
  :is(.pf-page,.pf-featured) .pf-card { scroll-snap-align:start; }
 }
 .pf-grid:focus-visible { outline:2px solid #00ce7b; outline-offset:5px; }
@@ -269,3 +269,12 @@ body :is(.pf-page,.pf-featured) .pf-card .pf-release-badge {
 
 /* Glass note panels need real outside spacing, not just inside padding. */
 .owner-project-content > .owner-project-section { margin-bottom:clamp(1.25rem,3vw,2.5rem); }
+
+/* Explicit sideways controls; vertical gestures always continue down the page. */
+.pf-project-rail { min-width:0; }
+.pf-rail-controls { display:flex; justify-content:flex-end; gap:.5rem; margin-top:.25rem; }
+.pf-rail-controls[hidden] { display:none; }
+.pf-rail-arrow { display:grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid #82b19e66; background:#151f29; color:#00ce7b; border-radius:50%; font:400 2rem/1 sans-serif; cursor:pointer; }
+.pf-rail-arrow:hover:not(:disabled) { border-color:#00ce7b; background:#16362d; }
+.pf-rail-arrow:disabled { opacity:.3; cursor:default; }
+.pf-rail-arrow:focus-visible { outline:2px solid #00ce7b; outline-offset:3px; }

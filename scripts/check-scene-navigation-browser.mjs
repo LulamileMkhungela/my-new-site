@@ -22,7 +22,9 @@ try{
   console.log('✓ Click navigation updates hero and feature model: '+label+' → '+kind+' / '+featureKinds[kind]);
  }
  await page.goBack();await verify('strategy');await page.goForward();await verify('hosting-service');
- // Check controls still operate after multiple renderer replacements.
- const hero=page.locator('#service-intro .scene-shell');await hero.getByRole('button',{name:'Separate parts',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#service-intro .scene-shell').dataset.spread==='1.000');await hero.getByRole('button',{name:'Reset',exact:true}).click();
- assert.equal(pixelSignatures.size,10);assert.ok(engineRequests.some(url=>/interactive-scenes-[a-f0-9]{10}\.js/.test(url)));assert.ok(!engineRequests.some(url=>/\/interactive-scenes\.js/.test(url)));assert.deepEqual(errors,[]);console.log('✓ Browser Back/Forward and controls after repeated service changes; no stale/nested renderers or page errors');
+ // Keyboard interaction remains available without a visible control strip.
+ const hero=page.locator('#service-intro .scene-shell');assert.equal(await hero.locator('button,.scene-controls').count(),0);
+ await hero.locator('canvas').focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>Number(document.querySelector('#service-intro .scene-shell').dataset.rotation.split(',')[1])>.15);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>Math.abs(Number(document.querySelector('#service-intro .scene-shell').dataset.rotation.split(',')[1]))<.01);
+ assert.equal(pixelSignatures.size,10);assert.ok(engineRequests.some(url=>/interactive-scenes-[a-f0-9]{10}\.js/.test(url)));assert.ok(!engineRequests.some(url=>/\/interactive-scenes\.js/.test(url)));assert.deepEqual(errors,[]);console.log('✓ Browser Back/Forward and keyboard rotation after repeated service changes; no stale/nested renderers or page errors');
 }finally{await browser.close();}

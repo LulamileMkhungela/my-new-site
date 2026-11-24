@@ -20,6 +20,14 @@ function LocalHomeProcess() {
       h('div',{className:'hm-process-grid'},...localSiteContent.process.map((step,index)=>h('article',{className:'hm-process-card',key:step.num},
         h('div',{className:'hm-process-top'},h('span',null,step.num),h(LocalServiceIcon,{name:['chat','layout','flow'][index]})),h('h3',null,step.title),h('p',null,step.body),h('span',{className:'hm-process-track','aria-hidden':true},h('i'),h('i'),h('i')))))));
 }
+/** Real hash hrefs work without JS; router pushes get distinct history keys. */
+function LocalHomeChapterLink({to,onClick,children,...props}) {
+  const navigate=va();
+  return g.createElement('a',{...props,href:to,onClick:event=>{
+    onClick?.(event);
+    if(!event.defaultPrevented&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey){event.preventDefault();navigate(to);}
+  }},children);
+}
 /** Native hash links also work before hydration and without JavaScript. */
 function LocalHomeNavigator() {
   const h=g.createElement;
@@ -33,21 +41,25 @@ function LocalHomeNavigator() {
       const readingLine=header+Math.min(180,(innerHeight-header)*.3);
       let active=chapters[0].id;
       for(const chapter of chapters)if(document.getElementById(chapter.id)?.getBoundingClientRect().top<=readingLine)active=chapter.id;
+      const composed=document.querySelector('.hm-page[data-scene-active]')?.dataset.sceneActive;
+      if(composed)active=composed;
       const max=document.documentElement.scrollHeight-innerHeight;
       const progress=max>0?Math.round(Math.max(0,Math.min(1,scrollY/max))*100):0;
       setPosition(previous=>previous.active===active&&previous.progress===progress?previous:{active,progress});
     };
     const schedule=()=>{if(!frame)frame=requestAnimationFrame(update);};
-    window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule,{passive:true});
+    window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule,{passive:true});document.addEventListener('lulazel-scene-update',schedule);
     const observer=typeof ResizeObserver==='function'?new ResizeObserver(schedule):null;
     observer?.observe(document.body);schedule();
-    return()=>{cancelAnimationFrame(frame);observer?.disconnect();window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);};
+    return()=>{cancelAnimationFrame(frame);observer?.disconnect();window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);document.removeEventListener('lulazel-scene-update',schedule);};
   },[]);
   return h('div',{className:'hm-chapter-rail'},
     h('span',{className:'hm-rail-hint'},'Scroll to explore',h(LocalUiIcon,{name:'arrow-down'})),
-    h('nav',{'aria-label':'Home sections'},h('ol',null,...chapters.map((chapter,index)=>h('li',{key:chapter.id},h('a',{href:'#'+chapter.id,'aria-label':String(index+1).padStart(2,'0')+' — '+chapter.label,'aria-current':position.active===chapter.id?'location':undefined,title:chapter.label,onClick:()=>{
+    h('nav',{'aria-label':'Home sections'},h('ol',null,...chapters.map((chapter,index)=>h('li',{key:chapter.id},h(LocalHomeChapterLink,{to:'#'+chapter.id,'aria-label':String(index+1).padStart(2,'0')+' — '+chapter.label,'aria-current':position.active===chapter.id?'location':undefined,title:chapter.label,onClick:()=>{
       // Focus the destination for keyboard/screen-reader users, without a second scroll.
-      const target=document.getElementById(chapter.id);target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true});
+      const target=document.getElementById(chapter.id);
+      if(target?.hasAttribute('data-scene-start'))document.dispatchEvent(new CustomEvent('lulazel-scene-focus',{detail:chapter.id}));
+      else {target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true});}
     }},String(index+1).padStart(2,'0')))))),
     h('span',{className:'hm-rail-current','aria-hidden':true},chapters.find(chapter=>chapter.id===position.active)?.label),
     h('div',{className:'hm-scroll-progress',role:'progressbar','aria-label':'Page scroll progress','aria-valuemin':0,'aria-valuemax':100,'aria-valuenow':position.progress},h('span',{style:{transform:'scaleX('+position.progress/100+')'}})));
@@ -90,7 +102,7 @@ function LocalHomeTestimonials() {
           h('div',{id:'hm-testimonial-track',className:'hm-testimonial-grid',ref:track,tabIndex:0,'aria-label':'Swipe or use arrow keys to browse testimonials',onKeyDown:event=>{if(event.target===event.currentTarget&&['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();if(event.key==='Home'||event.key==='End')track.current.scrollTo({left:event.key==='Home'?0:track.current.scrollWidth,behavior:'instant'});else move(event.key==='ArrowLeft'?-1:1);}}},...localSiteContent.testimonials.map((person,index)=>{
             const preview=person.message.length>190?person.message.slice(0,person.message.lastIndexOf(' ',190))+'…':person.message;
             return h('article',{className:'hm-testimonial-card',key:person.name,'aria-label':'Recommendation '+(index+1)+' of '+localSiteContent.testimonials.length},
-              h('div',{className:'hm-testimonial-author'},h('span',{className:'hm-author-initials','aria-hidden':true},person.name.split(' ').map(word=>word[0]).slice(0,2).join('')),h('div',null,h('h3',null,person.name),h('p',null,person.designation+' · '+person.company),h('time',null,person.period))),
+              h('div',{className:'hm-testimonial-author'},h('span',{className:'hm-author-initials','aria-hidden':true},person.name.split(' ').map(word=>word[0]).slice(0,2).join('')),h('div',null,h('h3',null,person.name),h('p',null,person.designation+' · '+person.company),person.period&&h('time',null,person.period))),
               h('span',{className:'hm-quote-mark','aria-hidden':true},'“'),
               h('details',{className:'hm-quote-details'},h('summary',null,h('span',{className:'hm-quote-preview'},preview),h('span',{className:'hm-quote-toggle'},h('span',{className:'hm-quote-more'},'Read full note'),h('span',{className:'hm-quote-less'},'Close full note'),h(LocalUiIcon,{name:'chevron-down'}))),h('blockquote',null,person.message)));
           })),
@@ -106,12 +118,12 @@ function LocalHomePage() {
       item.points&&h('ul',{className:'hm-points'},...item.points.map((point,index)=>h('li',{key:point},h('span',null,point),h('small',null,String(index+1).padStart(2,'0'))))),
       item.note&&h('p',{className:'hm-scope-note'},item.note),h('div',{className:'hm-actions'},...item.links.map((link,index)=>h(LocalHomeLink,{key:link.to,to:link.to,primary:index===0},link.label)))),h(LocalHomeVisual,{kind:item.visual})));
   return h(LocalPageFrame,{title:'LulaZel — Devzigner, Design & Frontend Development',description:content.hero.description,className:'hm-page'},
-    h('section',{id:'home',className:'hm-panel hm-hero','aria-labelledby':'hm-home-title'},h('div',{className:'hm-watermark','aria-hidden':true},'HELLO.'),
-      h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label('01',content.hero.eyebrow),h(LocalHomeTitle,{lines:content.hero.lines,level:'h1',id:'hm-home-title'}),h('p',{className:'hm-description'},content.hero.description),h('p',{className:'hm-location'},localSiteContent.location),h('a',{href:'#hosting',className:'hybrid-button hm-ride'},content.hero.action,h(LocalUiIcon,{name:'arrow-down'}))),h(LocalHomeVisual,{kind:'studio'})),
-      h('div',{className:'unified-container hm-panel-bottom'},h('a',{href:'#hosting'},'Scroll to explore',h(LocalUiIcon,{name:'arrow-down'})),h('span',null,'Independent expertise. Connected solutions.'))),
+    h('div',{className:'hm-stage'},h('section',{id:'home',className:'hm-panel hm-hero','aria-labelledby':'hm-home-title'},h('div',{className:'hm-watermark','aria-hidden':true},'HELLO.'),
+      h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label('01',content.hero.eyebrow),h(LocalHomeTitle,{lines:content.hero.lines,level:'h1',id:'hm-home-title'}),h('p',{className:'hm-description'},content.hero.description),h('p',{className:'hm-location'},localSiteContent.location),h(LocalHomeChapterLink,{to:'#hosting',className:'hybrid-button hm-ride'},content.hero.action,h(LocalUiIcon,{name:'arrow-down'}))),h(LocalHomeVisual,{kind:'studio'})),
+      h('div',{className:'unified-container hm-panel-bottom'},h(LocalHomeChapterLink,{to:'#hosting'},'Scroll to explore',h(LocalUiIcon,{name:'arrow-down'})),h('span',null,'Independent expertise. Connected solutions.'))),
     ...content.sections.map(section),
     h('section',{id:'home-portfolio',className:'hm-panel hm-portfolio','aria-labelledby':'hm-portfolio-title'},h('div',{className:'hm-watermark','aria-hidden':true},'MY WORK.'),h('div',{className:'unified-container'},h('div',{className:'hm-portfolio-heading'},h('div',null,label(content.portfolio.number,content.portfolio.eyebrow),h(LocalHomeTitle,{lines:content.portfolio.lines,id:'hm-portfolio-title'})),h('div',null,h('p',{className:'hm-description'},content.portfolio.description),h(LocalHomeLink,{to:'/portfolio',primary:true},content.portfolio.action))),
-      h('div',{className:'hm-project-previews pf-featured'},...localPortfolioProjects.filter(project=>project.featured).sort((a,b)=>a.homeOrder-b.homeOrder).map((project,index)=>h(LocalPortfolioCard,{key:project.id,project,index,total:5,category:'home'}))))),
-    h('section',{id:'home-about',className:'hm-panel hm-about','aria-labelledby':'hm-about-title'},h('div',{className:'hm-watermark','aria-hidden':true},'LULAMILE.'),h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label(content.about.number,content.about.eyebrow),h(LocalHomeTitle,{lines:content.about.lines,id:'hm-about-title'}),h('p',{className:'hm-description'},content.about.description),h('p',{className:'hm-description'},content.about.second),h('div',{className:'hm-actions'},h(LocalHomeLink,{to:'/about',primary:true},content.about.action))),
-      h('div',{className:'hm-portrait-wrap'},h('div',{className:'hm-portrait-frame'},h('img',{src:'/assets/img/lulamile.webp',alt:localSiteContent.name+' — designer, founder and builder',width:900,height:900,loading:'lazy'})),h('div',{className:'hm-portrait-caption'},h('span',null,localSiteContent.name),h('small',null,'South Africa · Anywhere remote'))))),h(LocalHomeProcess),h(LocalHomeTestimonials),h(LocalHomeNavigator));
+      h(LocalProjectRail,{className:'hm-project-previews pf-featured',projects:localPortfolioProjects.filter(project=>project.featured).sort((a,b)=>a.homeOrder-b.homeOrder),category:'home'}))),
+    h('section',{id:'home-about',className:'hm-panel hm-about','aria-labelledby':'hm-about-title'},h('div',{className:'hm-watermark','aria-hidden':true},'LULAZEL.'),h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label(content.about.number,content.about.eyebrow),h(LocalHomeTitle,{lines:content.about.lines,id:'hm-about-title'}),h('p',{className:'hm-description'},content.about.description),h('p',{className:'hm-description'},content.about.second),h('div',{className:'hm-actions'},h(LocalHomeLink,{to:'/about',primary:true},content.about.action))),
+      h('div',{className:'hm-portrait-wrap'},h('div',{className:'hm-portrait-frame'},h('img',{src:'/assets/img/lulamile.webp',alt:localSiteContent.name+' — designer, developer and founder',width:900,height:900,loading:'lazy'})),h('div',{className:'hm-portrait-caption'},h('span',null,'Lulamile M · Founder, LulaZel'),h('small',null,'South Africa · Working worldwide'))))),h(LocalHomeProcess),h(LocalHomeTestimonials)),h(LocalHomeNavigator));
 }

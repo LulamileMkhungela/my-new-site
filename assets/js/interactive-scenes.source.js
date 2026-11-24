@@ -78,7 +78,6 @@ function model(kind){
  }
  return{root,parts};
 }
-let sequence=0;
 function mount(host,kind){
  const img=host.querySelector('img'),shell=document.createElement('div');shell.className='scene-shell';shell.dataset.scene=kind;
  const stage=document.createElement('div');stage.className='scene-stage';img.before(shell);shell.append(stage);stage.append(img);
@@ -86,41 +85,66 @@ function mount(host,kind){
  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(35,640/570,.1,40);camera.position.set(4,2.6,8.5);camera.lookAt(0,.05,0);
  scene.add(new T.HemisphereLight(0xe9ffef,0x14222e,2.5));const key=new T.DirectionalLight(0xfff3d8,4);key.position.set(-3,6,6);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);const rim=new T.DirectionalLight(0x62ffc1,2);rim.position.set(4,2,-4);scene.add(rim);
- const {root,parts}=model(kind);scene.add(root);const ground=new T.Mesh(new T.PlaneGeometry(20,20),new T.ShadowMaterial({opacity:.18}));ground.rotation.x=-Math.PI/2;ground.position.y=-1.65;ground.receiveShadow=true;scene.add(ground);
- const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('role','img');canvas.setAttribute('aria-label',names[kind]+': interactive 3D model. Use arrow keys to rotate, Enter to separate parts, Escape to reset.');stage.append(canvas);
- const id='scene-help-'+(++sequence);canvas.setAttribute('aria-describedby',id);
- const controls=document.createElement('div');controls.className='scene-controls';controls.innerHTML=`<span id="${id}">${finePointer.matches?'Move cursor to tilt · Drag to rotate · Click to separate':'Drag to rotate · Tap to separate'}</span><button type="button" aria-pressed="false">Separate parts</button><button type="button">Reset</button>`;shell.append(controls);const[explodeButton,resetButton]=controls.querySelectorAll('button');
+ const {root}=model(kind);scene.add(root);const ground=new T.Mesh(new T.PlaneGeometry(20,20),new T.ShadowMaterial({opacity:.18}));ground.rotation.x=-Math.PI/2;ground.position.y=-1.65;ground.receiveShadow=true;scene.add(ground);
+ const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('role','img');canvas.setAttribute('aria-label',names[kind]+': interactive 3D model. Arrow keys rotate; Escape restores the view.');stage.append(canvas);
  host.removeAttribute('aria-hidden');shell.dataset.state='ready';
- let disposed=false,raf=0,angleX=0,angleY=0,targetX=0,targetY=0,hoverX=0,hoverY=0,spread=0,targetSpread=0,drag=null,moved=false;
- function frame(){raf=0;if(disposed)return;const ease=reduced.matches?1:.18;angleX+=(targetX+hoverX-angleX)*ease;angleY+=(targetY+hoverY-angleY)*ease;spread+=(targetSpread-spread)*ease;root.rotation.set(angleX,angleY,0);
-  for(let i=0;i<parts.length;i++){const p=parts[i],b=p.userData.base;p.position.copy(b);p.position.x+=spread*(b.x||((i%2?1:-1)*.5))*.55;p.position.y+=spread*(b.y||.2)*.35;p.position.z+=spread*((i%3)-1)*.5;}
-  renderer.render(scene,camera);shell.dataset.rotation=angleX.toFixed(3)+','+angleY.toFixed(3);shell.dataset.spread=spread.toFixed(3);
-  if(Math.abs(targetX+hoverX-angleX)+Math.abs(targetY+hoverY-angleY)+Math.abs(targetSpread-spread)>.002)request();
+ let disposed=false,raf=0,angleX=0,angleY=0,targetX=0,targetY=0,hoverX=0,hoverY=0,drag=null;
+ function frame(){raf=0;if(disposed)return;const ease=reduced.matches?1:.18;angleX+=(targetX+hoverX-angleX)*ease;angleY+=(targetY+hoverY-angleY)*ease;root.rotation.set(angleX,angleY,0);
+  renderer.render(scene,camera);shell.dataset.rotation=angleX.toFixed(3)+','+angleY.toFixed(3);
+  if(Math.abs(targetX+hoverX-angleX)+Math.abs(targetY+hoverY-angleY)>.002)request();
  }
  function request(){if(!raf&&!disposed)raf=requestAnimationFrame(frame);}
- function toggle(){targetSpread=targetSpread?0:1;explodeButton.setAttribute('aria-pressed',String(!!targetSpread));explodeButton.textContent=targetSpread?'Assemble parts':'Separate parts';request();}
- function reset(){targetX=targetY=hoverX=hoverY=targetSpread=0;explodeButton.setAttribute('aria-pressed','false');explodeButton.textContent='Separate parts';request();}
- canvas.addEventListener('pointerdown',e=>{targetX=angleX;targetY=angleY;hoverX=hoverY=0;drag={x:e.clientX,y:e.clientY,rx:targetX,ry:targetY};moved=false;canvas.setPointerCapture(e.pointerId);});
+ function restore(){targetX=targetY=hoverX=hoverY=0;request();}
+ canvas.addEventListener('pointerdown',e=>{targetX=angleX;targetY=angleY;hoverX=hoverY=0;drag={x:e.clientX,y:e.clientY,rx:targetX,ry:targetY};canvas.setPointerCapture(e.pointerId);});
  canvas.addEventListener('pointermove',e=>{if(!drag){
    if(!finePointer.matches||reduced.matches||e.pointerType==='touch')return;
    const bounds=canvas.getBoundingClientRect();
    hoverY=Math.max(-.25,Math.min(.25,((e.clientX-bounds.left)/bounds.width-.5)*.5));
    hoverX=Math.max(-.12,Math.min(.12,((e.clientY-bounds.top)/bounds.height-.5)*.24));
    request();return;
-  }const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>7)moved=true;targetY=Math.max(-1.2,Math.min(1.2,drag.ry+dx*.008));targetX=Math.max(-.5,Math.min(.5,drag.rx+dy*.005));request();});
+  }const dx=e.clientX-drag.x,dy=e.clientY-drag.y;targetY=Math.max(-1.2,Math.min(1.2,drag.ry+dx*.008));targetX=Math.max(-.5,Math.min(.5,drag.rx+dy*.005));request();});
  const cancel=()=>{drag=null;};
- canvas.addEventListener('pointerleave',()=>{hoverX=hoverY=0;request();});canvas.addEventListener('pointercancel',cancel);canvas.addEventListener('pointerup',e=>{if(drag&&!moved){const b=canvas.getBoundingClientRect(),ray=new T.Raycaster();ray.setFromCamera(new T.Vector2((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1),camera);if(ray.intersectObject(root,true).length)toggle();}cancel();});
- canvas.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter',' ','Escape'].includes(e.key))e.preventDefault();else return;if(e.key==='Escape')reset();else if(e.key==='Enter'||e.key===' ')toggle();else{targetY=Math.max(-1.2,Math.min(1.2,targetY+(e.key==='ArrowLeft'?-.2:e.key==='ArrowRight'?.2:0)));targetX=Math.max(-.5,Math.min(.5,targetX+(e.key==='ArrowUp'?-.15:e.key==='ArrowDown'?.15:0)));request();}});
- explodeButton.addEventListener('click',toggle);resetButton.addEventListener('click',reset);const motionChange=()=>{hoverX=hoverY=0;request();};reduced.addEventListener('change',motionChange);finePointer.addEventListener('change',motionChange);
- const resize=new ResizeObserver(()=>{const w=stage.clientWidth,h=stage.clientHeight;if(w&&h){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();request();}});resize.observe(stage);
- const lost=e=>{e.preventDefault();shell.dataset.state='fallback';controls.hidden=true;};canvas.addEventListener('webglcontextlost',lost);
+ canvas.addEventListener('pointerleave',()=>{hoverX=hoverY=0;request();});canvas.addEventListener('pointercancel',cancel);canvas.addEventListener('pointerup',cancel);
+ canvas.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Escape'].includes(e.key))e.preventDefault();else return;if(e.key==='Escape')restore();else{targetY=Math.max(-1.2,Math.min(1.2,targetY+(e.key==='ArrowLeft'?-.2:e.key==='ArrowRight'?.2:0)));targetX=Math.max(-.5,Math.min(.5,targetX+(e.key==='ArrowUp'?-.15:e.key==='ArrowDown'?.15:0)));request();}});
+ const motionChange=()=>{hoverX=hoverY=0;request();};reduced.addEventListener('change',motionChange);finePointer.addEventListener('change',motionChange);
+ // Frame the actual illustration, rather than leaving every model at the same
+ // distant camera position. Fit projected bounds with a safe 10% edge margin.
+ const bounds=new T.Box3().setFromObject(root),center=bounds.getCenter(new T.Vector3());
+ const direction=new T.Vector3(4,2.6,8.5).normalize(),right=new T.Vector3().crossVectors(camera.up,direction).normalize(),up=new T.Vector3().crossVectors(direction,right).normalize();
+ function fit(){
+  const tanY=Math.tan(T.MathUtils.degToRad(camera.fov/2)),tanX=tanY*camera.aspect;let distance=1;
+  for(const x of[bounds.min.x,bounds.max.x])for(const y of[bounds.min.y,bounds.max.y])for(const z of[bounds.min.z,bounds.max.z]){
+   const point=new T.Vector3(x,y,z).sub(center),depth=point.dot(direction);
+   distance=Math.max(distance,depth+Math.abs(point.dot(right))/(tanX*.9),depth+Math.abs(point.dot(up))/(tanY*.9));
+  }
+  camera.position.copy(center).addScaledVector(direction,distance);camera.lookAt(center);
+ }
+
+ fit();camera.updateProjectionMatrix();
+ const resize=new ResizeObserver(()=>{const w=stage.clientWidth,h=stage.clientHeight;if(w&&h){renderer.setSize(w,h,false);camera.aspect=w/h;fit();camera.updateProjectionMatrix();request();}});resize.observe(stage);
+ const lost=e=>{e.preventDefault();shell.dataset.state='fallback';};canvas.addEventListener('webglcontextlost',lost);
  request();
  return()=>{disposed=true;cancelAnimationFrame(raf);resize.disconnect();reduced.removeEventListener('change',motionChange);finePointer.removeEventListener('change',motionChange);scene.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();});renderer.dispose();renderer.forceContextLoss();shell.before(img);shell.remove();};
 }
 // Observe only original illustrations, never client screenshots or Contact artwork.
 const selector='.hm-visual,.studio-visual,.studio-original-visual';
 const tracked=new Map();
-const observer=new IntersectionObserver(entries=>{for(const{target,isIntersecting}of entries){const record=tracked.get(target);if(!record)continue;if(isIntersecting&&!record.dispose)record.dispose=mount(target,record.kind);else if(!isIntersecting&&record.dispose){record.dispose();record.dispose=null;}}},{rootMargin:'60px'});
+function syncMountedScenes(){
+ for(const[host,record]of tracked){
+  // Absolute chapters share viewport geometry; IntersectionObserver alone
+  // would create every hidden model at once. Only the current/crossfading chapters own
+  // live WebGL contexts. Other pages still use ordinary near-viewport loading.
+  const chapter=host.closest('.scene-deck .hm-panel');
+  const visible=record.near&&(!chapter||Math.abs(Number(chapter.dataset.sceneDistance))<1);
+  if(visible&&!record.dispose)record.dispose=mount(host,record.kind);
+  else if(!visible&&record.dispose){record.dispose();record.dispose=null;}
+ }
+}
+const observer=new IntersectionObserver(entries=>{
+ for(const{target,isIntersecting}of entries){const record=tracked.get(target);if(record)record.near=isIntersecting;}
+ syncMountedScenes();
+},{rootMargin:'60px'});
+document.addEventListener('lulazel-scene-update',syncMountedScenes);
 function kindFor(host){return host.dataset.sceneKind||(host.querySelector('img')?.getAttribute('src')||'').match(/\/home\/([^/?]+)\.svg/)?.[1];}
 function scan(){
  // React can reuse a figure when navigating between service routes. The image
@@ -133,7 +157,7 @@ function scan(){
  for(const host of document.querySelectorAll(selector)){
   if(tracked.has(host))continue;
   const kind=kindFor(host);if(!names[kind])continue;
-  tracked.set(host,{kind,dispose:null});observer.observe(host);
+  tracked.set(host,{kind,dispose:null,near:false});observer.observe(host);
  }
 }
 new MutationObserver(scan).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['src','data-scene-kind']});scan();

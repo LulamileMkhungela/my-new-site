@@ -17,7 +17,7 @@ for(const width of [320,1440]){
   await page.locator('footer').evaluate(e=>e.scrollIntoView({behavior:'instant'}));
   assert.ok(await page.evaluate(()=>scrollY>200));
   assert.deepEqual(await page.locator('footer nav a').allTextContents(),['My Services','Portfolio','About']);
-  assert.deepEqual(await page.locator('.footer-icon-label').allTextContents(),['LinkedIn','Call','Email','Meeting','Enquiry']);
+  assert.deepEqual(await page.locator('.footer-icon-label').allTextContents(),['Call','Email','Meeting','Enquiry']);
   assert.equal(await page.getByRole('link',{name:'Call +27 83 719 5064',exact:true}).getAttribute('href'),'tel:+27837195064');
   assert.equal(await page.locator('#footer-call-options').count(),0);
   await page.getByRole('button',{name:'Enquiry — open enquiry form'}).click();

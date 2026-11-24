@@ -70,7 +70,7 @@ for (const service of catalogue.services) {
 const website=text(render('/services/website-design'));
 for(const phrase of ['Website & conversion review','Focused landing pages','Positioning & content structure','Measurement & iteration','Marketing & SaaS websites']) assert.ok(website.includes(phrase));
 const hosting=text(render('/services/web-hosting'));
-for(const phrase of ['Deployment & server setup','Technical performance','SSL & HTTPS','rollback']) assert.ok(hosting.includes(phrase));
+for(const phrase of ['Hosting setup & deployment','Technical performance','SSL & HTTPS','rollback']) assert.ok(hosting.includes(phrase));
 const ecommerce=text(render('/services/ecommerce'));
 for(const phrase of ['Product & marketplace content','Amazon listings','Offer & competitor review','Storefront & conversion review']) assert.ok(ecommerce.includes(phrase));
 const strategy=JSON.parse(read('assets/js/strategy.services.json'));
@@ -94,3 +94,28 @@ assert.ok(text(website).includes("HTML email design & development"));
 assert.ok(text(website).includes("unsubscribe handling"));
 assert.ok(text(overview).includes("HTML email design"));
 console.log("✓ HTML email design discoverable under Website Design with compatibility and delivery scope");
+
+// Owner scope: integrate and manage external providers, not claim ownership of
+// hosting infrastructure, payment processing or the underlying AI models.
+assert.ok(hosting.includes('external provider’s infrastructure'));
+assert.ok(hosting.includes('Choose the right provider'));
+assert.ok(hosting.includes('Website care & provider support'));
+assert.ok(hosting.includes('provider’s terms'));
+assert.ok(website.includes('Provider selection & integrations'));
+assert.ok(website.includes('frontend development'));
+assert.ok(website.includes('supported APIs and permissions'));
+assert.ok(ecommerce.includes('chosen providers'));
+assert.ok(text(render('/services/ai-assistants')).includes('AI models and infrastructure come from the selected providers'));
+const homeContent=JSON.parse(read('assets/js/home.content.json'));
+assert.equal(homeContent.sections.find(s=>s.id==='hosting').eyebrow,'Hosting Setup & Management');
+assert.ok(homeContent.sections.find(s=>s.id==='hosting').description.includes('hosting provider'));
+assert.ok(!JSON.stringify(homeContent).includes('malware protection and automated backups'));
+const seo=JSON.parse(read('assets/js/publication.data.json'));
+assert.equal(seo.routes['/services/web-hosting'].description,catalogue.services.find(s=>s.slug==='web-hosting').summary);
+console.log('✓ Provider-backed hosting, end-to-end integrations and AI/payment responsibilities are clear in Home, services and metadata');
+
+assert.ok(catalogue.services.filter(service=>/^I\b/.test(service.intro)).length<=2,'Vary service introductions instead of repeatedly opening with I');
+assert.ok(homeContent.sections.filter(section=>/^I\b/.test(section.description)).length<=2,'Vary Home service copy while retaining a personal voice');
+const sceneSource=read('assets/js/interactive-scenes.source.js');
+for(const removed of ['Move cursor to tilt','Separate parts','Click to separate','scene-controls'])assert.ok(!sceneSource.includes(removed),'Removed vector controls/instructions must not return: '+removed);
+console.log('✓ Varied first-person service wording and no generated vector control strip');

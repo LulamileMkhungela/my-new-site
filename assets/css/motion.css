@@ -56,10 +56,31 @@
  *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
  :is(.hybrid-button,.svc-button,.hm-link-primary,.rhino-contact,.site-back-to-top,.pf-card,.unified-tool,.hm-process-card,.hm-testimonial-card,.pf-card-art img,.hm-vector-art,.contact-art img,.contact-next-visual img,.unified-about-grid>img,.footer-icon-frame,.contact-direct a,.ui-line-icon) { transform:none !important; }
 }
-/* Short chapter entrances; content is visible unless JavaScript enhances it. */
-.motion-enter { opacity:0; transform:translateY(20px); transition:opacity 650ms var(--motion-ease),transform 750ms var(--motion-ease); }
-.motion-enter.is-in-view,.motion-enter:focus-within { opacity:1; transform:none; }
-.studio-visual.motion-enter { transition-delay:90ms; }
+/* Scroll choreography: alternate lateral entrances and a gentle approach in
+   depth. Individual transforms do not overwrite interactive 3D/hover transforms. */
+.motion-enter[data-motion] {
+ --entrance-x:0px; --entrance-y:38px; --entrance-scale:1;
+ opacity:0; translate:var(--entrance-x) var(--entrance-y); scale:var(--entrance-scale);
+ transition:opacity 650ms var(--motion-ease),translate 850ms var(--motion-ease),scale 900ms var(--motion-ease);
+ transition-delay:0ms;
+}
+.motion-enter[data-motion='left'] { --entrance-x:-52px; --entrance-y:12px; }
+.motion-enter[data-motion='right'] { --entrance-x:52px; --entrance-y:12px; }
+.motion-enter[data-motion='depth'] { --entrance-y:42px; --entrance-scale:.92; }
+.motion-enter[data-motion-edge='above'] { --entrance-y:-32px; }
+.motion-enter.is-in-view,.motion-enter:focus-within {
+ opacity:1; translate:0 0; scale:1; transition-delay:var(--entrance-delay,0ms);
+}
+.motion-enter:focus-within { transition:none; }
+@media(max-width:700px) {
+ .motion-enter[data-motion='left'] { --entrance-x:-24px; }
+ .motion-enter[data-motion='right'] { --entrance-x:24px; }
+ .motion-enter { --entrance-y:24px; }
+ .motion-enter[data-motion='depth'] { --entrance-y:28px; --entrance-scale:.96; }
+}
+@media print {
+ .motion-enter { opacity:1 !important; translate:none !important; scale:none !important; transition:none !important; }
+}
 .studio-service-row { transition:background-color 220ms,border-color 220ms,padding-left 280ms var(--motion-ease); }
 .studio-row-title .ui-line-icon,.studio-actions .ui-line-icon { transition:transform 280ms var(--motion-ease); }
 .studio-link-primary { transition:transform 280ms var(--motion-ease),background-color 180ms,box-shadow 280ms; }
@@ -73,7 +94,7 @@
 }
 .studio-service-row:focus-visible { border-color:#00ce7b; background-color:#00ce7b08; }
 @media(prefers-reduced-motion:reduce) {
- .motion-enter { opacity:1; transform:none !important; transition:none !important; }
+ .motion-enter { opacity:1 !important; translate:none !important; scale:none !important; transition:none !important; }
  .studio-visual img,.studio-original-visual>img,.studio-link-primary { transform:none !important; }
 }
 @keyframes studio-line-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }

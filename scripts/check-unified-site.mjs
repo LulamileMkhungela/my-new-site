@@ -3,7 +3,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
 const root=path.resolve(import.meta.dirname,'..');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
 const json=name=>JSON.parse(read(name));
@@ -50,17 +49,33 @@ for(const category of categories){
   if(!count)assert.ok(elements.some(node=>node.props.className==='pf-empty'));
   console.log('✓ Portfolio filter '+category.label+': '+count+' projects');
 }
-// Sections 08/09 are explicitly preserved; footer now has requested contact icons.
+// Owner-requested correction: design and development have equal weight.
 const homeContent=json('assets/js/home.content.json');
-assert.equal(createHash('sha256').update(JSON.stringify([homeContent.portfolio,homeContent.about])).digest('hex'),'4c93e198175bfff34beabb08e5e0ba32770c2c91e0f8e9a8348f91674bd2f194','Preserve Home portfolio and about wording');
+for(const copy of [homeContent.about.description,data.window.SITE.about.intro,data.window.SITE.about.paragraphs[0]]) {
+ assert.match(copy,/design/i);assert.match(copy,/develop|code/i);
+}
+assert.ok(!JSON.stringify(data.window.SITE).includes('Gojo'));
+assert.ok(!JSON.stringify(data.window.SITE).includes('millions of screens'));
+assert.doesNotMatch(data.window.SITE.about.paragraphs.join(' '),/iOCO|Vodacom|Toyota|CV|employment|Figma|React|Angular/);
+assert.match(data.window.SITE.about.paragraphs.join(' '),/design.*develop/i);
+assert.deepEqual(projects.filter(p=>p.categories.includes('apps')).slice(0,4).map(p=>p.id),['lulafind','onescreen-business','ai-lifeos','lawmania']);
+for(const component of ['LocalAboutPage','LocalContactPage']) {
+ const view=render(component),social=view.elements.find(node=>node.props.className==='page-socials');
+ assert.ok(social,'Social icons appear on '+component);
+ assert.deepEqual(nodes(social).filter(node=>node.type==='a'||node.type==='button').map(node=>text(node).trim()),['LinkedIn','Facebook','Instagram']);
+ assert.equal(nodes(social).filter(node=>node.type==='a').length,1,'Only the confirmed LinkedIn URL is active');
+ assert.equal(nodes(social).filter(node=>node.type==='button'&&node.props.disabled).length,2,'Unknown social profiles must not become guessed links');
+}
+
 const footerView=render('LocalSiteFooter');
 for(const href of ['tel:+27837195064','mailto:'+data.window.SITE.email,'https://calendly.com/lulamile_m/meet-lulamile?month=2026-11']) assert.ok(footerView.elements.some(node=>node.props.href===href));
-assert.equal(footerView.elements.filter(node=>node.props.className==='footer-contact-icon').length,5);
+assert.equal(footerView.elements.filter(node=>node.props.className==='footer-contact-icon').length,4);
+assert.ok(!footerView.elements.some(node=>String(node.props.href||'').includes('linkedin.com')),'LinkedIn belongs on About/Contact, not footer CTA');
 const footerNav=footerView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Footer');
 assert.deepEqual(nodes(footerNav).filter(node=>node.type==='link'||node.type==='a').map(node=>text(node)),['My Services','Portfolio','About']);
 assert.ok(footerView.elements.some(node=>node.type==='h2'&&text(node)==='Let’s make it  work.'));
 assert.ok(!footerView.elements.some(node=>node.props.to==='/contact'),'No duplicate footer Let’s Talk button');
-assert.deepEqual(footerView.elements.filter(node=>node.props.className==='footer-icon-label').map(node=>text(node).replace(/\s/g,'')),['LinkedIn','Call','Email','Meeting','Enquiry']);
+assert.deepEqual(footerView.elements.filter(node=>node.props.className==='footer-icon-label').map(node=>text(node).replace(/\s/g,'')),['Call','Email','Meeting','Enquiry']);
 const enquiryForm=footerView.elements.find(node=>node.type==='form');
 assert.equal(enquiryForm.props.action,'https://formspree.io/f/xvkgqalq');
 assert.equal(enquiryForm.props.method,'POST');
@@ -74,7 +89,7 @@ assert.ok(backToTop.elements.some(node=>node.type==='button'&&node.props['aria-l
 assert.ok(backToTop.elements.some(node=>node.type==='button'&&node.props.hidden===true&&node.props.tabIndex===-1),'Back to top starts hidden and outside tab order');
 assert.ok(read('assets/js/app.source.js').includes('h(LocalBackToTop)'));
 assert.ok(!read('assets/js/site-app.js').includes('Open ambient music player'));
-console.log('✓ Footer: three navigation links, labelled contacts, enquiry dialog and floating Back to top');
+console.log('✓ Footer: three navigation links, four labelled contacts, enquiry dialog and floating Back to top');
 const homeView=render('LocalHomePage');
 assert.equal(homeView.elements.filter(node=>node.type==='h1').length,1);
 assert.equal(homeView.elements.filter(node=>node.type==='main').length,1);
@@ -92,7 +107,7 @@ assert.ok(!/Google reviews|Our Services|Let’s Connect|5\+ years|30\+ projects/
 for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies]) assert.ok(homeView.elements.some(node=>node.props.to===service.path),'Home links to '+service.path);
 assert.ok(read('assets/js/app.source.js').includes("path:'/',element:h(LocalHomePage)"));
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-process-card').length,3);
-assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,6);
+assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,data.window.SITE.testimonials.length);
 const chapterNav=homeView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Home sections');
 const chapterLinks=nodes(chapterNav).filter(node=>node.type==='a');
 assert.equal(chapterLinks.length,11);
@@ -110,7 +125,10 @@ for(const component of ['LocalContactPage','LocalPortfolioPage','LocalToolsPage'
 }
 for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies])assert.ok(!/Lulamile/i.test(text(render('LocalServicesPage',service.path).tree)),'Services use brand rather than repeated owner names');
 assert.ok(text(footerView.tree).includes('by Lulamile M'));
-assert.ok(text(render('LocalAboutPage').tree).includes('About / Lulamile M'));
+assert.ok(text(render('LocalAboutPage').tree).includes('About / LulaZel'));
+assert.equal(homeContent.about.action,'About LulaZel');
+assert.ok(homeContent.about.lines.includes('LulaZel.'));
+assert.ok(!/Lulamile|I’m |I bring|Then I /i.test(JSON.stringify(data.window.SITE.about)),'About copy is brand-first');
 assert.ok(render('LocalPrivacyPage').elements.some(node=>node.type==='article'&&node.props.className.includes('privacy-article')),'Privacy has a dedicated inner-padding surface');
 const art=homeView.elements.filter(node=>node.props.className==='hm-vector-art');
 assert.equal(art.length,7);
@@ -123,7 +141,7 @@ for(const [old,target] of Object.entries(redirects)) {
  assert.ok(!homeView.elements.some(node=>node.props.to===old));
  assert.ok(read(old.slice(1)+'/index.html').includes(JSON.stringify(old)+':'+JSON.stringify(target)));
 }
-console.log('✓ Home: seven original SVG scenes, unchanged 08/09, restored process and six original testimonials');
+console.log('✓ Home: seven original SVG scenes, balanced design/development copy, process and source-attributed testimonials');
 const portfolioView=render('LocalPortfolioPage','/portfolio');
 assert.ok(portfolioView.elements.some(node=>node.props.href==='#portfolio-projects'));
 assert.ok(portfolioView.elements.some(node=>node.props.className==='pf-hero-overline'));
@@ -182,7 +200,7 @@ for(const id of ['lawmania','ai-lifeos']) {
 }
 assert.ok(projects.find(item=>item.id==='heritagebites').status.includes('Testing link'));
 assert.ok(!projects.find(item=>item.id==='wethinkcode-gbv').image.endsWith('hackathon.jpg'));
-assert.ok(footerView.elements.some(node=>node.props.href==='https://www.linkedin.com/in/lulamile-mkhungela/'));
+assert.ok(render('LocalAboutPage').elements.some(node=>node.props.href==='https://www.linkedin.com/in/lulamile-mkhungela/'));
 
 for(const category of ['website','product-design','apps','frontend-dev']) {
  const result=render('LocalPortfolioPage','/portfolio?filter='+category);
