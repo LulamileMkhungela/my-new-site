@@ -212,7 +212,7 @@ intercept links. Copy panels have responsive inner insets so text and controls d
 not touch their glass edges. Images/canvas, logo artwork and text itself are not blurred. Portfolio
 row dimensions, About's flat chevron and scroll-dependent Back to top are retained.
 
-Blur is restricted to bounded surfaces (18px desktop, 10px mobile), with no
+Blur is restricted to bounded surfaces (18px desktop; disabled on moving mobile panels and header), with no
 animated filters or page-sized fixed blur layers. Opaque navy fallbacks remain
 readable without backdrop-filter; reduced-transparency and forced-colours
 preferences remove blur and supply solid surfaces. Reduced motion remains static.
@@ -360,7 +360,7 @@ This is a source-informed adaptation, not an assertion of identical visuals.
 
 Mobile (≤760px) follows a distinct hold/read/settle/transition timeline: 180px
 hold, enough distance to read the full content, 140px settle, then an outgoing
-shrink/slide and incoming mode-specific reveal. Taller desktop content also gets
+short shared glide and crossfade. Taller desktop content also gets
 a reading interval rather than being clipped permanently. Stable `svh` stage
 height avoids mobile browser-chrome changes pumping the timeline. Scrolling
 remains native; no wheel/touch interception or snapping. Chapter links and SPA
@@ -526,3 +526,49 @@ platform-homepage links or guessed handles. Unknown dates/URLs are never invente
 `AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x node scripts/check-about-contact-browser.mjs`
 checks client-focused text, three social icons, confirmed/disabled link states,
 44px targets, the two-section Contact layout and no overflow at 320/390/768/1440px.
+
+### Mobile motion and touch navigation refinement
+
+- The service-category header rail has a bounded `minmax(0,1fr)` scroll column,
+  native horizontal momentum scrolling, explicit pan/pinch support and 44px
+  previous/next buttons. Links remain normal links; swipes are not rewritten by
+  a JavaScript drag handler. Buttons are mobile-only and disabled at the ends.
+- Mobile chapter motion uses a short, consistent 24px glide and 18/s time-based
+  smoothing instead of large alternating moves/zooms. Content and artwork still
+  share one parent transform/fade, with complementary opacity and no blank frame.
+  Only visible chapters request compositing layers. Mobile address-bar-only
+  resize events do not recalculate the timeline; stage/width changes still do.
+- Mobile WebGL preserves MSAA and uses a 2x maximum pixel ratio for crisp edges.
+  Dynamic shadow mapping is desktop-only; original model materials/geometry and
+  lighting remain. Rotation damping is time-based, not frame-count dependent.
+  SVG stays visible until the first successful WebGL frame. Creation/disposal
+  of mobile renderers waits for a 180ms scroll pause, avoiding shader setup on
+  continuous scroll frames, with at most two live contexts after settling.
+- Vertical touch gestures on models release rotation handling and keep native
+  page scrolling. Keyboard rotation, reduced motion and SVG/context-loss
+  fallback remain. Mobile moving-panel/header backdrop blur is disabled to
+  reduce repeated offscreen rendering.
+
+`AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x node scripts/check-mobile-smoothness-browser.mjs`
+checks actual CDP touch gestures at 320/390/768px, category arrows/endpoints and
+last-service navigation, high-DPI antialiasing, vertical artwork swipes, no new
+WebGL contexts during continuous scroll, monotonic nonblank chapter movement
+and bounded contexts. These are Chromium emulation/regression checks, not a
+physical-device frame-rate or Safari certification.
+
+### Hamburger menu must not move Home to another chapter
+
+The mobile menu is an absolutely positioned overlay below the two-row sticky
+header, not an in-flow block. Opening/closing it must not change header height,
+`--site-header-height`, stage height, journey length, chapter offsets, progress
+or native scroll position. Short screens scroll inside the bounded menu overlay;
+Escape restores hamburger focus with `preventScroll:true`. Navigation links,
+outside-pointer dismissal and desktop About/Contact dropdown remain functional.
+
+`AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x node scripts/check-mobile-menu-position-browser.mjs`
+checks real touchscreen taps at steps 4/7/11 with WebGL enabled, at
+320/390/768px. It covers toggle/Escape/outside dismissal, a 480px-high screen,
+menu route navigation, desktop dropdowns at 1024/1440px and reduced motion.
+Snapshots compare the entire scroll/header/stage/timeline state, not just the
+highlighted chapter. Header taps use screen coordinates: Playwright locator
+clicks can themselves auto-scroll sticky elements before dispatching input.

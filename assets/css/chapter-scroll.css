@@ -10,7 +10,7 @@ body main.scene-deck > .hm-stage > .hm-panel {
  position:absolute; top:var(--scene-content-top,22px); left:0; width:100%;
  height:auto; min-height:0; margin:0; padding:0; overflow:visible;
  background:transparent; border:0; isolation:auto;
- transform-origin:center; transition:none !important; will-change:transform,opacity;
+ transform-origin:center; transition:none !important; will-change:auto;
 }
 .scene-deck .hm-panel::before { display:none; }
 .scene-deck .hm-panel-inner, .scene-deck .hm-hero .hm-panel-inner {

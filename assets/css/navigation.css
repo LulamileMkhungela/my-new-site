@@ -33,7 +33,15 @@
   .rhino-header .rhino-mobile-services { display: inline-block; font-size: .72rem; font-weight: 700; color: #00d17b; padding: .6rem 0; white-space: nowrap; }
   .rhino-menu-button { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #ffffff35; border-radius: 3px; background: transparent; color: #f2f5f7; cursor: pointer; font-size: 1.2rem; }
   .rhino-header-actions { gap: .8rem; }
-  .rhino-mobile-menu { display: flex; flex-direction: column; gap: .25rem; padding: .75rem 1.5rem 1rem; border-top: 1px solid #ffffff18; }
+  /* An overlay, never part of header flow: menu toggles must not change the
+     sticky-stage height, native scroll anchoring or chapter timeline. */
+  .rhino-mobile-menu {
+    display:flex; flex-direction:column; gap:.25rem; padding:.75rem 1.5rem 1rem;
+    position:absolute; top:100%; left:0; right:0; z-index:110;
+    max-height:calc(100dvh - var(--site-header-height,135px) - 12px);
+    overflow-y:auto; overscroll-behavior-y:contain; overflow-anchor:none;
+    border-top:1px solid #ffffff18;
+  }
   .rhino-mobile-menu[hidden] { display: none; }
   .rhino-mobile-menu a { padding: .7rem 0; font-size: .9rem; color: #eff4f5; }
   .rhino-mobile-menu a[aria-current='page'] { color: #00d17b; }
@@ -100,3 +108,23 @@
 .rhino-wordmark img { width:176px; height:auto; flex-shrink:0; }
 @media(max-width:800px) { .rhino-wordmark img { width:142px; } }
 @media(max-width:360px) { .rhino-wordmark img { width:122px; } }
+
+/* Native, momentum-enabled mobile service browsing with explicit alternatives. */
+.service-nav-arrow { display:none; }
+.service-nav-arrow[hidden] { display:none !important; }
+@media(max-width:800px) {
+ body .rhino-header .hybrid-service-nav { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; align-items:center; width:100%; }
+ body .rhino-header .hybrid-service-nav-inner {
+  width:100%; min-width:0; max-width:100%; margin:0; padding-inline:.5rem;
+  overflow-x:auto; overflow-y:hidden; touch-action:pan-x pan-y pinch-zoom;
+  -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain;
+  scrollbar-width:none; scroll-padding-inline:.5rem;
+ }
+ .rhino-header .hybrid-service-nav-inner::-webkit-scrollbar { display:none; }
+ body .rhino-header .hybrid-service-nav .service-nav-arrow {
+  display:grid; place-items:center; width:44px; min-height:44px; padding:0; margin:auto;
+  border:0; border-radius:0; background:transparent; box-shadow:none; transform:none; color:#7bdfb7;
+ }
+ .service-nav-arrow .ui-line-icon { width:16px; height:16px; }
+ body .rhino-header .service-nav-arrow:disabled { opacity:.25; cursor:default; }
+}

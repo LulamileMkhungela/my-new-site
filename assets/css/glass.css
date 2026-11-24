@@ -151,3 +151,16 @@ body .enquiry-dialog option { background:#182a34; color:#eff5f7; }
   background:Canvas; color:CanvasText; -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none; border-color:CanvasText;
  }
 }
+
+/* Avoid repainting backdrop blur behind moving mobile chapters/WebGL canvases.
+   Opaque navy sheets preserve contrast and the original visual hierarchy. */
+@media(max-width:800px) {
+ body .rhino-header,
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after,
+ body :is(.hm-process-card,.hm-testimonial-card,.unified-tool,.owner-project-meta,.owner-project-section,.owner-prompt),
+ body .contact-direct a,body .contact-steps article {
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+ }
+ body .rhino-header { background-color:#162630; }
+ body :is(.studio-copy,.pf-hero-copy,.hybrid-hero-copy,.contact-intro-copy,.contact-next-copy,.unified-about-grid>div)::after { background-color:#192b36; }
+}

@@ -45,24 +45,25 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
     const depth=(i===3||i===5)&&d<0;
     if(depth){x=0;scale=1+Math.min(Math.abs(d),1)*.65;}
    }else{
+    // A short, consistent glide keeps small-screen text and fine vector edges
+    // stable, instead of alternating large zooms and long lateral excursions.
     alpha=0;x=0;y=0;scale=1;
     if(i===state.index){
      const out=smooth(state.t);alpha=1-fade(state.t);
-     y=-state.read-out*54;x=(i%2?1:-1)*out*innerWidth*.32;scale=1-out*.1;
+     y=-state.read-out*24;x=-out*24;
     }else if(i===state.index+1&&state.t>0){
      const entry=smooth(state.t);alpha=fade(state.t);
-     if(i%4===0){scale=1.25-.25*entry;y=35*(1-entry);}
-     if(i%4===1){x=-76*(1-entry);y=24*(1-entry);scale=.97+.03*entry;}
-     if(i%4===2){x=76*(1-entry);y=24*(1-entry);scale=.97+.03*entry;}
-     if(i%4===3){y=92*(1-entry);scale=.85+.15*entry;}
+     x=24*(1-entry);y=18*(1-entry);
     }
    }
    panel.dataset.sceneDistance=String(rounded(d));
    panel.dataset.sceneVisibility=String(rounded(alpha));
-   panel.toggleAttribute('data-scene-current',i===current);
+   if(panel.hasAttribute('data-scene-current')!==(i===current))panel.toggleAttribute('data-scene-current',i===current);
    // Keep a single interactive chapter; visually dim transitional text is not
    // an invisible tab stop. Chapter navigation remains outside the stage.
-   panel.inert=i!==current;
+   if(panel.inert!==(i!==current))panel.inert=i!==current;
+   const composited=alpha>.001?'transform,opacity':'auto';
+   if(panel.style.willChange!==composited)panel.style.willChange=composited;
    // One animated parent owns the entire composition. Copy, vector and
    // controls share the exact opacity, travel, scale and transform origin;
    // neither the artwork nor mobile text blocks have a delayed entrance.
@@ -83,7 +84,7 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
   let moving=false;
   for(const deck of roots.values()){
    deck.target=scrollY;
-   deck.y=deck.isMobile?deck.target:deck.y+(deck.target-deck.y)*(1-Math.exp(-dt*9));
+   deck.y=deck.y+(deck.target-deck.y)*(1-Math.exp(-dt*(deck.isMobile?18:9)));
    if(Math.abs(deck.y-deck.target)<.01)deck.y=deck.target;else moving=true;
    deck.root.dataset.sceneSettled=String(deck.y===deck.target);
    draw(deck);
@@ -131,7 +132,7 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
     const panel=scene.panel;panel.inert=false;panel.classList.remove('scene-art-left');
     for(const key of ['sceneStart','sceneDistance','sceneVisibility'])delete panel.dataset[key];
     panel.removeAttribute('data-scene-current');panel.style.removeProperty('--scene-content-top');
-    for(const prop of ['opacity','visibility','transform'])panel.style.removeProperty(prop);
+    for(const prop of ['opacity','visibility','transform','will-change'])panel.style.removeProperty(prop);
     for(const layer of scene.layers){delete layer.dataset.sceneLayer;for(const prop of ['opacity','visibility','transform'])layer.style.removeProperty(prop);}
    }
    resize.disconnect();
@@ -156,7 +157,7 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
    });
    const resize=new ResizeObserver(scheduleMeasure);
    const deck={root,stage,scenes,resize,base:0,y:null,target:scrollY,isMobile:mobile.matches,focus:null};
-   roots.set(root,deck);measure();panels.forEach(panel=>resize.observe(panel));
+   roots.set(root,deck);measure();resize.observe(stage);panels.forEach(panel=>resize.observe(panel));
    // Initial direct hashes snap; subsequent navigation is smoothed by the same
    // frame loop as wheel/trackpad scrolling, not a separate CSS transition.
    let restored=false;try{restored=!!sessionStorage.getItem('lulazel-position-'+history.state?.key);}catch{}
@@ -168,7 +169,8 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
  };
  new MutationObserver(records=>{if(records.some(r=>r.addedNodes.length||r.removedNodes.length))scan();}).observe(document.body,{childList:true,subtree:true});
  window.addEventListener('scroll',request,{passive:true});
- window.addEventListener('resize',scheduleMeasure,{passive:true});
+ let measuredWidth=innerWidth;
+ window.addEventListener('resize',()=>{if(!mobile.matches||innerWidth!==measuredWidth){measuredWidth=innerWidth;scheduleMeasure();}},{passive:true});
  document.addEventListener('lulazel-scene-focus',event=>{for(const deck of roots.values())deck.focus=event.detail;});
  reduced.addEventListener('change',()=>{clear();scan();});
  mobile.addEventListener('change',scheduleMeasure);
@@ -248,7 +250,7 @@ if('IntersectionObserver' in window){
  const near=new IntersectionObserver(entries=>{
   if(!requested&&entries.some(entry=>entry.isIntersecting)){
    requested=true;near.disconnect();watch.disconnect();
-   import('./interactive-scenes-646908f6a1.js').catch(()=>{/* Original SVG remains usable. */});
+   import('./interactive-scenes-c122ae07bc.js').catch(()=>{/* Original SVG remains usable. */});
   }
  },{rootMargin:'160px'});
  const scan=()=>{for(const img of document.querySelectorAll('.hm-visual img,.studio-visual img,.studio-original-visual img')){

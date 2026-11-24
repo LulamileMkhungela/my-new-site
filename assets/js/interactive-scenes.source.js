@@ -7,6 +7,7 @@ const names={studio:'Creative studio',hosting:'Web hosting',websites:'Ecommerce'
 const colors={green:0x00ce7b,ivory:0xf0efd4,dark:0x244d41,lime:0xc8df8a,coral:0xee9b7b,metal:0x8cbaa2};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
+const compact=matchMedia('(max-width:800px)');
 function model(kind){
  const root=new T.Group(),parts=[],materials=new Map();
  const mat=color=>{if(!materials.has(color))materials.set(color,new T.MeshStandardMaterial({color:colors[color]||color,roughness:.32,metalness:color==='metal'?.5:.12}));return materials.get(color)};
@@ -81,28 +82,28 @@ function model(kind){
 function mount(host,kind){
  const img=host.querySelector('img'),shell=document.createElement('div');shell.className='scene-shell';shell.dataset.scene=kind;
  const stage=document.createElement('div');stage.className='scene-stage';img.before(shell);shell.append(stage);stage.append(img);
- let renderer;try{renderer=new T.WebGLRenderer({alpha:true,antialias:devicePixelRatio<2,powerPreference:'low-power'});}catch{shell.dataset.state='fallback';return()=>{shell.before(img);shell.remove();};}
- renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
+ let renderer;try{renderer=new T.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});}catch{shell.dataset.state='fallback';return()=>{shell.before(img);shell.remove();};}
+ renderer.setPixelRatio(Math.min(devicePixelRatio,compact.matches?2:1.5));renderer.shadowMap.enabled=!compact.matches;renderer.shadowMap.type=T.PCFShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(35,640/570,.1,40);camera.position.set(4,2.6,8.5);camera.lookAt(0,.05,0);
  scene.add(new T.HemisphereLight(0xe9ffef,0x14222e,2.5));const key=new T.DirectionalLight(0xfff3d8,4);key.position.set(-3,6,6);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);const rim=new T.DirectionalLight(0x62ffc1,2);rim.position.set(4,2,-4);scene.add(rim);
  const {root}=model(kind);scene.add(root);const ground=new T.Mesh(new T.PlaneGeometry(20,20),new T.ShadowMaterial({opacity:.18}));ground.rotation.x=-Math.PI/2;ground.position.y=-1.65;ground.receiveShadow=true;scene.add(ground);
  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('role','img');canvas.setAttribute('aria-label',names[kind]+': interactive 3D model. Arrow keys rotate; Escape restores the view.');stage.append(canvas);
- host.removeAttribute('aria-hidden');shell.dataset.state='ready';
- let disposed=false,raf=0,angleX=0,angleY=0,targetX=0,targetY=0,hoverX=0,hoverY=0,drag=null;
- function frame(){raf=0;if(disposed)return;const ease=reduced.matches?1:.18;angleX+=(targetX+hoverX-angleX)*ease;angleY+=(targetY+hoverY-angleY)*ease;root.rotation.set(angleX,angleY,0);
-  renderer.render(scene,camera);shell.dataset.rotation=angleX.toFixed(3)+','+angleY.toFixed(3);
-  if(Math.abs(targetX+hoverX-angleX)+Math.abs(targetY+hoverY-angleY)>.002)request();
+ host.removeAttribute('aria-hidden');shell.dataset.state='loading';
+ let disposed=false,raf=0,angleX=0,angleY=0,targetX=0,targetY=0,hoverX=0,hoverY=0,drag=null,lastFrame=0;
+ function frame(now){raf=0;if(disposed)return;const dt=lastFrame?Math.min((now-lastFrame)/1000,.05):1/60;lastFrame=now;const ease=reduced.matches?1:1-Math.exp(-dt*12);angleX+=(targetX+hoverX-angleX)*ease;angleY+=(targetY+hoverY-angleY)*ease;root.rotation.set(angleX,angleY,0);
+  renderer.render(scene,camera);if(shell.dataset.state!=='fallback')shell.dataset.state='ready';shell.dataset.rotation=angleX.toFixed(3)+','+angleY.toFixed(3);
+  if(Math.abs(targetX+hoverX-angleX)+Math.abs(targetY+hoverY-angleY)>.002)request();else lastFrame=0;
  }
  function request(){if(!raf&&!disposed)raf=requestAnimationFrame(frame);}
  function restore(){targetX=targetY=hoverX=hoverY=0;request();}
- canvas.addEventListener('pointerdown',e=>{targetX=angleX;targetY=angleY;hoverX=hoverY=0;drag={x:e.clientX,y:e.clientY,rx:targetX,ry:targetY};canvas.setPointerCapture(e.pointerId);});
+ canvas.addEventListener('pointerdown',e=>{targetX=angleX;targetY=angleY;hoverX=hoverY=0;drag={x:e.clientX,y:e.clientY,rx:targetX,ry:targetY,touch:e.pointerType==='touch'};if(!drag.touch)canvas.setPointerCapture(e.pointerId);});
  canvas.addEventListener('pointermove',e=>{if(!drag){
    if(!finePointer.matches||reduced.matches||e.pointerType==='touch')return;
    const bounds=canvas.getBoundingClientRect();
    hoverY=Math.max(-.25,Math.min(.25,((e.clientX-bounds.left)/bounds.width-.5)*.5));
    hoverX=Math.max(-.12,Math.min(.12,((e.clientY-bounds.top)/bounds.height-.5)*.24));
    request();return;
-  }const dx=e.clientX-drag.x,dy=e.clientY-drag.y;targetY=Math.max(-1.2,Math.min(1.2,drag.ry+dx*.008));targetX=Math.max(-.5,Math.min(.5,drag.rx+dy*.005));request();});
+  }const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(drag.touch&&Math.abs(dy)>6&&Math.abs(dy)>Math.abs(dx)){drag=null;return;}targetY=Math.max(-1.2,Math.min(1.2,drag.ry+dx*.008));targetX=Math.max(-.5,Math.min(.5,drag.rx+dy*.005));request();});
  const cancel=()=>{drag=null;};
  canvas.addEventListener('pointerleave',()=>{hoverX=hoverY=0;request();});canvas.addEventListener('pointercancel',cancel);canvas.addEventListener('pointerup',cancel);
  canvas.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Escape'].includes(e.key))e.preventDefault();else return;if(e.key==='Escape')restore();else{targetY=Math.max(-1.2,Math.min(1.2,targetY+(e.key==='ArrowLeft'?-.2:e.key==='ArrowRight'?.2:0)));targetX=Math.max(-.5,Math.min(.5,targetX+(e.key==='ArrowUp'?-.15:e.key==='ArrowDown'?.15:0)));request();}});
@@ -129,7 +130,9 @@ function mount(host,kind){
 // Observe only original illustrations, never client screenshots or Contact artwork.
 const selector='.hm-visual,.studio-visual,.studio-original-visual';
 const tracked=new Map();
+let lastScroll=-Infinity,mountTimer=0;
 function syncMountedScenes(){
+ if(compact.matches&&performance.now()-lastScroll<160){clearTimeout(mountTimer);mountTimer=setTimeout(syncMountedScenes,180);return;}
  for(const[host,record]of tracked){
   // Absolute chapters share viewport geometry; IntersectionObserver alone
   // would create every hidden model at once. Only the current/crossfading chapters own
@@ -145,6 +148,7 @@ const observer=new IntersectionObserver(entries=>{
  syncMountedScenes();
 },{rootMargin:'60px'});
 document.addEventListener('lulazel-scene-update',syncMountedScenes);
+window.addEventListener('scroll',()=>{if(!compact.matches)return;lastScroll=performance.now();clearTimeout(mountTimer);mountTimer=setTimeout(syncMountedScenes,180);},{passive:true});
 function kindFor(host){return host.dataset.sceneKind||(host.querySelector('img')?.getAttribute('src')||'').match(/\/home\/([^/?]+)\.svg/)?.[1];}
 function scan(){
  // React can reuse a figure when navigating between service routes. The image
