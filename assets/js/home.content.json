@@ -6,14 +6,14 @@
       "Real",
       "character."
     ],
-    "description": "I design and develop digital experiences end to end, with a strong focus on frontend development. From product thinking and interface design to responsive websites and apps, I connect how it looks with how it works.",
+    "description": "I design and develop digital experiences end to end, especially the frontend. From product thinking and responsive interfaces to choosing providers, connecting services and launching your website or app, I bring the pieces together so it works beyond the screen.",
     "action": "Come along for the ride"
   },
   "sections": [
     {
       "id": "hosting",
       "number": "02",
-      "eyebrow": "Web Hosting",
+      "eyebrow": "Hosting Setup & Management",
       "watermark": "FOUNDATION",
       "visual": "hosting",
       "lines": [
@@ -21,11 +21,11 @@
         "foundation.",
         "Room to grow."
       ],
-      "description": "Give your business website or online store a dependable home, with hosting, SSL certificates, malware protection and automated backups shaped around your needs.",
-      "note": "Storage, protection, backup schedules and support are agreed around your platform and project scope.",
+      "description": "From choosing a suitable hosting provider to domain setup and launch, get practical help keeping your site running. Hosting configuration, updates, backups and provider support are managed to the agreed scope.",
+      "note": "Hosting infrastructure comes from your chosen provider. Plans, renewals, available protections and ongoing management are agreed upfront.",
       "links": [
         {
-          "label": "Explore web hosting",
+          "label": "Hosting setup & support",
           "to": "/services/web-hosting"
         }
       ]
@@ -41,7 +41,7 @@
         "Work smart.",
         "Sell online."
       ],
-      "description": "Business websites, online stores and HTML email templates shaped around your brand and customers. Responsive design, clear information and straightforward journeys help people enquire, explore and buy.",
+      "description": "Business websites, online stores and HTML email templates designed around your customers and developed to work end to end. Forms, bookings, payments and email are connected and tested as part of the complete journey.",
       "links": [
         {
           "label": "Website design",
@@ -93,7 +93,7 @@
         "More",
         "momentum."
       ],
-      "description": "Connect your tools, reduce repetitive work and keep information moving. I design workflows around your processes, combining automation, AI and human approval where each makes sense.",
+      "description": "Connect your tools and external services to reduce repetitive work and keep information moving. Workflows use supported integrations, automation platforms and AI services where useful, with human review where it matters.",
       "points": [
         "Enquiry routing, customer onboarding, follow-ups and reminders",
         "Document processing, data capture, approvals and task assignment",
@@ -105,7 +105,7 @@
           "to": "/services/workflow-automation"
         }
       ],
-      "note": "These are examples, not a fixed catalogue. Tell me what your business needs—I’ll scope a custom solution around your requirements."
+      "note": "These are examples, not a fixed catalogue. The right setup depends on your requirements, provider access and the work agreed together."
     },
     {
       "id": "assistants",
@@ -118,7 +118,7 @@
         "Real purpose.",
         "Human control."
       ],
-      "description": "Give customers and teams useful assistance built around your business knowledge and requirements. From answering questions to helping people complete tasks, I scope each solution around a clear purpose.",
+      "description": "Practical AI assistants configured around your approved business information and connected to suitable providers. From answering questions to helping people complete tasks, each experience has a clear purpose and human oversight.",
       "points": [
         "Customer support, product and service guidance, lead qualification and booking assistance",
         "Internal knowledge search, staff onboarding and document summaries",
@@ -130,7 +130,7 @@
           "to": "/services/ai-assistants"
         }
       ],
-      "note": "These are examples, not a fixed catalogue. Tell me what your business needs—I’ll scope a custom solution around your requirements."
+      "note": "These are examples, not a fixed catalogue. The right setup depends on your requirements, provider access and the work agreed together."
     },
     {
       "id": "design-growth",
@@ -173,14 +173,14 @@
   },
   "about": {
     "number": "09",
-    "eyebrow": "The person behind the work",
+    "eyebrow": "Your digital partner",
     "lines": [
       "Meet",
-      "Lulamile.",
+      "LulaZel.",
       "Let’s build."
     ],
-    "description": "I’m a designer, founder and builder. My work sits at the intersection of design, entrepreneurship and practical problem-solving—and I don’t believe the best ideas stay in one lane.",
-    "second": "I start by understanding what you want to achieve. Then we work out what’s worth building, and how to make it work for the people using it.",
-    "action": "More about me"
+    "description": "LulaZel brings considered design and working code together. Websites, apps and connected systems are shaped around your customers, your goals and the way your business works.",
+    "second": "From the first conversation to design, development, integrations and launch, one connected approach takes care of the big picture and the details.",
+    "action": "About LulaZel"
   }
 }

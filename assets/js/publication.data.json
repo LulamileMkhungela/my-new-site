@@ -3,7 +3,7 @@
     "url": "",
     "name": "LulaZel",
     "title": "LulaZel — Devzigner, Design & Frontend Development",
-    "description": "Design and development, end to end. LulaZel brings product thinking, interface design and frontend development together for websites and apps. South Africa & remote.",
+    "description": "Product design, frontend development, hosting setup and provider integrations for websites and apps that work end to end. South Africa & remote.",
     "locale": "en_ZA",
     "language": "en-ZA",
     "email": "mkhungela.l@gmail.com",
@@ -16,19 +16,19 @@
   "routes": {
     "/": {
       "title": "LulaZel — Devzigner, Design & Frontend Development",
-      "description": "Design and development, end to end. LulaZel brings product thinking, interface design and frontend development together for websites and apps. South Africa & remote.",
+      "description": "Product design, frontend development, hosting setup and provider integrations for websites and apps that work end to end. South Africa & remote.",
       "canonical": "/",
       "schema": null
     },
     "/about": {
-      "title": "About Lulamile Mkhungela | LulaZel",
-      "description": "Meet Lulamile Mkhungela, a South African devzigner combining product design and frontend development to create websites and apps end to end.",
+      "title": "About LulaZel | LulaZel",
+      "description": "LulaZel: one digital partner for product design, development, integrations and launch. Websites, apps and connected systems built around your business, worldwide.",
       "canonical": "/about/",
       "schema": null
     },
     "/contact": {
       "title": "Let’s Talk | LulaZel",
-      "description": "Discuss your website, product design or business systems project with LulaZel. Send an enquiry, call or connect on WhatsApp.",
+      "description": "Your digital partner, wherever you work. Discuss websites, hosting setup, business systems, automation, AI and creative services with LulaZel.",
       "canonical": "/contact/",
       "schema": null
     },
@@ -40,7 +40,7 @@
     },
     "/services": {
       "title": "My Services | LulaZel",
-      "description": "Product design, websites, ecommerce, business systems, automation, AI and digital marketing services from LulaZel.",
+      "description": "Website design and development, hosting setup, provider integrations, ecommerce, business systems, automation and practical AI from LulaZel.",
       "canonical": "/services/",
       "schema": null
     },
@@ -66,13 +66,13 @@
     },
     "/services/web-hosting": {
       "title": "Web Hosting | LulaZel",
-      "description": "A dependable home for your website or online store.",
+      "description": "Hosting provider selection, setup and ongoing website management.",
       "canonical": "/services/web-hosting/",
       "schema": null
     },
     "/services/website-design": {
       "title": "Website Design | LulaZel",
-      "description": "Responsive websites, landing pages and HTML email design with clear customer journeys.",
+      "description": "Website design, frontend development, HTML email design and external service integrations.",
       "canonical": "/services/website-design/",
       "schema": null
     },
@@ -142,6 +142,12 @@
       "canonical": "/project/foodiezone/",
       "schema": null
     },
+    "/project/lulafind": {
+      "title": "LulaFind | LulaZel",
+      "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
+      "canonical": "/project/lulafind/",
+      "schema": null
+    },
     "/project/sesyme": {
       "title": "Sesyme | LulaZel",
       "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
@@ -152,12 +158,6 @@
       "title": "LuniaNetwork | LulaZel",
       "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because I was no longer updating it.",
       "canonical": "/project/lunianetwork/",
-      "schema": null
-    },
-    "/project/lulafind": {
-      "title": "LulaFind | LulaZel",
-      "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
-      "canonical": "/project/lulafind/",
       "schema": null
     },
     "/project/prodops": {

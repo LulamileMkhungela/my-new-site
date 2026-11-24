@@ -241,6 +241,131 @@
     "previewScroll": true
   },
   {
+    "id": "lulafind",
+    "client": "LulaFind",
+    "title": "A community search network.",
+    "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
+    "categories": [
+      "apps"
+    ],
+    "type": "overview",
+    "external": false,
+    "href": "/project/lulafind",
+    "image": "/assets/img/portfolio/lulafind.png",
+    "status": "Android APK",
+    "imageFit": "contain",
+    "details": {
+      "role": "Product & app development",
+      "context": "LulaFind · Community search",
+      "sections": [
+        {
+          "title": "What it brings together",
+          "paragraphs": [
+            "LulaFind combines missing-person posters, sightings, danger alerts, Spotlight surname communities, 24-hour stories and private chat. The repository documents an Angular/Ionic application with Capacitor shells for Android and iOS."
+          ]
+        },
+        {
+          "title": "Release status",
+          "paragraphs": [
+            "The Android APK is shared through Google Drive. Open the download, save the APK, then approve installation on your Android device. This APK cannot be installed on iOS. App Store and Google Play listing links have not been added."
+          ]
+        }
+      ],
+      "links": [],
+      "gallery": [
+        {
+          "src": "/assets/img/portfolio/lulafind.png",
+          "alt": "LulaFind home interface",
+          "caption": "Home-interface capture supplied in the LulaFind repository’s design documentation."
+        }
+      ]
+    },
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    },
+    "apkUrl": "https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing",
+    "cardDescription": "A community search app bringing together missing-person posters, sightings, danger alerts and private chat."
+  },
+  {
+    "id": "onescreen-business",
+    "client": "OneScreen Business",
+    "title": "Run your business by talking to it.",
+    "description": "A cross-platform web and mobile app for South African small and informal businesses. Turn spoken or typed sales into records, track money, stock and customer debts, and build a monthly picture from the owner’s actual business activity.",
+    "categories": [
+      "apps"
+    ],
+    "type": "external",
+    "external": true,
+    "href": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
+    "image": "/assets/img/portfolio/onescreen-business-home.png",
+    "imageFit": "contain",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "imageAlt": "OneScreen Business home screen with talk-or-type business entry, record a sale, snap a slip and business navigation",
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    },
+    "androidReleaseUrl": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
+    "cardDescription": "Record spoken or typed sales and track money, stock and customer debts for small South African businesses."
+  },
+  {
+    "id": "ai-lifeos",
+    "client": "Ai-LifeOS",
+    "title": "Everyday life, from your own records.",
+    "description": "A mobile-first, offline-capable app for South African households: irregular-income budgeting, grocery planning, loan-cost checks, scam awareness and life admin. Records stay on the device, with review before saving.",
+    "categories": [
+      "apps"
+    ],
+    "type": "coming-soon",
+    "external": false,
+    "href": null,
+    "image": "/assets/img/portfolio/ai-lifeos-dashboard.png",
+    "status": "Coming soon",
+    "imageFit": "contain",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "imageAlt": "Ai-LifeOS web dashboard showing Today, safe-to-spend setup, daily actions and reminders",
+    "featured": true,
+    "homeOrder": 1,
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    },
+    "cardDescription": "Budgeting, grocery planning and life admin for South African households, with records kept on the device.",
+    "homeCardDescription": ""
+  },
+  {
+    "id": "lawmania",
+    "client": "Lawmania",
+    "title": "Know your rights. Find your next step.",
+    "description": "A voice-first South African legal-information app for customary law, succession and everyday rights. Source-linked explanations, deadlines and document preparation, with multilingual support. Legal information, not a substitute for a lawyer.",
+    "categories": [
+      "apps"
+    ],
+    "type": "coming-soon",
+    "external": false,
+    "href": null,
+    "image": "/assets/img/portfolio/lawmania-feed.png",
+    "status": "Coming soon",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "imageFit": "contain",
+    "imageAlt": "Lawmania app feed with legal questions, topic filters and Feed, Diary, Learn and Saved navigation",
+    "storeLinks": {
+      "appStore": null,
+      "googlePlay": null
+    },
+    "cardDescription": "A voice-first South African legal-information app covering everyday rights, customary law and succession. Legal information, not legal advice."
+  },
+  {
     "id": "sesyme",
     "client": "Sesyme",
     "title": "Learning, in your pocket.",
@@ -336,131 +461,6 @@
     "year": "2019",
     "projectLabel": "Personal app · 2019",
     "cardDescription": "A personal app for finding loved ones or items and connecting with people. Published in 2019; removed from Google Play in 2024 because I was no longer updating it."
-  },
-  {
-    "id": "lawmania",
-    "client": "Lawmania",
-    "title": "Know your rights. Find your next step.",
-    "description": "A voice-first South African legal-information app for customary law, succession and everyday rights. Source-linked explanations, deadlines and document preparation, with multilingual support. Legal information, not a substitute for a lawyer.",
-    "categories": [
-      "apps"
-    ],
-    "type": "coming-soon",
-    "external": false,
-    "href": null,
-    "image": "/assets/img/portfolio/lawmania-feed.png",
-    "status": "Coming soon",
-    "platforms": [
-      "Web",
-      "Mobile"
-    ],
-    "imageFit": "contain",
-    "imageAlt": "Lawmania app feed with legal questions, topic filters and Feed, Diary, Learn and Saved navigation",
-    "storeLinks": {
-      "appStore": null,
-      "googlePlay": null
-    },
-    "cardDescription": "A voice-first South African legal-information app covering everyday rights, customary law and succession. Legal information, not legal advice."
-  },
-  {
-    "id": "ai-lifeos",
-    "client": "Ai-LifeOS",
-    "title": "Everyday life, from your own records.",
-    "description": "A mobile-first, offline-capable app for South African households: irregular-income budgeting, grocery planning, loan-cost checks, scam awareness and life admin. Records stay on the device, with review before saving.",
-    "categories": [
-      "apps"
-    ],
-    "type": "coming-soon",
-    "external": false,
-    "href": null,
-    "image": "/assets/img/portfolio/ai-lifeos-dashboard.png",
-    "status": "Coming soon",
-    "imageFit": "contain",
-    "platforms": [
-      "Web",
-      "Mobile"
-    ],
-    "imageAlt": "Ai-LifeOS web dashboard showing Today, safe-to-spend setup, daily actions and reminders",
-    "featured": true,
-    "homeOrder": 1,
-    "storeLinks": {
-      "appStore": null,
-      "googlePlay": null
-    },
-    "cardDescription": "Budgeting, grocery planning and life admin for South African households, with records kept on the device.",
-    "homeCardDescription": ""
-  },
-  {
-    "id": "onescreen-business",
-    "client": "OneScreen Business",
-    "title": "Run your business by talking to it.",
-    "description": "A cross-platform web and mobile app for South African small and informal businesses. Turn spoken or typed sales into records, track money, stock and customer debts, and build a monthly picture from the owner’s actual business activity.",
-    "categories": [
-      "apps"
-    ],
-    "type": "external",
-    "external": true,
-    "href": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
-    "image": "/assets/img/portfolio/onescreen-business-home.png",
-    "imageFit": "contain",
-    "platforms": [
-      "Web",
-      "Mobile"
-    ],
-    "imageAlt": "OneScreen Business home screen with talk-or-type business entry, record a sale, snap a slip and business navigation",
-    "storeLinks": {
-      "appStore": null,
-      "googlePlay": null
-    },
-    "androidReleaseUrl": "https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk",
-    "cardDescription": "Record spoken or typed sales and track money, stock and customer debts for small South African businesses."
-  },
-  {
-    "id": "lulafind",
-    "client": "LulaFind",
-    "title": "A community search network.",
-    "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
-    "categories": [
-      "apps"
-    ],
-    "type": "overview",
-    "external": false,
-    "href": "/project/lulafind",
-    "image": "/assets/img/portfolio/lulafind.png",
-    "status": "Android APK",
-    "imageFit": "contain",
-    "details": {
-      "role": "Product & app development",
-      "context": "LulaFind · Community search",
-      "sections": [
-        {
-          "title": "What it brings together",
-          "paragraphs": [
-            "LulaFind combines missing-person posters, sightings, danger alerts, Spotlight surname communities, 24-hour stories and private chat. The repository documents an Angular/Ionic application with Capacitor shells for Android and iOS."
-          ]
-        },
-        {
-          "title": "Release status",
-          "paragraphs": [
-            "The Android APK is shared through Google Drive. Open the download, save the APK, then approve installation on your Android device. This APK cannot be installed on iOS. App Store and Google Play listing links have not been added."
-          ]
-        }
-      ],
-      "links": [],
-      "gallery": [
-        {
-          "src": "/assets/img/portfolio/lulafind.png",
-          "alt": "LulaFind home interface",
-          "caption": "Home-interface capture supplied in the LulaFind repository’s design documentation."
-        }
-      ]
-    },
-    "storeLinks": {
-      "appStore": null,
-      "googlePlay": null
-    },
-    "apkUrl": "https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvbquNJGIeG2kXNFWT/view?usp=sharing",
-    "cardDescription": "A community search app bringing together missing-person posters, sightings, danger alerts and private chat."
   },
   {
     "id": "lulagazette",

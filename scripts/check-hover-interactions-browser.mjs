@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';import {chromium} from 'playwright-core'
 const browser=await chromium.launch({args:Chromium.args,executablePath:await Chromium.executablePath(),headless:true}),page=await browser.newPage({viewport:{width:1440,height:1000}}),origin='http://127.0.0.1:3000',errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>r.request().url().startsWith(origin)?r.continue():r.abort());
 for(const route of ['/','/services/web-hosting/']){
  await page.goto(origin+route,{waitUntil:'load'});const shell=page.locator('.scene-shell[data-state=ready]').first();await shell.waitFor();const canvas=shell.locator('canvas'),b=await canvas.boundingBox();
- assert.ok((await shell.locator('.scene-controls').textContent()).includes('Move cursor to tilt'));
+ assert.equal(await shell.locator('button,.scene-controls').count(),0,'Illustrations have no visible instruction or control panel');
  await page.mouse.move(b.x+b.width*.85,b.y+b.height*.4);await page.waitForFunction(()=>Number(document.querySelector('.scene-shell').dataset.rotation.split(',')[1])>.12);
  await page.mouse.move(b.x+b.width*.15,b.y+b.height*.6);await page.waitForFunction(()=>Number(document.querySelector('.scene-shell').dataset.rotation.split(',')[1])<-.12);
  await page.mouse.move(2,150);await page.waitForFunction(()=>Math.abs(Number(document.querySelector('.scene-shell').dataset.rotation.split(',')[1]))<.01);

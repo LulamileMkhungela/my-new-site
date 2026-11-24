@@ -1,0 +1,48 @@
+/* One sticky stage, as in the reference. Chapters NEVER pin or translate the
+   document independently. Each chapter animates as one content/vector group. */
+body main.hm-page.scene-deck { height:var(--scene-journey-height); overflow-anchor:none; }
+.scene-deck > .hm-stage {
+ position:sticky; top:var(--site-header-height); height:calc(100svh - var(--site-header-height));
+ overflow:clip; isolation:isolate; overflow-anchor:none;
+ background:var(--site-glow); background-color:var(--site-navy,#151f29);
+}
+body main.scene-deck > .hm-stage > .hm-panel {
+ position:absolute; top:var(--scene-content-top,22px); left:0; width:100%;
+ height:auto; min-height:0; margin:0; padding:0; overflow:visible;
+ background:transparent; border:0; isolation:auto;
+ transform-origin:center; transition:none !important; will-change:transform,opacity;
+}
+.scene-deck .hm-panel::before { display:none; }
+.scene-deck .hm-panel-inner, .scene-deck .hm-hero .hm-panel-inner {
+ min-height:0; padding-block:0;
+}
+.scene-deck .hm-panel-bottom { display:none; }
+.scene-deck:not(.scene-mobile) .scene-art-left .hm-copy { grid-column:2; grid-row:1; }
+.scene-deck:not(.scene-mobile) .scene-art-left .hm-visual { grid-column:1; grid-row:1; }
+.scene-deck [data-scene-layer] {
+ transform-origin:center; transition:none !important;
+ translate:none; scale:none;
+}
+.scene-deck .hm-watermark, .scene-deck [data-background-text]::after {
+ transition:none;
+}
+.scene-deck .hm-title>span { animation:none !important; }
+/* Mobile retains every block's full height in the measured reading interval.
+   Its stage height uses svh, so browser chrome cannot pump the scroll timeline. */
+.scene-mobile [data-scene-layer]>:not([aria-hidden]) { transition:none !important; }
+.scene-mobile .hm-panel-inner { grid-template-columns:minmax(0,1fr); gap:1.5rem; }
+.scene-mobile .hm-visual { min-height:0; width:100%; max-width:360px; margin-inline:auto; }
+.scene-mobile .hm-visual img { max-height:none; }
+.scene-mobile .hm-quote-art { display:none; }
+.scene-mobile .hm-testimonials-layout { grid-template-columns:minmax(0,1fr); }
+@media(prefers-reduced-motion:reduce), print {
+ body main.hm-page.scene-deck { height:auto !important; }
+ body main.scene-deck > .hm-stage { position:static !important; height:auto !important; overflow:visible; }
+ body main.scene-deck > .hm-stage > .hm-panel {
+  position:relative !important; top:auto !important; padding-block:3.5rem; overflow:hidden;
+ }
+ .scene-deck .hm-panel, .scene-deck [data-scene-layer], .scene-deck [data-scene-layer]>* {
+  opacity:1 !important; visibility:visible !important; transform:none !important;
+  translate:none !important; scale:none !important; will-change:auto;
+ }
+}

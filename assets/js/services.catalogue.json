@@ -22,44 +22,44 @@
       "group": "web",
       "title": "Web Hosting",
       "icon": "server",
-      "summary": "A dependable home for your website or online store.",
-      "intro": "A dependable technical foundation for your website or store, from choosing a suitable host to a checked deployment. Hosting, security, backups and server-side performance are scoped around your platform and visitors.",
+      "summary": "Hosting provider selection, setup and ongoing website management.",
+      "intro": "I help you choose a suitable hosting provider, set up your website and manage the agreed upkeep after launch. Hosting runs on an external provider’s infrastructure, with configuration, connections and day-to-day website care covered by your support plan.",
       "tags": [
-        "Hosting setup",
-        "SSL",
-        "Backups"
+        "Provider selection",
+        "Setup & launch",
+        "Ongoing management"
       ],
       "features": [
         [
-          "Storage & resources",
-          "Choose storage and processing capacity suited to your platform, expected traffic and customer locations."
+          "Choose the right provider",
+          "Compare hosting providers and plans around your website, budget, expected traffic, required features and support needs."
         ],
         [
-          "Deployment & server setup",
-          "Configure the hosting environment, connect your domain and agree the steps for a safe website launch or migration."
+          "Hosting setup & deployment",
+          "Set up your chosen hosting account, connect your domain and DNS, deploy the website, and check the launch or migration. Connect domain email settings where needed."
         ],
         [
           "Technical performance",
-          "Review server location, caching, compression and delivery settings supported by your platform. Diagnose hosting-related loading problems, separately from page design."
+          "Configure caching, compression and delivery settings available on your chosen platform. Investigate loading issues and coordinate hosting-side problems with the provider."
         ],
         [
           "SSL & HTTPS",
-          "Set up encrypted connections and check domain redirects so visitors reach the intended secure website."
+          "Configure the provider’s available SSL certificates, secure connections and domain redirects, then check that visitors reach the right website."
         ],
         [
-          "Protection & updates",
-          "Agree malware protection, platform updates, monitoring and the division of maintenance responsibilities."
+          "Website care & provider support",
+          "Manage agreed updates, monitoring and troubleshooting. Coordinate with external support teams when an issue needs action from your hosting or connected service provider."
         ],
         [
           "Backups & recovery",
-          "Confirm backup frequency, retention, restore steps and pre-launch rollback arrangements."
+          "Set up supported backups, agree frequency and retention, and document restore and rollback steps. Recovery options depend on your provider and plan."
         ]
       ],
-      "note": "Provider specifications, uptime terms, resources, renewals and support are confirmed before you commit. Hosting covers the technical foundation; page layouts, landing pages and conversion UX belong to Website Design. Results are not guaranteed.",
+      "note": "Provider accounts, subscription fees, renewals and the division of responsibilities are agreed upfront. Uptime and infrastructure support follow the provider’s terms; ongoing website management follows our agreed scope, not an implied 24/7 support promise.",
       "prepare": [
-        "Your platform, website address and domain/DNS/deployment access",
-        "Expected traffic, storage, customer locations and known technical performance issues",
-        "Email, backup, migration and support requirements"
+        "Your current website, platform, domain and hosting provider, if any",
+        "Your budget, traffic needs, provider accounts and required external services",
+        "Launch or migration goals, backup needs and the support you want after launch"
       ],
       "related": [
         "website-design",
@@ -72,8 +72,8 @@
       "group": "web",
       "title": "Website Design",
       "icon": "layout",
-      "summary": "Responsive websites, landing pages and HTML email design with clear customer journeys.",
-      "intro": "Help visitors understand your offer and take a useful next step. Bring website design and conversion review together: clear positioning, thoughtful page structure, useful content and responsive interactions—not just a good-looking homepage.",
+      "summary": "Website design, frontend development, HTML email design and external service integrations.",
+      "intro": "Get a responsive website—from design and frontend development to the services needed for a working launch. Page structure, interactions, forms, booking tools and email come together in one connected experience, with suitable providers selected and the agreed journeys tested end to end.",
       "tags": [
         "Website design",
         "Landing pages",
@@ -97,15 +97,15 @@
           "Improve readability, navigation and form interactions across screen sizes. Consider language, accessibility and first-time digital users."
         ],
         [
-          "Trust & useful integrations",
-          "Make contact details, evidence, booking tools and enquiry forms easy to find and use. Agree integration requirements before the build."
+          "Provider selection & integrations",
+          "Help choose and connect suitable services for forms, email, bookings, analytics, payments or other agreed needs. Configure available APIs, webhooks or platform integrations and test that information reaches the right place."
         ],
         [
           "Measurement & iteration",
           "Agree useful events and consent requirements, then review available traffic and enquiry data to guide changes. Conversion results depend on the offer, audience and wider experience."
         ]
       ],
-      "note": "Pages, copy, analytics, testing, revisions and implementation are scoped upfront. Hosting and server-side setup are scoped under Web Hosting. Conversion lifts are not guaranteed. Email work covers agreed templates, client testing and platform integration; campaign sending, subscriber consent, unsubscribe handling and ongoing email-platform costs are agreed separately.",
+      "note": "Pages, frontend development, provider connections, testing, revisions and handover are scoped upfront. Hosting setup and ongoing management sit under Web Hosting. Third-party accounts, approvals, subscriptions and usage fees are agreed separately; integrations depend on supported APIs and permissions. Conversion lifts are not guaranteed. Email work covers agreed HTML templates, client testing and platform integration; campaign sending, subscriber consent and unsubscribe handling are agreed separately.",
       "prepare": [
         "Your website, audience, offer and main conversion goal",
         "Priority pages, available content, known pain points and analytics",
@@ -130,8 +130,8 @@
           "Brand-aligned newsletters, campaign emails and transactional templates, designed for mobile and built in HTML with email-safe layouts, inline styles and useful text fallbacks. Compatibility checks for agreed email clients and platform handover are scoped with the project."
         ],
         [
-          "Search-ready build & handover",
-          "Descriptive metadata, logical headings, internal links and optimised images. Coordinate deployment, HTTPS and server configuration with Web Hosting."
+          "Launch checks & handover",
+          "Check metadata, links, images, forms and agreed provider connections before launch. Coordinate deployment and HTTPS with hosting setup, then hand over access, documentation and ongoing support responsibilities."
         ]
       ]
     },
@@ -141,7 +141,7 @@
       "title": "Ecommerce",
       "icon": "bag",
       "summary": "Online stores with an easy journey from product to checkout.",
-      "intro": "An online store designed around your catalogue, customers and fulfilment process. Help shoppers find the right product, understand it and complete their purchase.",
+      "intro": "Take your store from product discovery to a working checkout. Design, development and supported payment, delivery and email integrations are brought together around your customers, with provider selection, configuration and end-to-end testing included in the agreed scope.",
       "tags": [
         "Product discovery",
         "Payments",
@@ -158,11 +158,11 @@
         ],
         [
           "Checkout & payments",
-          "A clear checkout flow and suitable payment gateway integration."
+          "Build a clear checkout flow and connect a suitable external payment gateway. Configure supported settings and test the payment journey; provider approval and account verification remain with the provider."
         ],
         [
           "Orders & delivery",
-          "Stock, order and delivery rules configured around how you fulfil purchases."
+          "Configure stock, order notifications and delivery rules, and connect supported courier or fulfilment services around how you handle purchases."
         ],
         [
           "Search foundations",
@@ -173,7 +173,7 @@
           "Scope courier, accounting or stock integrations around available interfaces."
         ]
       ],
-      "note": "Payment provider fees, catalogue entry, delivery rules, integrations and ongoing support are agreed separately in the scope. Marketplace account access, listing assets and platform fees are separately agreed. Sales are not guaranteed.",
+      "note": "Provider selection, account setup assistance, integrations, testing and ongoing support are agreed in the scope. Payment processing, courier operations and other external services are supplied by the chosen providers, with their own approvals, fees and terms. Marketplace account access, catalogue entry and listing assets are separately agreed. Sales are not guaranteed.",
       "prepare": [
         "Your products, catalogue size and current store",
         "Customer locations, payment and delivery needs",
@@ -205,7 +205,7 @@
       "title": "Business Systems",
       "icon": "grid",
       "summary": "Custom tools, portals and dashboards built around your operations.",
-      "intro": "Replace disconnected spreadsheets or awkward workarounds with a focused business tool. Start with the people, tasks and information that need to work better together.",
+      "intro": "Focused tools, portals and dashboards designed and built around your operations. Existing services can be connected where they already do part of the job, bringing your interfaces, data and agreed workflows together without rebuilding everything from scratch.",
       "tags": [
         "Custom tools",
         "Portals",
@@ -255,7 +255,7 @@
       "title": "Workflow Automation & AI",
       "icon": "flow",
       "summary": "Connect your tools and cut repetitive work—with AI where useful.",
-      "intro": "Automate a repeated task or connect a process across your tools. Keep people in control, with clear rules, review points and a plan for exceptions.",
+      "intro": "Connect your existing tools and external services to automate repeated tasks and keep information moving. Workflows are configured through supported APIs, webhooks or automation platforms, with tested handovers, review points and exception handling.",
       "tags": [
         "Connected tools",
         "Less admin",
@@ -305,7 +305,7 @@
       "title": "AI Assistants",
       "icon": "chat",
       "summary": "Help customers and teams find answers in your business knowledge.",
-      "intro": "A focused assistant or chatbot grounded in approved information. Define what it can answer, what it can access and when a person should take over.",
+      "intro": "Give customers and teams an assistant connected to approved business information and suitable AI services. The interface, knowledge sources and agreed actions are configured together, with clear access limits and a route to human support.",
       "tags": [
         "Useful answers",
         "Your knowledge",
@@ -337,7 +337,7 @@
           "Test representative questions, define limits and provide a human escalation path."
         ]
       ],
-      "note": "AI can make mistakes. Approved sources, access controls, usage costs and ongoing response review are part of the agreed scope.",
+      "note": "AI models and infrastructure come from the selected providers. Account access, usage fees, supported integrations, approved sources and ongoing response review are agreed before rollout. AI can make mistakes, so testing and human oversight remain important.",
       "prepare": [
         "Who needs help and what they ask",
         "Knowledge sources, access rules and handover contact",

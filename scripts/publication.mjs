@@ -17,10 +17,10 @@ export function seoRoutes(config,catalogue,strategies,projects){
  const record=(title,description,extra={})=>({title:title+' | '+config.name,description,...extra});
  const routes={
   '/':{title:config.title,description:config.description},
-  '/about':record('About Lulamile Mkhungela','Meet Lulamile Mkhungela, a South African devzigner combining product design and frontend development to create websites and apps end to end.'),
-  '/contact':record('Let’s Talk','Discuss your website, product design or business systems project with LulaZel. Send an enquiry, call or connect on WhatsApp.'),
+  '/about':record('About LulaZel','LulaZel: one digital partner for product design, development, integrations and launch. Websites, apps and connected systems built around your business, worldwide.'),
+  '/contact':record('Let’s Talk','Your digital partner, wherever you work. Discuss websites, hosting setup, business systems, automation, AI and creative services with LulaZel.'),
   '/portfolio':record('Portfolio','Explore LulaZel’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.'),
-  '/services':record('My Services','Product design, websites, ecommerce, business systems, automation, AI and digital marketing services from LulaZel.'),
+  '/services':record('My Services','Website design and development, hosting setup, provider integrations, ecommerce, business systems, automation and practical AI from LulaZel.'),
   '/privacy':record('Privacy & image rights','How portfolio enquiries, third-party services, personal information and image rights are handled.'),
   '/tools':record('Tools','A collection of practical design and development resources.',{noindex:true}),
   '/404':record('Page not found','This page could not be found. Explore services and projects from LulaZel.',{noindex:true})

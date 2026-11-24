@@ -31,8 +31,9 @@ function LocalRouteEffects(){
     window.scrollTo({top:saved.y,left:saved.x,behavior:'instant'});return;
    }
    let id='';try{id=decodeURIComponent(hash.slice(1));}catch{}
-   const target=id&&document.getElementById(id);
-   if(target)target.scrollIntoView({behavior:'instant',block:'start'});
+   const target=id?document.getElementById(id):null;
+   if(target?.hasAttribute('data-scene-start'))window.scrollTo({top:Number(target.dataset.sceneStart),behavior:'instant'});
+   else if(target)target.scrollIntoView({behavior:'instant',block:'start'});
    else window.scrollTo({top:0,behavior:'instant'});
   };
   place();

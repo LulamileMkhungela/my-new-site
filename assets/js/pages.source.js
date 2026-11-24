@@ -52,13 +52,42 @@ function LocalSiteFooter() {
   return h('footer',{className:'unified-footer'},h('div',{className:'unified-container'},
     !isContact&&h('div',{className:'unified-footer-top'},h('div',null,h('p',{className:'hybrid-eyebrow'},'Have something in mind?'),h('h2',null,'Let’s make it ',h('span',null,'work.'))),
       h('div',{className:'footer-contact-icons',role:'group','aria-label':'Ways to connect'},
-        action('linkedin','LinkedIn','Connect with Lulamile on LinkedIn','https://www.linkedin.com/in/lulamile-mkhungela/',true),
         action('handset','Call','Call +27 83 719 5064','tel:+27837195064'),
         action('mail','Email','Email '+localSiteContent.email,'mailto:'+localSiteContent.email),
         action('calendar','Meeting','Meeting — book a meeting with Lulamile','https://calendly.com/lulamile_m/meet-lulamile?month=2026-11',true),
         h('button',{type:'button',className:'footer-contact-icon','aria-label':'Enquiry — open enquiry form',title:'Send an enquiry','aria-haspopup':'dialog','aria-controls':'footer-enquiry',onClick:event=>{const dialog=event.currentTarget.closest('footer').querySelector('#footer-enquiry');dialog.showModal();dialog.querySelector('input[name="name"]')?.focus();}},...iconBody('form','Enquiry')))),
     h('div',{className:'unified-footer-bottom'},h('p',null,'© '+new Date().getFullYear()+' LulaZel · by Lulamile M · South Africa'),h(ve,{to:'/privacy',className:'footer-privacy'},'Privacy & image rights'),
       h('nav',{'aria-label':'Footer'},h(ve,{to:'/services'},'My Services'),h(ve,{to:'/portfolio'},'Portfolio'),h(ve,{to:'/about'},'About')))),h(LocalEnquiryDialog));
+}
+/** Horizontal browsing is explicit: never consume a vertical wheel/touch gesture. */
+function LocalProjectRail({projects,category,className='pf-grid'}) {
+  const h=g.createElement,track=g.useRef(null);
+  const [edges,setEdges]=g.useState({overflow:false,start:true,end:false});
+  g.useEffect(()=>{
+    const el=track.current;if(!el)return;
+    let frame=0,disposed=false;
+    const measure=()=>{
+      if(disposed)return;
+      const next={overflow:el.scrollWidth>el.clientWidth+2,start:el.scrollLeft<2,end:el.scrollLeft+el.clientWidth>=el.scrollWidth-2};
+      setEdges(previous=>Object.keys(next).every(key=>previous[key]===next[key])?previous:next);
+    };
+    const schedule=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(measure);};
+    const observer=new ResizeObserver(schedule);observer.observe(el);
+    [...el.children].forEach(child=>observer.observe(child));
+    el.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule,{passive:true});
+    document.fonts?.ready.then(schedule);measure();
+    return ()=>{disposed=true;cancelAnimationFrame(frame);observer.disconnect();el.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);};
+  },[projects]);
+  const move=direction=>{
+    const el=track.current;if(!el)return;
+    const card=el.firstElementChild,step=card?card.getBoundingClientRect().width+(parseFloat(getComputedStyle(el).columnGap)||0):el.clientWidth;
+    el.scrollBy({left:direction*step,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  };
+  return h('div',{className:'pf-project-rail'},
+    h('div',{className,ref:track,role:'region',tabIndex:0,'aria-label':category+' project previews'},...projects.map((project,index)=>h(LocalPortfolioCard,{key:project.id,project,index,total:projects.length,category}))),
+    h('div',{className:'pf-rail-controls',hidden:!edges.overflow,role:'group','aria-label':'Browse '+category+' projects'},
+      h('button',{type:'button',className:'pf-rail-arrow',disabled:edges.start,'aria-label':'Previous '+category+' projects',onClick:()=>move(-1)},h('span',{'aria-hidden':true},'‹')),
+      h('button',{type:'button',className:'pf-rail-arrow',disabled:edges.end,'aria-label':'More '+category+' projects',onClick:()=>move(1)},h('span',{'aria-hidden':true},'›'))));
 }
 function LocalPortfolioPage() {
   const h=g.createElement;
@@ -69,7 +98,7 @@ function LocalPortfolioPage() {
   const visible=localPortfolioProjects.filter(item=>selected==='all'||item.categories.includes(selected));
   const [collapsed,setCollapsed]=g.useState(()=>{try{return JSON.parse(sessionStorage.getItem('lulazel-collapsed-'+location.key)||'{}');}catch{return {};}});
   const groups=localPortfolioCategories.filter(item=>item.id!=='all'&&(selected==='all'||item.id===selected)).map(category=>({category,projects:localPortfolioProjects.filter(project=>project.categories.includes(category.id))}));
-  const renderCards=(projects,category)=>h('div',{className:'pf-grid',role:'region',tabIndex:0,'aria-label':category+' project previews'},...projects.map((project,index)=>h(LocalPortfolioCard,{key:project.id,project,index,total:projects.length,category})));
+  const renderCards=(projects,category)=>h(LocalProjectRail,{projects,category});
   const descriptions={website:'Business websites shaped around clear information and a useful next step.','product-design':'Products and experiences shaped around real needs.',apps:'Cross-platform products and mobile experiences.','frontend-dev':'Interfaces, tools and frontend builds.','ai-prompt':'Premium design resources and free prompts to make your own.'};
   g.useEffect(()=>{
     if(LocalReadRoutePosition(location.key))return;
@@ -82,9 +111,9 @@ function LocalPortfolioPage() {
       h('div',{className:'pf-hero-copy'},h('p',{className:'hybrid-eyebrow'},h('span'),'01 / My Portfolio'),
         h('p',{className:'pf-hero-overline'},'Real challenges. Individual solutions.'),
         h('h1',null,h('span',null,'My work.'),h('span',{className:'hybrid-outline'},'Your next'),h('span',{className:'hybrid-green'},'inspiration.')),
-        h('p',{className:'pf-hero-description'},'Explore products, websites and digital experiences shaped around real needs. Different businesses, different challenges—one considered approach to design.'),
+        h('p',{className:'pf-hero-description'},'Explore products, websites and digital experiences shaped around real needs. Different businesses, different challenges—design and development working together.'),
         h('div',{className:'pf-hero-actions'},h('a',{href:'#portfolio-projects',className:'hybrid-button'},'Explore the projects',h(LocalUiIcon,{name:'arrow-down'})),h(ve,{to:'/contact',className:'hybrid-text-link'},'Discuss your project',h(LocalUiIcon,{name:'arrow-up-right'})))),
-      h(LocalDigitalVisual,{label:'Design × real-world challenges',icon:'portfolio'})),
+      h(LocalDigitalVisual,{label:'Design + development × real-world challenges',icon:'portfolio'})),
       h('div',{className:'pf-hero-bottom unified-container'},h('a',{href:'#portfolio-projects'},'Scroll to explore',h(LocalUiIcon,{name:'arrow-down'})),h('span',null,localPortfolioProjects.length+' selected projects & studies'),h('span',null,'Websites · Apps · Product design')),
       h('div',{className:'pf-watermark','aria-hidden':true},'MY PORTFOLIO')),
     h('section',{id:'portfolio-projects',className:'pf-projects unified-container','aria-labelledby':'portfolio-heading'},
@@ -100,29 +129,39 @@ function LocalPortfolioPage() {
       }))));
 
 }
+/** Only owner-confirmed profile URLs become live links. */
+function LocalSocialProfiles() {
+  const h=g.createElement;
+  return h('nav',{className:'page-socials','aria-label':'Social media'},...localSiteContent.socialProfiles.map(profile=>{
+    const children=[h(LocalUiIcon,{name:profile.icon,key:'icon'}),h('span',{key:'label'},profile.name)];
+    return profile.url?h('a',{key:profile.name,href:profile.url,target:'_blank',rel:'noopener noreferrer','aria-label':profile.name+' — opens in a new tab'},...children):
+      h('button',{key:profile.name,type:'button',disabled:true,title:profile.name+' profile link not added yet','aria-label':profile.name+' — profile link not added yet'},...children);
+  }));
+}
 function LocalAboutPage() {
   const h=g.createElement;
-  return h(LocalPageFrame,{title:'About',description:'Lulamile M — devzigner, designer and frontend developer based in South Africa.',className:'unified-page'},
-    h('section',{className:'unified-about-hero','data-background-text':'ABOUT LULAMILE'},h('div',{className:'unified-container unified-about-grid'},
-      h('div',null,h('p',{className:'hybrid-eyebrow'},h('span'),'About / Lulamile M'),h('h1',null,'Curious by nature.',h('br'),h('span',{className:'hybrid-outline'},'Designer by craft.'),h('br'),h('span',{className:'hybrid-green'},'Builder at heart.')),h('p',{className:'hybrid-hero-description'},localSiteContent.about.intro)),
-      h('img',{src:'/assets/img/lulamile.webp',alt:'Lulamile M',width:900,height:900}))),
-    h('section',{className:'unified-container unified-about-copy'},h('p',{className:'svc-kicker'},'The person behind the work'),h('h2',null,'Design is a way of seeing.'),...localSiteContent.about.paragraphs.map((paragraph,index)=>h('p',{key:index},paragraph)),h('p',{className:'unified-about-close'},localSiteContent.about.close)));
+  return h(LocalPageFrame,{title:'About LulaZel',description:'LulaZel combines design, development and connected services to help businesses go from idea to launch.',className:'unified-page'},
+    h('section',{className:'unified-about-hero','data-background-text':'ABOUT LULAZEL'},h('div',{className:'unified-container unified-about-grid'},
+      h('div',null,h('p',{className:'hybrid-eyebrow'},h('span'),'About / LulaZel'),h('h1',null,'Your vision.',h('br'),h('span',{className:'hybrid-outline'},'Designed & built.'),h('br'),h('span',{className:'hybrid-green'},'Ready for the world.')),h('p',{className:'hybrid-hero-description'},localSiteContent.about.intro),h(LocalSocialProfiles)),
+      h('img',{src:'/assets/img/lulamile.webp',alt:'Lulamile M, founder of LulaZel',width:900,height:900}))),
+    h('section',{className:'unified-container unified-about-copy'},h('p',{className:'svc-kicker'},'One partner. From idea to launch.'),h('h2',null,'Good design opens the door. Great development makes it work.'),...localSiteContent.about.paragraphs.map((paragraph,index)=>h('p',{key:index},paragraph)),h('p',{className:'unified-about-close'},localSiteContent.about.close)));
 }
 function LocalContactPage() {
   const h=g.createElement;
   return h(LocalPageFrame,{title:'Let’s Talk',description:'Discuss your next website, product or digital project with LulaZel.',className:'unified-contact-page'},
     h('section',{className:'contact-intro unified-container',id:'contact-intro','data-background-text':'LET’S TALK'},
       h('div',{className:'contact-intro-copy'},h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'01 / Contact LulaZel'),h('p',{className:'contact-section-subtitle'},'South Africa & remote enquiries welcome.'),
-        h('h1',null,h('span',null,'Let’s talk.'),h('span',{className:'contact-title-outline'},'Your ideas.'),h('span',{className:'hybrid-green'},'Our next step.')),
-        h('p',{className:'hybrid-hero-description'},'Tell me what needs to work better and where you want to go. From a first idea to a clearer digital direction, a conversation is a good place to start. Share your time zone and a convenient time if you’d like to arrange a call.'),
+        h('h1',null,h('span',null,'Your digital partner.'),h('span',{className:'hybrid-green'},'Wherever you work.')),
+        h('p',{className:'hybrid-hero-description'},'Websites, hosting setup, business systems, automation, AI and creative services for businesses worldwide.'),
+        h('p',{className:'contact-invitation'},'Tell me your goals, your requirements and your time zone. Let’s discuss a solution that fits your business.'),
         h('div',{className:'contact-direct'},
           h('a',{href:'tel:+27837195064'},h(LocalUiIcon,{name:'handset'}),h('span',null,'Call',h('strong',null,'+27 83 719 5064')),h(LocalUiIcon,{name:'arrow-up-right'})),
           h('a',{href:'https://wa.me/27837195064',target:'_blank',rel:'noopener noreferrer'},h(LocalUiIcon,{name:'whatsapp'}),h('span',null,'WhatsApp',h('strong',null,'+27 83 719 5064')),h(LocalUiIcon,{name:'arrow-up-right'})),
           h('a',{href:'mailto:'+localSiteContent.email},h(LocalUiIcon,{name:'mail'}),h('span',null,'Email',h('strong',null,localSiteContent.email)),h(LocalUiIcon,{name:'arrow-up-right'}))),
         h('div',{className:'contact-extra-actions'},
           h('a',{href:'https://calendly.com/lulamile_m/meet-lulamile?month=2026-11',target:'_blank',rel:'noopener noreferrer'},h(LocalUiIcon,{name:'calendar'}),'Book a meeting'),
-          h('a',{href:'https://www.linkedin.com/in/lulamile-mkhungela/',target:'_blank',rel:'noopener noreferrer'},h(LocalUiIcon,{name:'linkedin'}),'LinkedIn'),
           h('button',{type:'button',onClick:()=>{const dialog=document.getElementById('footer-enquiry');dialog.showModal();dialog.querySelector('input[name="name"]')?.focus();},'aria-haspopup':'dialog','aria-controls':'footer-enquiry'},h(LocalUiIcon,{name:'form'}),'Send an enquiry')),
+        h(LocalSocialProfiles),
         h('a',{href:'#contact-next',className:'hybrid-text-link'},'What happens next?',h(LocalUiIcon,{name:'arrow-down'}))),
       h('div',{className:'contact-art'},h('img',{src:'/assets/img/portfolio/contact-conversation.svg?v='+localHomeArtworkVersion,alt:'Two conversation shapes linked by a sculptural telephone receiver',width:640,height:570}),h('p',null,'A CONVERSATION IS A GOOD PLACE TO START.'))),
     h('section',{className:'contact-next',id:'contact-next','aria-labelledby':'contact-next-title'},
@@ -138,7 +177,7 @@ function LocalContactPage() {
           h('div',{className:'contact-steps'},...[['Tell me what you need','Share your business, goals, current tools and any examples that help explain the project.'],['Agree a practical scope','We clarify requirements, deliverables, responsibilities, budget and timing before work begins.'],['Plan the work together','We agree review points, communication and the steps toward launch or handover.']].map(([title,copy],index)=>h('article',{key:title},h('h3',null,'0'+(index+1)+' / '+title),h('p',null,copy)))),
           h('p',{className:'contact-next-note'},'You don’t need a complete technical brief. Explore ',h(ve,{to:'/services'},'my digital services'),' or simply describe the problem you want to solve.'),
           h('a',{href:'#contact-intro',className:'contact-back'},'↺ Back to contact details'))),
-      h('div',{className:'contact-section-bottom'},h('a',{href:'#contact-intro'},'Back to contact details ↑'),h('span',null,'01 — ',h('strong',null,'02')),h(ve,{to:'/about'},'About the designer ↓'))));
+      h('div',{className:'contact-section-bottom'},h('a',{href:'#contact-intro'},'Back to contact details ↑'),h('span',null,'01 — ',h('strong',null,'02')),h(ve,{to:'/about'},'About LulaZel ↓'))));
 
 }
 function LocalToolsPage() {

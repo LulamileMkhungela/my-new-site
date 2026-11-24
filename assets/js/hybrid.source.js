@@ -22,6 +22,8 @@ function LocalUiIcon({name='arrow-up-right',className=''}) {
     'phone':['M7 2h10v20H7zM11 18h2'],
     'whatsapp':['M20.5 11.5a8.5 8.5 0 0 1-12.8 7.3L3 20l1.2-4.5a8.5 8.5 0 1 1 16.3-4z','M8 7c-1 3 2 7 6 8l2-2-3-1-1 1-2-2 1-1-1-3H8z'],
     'linkedin':['M4 9h4v12H4zM6 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4M12 21V9h4v2c1-3 6-3 6 2v8h-4v-7c0-3-2-3-2 0v7'],
+    'facebook':['M14 21v-8h3l.5-4H14V7c0-1 .4-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8'],
+    'instagram':['M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4z','M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z','M17.5 6.5h.01'],
     'mail':['M3 5h18v14H3zM3 6l9 7 9-7'],
     'calendar':['M4 5h16v16H4zM8 3v4M16 3v4M4 10h16M8 14h2M14 14h2M8 17h2'],
     'form':['M5 3h10l4 4v14H5zM14 3v5h5M8 12h8M8 16h5'],
