@@ -22,7 +22,7 @@ const text = tree => {
 };
 function render(url) {
   const context = {
-    g: {createElement:(type,props,...children)=>typeof type==='function' ? type({...props,children}) : ({type,props:props||{},children}),Fragment:'fragment'},
+    g: {createElement:(type,props,...children)=>typeof type==='function' ? type({...props,children}) : ({type,props:props||{},children}),Fragment:'fragment',useState:value=>[value,()=>{}],useEffect:()=>{},useRef:value=>({current:value})},
     Qt:()=>({pathname:url}), XA:'metadata', ve:'link', Bn:'header', zn:'footer',
     localServiceCatalogue:catalogue,localHomeArtworkVersion:"test",localStrategyServices:[
       {path:'/product-design-strategy', title:'Product Design & Strategy', summary:'Product strategy'}

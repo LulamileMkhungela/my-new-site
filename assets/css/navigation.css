@@ -128,3 +128,77 @@
  .service-nav-arrow .ui-line-icon { width:16px; height:16px; }
  body .rhino-header .service-nav-arrow:disabled { opacity:.25; cursor:default; }
 }
+
+/* ===== Theme toggle — positioned after the WhatsApp contact button ===== */
+.rhino-theme { display:inline-flex; align-items:center; justify-content:center; width:2.6rem; height:2.6rem; border-radius:.5rem; border:1px solid #a8c3c330; background:transparent; color:#f4f7f8; cursor:pointer; transition:border-color .2s, color .2s, background .2s; flex:0 0 auto; }
+.rhino-theme:hover { border-color:var(--site-green); color:var(--site-green); }
+.rhino-theme:focus-visible { outline:2px solid var(--site-green); outline-offset:2px; }
+.rhino-theme-icon { width:1.1rem; height:1.1rem; }
+.rhino-theme-mobile { width:2.2rem; height:2.2rem; }
+:root.light .rhino-theme { color:#151f29; border-color:hsl(var(--border)); }
+:root.light .rhino-theme:hover { color:var(--site-green); border-color:var(--site-green); }
+
+/* ===== Glow button — border that slides left/right by 2px continuously ===== */
+/* Applied ONLY to the "Book a meeting" button (.cta-glow / [data-cc-glow]). */
+.hybrid-button.cta-glow, [data-cc-glow] { position:relative; isolation:isolate; }
+.hybrid-button.cta-glow::after, [data-cc-glow]::after {
+  content:''; position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none;
+  background:linear-gradient(90deg, #00ce7b, #00a8ff, #26e599, #00ce7b);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  -webkit-mask-size:100% 100%; padding:2px;
+  opacity:.55;
+  animation:cc-slide 3s ease-in-out infinite;
+}
+@keyframes cc-slide {
+  0%, 100% { transform:translateX(-2px); }
+  50% { transform:translateX(2px); }
+}
+.hybrid-button.cta-glow:hover::after, [data-cc-glow]:hover::after { opacity:1; animation-duration:1.4s; }
+/* Corner accent dots that pulse brighter on hover */
+.hybrid-button.cta-glow::before, [data-cc-glow]::before {
+  content:''; position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(circle at 0% 0%, #00ce7b 0, transparent 32%),
+    radial-gradient(circle at 100% 0%, #00a8ff 0, transparent 32%),
+    radial-gradient(circle at 0% 100%, #26e599 0, transparent 32%),
+    radial-gradient(circle at 100% 100%, #00ce7b 0, transparent 32%);
+  opacity:.4; animation:cc-corners 3s ease-in-out infinite;
+}
+.hybrid-button.cta-glow:hover::before, [data-cc-glow]:hover::before { opacity:1; animation-duration:1.2s; }
+@keyframes cc-corners { 0%,100% { opacity:.4; } 50% { opacity:.85; } }
+@media (prefers-reduced-motion: reduce) {
+  .hybrid-button.cta-glow::after, [data-cc-glow]::after,
+  .hybrid-button.cta-glow::before, [data-cc-glow]::before { animation:none; }
+}
+
+/* ===== Logo tagline cycler — swipe/swap animation like cosmos ===== */
+.logo-anim-wrap { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.15rem; }
+.logo-anim-tag { position:relative; display:inline-block; height:1.1rem; overflow:hidden; width:max-content; max-width:18rem; font-family:Poppins,system-ui,sans-serif; font-size:.58rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#00ce7b; }
+:root.light .logo-anim-tag { color:var(--site-green); }
+.logo-anim-tag-item { position:absolute; left:0; top:0; white-space:nowrap; opacity:0; transform:translateY(110%); }
+.logo-anim-tag-item.is-on { opacity:1; transform:translateY(0); }
+.logo-anim-tag-item { animation:cc-tag-swipe 12.8s ease-in-out infinite; }
+@keyframes cc-tag-swipe {
+  0% { opacity:0; transform:translateY(110%); }
+  3% { opacity:1; transform:translateY(0); }
+  23% { opacity:1; transform:translateY(0); }
+  26% { opacity:0; transform:translateY(-110%); }
+  100% { opacity:0; transform:translateY(-110%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-anim-tag-item { animation:none; }
+  .logo-anim-tag-item:not(.is-on) { display:none; }
+}
+
+/* ===== Light mode: strictly white nav, black text ===== */
+:root.light .rhino-header { background:#ffffff; color:#151f29; border-bottom-color:#00000018; }
+:root.light .rhino-wordmark { color:#151f29; }
+:root.light .rhino-primary a { color:#151f29; }
+:root.light .rhino-primary a:hover, :root.light .rhino-primary a.is-active, :root.light .rhino-primary a[aria-current='page'] { color:#00a865; }
+:root.light .rhino-header .hybrid-service-nav { background:#ffffff; color:#151f29; border-top-color:#00000014; }
+:root.light .rhino-header .hybrid-service-nav a { color:#3a4a55; }
+:root.light .rhino-header .hybrid-service-nav a:hover, :root.light .rhino-header .hybrid-service-nav a.is-active { color:#00a865; }
+:root.light .rhino-header a:focus-visible, :root.light .rhino-header button:focus-visible { outline-color:#00a865; }
+:root.light .rhino-mobile-menu { background:#ffffff; color:#151f29; border-top:1px solid #00000014; }
+:root.light .rhino-mobile-menu a { color:#151f29; }

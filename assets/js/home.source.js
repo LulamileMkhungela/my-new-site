@@ -11,7 +11,7 @@ function LocalHomeLink({to,children,primary=false}) {
 function LocalHomeVisual({kind}) {
   const h=g.createElement;
   return h('div',{key:kind,className:'hm-visual hm-visual-'+kind,'data-scene-kind':kind,'aria-hidden':true},
-    h('img',{className:'hm-vector-art',src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'',width:640,height:570,loading:kind==='studio'?'eager':'lazy',fetchPriority:kind==='studio'?'high':undefined,decoding:'async'}));
+    h('img',{className:'hm-vector-art',src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'',width:640,height:570,loading:'eager',fetchPriority:'high',decoding:'async'}));
 }
 function LocalHomeProcess() {
   const h=g.createElement;
@@ -55,7 +55,7 @@ function LocalHomeNavigator() {
   },[]);
   return h('div',{className:'hm-chapter-rail'},
     h('span',{className:'hm-rail-hint'},'Scroll to explore',h(LocalUiIcon,{name:'arrow-down'})),
-    h('nav',{'aria-label':'Home sections'},h('ol',null,...chapters.map((chapter,index)=>h('li',{key:chapter.id},h(LocalHomeChapterLink,{to:'#'+chapter.id,'aria-label':String(index+1).padStart(2,'0')+' — '+chapter.label,'aria-current':position.active===chapter.id?'location':undefined,title:chapter.label,onClick:()=>{
+    h('nav',{'aria-label':'Page sections'},h('ol',null,...chapters.map((chapter,index)=>h('li',{key:chapter.id},h(LocalHomeChapterLink,{to:'#'+chapter.id,'aria-label':String(index+1).padStart(2,'0')+' — '+chapter.label,'data-rail-label':String(index+1).padStart(2,'0')+' / '+chapter.label,'aria-current':position.active===chapter.id?'location':undefined,title:String(index+1).padStart(2,'0')+' / '+chapter.label,onClick:()=>{
       // Focus the destination for keyboard/screen-reader users, without a second scroll.
       const target=document.getElementById(chapter.id);
       if(target?.hasAttribute('data-scene-start'))document.dispatchEvent(new CustomEvent('lulazel-scene-focus',{detail:chapter.id}));
@@ -125,5 +125,5 @@ function LocalHomePage() {
     h('section',{id:'home-portfolio',className:'hm-panel hm-portfolio','aria-labelledby':'hm-portfolio-title'},h('div',{className:'hm-watermark','aria-hidden':true},'MY WORK.'),h('div',{className:'unified-container'},h('div',{className:'hm-portfolio-heading'},h('div',null,label(content.portfolio.number,content.portfolio.eyebrow),h(LocalHomeTitle,{lines:content.portfolio.lines,id:'hm-portfolio-title'})),h('div',null,h('p',{className:'hm-description'},content.portfolio.description),h(LocalHomeLink,{to:'/portfolio',primary:true},content.portfolio.action))),
       h(LocalProjectRail,{className:'hm-project-previews pf-featured',projects:localPortfolioProjects.filter(project=>project.featured).sort((a,b)=>a.homeOrder-b.homeOrder),category:'home'}))),
     h('section',{id:'home-about',className:'hm-panel hm-about','aria-labelledby':'hm-about-title'},h('div',{className:'hm-watermark','aria-hidden':true},'LULAZEL.'),h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label(content.about.number,content.about.eyebrow),h(LocalHomeTitle,{lines:content.about.lines,id:'hm-about-title'}),h('p',{className:'hm-description'},content.about.description),h('p',{className:'hm-description'},content.about.second),h('div',{className:'hm-actions'},h(LocalHomeLink,{to:'/about',primary:true},content.about.action))),
-      h('div',{className:'hm-portrait-wrap'},h('div',{className:'hm-portrait-frame'},h('img',{src:'/assets/img/lulamile.webp',alt:localSiteContent.name+' — designer, developer and founder',width:900,height:900,loading:'lazy'})),h('div',{className:'hm-portrait-caption'},h('span',null,'Lulamile M · Founder, LulaZel'),h('small',null,'South Africa · Working worldwide'))))),h(LocalHomeProcess),h(LocalHomeTestimonials)),h(LocalHomeNavigator));
+      h('div',{className:'hm-portrait-wrap'},h('div',{className:'hm-portrait-frame'},h('img',{src:'/assets/img/lulamile.webp',alt:localSiteContent.name+' — designer, developer and founder',width:900,height:900,loading:'eager',decoding:'async',fetchPriority:'high'})),h('div',{className:'hm-portrait-caption'},h('span',null,'Lulamile M · Founder, LulaZel'),h('small',null,'South Africa · Working worldwide'))))),h(LocalHomeProcess),h(LocalHomeTestimonials)));
 }

@@ -1,3 +1,5 @@
 User-agent: *
-Disallow: /
-# Set SITE_URL and rebuild when the production domain is ready.
+Allow: /
+Disallow: /reference/
+Disallow: /scripts/
+Sitemap: https://www.lulazel.co.za/sitemap.xml

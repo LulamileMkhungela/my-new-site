@@ -79,7 +79,7 @@ function model(kind){
  }
  return{root,parts};
 }
-function mount(host,kind){
+function mount(host,kind,dir=1){
  const img=host.querySelector('img'),shell=document.createElement('div');shell.className='scene-shell';shell.dataset.scene=kind;
  const stage=document.createElement('div');stage.className='scene-stage';img.before(shell);shell.append(stage);stage.append(img);
  let renderer;try{renderer=new T.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});}catch{shell.dataset.state='fallback';return()=>{shell.before(img);shell.remove();};}
@@ -89,10 +89,12 @@ function mount(host,kind){
  const {root}=model(kind);scene.add(root);const ground=new T.Mesh(new T.PlaneGeometry(20,20),new T.ShadowMaterial({opacity:.18}));ground.rotation.x=-Math.PI/2;ground.position.y=-1.65;ground.receiveShadow=true;scene.add(ground);
  const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('role','img');canvas.setAttribute('aria-label',names[kind]+': interactive 3D model. Arrow keys rotate; Escape restores the view.');stage.append(canvas);
  host.removeAttribute('aria-hidden');shell.dataset.state='loading';
- let disposed=false,raf=0,angleX=0,angleY=0,targetX=0,targetY=0,hoverX=0,hoverY=0,drag=null,lastFrame=0;
- function frame(now){raf=0;if(disposed)return;const dt=lastFrame?Math.min((now-lastFrame)/1000,.05):1/60;lastFrame=now;const ease=reduced.matches?1:1-Math.exp(-dt*12);angleX+=(targetX+hoverX-angleX)*ease;angleY+=(targetY+hoverY-angleY)*ease;root.rotation.set(angleX,angleY,0);
+ let disposed=false,raf=0,angleX=0,angleY=0,targetX=0,targetY=0,hoverX=0,hoverY=0,drag=null,lastFrame=0,spin=0;
+ function frame(now){raf=0;if(disposed)return;const dt=lastFrame?Math.min((now-lastFrame)/1000,.05):1/60;lastFrame=now;const ease=reduced.matches?1:1-Math.exp(-dt*12);if(!reduced.matches)spin+=dt*.52*dir;angleX+=(targetX+hoverX-angleX)*ease;angleY+=(targetY+hoverY-angleY)*ease;root.rotation.set(angleX,angleY+spin,0);
   renderer.render(scene,camera);if(shell.dataset.state!=='fallback')shell.dataset.state='ready';shell.dataset.rotation=angleX.toFixed(3)+','+angleY.toFixed(3);
-  if(Math.abs(targetX+hoverX-angleX)+Math.abs(targetY+hoverY-angleY)>.002)request();else lastFrame=0;
+  // Keep rendering while the continuous auto-rotation advances; only stop the
+  // loop when motion is reduced and the interactive angles have settled.
+  if(!reduced.matches||Math.abs(targetX+hoverX-angleX)+Math.abs(targetY+hoverY-angleY)>.002)request();else lastFrame=0;
  }
  function request(){if(!raf&&!disposed)raf=requestAnimationFrame(frame);}
  function restore(){targetX=targetY=hoverX=hoverY=0;request();}
@@ -139,7 +141,7 @@ function syncMountedScenes(){
   // live WebGL contexts. Other pages still use ordinary near-viewport loading.
   const chapter=host.closest('.scene-deck .hm-panel');
   const visible=record.near&&(!chapter||Math.abs(Number(chapter.dataset.sceneDistance))<1);
-  if(visible&&!record.dispose)record.dispose=mount(host,record.kind);
+  if(visible&&!record.dispose)record.dispose=mount(host,record.kind,record.dir);
   else if(!visible&&record.dispose){record.dispose();record.dispose=null;}
  }
 }
@@ -150,6 +152,9 @@ const observer=new IntersectionObserver(entries=>{
 document.addEventListener('lulazel-scene-update',syncMountedScenes);
 window.addEventListener('scroll',()=>{if(!compact.matches)return;lastScroll=performance.now();clearTimeout(mountTimer);mountTimer=setTimeout(syncMountedScenes,180);},{passive:true});
 function kindFor(host){return host.dataset.sceneKind||(host.querySelector('img')?.getAttribute('src')||'').match(/\/home\/([^/?]+)\.svg/)?.[1];}
+// Alternating rotation direction, mirroring the CSS nth-child alternation:
+// even children spin anticlockwise, odd children spin clockwise.
+function dirFor(host){const sibs=host.parentElement?Array.from(host.parentElement.children):[];return (sibs.indexOf(host)+1)%2===0?-1:1;}
 function scan(){
  // React can reuse a figure when navigating between service routes. The image
  // src changes without inserting a new host: dispose the old geometry as well.
@@ -161,7 +166,7 @@ function scan(){
  for(const host of document.querySelectorAll(selector)){
   if(tracked.has(host))continue;
   const kind=kindFor(host);if(!names[kind])continue;
-  tracked.set(host,{kind,dispose:null,near:false});observer.observe(host);
+  tracked.set(host,{kind,dir:dirFor(host),dispose:null,near:false});observer.observe(host);
  }
 }
 new MutationObserver(scan).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['src','data-scene-kind']});scan();

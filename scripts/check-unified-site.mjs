@@ -109,12 +109,14 @@ assert.ok(read('assets/js/app.source.js').includes("path:'/',element:h(LocalHome
 assert.match(read('assets/css/navigation.css'),/\.rhino-mobile-menu\s*\{[^}]*position:absolute; top:100%/,'Mobile menu must overlay, never resize the header and Home stage');
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-process-card').length,3);
 assert.equal(homeView.elements.filter(node=>node.props.className==='hm-testimonial-card').length,data.window.SITE.testimonials.length);
-const chapterNav=homeView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Home sections');
-const chapterLinks=nodes(chapterNav).filter(node=>node.type==='a');
-assert.equal(chapterLinks.length,11);
-assert.deepEqual(chapterLinks.map(node=>text(node)),Array.from({length:11},(_,i)=>String(i+1).padStart(2,'0')));
-for(const link of chapterLinks)assert.ok(homeView.elements.some(node=>node.type==='section'&&'#'+node.props.id===link.props.href),'Chapter links own real Home sections');
-assert.ok(homeView.elements.some(node=>node.props.role==='progressbar'&&node.props['aria-label']==='Page scroll progress'));
+// The numbered section rail is a DOM-driven component rendered in LocalPageFrame
+// (present on every page); it scans main for section[id] at mount. Verify the
+// home page still owns its real sections and the rail component is wired in.
+assert.ok(read('assets/js/pages.source.js').includes('h(LocalSectionRail)'),'Section rail is rendered in every page frame');
+assert.ok(read('assets/js/hybrid.source.js').includes('function LocalSectionRail'),'Section rail component exists');
+const homeSections=homeView.elements.filter(node=>node.type==='section'&&node.props.id);
+assert.ok(homeSections.length>=7,'Home page has real numbered sections for the rail');
+assert.ok(read('assets/js/hybrid.source.js').includes("'aria-label':'Page scroll progress'"),'Section rail exposes a scroll progress bar');
 assert.ok(homeView.elements.some(node=>node.props['aria-roledescription']==='carousel'));
 assert.ok(!homeView.elements.some(node=>node.props.className==='hm-testimonial-card'&&/Google|★|verified/i.test(text(node))),'Do not invent third-party ratings or verification');
 
@@ -227,8 +229,8 @@ for(const weight of [400,500,600,700,800]) assert.ok(fs.existsSync(path.join(roo
 const nav=render('LocalSiteHeader','/portfolio');
 const primary=nav.elements.find(node=>node.props.className==='rhino-primary');
 assert.deepEqual(nodes(primary).filter(node=>node.type==='link').map(node=>text(node)),['Home','My Services','Portfolio','About']);
-assert.ok(nav.elements.some(node=>node.props.className==='rhino-contact'&&text(node).includes('Let’s talk')));
-const headerContact=nav.elements.find(node=>node.props.className==='rhino-contact');
+assert.ok(nav.elements.some(node=>(node.props.className||'').includes('rhino-contact')&&text(node).includes('Let’s talk')));
+const headerContact=nav.elements.find(node=>(node.props.className||'').includes('rhino-contact'));
 assert.equal(headerContact.props.href,'https://wa.me/27837195064');
 assert.equal(headerContact.props.target,'_blank');
 assert.ok(text(headerContact).includes('Have an idea?'));

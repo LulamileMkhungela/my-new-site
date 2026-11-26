@@ -21,8 +21,8 @@ for (const scene of fs.readdirSync(path.join(root,'assets/img/home')).filter(fil
   vectorSource += svg;
   if (!svg.includes('<svg') || svg.includes('<image')) throw new Error('Expected a self-contained SVG scene: '+scene);
 }
-for(const scene of ['contact-conversation','contact-next-step']){
-  const svg=read('assets/img/portfolio/'+scene+'.svg');
+for(const scene of ['contact-conversation']){
+  const svg=read('assets/img/home/'+scene+'.svg');
   if(!svg.includes('<svg')||svg.includes('<image'))throw new Error('Expected a self-contained SVG scene: '+scene);
   vectorSource+=svg;
 }
@@ -51,7 +51,7 @@ const result=await build({stdin:{contents:declarations+'\n'+pageSource+'\n'+read
 const bundle=result.outputFiles[0].text;
 write('assets/js/site-app.js',bundle);
 const cssSources=['foundation','services','hybrid','navigation','pages','portfolio','home','studio','theme','motion','chapter-scroll','dimensional','spacing','glass'].map(name=>read('assets/css/'+name+'.css')).join('\n');
-const [{css}]=await new PurgeCSS().purge({dynamicAttributes:['data-scrollable','data-motion','data-motion-edge','data-scene-layer','data-scene-current','data-state'],content:[{raw:pageSource+read('assets/js/site-behaviour.js')+read('assets/js/interactive-scenes.source.js')+JSON.stringify(renderData),extension:'js'}],css:[{raw:cssSources}],safelist:{standard:[/^scene-/,/^hm-visual-/,/^studio-visual-/,/^is-/,/^motion-/,/^pf-card-/,/^dark$/,/^light$/]}});
+const [{css}]=await new PurgeCSS().purge({dynamicAttributes:['data-scrollable','data-motion','data-motion-edge','data-scene-layer','data-scene-current','data-state','data-cc-glow','data-typed'],content:[{raw:pageSource+read('assets/js/site-behaviour.js')+read('assets/js/interactive-scenes.source.js')+JSON.stringify(renderData),extension:'js'}],css:[{raw:cssSources}],safelist:{standard:[/^scene-/,/^hm-visual-/,/^studio-visual-/,/^is-/,/^motion-/,/^pf-card-/,/^dark$/,/^light$/]}});
 const sceneFiles=fs.readdirSync(path.join(root,'assets/js')).filter(file=>/^interactive-scenes-[a-f0-9]{10}\.js$/.test(file));
 if(sceneFiles.length!==1)throw new Error('Build exactly one versioned 3D engine first');
 const sceneFilename=sceneFiles[0];
