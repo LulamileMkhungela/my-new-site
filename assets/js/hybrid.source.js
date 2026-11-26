@@ -29,8 +29,6 @@ function LocalUiIcon({name='arrow-up-right',className=''}) {
     'form':['M5 3h10l4 4v14H5zM14 3v5h5M8 12h8M8 16h5'],
     'send':['m3 3 18 9-18 9 4-9-4-9zM7 12h14'],
     'check':['m5 12 4 4L19 6'],
-    'sun':['M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM12 1v2M12 21v2M4 12H2M22 12h-2M5 5 4 4M20 20l-1-1M19 5l1-1M4 20l1 1'],
-    'moon':['M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'],
     'sparkles':['M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8zM19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9zM5 15l.7 1.6L7 17l-1.3.4L5 19l-.7-1.6L3 17l1.3-.4z'],
     'archive':['M3 3h18v5H3zM5 8v13h14V8M10 12h4'],
     'grid':['M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'],
@@ -157,14 +155,6 @@ function LocalLogoAnim() {
     h(ve,{to:'/',className:'rhino-wordmark','aria-label':'LulaZel — Home'},h('img',{src:'/assets/img/logo.svg?v=abstract-1',alt:'LulaZel',width:248,height:80,fetchPriority:'high'})),
     h('span',{className:'logo-anim-tag','aria-live':'polite'},...taglines.map((tag,index)=>h('span',{key:tag,className:'logo-anim-tag-item'+(index===0?' is-on':''),style:{animationDelay:(index*3.2)+'s'}},tag))));
 }
-/** Light / dark theme toggle. Lives after the WhatsApp contact button. */
-function LocalThemeToggle({mobile=false}) {
-  const h=g.createElement;
-  const [light,setLight]=g.useState(()=>{try{return localStorage.getItem('lz-theme')==='light';}catch(e){return false;}});
-  g.useEffect(()=>{const root=document.documentElement;if(light)root.classList.add('light');else root.classList.remove('light');try{localStorage.setItem('lz-theme',light?'light':'dark');}catch(e){}},[light]);
-  return h('button',{type:'button',className:(mobile?'rhino-theme rhino-theme-mobile':'rhino-theme'),'aria-label':light?'Switch to dark theme':'Switch to light theme','aria-pressed':light,onClick:()=>setLight(value=>!value)},
-    h('span',{className:'rhino-theme-icon','aria-hidden':true},h(LocalUiIcon,{name:light?'sun':'moon'})));
-}
 /** Split About link + accessible disclosure; native links remain navigable. */
 function LocalContactDropdown({pathname}) {
   const h=g.createElement,[expanded,setExpanded]=g.useState(false),ref=g.useRef(null);
@@ -186,6 +176,8 @@ function LocalSiteHeader() {
   const pathname=Qt().pathname.replace(/\/$/,'')||'/';
   const [open,setOpen]=g.useState(false);
   const headerRef=g.useRef(null);
+  // The site is dark-only: clear any light preference saved by the retired theme toggle.
+  g.useEffect(()=>{document.documentElement.classList.remove('light');try{localStorage.removeItem('lz-theme');}catch(e){}},[]);
   g.useEffect(()=>setOpen(false),[pathname]);
   g.useEffect(()=>{
     if(!open)return;
@@ -208,8 +200,7 @@ function LocalSiteHeader() {
       h('nav',{className:'rhino-primary','aria-label':'Main navigation'},...links.filter(item=>item.href!=='/about').map(item=>h(ve,{key:item.href,to:item.href,className:active(item)?'is-active':'','aria-current':active(item)?'page':undefined},item.label)),h(LocalContactDropdown,{pathname})),
       h('div',{className:'rhino-header-actions'},h(ve,{to:'/services',className:'rhino-mobile-services'},'My Services'),
         h(LocalHeaderContactCard,{}),
-        h(LocalThemeToggle,{}),
         h('button',{type:'button',className:'rhino-menu-button','aria-label':open?'Close navigation':'Open navigation','aria-expanded':open,'aria-controls':'rhino-mobile-menu',onClick:()=>setOpen(!open)},h(LocalUiIcon,{name:open?'close':'menu'})))),
-    open&&h('nav',{id:'rhino-mobile-menu',className:'rhino-mobile-menu','aria-label':'Mobile navigation'},...links.map(item=>h(ve,{key:item.href,to:item.href,'aria-current':active(item)?'page':undefined},item.label)),h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setOpen(false)},'Contact'),h(LocalHeaderContactCard,{mobile:true}),h(LocalThemeToggle,{mobile:true})),
+    open&&h('nav',{id:'rhino-mobile-menu',className:'rhino-mobile-menu','aria-label':'Mobile navigation'},...links.map(item=>h(ve,{key:item.href,to:item.href,'aria-current':active(item)?'page':undefined},item.label)),h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setOpen(false)},'Contact'),h(LocalHeaderContactCard,{mobile:true})),
     h(LocalServiceNav,{active:localStrategyServices.some(item=>item.path===pathname)?pathname:pathname.startsWith('/services/')?pathname.slice(10):pathname==='/services'?'':'home'}));
 }

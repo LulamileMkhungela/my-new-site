@@ -8,7 +8,7 @@ for(const [route,meta]of Object.entries(routes)){
  assert.equal((html.match(/<h1[ >]/g)||[]).length,1,route+' needs real prerendered content');
  assert.equal((html.match(/<title[ >]/g)||[]).length,1);
  const css=html.match(/href="(\/assets\/css\/site-[a-f0-9]{10}\.css)"/);assert.ok(css,'CSS needs a build-specific filename');assert.ok(fs.existsSync(path.join(root,css[1])));assert.ok(fs.existsSync(path.join(root,'dist',css[1])));
- assert.ok(html.includes(':root.light'));assert.ok(html.includes('class="dark"'));
+ assert.ok(!html.includes(':root.light'),'light theme CSS must not ship');assert.ok(!html.includes('rhino-theme'),'theme toggle must not ship');assert.ok(html.includes('class="dark"'));
  assert.ok(html.includes('property="og:title"'));assert.ok(html.includes('name="twitter:card"'));
  assert.ok(!html.includes('api.fontshare.com'));assert.ok(!html.includes('fonts.googleapis.com'));
  const production=!!publication.url&&!meta.noindex;

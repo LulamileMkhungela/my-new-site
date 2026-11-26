@@ -188,18 +188,3 @@ body .hm-page~.site-back-to-top { bottom:calc(88px + env(safe-area-inset-bottom)
 }
 @media(prefers-reduced-motion:reduce) { .hm-quote-sculpture { transform:none; } .hm-quote-orbit,.hm-quote-sculpture,.hm-quote-spark { animation:none !important; } }
 @media(forced-colors:active) { .hm-scroll-progress>span { background:Highlight; }.hm-chapter-rail { background:Canvas; }.hm-chapter-rail a[aria-current='location'] { color:Highlight; outline:1px solid Highlight; } }
-
-/* ===== Light mode: strict white background, black/blackish text ===== */
-:root.light .hm-panel { background-color:#ffffff; color:#151f29; }
-:root.light .hm-panel .hm-copy h1, :root.light .hm-panel .hm-copy h2, :root.light .hm-panel .hm-copy h3 { color:#151f29; }
-:root.light .hm-panel .hm-description, :root.light .hm-panel .hm-scope-note, :root.light .hm-panel .hm-location { color:#3a4a55; }
-:root.light .hm-points li { border-bottom-color:#00000018; color:#3a4a55; }
-:root.light .hm-section-label .hybrid-eyebrow { color:#00a865; }
-:root.light .hm-chapter-rail { background:linear-gradient(0deg,#ffffff 0%,#ffffffed 65%,#ffffff00 100%); }
-:root.light .hm-chapter-rail a { color:#3a4a55; }
-:root.light .hm-chapter-rail a::before { background:#1b2833; color:#eff5f7; }
-:root.light .hm-chapter-rail a[aria-current='location'] { color:#00a865; }
-:root.light .hm-rail-hint, :root.light .hm-rail-current { color:#3a4a55; }
-:root.light .hm-testimonials-copy .hybrid-eyebrow { color:#00a865; }
-:root.light .hm-testimonial-card { color:#3a4a55; }
-:root.light .hm-testimonial-card h3 { color:#151f29; }
