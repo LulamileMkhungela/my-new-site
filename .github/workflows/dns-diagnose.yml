@@ -1,0 +1,21 @@
+name: DNS diagnose (temporary)
+on:
+  push:
+    branches: [arena/24763190-my-new-site]
+    paths: [.github/workflows/dns-diagnose.yml]
+permissions:
+  contents: read
+jobs:
+  dns:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y -qq dnsutils whois >/dev/null 2>&1 || true
+      - run: |
+          for q in "NS lulazel.co.za" "SOA lulazel.co.za" "A lulazel.co.za" "AAAA lulazel.co.za" "CNAME www.lulazel.co.za" "A www.lulazel.co.za" "MX lulazel.co.za"; do
+            set -- $q
+            echo "===== $1 $2 (8.8.8.8)"; dig +short $1 $2 @8.8.8.8
+            echo "===== $1 $2 (1.1.1.1)"; dig +short $1 $2 @1.1.1.1
+          done
+          echo "===== delegation from .co.za"; dig +norec NS lulazel.co.za @$(dig +short NS co.za | head -1) | sed -n '/AUTHORITY/,/^$/p;/status/p'
+          echo "===== trace"; dig +trace www.lulazel.co.za | tail -25
+          echo "===== whois"; whois -h whois.registry.net.za lulazel.co.za 2>&1 | head -60 || true
