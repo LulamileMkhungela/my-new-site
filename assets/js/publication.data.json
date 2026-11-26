@@ -2,8 +2,8 @@
   "publication": {
     "url": "https://www.lulazel.co.za",
     "name": "LulaZel",
-    "title": "LulaZel — Frontend Developer & Designer in South Africa",
-    "description": "Lulamile Mkhungela — frontend developer, designer and digital partner in Johannesburg, South Africa. Websites, product design, business systems and launch, built end to end, remote or local.",
+    "title": "LulaZel Digital Studio — Websites, Apps & Business Systems in Johannesburg",
+    "description": "LulaZel Digital Studio designs and builds websites, online stores, apps and business systems for South African businesses. Strategy, design, development, hosting and launch under one roof. Websites from R18,000.",
     "locale": "en_ZA",
     "language": "en-ZA",
     "email": "mkhungela.l@gmail.com",
@@ -11,27 +11,57 @@
     "linkedin": "https://www.linkedin.com/in/lulamile-mkhungela/",
     "socialImage": "/assets/img/social-card.png?v=34b5cec853",
     "ownerName": "Lulamile Mkhungela",
-    "socialImageAlt": "LulaZel — Ideas into digital impact. Websites, product design, business systems and practical AI."
+    "socialImageAlt": "LulaZel Digital Studio — Ideas into digital impact. Websites, product design, business systems and practical AI.",
+    "legalName": "LulaZel Digital Studio"
   },
   "routes": {
     "/": {
-      "title": "LulaZel — Frontend Developer & Designer in South Africa",
-      "description": "Lulamile Mkhungela — frontend developer, designer and digital partner in Johannesburg, South Africa. Websites, product design, business systems and launch, built end to end, remote or local.",
+      "title": "LulaZel Digital Studio — Websites, Apps & Business Systems in Johannesburg",
+      "description": "LulaZel Digital Studio designs and builds websites, online stores, apps and business systems for South African businesses. Strategy, design, development, hosting and launch under one roof. Websites from R18,000.",
       "canonical": "/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -41,47 +71,77 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/#webpage",
-            "name": "LulaZel — Frontend Developer & Designer in South Africa",
-            "description": "Lulamile Mkhungela — frontend developer, designer and digital partner in Johannesburg, South Africa. Websites, product design, business systems and launch, built end to end, remote or local.",
+            "name": "LulaZel Digital Studio — Websites, Apps & Business Systems in Johannesburg",
+            "description": "LulaZel Digital Studio designs and builds websites, online stores, apps and business systems for South African businesses. Strategy, design, development, hosting and launch under one roof. Websites from R18,000.",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           }
         ]
       }
     },
     "/about": {
-      "title": "About LulaZel | LulaZel",
-      "description": "LulaZel: frontend developer, designer and digital partner in Johannesburg, South Africa. Product design, development, integrations and launch for websites, apps and connected systems, worldwide.",
+      "title": "About | LulaZel Digital Studio",
+      "description": "LulaZel Digital Studio is a Johannesburg design and development studio. We turn business ideas into websites, apps and connected systems — from strategy and design to development, integrations and launch.",
       "canonical": "/about/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -91,24 +151,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/about/#webpage",
-            "name": "About LulaZel | LulaZel",
-            "description": "LulaZel: frontend developer, designer and digital partner in Johannesburg, South Africa. Product design, development, integrations and launch for websites, apps and connected systems, worldwide.",
+            "name": "About | LulaZel Digital Studio",
+            "description": "LulaZel Digital Studio is a Johannesburg design and development studio. We turn business ideas into websites, apps and connected systems — from strategy and design to development, integrations and launch.",
             "url": "https://www.lulazel.co.za/about/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -123,7 +184,7 @@
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "About LulaZel",
+                "name": "About",
                 "item": "https://www.lulazel.co.za/about/"
               }
             ]
@@ -132,23 +193,52 @@
       }
     },
     "/contact": {
-      "title": "Book a Meeting | LulaZel",
-      "description": "Book a meeting or request services with LulaZel — frontend developer and designer in South Africa. Websites, hosting setup, business systems, automation, AI and creative services, remote or local.",
+      "title": "Contact & Book a Meeting | LulaZel Digital Studio",
+      "description": "Contact LulaZel Digital Studio to discuss a website, online store, app or business system. Book a meeting, send an enquiry or get an instant estimate. Johannesburg and remote.",
       "canonical": "/contact/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -158,24 +248,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/contact/#webpage",
-            "name": "Book a Meeting | LulaZel",
-            "description": "Book a meeting or request services with LulaZel — frontend developer and designer in South Africa. Websites, hosting setup, business systems, automation, AI and creative services, remote or local.",
+            "name": "Contact & Book a Meeting | LulaZel Digital Studio",
+            "description": "Contact LulaZel Digital Studio to discuss a website, online store, app or business system. Book a meeting, send an enquiry or get an instant estimate. Johannesburg and remote.",
             "url": "https://www.lulazel.co.za/contact/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -190,7 +281,7 @@
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Book a Meeting",
+                "name": "Contact & Book a Meeting",
                 "item": "https://www.lulazel.co.za/contact/"
               }
             ]
@@ -199,23 +290,52 @@
       }
     },
     "/portfolio": {
-      "title": "Portfolio | LulaZel",
-      "description": "Explore LulaZel’s websites, apps, product-design case studies and frontend projects for South African and international clients, plus AI design prompts.",
+      "title": "Work | LulaZel Digital Studio",
+      "description": "Selected work by LulaZel Digital Studio: websites, apps, product-design case studies and frontend builds for South African and international clients, plus AI design resources.",
       "canonical": "/portfolio/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -225,24 +345,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/portfolio/#webpage",
-            "name": "Portfolio | LulaZel",
-            "description": "Explore LulaZel’s websites, apps, product-design case studies and frontend projects for South African and international clients, plus AI design prompts.",
+            "name": "Work | LulaZel Digital Studio",
+            "description": "Selected work by LulaZel Digital Studio: websites, apps, product-design case studies and frontend builds for South African and international clients, plus AI design resources.",
             "url": "https://www.lulazel.co.za/portfolio/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -257,7 +378,7 @@
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Portfolio",
+                "name": "Work",
                 "item": "https://www.lulazel.co.za/portfolio/"
               }
             ]
@@ -266,23 +387,52 @@
       }
     },
     "/services": {
-      "title": "My Services | LulaZel",
-      "description": "Services by LulaZel in South Africa: website design, frontend development, hosting setup, ecommerce, business systems, automation, AI, SEO and Google Ads.",
+      "title": "Services | LulaZel Digital Studio",
+      "description": "Services by LulaZel Digital Studio in South Africa: website design, ecommerce, business systems, hosting setup, workflow automation, AI assistants, graphic design, SEO and Google Ads.",
       "canonical": "/services/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -292,24 +442,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/#webpage",
-            "name": "My Services | LulaZel",
-            "description": "Services by LulaZel in South Africa: website design, frontend development, hosting setup, ecommerce, business systems, automation, AI, SEO and Google Ads.",
+            "name": "Services | LulaZel Digital Studio",
+            "description": "Services by LulaZel Digital Studio in South Africa: website design, ecommerce, business systems, hosting setup, workflow automation, AI assistants, graphic design, SEO and Google Ads.",
             "url": "https://www.lulazel.co.za/services/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -324,7 +475,7 @@
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "My Services",
+                "name": "Services",
                 "item": "https://www.lulazel.co.za/services/"
               }
             ]
@@ -332,24 +483,53 @@
         ]
       }
     },
-    "/privacy": {
-      "title": "Privacy & image rights | LulaZel",
-      "description": "How portfolio enquiries, third-party services, personal information and image rights are handled.",
-      "canonical": "/privacy/",
+    "/pricing": {
+      "title": "Pricing | LulaZel Digital Studio",
+      "description": "Starting prices from LulaZel Digital Studio: websites from R18,000, online stores from R40,000, apps from R38,000, business systems from R50,000 and graphic design from R14,000. Written quote before work begins.",
+      "canonical": "/pricing/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
           {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -359,24 +539,122 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.lulazel.co.za/pricing/#webpage",
+            "name": "Pricing | LulaZel Digital Studio",
+            "description": "Starting prices from LulaZel Digital Studio: websites from R18,000, online stores from R40,000, apps from R38,000, business systems from R50,000 and graphic design from R14,000. Written quote before work begins.",
+            "url": "https://www.lulazel.co.za/pricing/",
+            "inLanguage": "en-ZA",
+            "isPartOf": {
+              "@id": "https://www.lulazel.co.za/#website"
+            },
+            "about": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.lulazel.co.za/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Pricing",
+                "item": "https://www.lulazel.co.za/pricing/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "/privacy": {
+      "title": "Privacy & image rights | LulaZel Digital Studio",
+      "description": "How enquiries, third-party services, personal information and image rights are handled.",
+      "canonical": "/privacy/",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
               "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.lulazel.co.za/#person",
+            "name": "Lulamile Mkhungela",
+            "url": "https://www.lulazel.co.za/about/",
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
+            "homeLocation": {
+              "@type": "Place",
+              "name": "Johannesburg, South Africa"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.lulazel.co.za/#website",
+            "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
+            "url": "https://www.lulazel.co.za/",
+            "inLanguage": "en-ZA",
+            "publisher": {
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/privacy/#webpage",
-            "name": "Privacy & image rights | LulaZel",
-            "description": "How portfolio enquiries, third-party services, personal information and image rights are handled.",
+            "name": "Privacy & image rights | LulaZel Digital Studio",
+            "description": "How enquiries, third-party services, personal information and image rights are handled.",
             "url": "https://www.lulazel.co.za/privacy/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -400,37 +678,66 @@
       }
     },
     "/tools": {
-      "title": "Tools | LulaZel",
+      "title": "Tools | LulaZel Digital Studio",
       "description": "A collection of practical design and development resources.",
       "noindex": true,
       "canonical": "/tools/",
       "schema": null
     },
     "/404": {
-      "title": "Page not found | LulaZel",
+      "title": "Page not found | LulaZel Digital Studio",
       "description": "This page could not be found. Explore services and projects from LulaZel.",
       "noindex": true,
       "canonical": "/404/",
       "schema": null
     },
     "/services/web-hosting": {
-      "title": "Web Hosting | LulaZel",
+      "title": "Web Hosting | LulaZel Digital Studio",
       "description": "South African hosting setup, provider selection and ongoing website management.",
       "canonical": "/services/web-hosting/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -440,16 +747,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/web-hosting/#webpage",
-            "name": "Web Hosting | LulaZel",
+            "name": "Web Hosting | LulaZel Digital Studio",
             "description": "South African hosting setup, provider selection and ongoing website management.",
             "url": "https://www.lulazel.co.za/services/web-hosting/",
             "inLanguage": "en-ZA",
@@ -457,7 +765,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -483,7 +791,7 @@
             "description": "South African hosting setup, provider selection and ongoing website management.",
             "url": "https://www.lulazel.co.za/services/web-hosting/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -494,23 +802,52 @@
       }
     },
     "/services/website-design": {
-      "title": "Website Design | LulaZel",
+      "title": "Website Design | LulaZel Digital Studio",
       "description": "Website design and frontend development for South African businesses, HTML email design and integrations.",
       "canonical": "/services/website-design/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -520,16 +857,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/website-design/#webpage",
-            "name": "Website Design | LulaZel",
+            "name": "Website Design | LulaZel Digital Studio",
             "description": "Website design and frontend development for South African businesses, HTML email design and integrations.",
             "url": "https://www.lulazel.co.za/services/website-design/",
             "inLanguage": "en-ZA",
@@ -537,7 +875,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -563,7 +901,7 @@
             "description": "Website design and frontend development for South African businesses, HTML email design and integrations.",
             "url": "https://www.lulazel.co.za/services/website-design/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -574,23 +912,52 @@
       }
     },
     "/services/ecommerce": {
-      "title": "Ecommerce | LulaZel",
+      "title": "Ecommerce | LulaZel Digital Studio",
       "description": "Online stores and ecommerce for South African businesses, an easy journey from product to checkout.",
       "canonical": "/services/ecommerce/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -600,16 +967,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/ecommerce/#webpage",
-            "name": "Ecommerce | LulaZel",
+            "name": "Ecommerce | LulaZel Digital Studio",
             "description": "Online stores and ecommerce for South African businesses, an easy journey from product to checkout.",
             "url": "https://www.lulazel.co.za/services/ecommerce/",
             "inLanguage": "en-ZA",
@@ -617,7 +985,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -643,7 +1011,7 @@
             "description": "Online stores and ecommerce for South African businesses, an easy journey from product to checkout.",
             "url": "https://www.lulazel.co.za/services/ecommerce/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -654,23 +1022,52 @@
       }
     },
     "/services/business-systems": {
-      "title": "Business Systems | LulaZel",
+      "title": "Business Systems | LulaZel Digital Studio",
       "description": "Custom business systems, tools, portals and dashboards built around South African operations.",
       "canonical": "/services/business-systems/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -680,16 +1077,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/business-systems/#webpage",
-            "name": "Business Systems | LulaZel",
+            "name": "Business Systems | LulaZel Digital Studio",
             "description": "Custom business systems, tools, portals and dashboards built around South African operations.",
             "url": "https://www.lulazel.co.za/services/business-systems/",
             "inLanguage": "en-ZA",
@@ -697,7 +1095,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -723,7 +1121,7 @@
             "description": "Custom business systems, tools, portals and dashboards built around South African operations.",
             "url": "https://www.lulazel.co.za/services/business-systems/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -734,23 +1132,52 @@
       }
     },
     "/services/workflow-automation": {
-      "title": "Workflow Automation & AI | LulaZel",
+      "title": "Workflow Automation & AI | LulaZel Digital Studio",
       "description": "Workflow automation and practical AI for South African businesses, cutting repetitive work.",
       "canonical": "/services/workflow-automation/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -760,16 +1187,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/workflow-automation/#webpage",
-            "name": "Workflow Automation & AI | LulaZel",
+            "name": "Workflow Automation & AI | LulaZel Digital Studio",
             "description": "Workflow automation and practical AI for South African businesses, cutting repetitive work.",
             "url": "https://www.lulazel.co.za/services/workflow-automation/",
             "inLanguage": "en-ZA",
@@ -777,7 +1205,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -803,7 +1231,7 @@
             "description": "Workflow automation and practical AI for South African businesses, cutting repetitive work.",
             "url": "https://www.lulazel.co.za/services/workflow-automation/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -814,23 +1242,52 @@
       }
     },
     "/services/ai-assistants": {
-      "title": "AI Assistants | LulaZel",
+      "title": "AI Assistants | LulaZel Digital Studio",
       "description": "AI assistants that help customers and teams in South Africa find answers in your knowledge.",
       "canonical": "/services/ai-assistants/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -840,16 +1297,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/ai-assistants/#webpage",
-            "name": "AI Assistants | LulaZel",
+            "name": "AI Assistants | LulaZel Digital Studio",
             "description": "AI assistants that help customers and teams in South Africa find answers in your knowledge.",
             "url": "https://www.lulazel.co.za/services/ai-assistants/",
             "inLanguage": "en-ZA",
@@ -857,7 +1315,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -883,7 +1341,7 @@
             "description": "AI assistants that help customers and teams in South Africa find answers in your knowledge.",
             "url": "https://www.lulazel.co.za/services/ai-assistants/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -894,23 +1352,52 @@
       }
     },
     "/services/basic-graphic-design": {
-      "title": "Basic Graphic Design | LulaZel",
+      "title": "Basic Graphic Design | LulaZel Digital Studio",
       "description": "Simple, consistent graphic design for South African social, digital and print needs.",
       "canonical": "/services/basic-graphic-design/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -920,16 +1407,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/basic-graphic-design/#webpage",
-            "name": "Basic Graphic Design | LulaZel",
+            "name": "Basic Graphic Design | LulaZel Digital Studio",
             "description": "Simple, consistent graphic design for South African social, digital and print needs.",
             "url": "https://www.lulazel.co.za/services/basic-graphic-design/",
             "inLanguage": "en-ZA",
@@ -937,7 +1425,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -963,7 +1451,7 @@
             "description": "Simple, consistent graphic design for South African social, digital and print needs.",
             "url": "https://www.lulazel.co.za/services/basic-graphic-design/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -974,23 +1462,52 @@
       }
     },
     "/services/seo-and-search": {
-      "title": "SEO & Search | LulaZel",
+      "title": "SEO & Search | LulaZel Digital Studio",
       "description": "SEO and search that helps relevant South African customers discover your business.",
       "canonical": "/services/seo-and-search/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1000,16 +1517,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/seo-and-search/#webpage",
-            "name": "SEO & Search | LulaZel",
+            "name": "SEO & Search | LulaZel Digital Studio",
             "description": "SEO and search that helps relevant South African customers discover your business.",
             "url": "https://www.lulazel.co.za/services/seo-and-search/",
             "inLanguage": "en-ZA",
@@ -1017,7 +1535,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1043,7 +1561,7 @@
             "description": "SEO and search that helps relevant South African customers discover your business.",
             "url": "https://www.lulazel.co.za/services/seo-and-search/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -1054,23 +1572,52 @@
       }
     },
     "/services/google-ads": {
-      "title": "Google Ads | LulaZel",
+      "title": "Google Ads | LulaZel Digital Studio",
       "description": "Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.",
       "canonical": "/services/google-ads/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1080,16 +1627,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/services/google-ads/#webpage",
-            "name": "Google Ads | LulaZel",
+            "name": "Google Ads | LulaZel Digital Studio",
             "description": "Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.",
             "url": "https://www.lulazel.co.za/services/google-ads/",
             "inLanguage": "en-ZA",
@@ -1097,7 +1645,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1123,7 +1671,7 @@
             "description": "Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.",
             "url": "https://www.lulazel.co.za/services/google-ads/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -1134,23 +1682,52 @@
       }
     },
     "/product-design-strategy": {
-      "title": "Product Design & Strategy | LulaZel",
+      "title": "Product Design & Strategy | LulaZel Digital Studio",
       "description": "Product design and strategy for South African teams — research, direction and usable experiences.",
       "canonical": "/product-design-strategy/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1160,16 +1737,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/product-design-strategy/#webpage",
-            "name": "Product Design & Strategy | LulaZel",
+            "name": "Product Design & Strategy | LulaZel Digital Studio",
             "description": "Product design and strategy for South African teams — research, direction and usable experiences.",
             "url": "https://www.lulazel.co.za/product-design-strategy/",
             "inLanguage": "en-ZA",
@@ -1177,7 +1755,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1203,7 +1781,7 @@
             "description": "Product design and strategy for South African teams — research, direction and usable experiences.",
             "url": "https://www.lulazel.co.za/product-design-strategy/",
             "provider": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             },
             "areaServed": {
               "@type": "Country",
@@ -1214,23 +1792,52 @@
       }
     },
     "/project/nerdma": {
-      "title": "Nerdma | LulaZel",
+      "title": "Nerdma | LulaZel Digital Studio",
       "description": "Website redesign and product dashboards that connect Nerdma’s governance, risk and sustainability offer.",
       "canonical": "/project/nerdma/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1240,16 +1847,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/nerdma/#webpage",
-            "name": "Nerdma | LulaZel",
+            "name": "Nerdma | LulaZel Digital Studio",
             "description": "Website redesign and product dashboards that connect Nerdma’s governance, risk and sustainability offer.",
             "url": "https://www.lulazel.co.za/project/nerdma/",
             "inLanguage": "en-ZA",
@@ -1257,7 +1865,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1281,23 +1889,52 @@
       }
     },
     "/project/snb": {
-      "title": "SNB | LulaZel",
+      "title": "SNB | LulaZel Digital Studio",
       "description": "Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.",
       "canonical": "/project/snb/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1307,16 +1944,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/snb/#webpage",
-            "name": "SNB | LulaZel",
+            "name": "SNB | LulaZel Digital Studio",
             "description": "Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.",
             "url": "https://www.lulazel.co.za/project/snb/",
             "inLanguage": "en-ZA",
@@ -1324,7 +1962,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1348,23 +1986,52 @@
       }
     },
     "/project/foodiezone": {
-      "title": "FoodieZone | LulaZel",
+      "title": "FoodieZone | LulaZel Digital Studio",
       "description": "An ordering PWA designed around a local kitchen, a clear menu and an easier path to reorder.",
       "canonical": "/project/foodiezone/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1374,16 +2041,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/foodiezone/#webpage",
-            "name": "FoodieZone | LulaZel",
+            "name": "FoodieZone | LulaZel Digital Studio",
             "description": "An ordering PWA designed around a local kitchen, a clear menu and an easier path to reorder.",
             "url": "https://www.lulazel.co.za/project/foodiezone/",
             "inLanguage": "en-ZA",
@@ -1391,7 +2059,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1415,23 +2083,52 @@
       }
     },
     "/project/lulafind": {
-      "title": "LulaFind | LulaZel",
+      "title": "LulaFind | LulaZel Digital Studio",
       "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
       "canonical": "/project/lulafind/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1441,16 +2138,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/lulafind/#webpage",
-            "name": "LulaFind | LulaZel",
+            "name": "LulaFind | LulaZel Digital Studio",
             "description": "Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.",
             "url": "https://www.lulazel.co.za/project/lulafind/",
             "inLanguage": "en-ZA",
@@ -1458,7 +2156,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1482,23 +2180,52 @@
       }
     },
     "/project/sesyme": {
-      "title": "Sesyme | LulaZel",
-      "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
+      "title": "Sesyme | LulaZel Digital Studio",
+      "description": "A co-learning app our founder created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
       "canonical": "/project/sesyme/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1508,24 +2235,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/sesyme/#webpage",
-            "name": "Sesyme | LulaZel",
-            "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
+            "name": "Sesyme | LulaZel Digital Studio",
+            "description": "A co-learning app our founder created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
             "url": "https://www.lulazel.co.za/project/sesyme/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1549,23 +2277,52 @@
       }
     },
     "/project/lunianetwork": {
-      "title": "LuniaNetwork | LulaZel",
-      "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because I was no longer updating it.",
+      "title": "LuniaNetwork | LulaZel Digital Studio",
+      "description": "A personal app our founder developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because it was no longer being updated.",
       "canonical": "/project/lunianetwork/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1575,24 +2332,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/lunianetwork/#webpage",
-            "name": "LuniaNetwork | LulaZel",
-            "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because I was no longer updating it.",
+            "name": "LuniaNetwork | LulaZel Digital Studio",
+            "description": "A personal app our founder developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because it was no longer being updated.",
             "url": "https://www.lulazel.co.za/project/lunianetwork/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1616,23 +2374,52 @@
       }
     },
     "/project/prodops": {
-      "title": "ProdOps | LulaZel",
+      "title": "ProdOps | LulaZel Digital Studio",
       "description": "A role-based product workspace connecting business, design, development, quality and delivery.",
       "canonical": "/project/prodops/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1642,16 +2429,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prodops/#webpage",
-            "name": "ProdOps | LulaZel",
+            "name": "ProdOps | LulaZel Digital Studio",
             "description": "A role-based product workspace connecting business, design, development, quality and delivery.",
             "url": "https://www.lulazel.co.za/project/prodops/",
             "inLanguage": "en-ZA",
@@ -1659,7 +2447,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1683,23 +2471,52 @@
       }
     },
     "/project/forma": {
-      "title": "Forma Design System | LulaZel",
+      "title": "Forma Design System | LulaZel Digital Studio",
       "description": "A work-in-progress design-to-code system connecting Figma, typed tokens, React, Angular and Storybook.",
       "canonical": "/project/forma/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1709,16 +2526,17 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/forma/#webpage",
-            "name": "Forma Design System | LulaZel",
+            "name": "Forma Design System | LulaZel Digital Studio",
             "description": "A work-in-progress design-to-code system connecting Figma, typed tokens, React, Angular and Storybook.",
             "url": "https://www.lulazel.co.za/project/forma/",
             "inLanguage": "en-ZA",
@@ -1726,7 +2544,7 @@
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1750,23 +2568,52 @@
       }
     },
     "/project/prompt-service-provider-app": {
-      "title": "Service Provider App | LulaZel",
-      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "title": "Service Provider App | LulaZel Digital Studio",
+      "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
       "canonical": "/project/prompt-service-provider-app/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1776,24 +2623,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prompt-service-provider-app/#webpage",
-            "name": "Service Provider App | LulaZel",
-            "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+            "name": "Service Provider App | LulaZel Digital Studio",
+            "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
             "url": "https://www.lulazel.co.za/project/prompt-service-provider-app/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1817,23 +2665,52 @@
       }
     },
     "/project/prompt-finance-homescreen": {
-      "title": "Finance homescreen | LulaZel",
-      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "title": "Finance homescreen | LulaZel Digital Studio",
+      "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
       "canonical": "/project/prompt-finance-homescreen/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1843,24 +2720,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prompt-finance-homescreen/#webpage",
-            "name": "Finance homescreen | LulaZel",
-            "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+            "name": "Finance homescreen | LulaZel Digital Studio",
+            "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
             "url": "https://www.lulazel.co.za/project/prompt-finance-homescreen/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1884,23 +2762,52 @@
       }
     },
     "/project/prompt-delivery-app": {
-      "title": "Delivery App | LulaZel",
-      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "title": "Delivery App | LulaZel Digital Studio",
+      "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
       "canonical": "/project/prompt-delivery-app/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1910,24 +2817,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prompt-delivery-app/#webpage",
-            "name": "Delivery App | LulaZel",
-            "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+            "name": "Delivery App | LulaZel Digital Studio",
+            "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
             "url": "https://www.lulazel.co.za/project/prompt-delivery-app/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -1951,23 +2859,52 @@
       }
     },
     "/project/prompt-food-delivery-app-home-screen": {
-      "title": "Food delivery app home screen | LulaZel",
-      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "title": "Food delivery app home screen | LulaZel Digital Studio",
+      "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
       "canonical": "/project/prompt-food-delivery-app-home-screen/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -1977,24 +2914,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prompt-food-delivery-app-home-screen/#webpage",
-            "name": "Food delivery app home screen | LulaZel",
-            "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+            "name": "Food delivery app home screen | LulaZel Digital Studio",
+            "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
             "url": "https://www.lulazel.co.za/project/prompt-food-delivery-app-home-screen/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -2018,23 +2956,52 @@
       }
     },
     "/project/prompt-oto-e-commerce-website": {
-      "title": "OtO e-commerce website | LulaZel",
-      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "title": "OtO e-commerce website | LulaZel Digital Studio",
+      "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
       "canonical": "/project/prompt-oto-e-commerce-website/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -2044,24 +3011,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prompt-oto-e-commerce-website/#webpage",
-            "name": "OtO e-commerce website | LulaZel",
-            "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+            "name": "OtO e-commerce website | LulaZel Digital Studio",
+            "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
             "url": "https://www.lulazel.co.za/project/prompt-oto-e-commerce-website/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
@@ -2085,23 +3053,52 @@
       }
     },
     "/project/prompt-fashion-shopping-app-home-screen": {
-      "title": "Fashion shopping app home screen | LulaZel",
-      "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+      "title": "Fashion shopping app home screen | LulaZel Digital Studio",
+      "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
       "canonical": "/project/prompt-fashion-shopping-app-home-screen/",
       "schema": {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfessionalService",
+            "@id": "https://www.lulazel.co.za/#organization",
+            "name": "LulaZel Digital Studio",
+            "alternateName": "LulaZel",
+            "url": "https://www.lulazel.co.za/",
+            "logo": "https://www.lulazel.co.za/assets/img/icon-512.png",
+            "image": "https://www.lulazel.co.za/assets/img/social-card.png?v=34b5cec853",
+            "email": "mkhungela.l@gmail.com",
+            "telephone": "+27837195064",
+            "priceRange": "R14,000+",
+            "founder": {
+              "@id": "https://www.lulazel.co.za/#person"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/lulamile-mkhungela/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Johannesburg",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "South Africa"
+            }
+          },
+          {
             "@type": "Person",
             "@id": "https://www.lulazel.co.za/#person",
             "name": "Lulamile Mkhungela",
             "url": "https://www.lulazel.co.za/about/",
-            "email": "mkhungela.l@gmail.com",
-            "telephone": "+27837195064",
             "sameAs": [
               "https://www.linkedin.com/in/lulamile-mkhungela/"
             ],
-            "jobTitle": "Frontend Developer & Designer",
+            "jobTitle": "Founder",
+            "worksFor": {
+              "@id": "https://www.lulazel.co.za/#organization"
+            },
             "homeLocation": {
               "@type": "Place",
               "name": "Johannesburg, South Africa"
@@ -2111,24 +3108,25 @@
             "@type": "WebSite",
             "@id": "https://www.lulazel.co.za/#website",
             "name": "LulaZel",
+            "alternateName": "LulaZel Digital Studio",
             "url": "https://www.lulazel.co.za/",
             "inLanguage": "en-ZA",
             "publisher": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {
             "@type": "WebPage",
             "@id": "https://www.lulazel.co.za/project/prompt-fashion-shopping-app-home-screen/#webpage",
-            "name": "Fashion shopping app home screen | LulaZel",
-            "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+            "name": "Fashion shopping app home screen | LulaZel Digital Studio",
+            "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
             "url": "https://www.lulazel.co.za/project/prompt-fashion-shopping-app-home-screen/",
             "inLanguage": "en-ZA",
             "isPartOf": {
               "@id": "https://www.lulazel.co.za/#website"
             },
             "about": {
-              "@id": "https://www.lulazel.co.za/#person"
+              "@id": "https://www.lulazel.co.za/#organization"
             }
           },
           {

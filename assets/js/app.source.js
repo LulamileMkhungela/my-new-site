@@ -61,6 +61,7 @@ function LocalApplication(){
    h(Route,{path:'/product-design-strategy',element:h(LocalServicesPage)}),
    h(Route,{path:'/portfolio',element:h(LocalPortfolioPage)}),
    h(Route,{path:'/project/:id',element:h(LocalProjectPage)}),
+   h(Route,{path:'/pricing',element:h(LocalPricingPage)}),
    h(Route,{path:'/about',element:h(LocalAboutPage)}),
    h(Route,{path:'/contact',element:h(LocalContactPage)}),
    h(Route,{path:'/tools',element:h(LocalToolsPage)}),

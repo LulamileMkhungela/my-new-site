@@ -51,7 +51,7 @@ const result=await build({stdin:{contents:declarations+'\n'+pageSource+'\n'+read
 const bundle=result.outputFiles[0].text;
 write('assets/js/site-app.js',bundle);
 const cssSources=['foundation','services','hybrid','navigation','pages','portfolio','home','studio','theme','motion','chapter-scroll','dimensional','spacing','glass'].map(name=>read('assets/css/'+name+'.css')).join('\n');
-const [{css}]=await new PurgeCSS().purge({dynamicAttributes:['data-scrollable','data-motion','data-motion-edge','data-scene-layer','data-scene-current','data-state','data-cc-glow','data-typed'],content:[{raw:pageSource+read('assets/js/site-behaviour.js')+read('assets/js/interactive-scenes.source.js')+JSON.stringify(renderData),extension:'js'}],css:[{raw:cssSources}],safelist:{standard:[/^scene-/,/^hm-visual-/,/^studio-visual-/,/^is-/,/^motion-/,/^pf-card-/,/^dark$/,/^light$/]}});
+const [{css}]=await new PurgeCSS().purge({dynamicAttributes:['data-scrollable','data-motion','data-motion-edge','data-scene-layer','data-scene-current','data-state','data-cc-glow','data-typed'],content:[{raw:pageSource+read('assets/js/site-behaviour.js')+read('assets/js/interactive-scenes.source.js')+JSON.stringify(renderData),extension:'js'}],css:[{raw:cssSources}],safelist:{standard:[/^scene-/,/^hm-visual-/,/^studio-visual-/,/^is-/,/^motion-/,/^pf-card-/,/^dark$/]}});
 const sceneFiles=fs.readdirSync(path.join(root,'assets/js')).filter(file=>/^interactive-scenes-[a-f0-9]{10}\.js$/.test(file));
 if(sceneFiles.length!==1)throw new Error('Build exactly one versioned 3D engine first');
 const sceneFilename=sceneFiles[0];
@@ -68,7 +68,7 @@ for(const file of fs.readdirSync(path.join(root,'assets/css')))if(/^site-[a-f0-9
 write('assets/css/'+cssFilename,css);
 
 const projectRoutes = Object.fromEntries(portfolioProjects.filter(project=>project.details).map(project=>[project.id,project.href]));
-const componentFor=route=>route==='/'?'LocalHomePage':route==='/about'?'LocalAboutPage':route==='/contact'?'LocalContactPage':route==='/privacy'?'LocalPrivacyPage':route==='/portfolio'?'LocalPortfolioPage':route==='/tools'?'LocalToolsPage':route==='/services'||route.startsWith('/services/')||route==='/product-design-strategy'?'LocalServicesPage':route.startsWith('/project/')?'LocalProjectPage':'LocalNotFoundPage';
+const componentFor=route=>route==='/'?'LocalHomePage':route==='/about'?'LocalAboutPage':route==='/contact'?'LocalContactPage':route==='/pricing'?'LocalPricingPage':route==='/privacy'?'LocalPrivacyPage':route==='/portfolio'?'LocalPortfolioPage':route==='/tools'?'LocalToolsPage':route==='/services'||route.startsWith('/services/')||route==='/product-design-strategy'?'LocalServicesPage':route.startsWith('/project/')?'LocalProjectPage':'LocalNotFoundPage';
 function htmlFor(route,{alias=false}={}) {
   const meta={...(seo[route]||seo['/404']),...(alias?{noindex:true}:{})};
   const markup=prerender(root,route,componentFor(route),renderData);

@@ -369,7 +369,7 @@
     "id": "sesyme",
     "client": "Sesyme",
     "title": "Learning, in your pocket.",
-    "description": "A co-learning app I created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
+    "description": "A co-learning app our founder created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.",
     "categories": [
       "apps"
     ],
@@ -386,7 +386,7 @@
         {
           "title": "Work project · 2019",
           "paragraphs": [
-            "I created this app while working at Sesyme in 2019. It is a co-learning platform for university students, combining question-and-answer learning with a digital reading experience."
+            "Our founder created this app while working at Sesyme in 2019. It is a co-learning platform for university students, combining question-and-answer learning with a digital reading experience."
           ]
         },
         {
@@ -412,13 +412,13 @@
     "historical": true,
     "year": "2019",
     "projectLabel": "Mobile",
-    "cardDescription": "A student co-learning and reading app I created while working at Sesyme in 2019."
+    "cardDescription": "A student co-learning and reading app our founder created while working at Sesyme in 2019."
   },
   {
     "id": "lunianetwork",
     "client": "LuniaNetwork",
     "title": "Helping people find and reconnect.",
-    "description": "A personal app I developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because I was no longer updating it.",
+    "description": "A personal app our founder developed and published in 2019 for finding loved ones or items and connecting with people. It was removed from Google Play in 2024 because it was no longer being updated.",
     "categories": [
       "apps"
     ],
@@ -432,15 +432,15 @@
       "context": "Personal project · Community & social · 2019",
       "sections": [
         {
-          "title": "Personal app · 2019",
+          "title": "Founder project · 2019",
           "paragraphs": [
-            "I developed and published LuniaNetwork as a personal app in 2019. It helped people find loved ones or items and connect with other people."
+            "Our founder developed and published LuniaNetwork as a personal app in 2019. It helped people find loved ones or items and connect with other people."
           ]
         },
         {
           "title": "Publication history",
           "paragraphs": [
-            "I published the app on Google Play in 2019. It was removed in 2024 because I was no longer updating it. The original listing screenshot is retained as historical material; no current download or active store link is offered here."
+            "The app was published on Google Play in 2019. It was removed in 2024 because it was no longer being updated. The original listing screenshot is retained as historical material; no current download or active store link is offered here."
           ]
         }
       ],
@@ -459,8 +459,8 @@
     },
     "historical": true,
     "year": "2019",
-    "projectLabel": "Personal app · 2019",
-    "cardDescription": "A personal app for finding loved ones or items and connecting with people. Published in 2019; removed from Google Play in 2024 because I was no longer updating it."
+    "projectLabel": "Founder project · 2019",
+    "cardDescription": "A personal app for finding loved ones or items and connecting with people. Published in 2019; removed from Google Play in 2024 because it was no longer being updated."
   },
   {
     "id": "lulagazette",
@@ -479,7 +479,7 @@
     "featured": true,
     "homeOrder": 3,
     "siteUrl": "https://lulamilemkhungela.github.io/LulaGazette/",
-    "projectLabel": "Personal Web project"
+    "projectLabel": "In-house web project"
   },
   {
     "id": "designops",
@@ -495,7 +495,7 @@
     "image": "/assets/img/portfolio/designops.webp",
     "actionLabel": "Open demo",
     "previewScroll": true,
-    "status": "Personal project"
+    "status": "In-house project"
   },
   {
     "id": "financial-inclusion-hackathon",
@@ -677,7 +677,7 @@
     "id": "prompt-spin-the-wheel-portfolio",
     "client": "Spin the wheel portfolio",
     "title": "Spin the wheel portfolio",
-    "description": "Premium design resource. R15 · Prompt+ Guide. Explore the listing in my shop; current price and contents are confirmed there.",
+    "description": "Premium design resource. R15 · Prompt+ Guide. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
     ],
@@ -695,7 +695,7 @@
     "id": "prompt-id-card-portfolio",
     "client": "ID card portfolio",
     "title": "ID card portfolio",
-    "description": "Premium design resource. R15 · Design + prompt. Explore the listing in my shop; current price and contents are confirmed there.",
+    "description": "Premium design resource. R15 · Design + prompt. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
     ],
@@ -712,7 +712,7 @@
     "id": "prompt-halfman-design-app-home-screen-flow",
     "client": "Design App Home screen flow",
     "title": "Design App Home screen flow",
-    "description": "Premium design resource. R220 · Prompt + Figma file. Explore the listing in my shop; current price and contents are confirmed there.",
+    "description": "Premium design resource. R220 · Prompt + Figma file. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
     ],
@@ -730,7 +730,7 @@
     "id": "prompt-fitness-app-flow",
     "client": "Fitness App flow",
     "title": "Fitness App flow",
-    "description": "Premium design resource. Prompt only. Explore the listing in my shop; current price and contents are confirmed there.",
+    "description": "Premium design resource. Prompt only. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
     ],
@@ -748,7 +748,7 @@
     "id": "prompt-finance-app-flow-figma-file",
     "client": "Finance App Flow +Figma file",
     "title": "Finance App Flow +Figma file",
-    "description": "Premium design resource. R300 · Prompt + Figma file. Explore the listing in my shop; current price and contents are confirmed there.",
+    "description": "Premium design resource. R300 · Prompt + Figma file. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
     ],
@@ -765,7 +765,7 @@
     "id": "prompt-service-provider-app",
     "client": "Service Provider App",
     "title": "Service Provider App",
-    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
     "categories": [
       "ai-prompt"
     ],
@@ -784,7 +784,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -798,7 +798,7 @@
     "id": "prompt-finance-homescreen",
     "client": "Finance homescreen",
     "title": "Finance homescreen",
-    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
     "categories": [
       "ai-prompt"
     ],
@@ -817,7 +817,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -831,7 +831,7 @@
     "id": "prompt-delivery-app",
     "client": "Delivery App",
     "title": "Delivery App",
-    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
     "categories": [
       "ai-prompt"
     ],
@@ -850,7 +850,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -869,7 +869,7 @@
     "id": "prompt-food-delivery-app-home-screen",
     "client": "Food delivery app home screen",
     "title": "Food delivery app home screen",
-    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
     "categories": [
       "ai-prompt"
     ],
@@ -888,7 +888,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -902,7 +902,7 @@
     "id": "prompt-oto-e-commerce-website",
     "client": "OtO e-commerce website",
     "title": "OtO e-commerce website",
-    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
     "categories": [
       "ai-prompt"
     ],
@@ -921,7 +921,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -935,7 +935,7 @@
     "id": "prompt-fashion-shopping-app-home-screen",
     "client": "Fashion shopping app home screen",
     "title": "Fashion shopping app home screen",
-    "description": "A free UI design prompt from my design library. Copy it here and adapt it to your own brief.",
+    "description": "A free UI design prompt from our design library. Copy it here and adapt it to your own brief.",
     "categories": [
       "ai-prompt"
     ],
@@ -954,7 +954,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from my original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],

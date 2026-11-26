@@ -1,16 +1,16 @@
 {
   "name": "Lulamile M",
-  "location": "South Africa, Anywhere Remote",
+  "location": "Johannesburg, South Africa · Working nationwide & remote",
   "email": "mkhungela.l@gmail.com",
   "process": [
     {
       "num": "01",
-      "title": "Tell me what you're building",
+      "title": "Tell us what you're building",
       "body": "No brief required. A conversation about where you are and what's not working."
     },
     {
       "num": "02",
-      "title": "I map what's needed",
+      "title": "We map what's needed",
       "body": "Research, design and development, scoped around what you need. No bloated proposals, no wasted time."
     },
     {
@@ -83,7 +83,7 @@
       {
         "name": "Senior backend & systems mentor",
         "role": "Previous employment",
-        "body": "For backend work — databases, integrations, server-side systems and the harder engineering decisions — I team up with a senior backend specialist I learned from at a previous role. Their reviews keep the systems clean, secure and maintainable."
+        "body": "For backend work — databases, integrations, server-side systems and the harder engineering decisions — we team up with a senior backend specialist our founder learned from at a previous role. Their reviews keep the systems clean, secure and maintainable."
       },
       {
         "name": "Backend architecture mentor",
@@ -149,7 +149,7 @@
   "faq": [
     {
       "question": "What does a project cost?",
-      "answer": "It depends on what you need. After a short conversation you get a clear written quote covering scope, deliverables and timing before any work begins. Nothing starts until you approve it."
+      "answer": "Starting prices are on our Pricing page — for example, websites start from R18,000. After a short conversation you get a clear written quote covering scope, deliverables and timing before any work begins. Nothing starts until you approve it."
     },
     {
       "question": "How long does a project take?",
@@ -157,7 +157,7 @@
     },
     {
       "question": "Do you work with businesses outside South Africa?",
-      "answer": "Yes. LulaZel works remotely with businesses worldwide, whatever your time zone."
+      "answer": "Yes. LulaZel Digital Studio works remotely with businesses worldwide, whatever your time zone."
     },
     {
       "question": "Do I need a technical brief before we talk?",
@@ -165,7 +165,7 @@
     },
     {
       "question": "What do hosting, payments and AI cost?",
-      "answer": "Those services come from the providers you choose and are billed under their terms. I set them up, connect them and manage them to the agreed scope; their fees are yours to pay directly to them."
+      "answer": "Those services come from the providers you choose and are billed under their terms. We set them up, connect them and manage them to the agreed scope; their fees are yours to pay directly to them."
     },
     {
       "question": "What happens after launch?",
@@ -189,5 +189,161 @@
       "icon": "instagram",
       "url": null
     }
-  ]
+  ],
+  "studioName": "LulaZel Digital Studio",
+  "pricing": {
+    "intro": "Clear starting prices in South African rand. Every project gets a written quote with scope, deliverables and timing before work begins.",
+    "packages": [
+      {
+        "id": "website",
+        "label": "Website",
+        "calculatorLabel": "Website",
+        "hint": "A business or marketing website",
+        "icon": "monitor",
+        "from": 18000,
+        "to": 48000,
+        "service": "Website Design",
+        "path": "/services/website-design",
+        "bestFor": "Service businesses, professionals and startups that need a credible site that turns visitors into enquiries.",
+        "includes": [
+          "Positioning, page structure and copy direction",
+          "Responsive, accessible design and development",
+          "Enquiry forms, bookings or analytics connected",
+          "Hosting, domain and launch set up with your provider"
+        ]
+      },
+      {
+        "id": "ecommerce",
+        "label": "Online store",
+        "calculatorLabel": "Online store",
+        "hint": "A store that sells online",
+        "icon": "layers",
+        "from": 40000,
+        "to": 95000,
+        "service": "Ecommerce",
+        "path": "/services/ecommerce",
+        "bestFor": "Brands and retailers ready to sell online with a smooth path from product to checkout.",
+        "includes": [
+          "Product catalogue, categories and search foundations",
+          "Mobile-first product, cart and checkout journey",
+          "Payment gateway connected and tested",
+          "Stock, order notifications and delivery rules"
+        ]
+      },
+      {
+        "id": "app",
+        "label": "App",
+        "calculatorLabel": "App",
+        "hint": "A mobile or web app",
+        "icon": "app-store",
+        "from": 38000,
+        "to": 100000,
+        "service": "Product Design & Strategy",
+        "path": "/product-design-strategy",
+        "bestFor": "Founders and teams turning an idea into a usable web or mobile product.",
+        "includes": [
+          "Product research, user journeys and direction",
+          "UI design for key screens and flows",
+          "Frontend build with agreed backend services",
+          "Testing, release preparation and handover"
+        ]
+      },
+      {
+        "id": "system",
+        "label": "Business system",
+        "calculatorLabel": "Business system",
+        "hint": "A custom tool, portal or dashboard",
+        "icon": "grid",
+        "from": 50000,
+        "to": 140000,
+        "service": "Business Systems",
+        "path": "/services/business-systems",
+        "bestFor": "Growing businesses replacing spreadsheets and messages with one connected tool.",
+        "includes": [
+          "Process mapping around how your team works",
+          "Custom records, workflows and role-based access",
+          "Dashboards, reports and self-service portals",
+          "Integrations with existing tools where available"
+        ]
+      },
+      {
+        "id": "brand",
+        "label": "Graphic design",
+        "calculatorLabel": "Graphic design",
+        "hint": "Design assets for your existing brand",
+        "icon": "sparkles",
+        "from": 14000,
+        "to": 40000,
+        "service": "Basic Graphic Design",
+        "path": "/services/basic-graphic-design",
+        "bestFor": "Businesses that need consistent, professional assets built on their existing identity.",
+        "includes": [
+          "Simple logo concept or touch-ups",
+          "Colour and typography basics",
+          "Social, flyer and business-card layouts",
+          "Website banners and digital assets"
+        ]
+      }
+    ],
+    "custom": [
+      {
+        "label": "Web Hosting",
+        "summary": "Provider selection, setup, SSL, backups and ongoing website care.",
+        "service": "Web Hosting",
+        "path": "/services/web-hosting"
+      },
+      {
+        "label": "Workflow Automation & AI",
+        "summary": "Connect your tools and remove repetitive admin with agreed business rules.",
+        "service": "Workflow Automation & AI",
+        "path": "/services/workflow-automation"
+      },
+      {
+        "label": "AI Assistants",
+        "summary": "Assistants that answer from your approved knowledge, with human escalation.",
+        "service": "AI Assistants",
+        "path": "/services/ai-assistants"
+      },
+      {
+        "label": "SEO & Search",
+        "summary": "Technical foundations, search intent and content that helps customers find you.",
+        "service": "SEO & Search",
+        "path": "/services/seo-and-search"
+      },
+      {
+        "label": "Google Ads",
+        "summary": "Focused campaigns with clear goals, tracking and ongoing optimisation.",
+        "service": "Google Ads",
+        "path": "/services/google-ads"
+      }
+    ],
+    "terms": [
+      {
+        "title": "Starting prices, not fixed fees",
+        "body": "Prices show where typical projects begin. Your final quote depends on pages, features, integrations and timeline."
+      },
+      {
+        "title": "Written quote before work starts",
+        "body": "You approve a written scope covering deliverables, responsibilities, budget and timing. Nothing starts until you approve it."
+      },
+      {
+        "title": "Third-party costs are separate",
+        "body": "Hosting plans, domains, paid apps, payment-gateway fees and ad spend are billed by those providers under their own terms."
+      },
+      {
+        "title": "Support after launch",
+        "body": "You receive the access, assets and documentation agreed. Ongoing support and maintenance options are agreed upfront."
+      }
+    ],
+    "open": {
+      "label": "Something else",
+      "bestFor": "Not sure which package fits, or combining several services? Tell us what you have in mind.",
+      "includes": [
+        "A short conversation about your goals",
+        "Recommended approach and services",
+        "Written quote before any work begins",
+        "Combine design, build, hosting and growth"
+      ]
+    }
+  }
 }

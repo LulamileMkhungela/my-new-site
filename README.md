@@ -1,6 +1,6 @@
-# LulaZel — portfolio and digital services
+# LulaZel Digital Studio — website
 
-Responsive navy/emerald portfolio with a Digital Rhino–inspired chapter layout,
+Responsive navy/emerald studio website with a Digital Rhino–inspired chapter layout,
 original artwork, local owner content, and shared navigation/footer. Digital Rhino
 is a layout reference, not the site's branding or an imported site template.
 
@@ -52,7 +52,7 @@ is removed during builds.
 
 ## Routes and navigation
 
-Home, My Services, Portfolio, About and Contact use the same two-row sticky header
+Home, Services, Work, Pricing, About and Contact use the same two-row sticky header
 and consistent footer. Home remains directly available on mobile. The About
 chevron is flat/2D, with keyboard, click and mouse-hover access to Contact. Mobile
 navigation closes on selection, Escape, outside click and focus leaving it.
@@ -62,7 +62,9 @@ navigation closes on selection, Escape, outside click and focus leaving it.
 - `/services/`: three directory chapters with their own illustrations.
 - `/services/:slug/`: intro, practical features and project requirements.
 - `/product-design-strategy/`: the same three-chapter service structure.
-- `/portfolio/`: category tabs and five visible desktop project cards per row,
+- `/pricing/`: starting prices (from `site.content.json` → `pricing`, shared with the
+  instant estimate calculator), custom-quote services, pricing terms and the calculator.
+- `/portfolio/` (labelled **Work**): category tabs and five visible desktop project cards per row,
   with horizontal browsing for additional cards and expand/collapse controls.
 - `/project/:id/`: local case studies, overviews or free prompt details.
 - `/about/`, `/contact/`, `/tools/`, `/privacy/`: current dedicated pages.
@@ -576,3 +578,12 @@ menu route navigation, desktop dropdowns at 1024/1440px and reduced motion.
 Snapshots compare the entire scroll/header/stage/timeline state, not just the
 highlighted chapter. Header taps use screen coordinates: Playwright locator
 clicks can themselves auto-scroll sticky elements before dispatching input.
+
+## Studio brand rules
+
+- Voice is studio-first (“we”). Testimonials are quoted verbatim and never edited.
+  Historical solo work (e.g. Sesyme 2019, LuniaNetwork) is credited to “our founder”.
+- Starting prices live once in `site.content.json` → `pricing.packages` and feed the
+  Pricing page, service-page price notes and the instant estimate calculator.
+- Trust figures on Home are computed from site data (first project year, project count,
+  service count). Do not add unverifiable “N+” claims.

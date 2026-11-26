@@ -156,6 +156,12 @@ function primitive(o,g){const c=palette[o.c]||o.c;
  const a=vertex(-w/2,h/2,d/2),b=vertex(w/2,h/2,d/2),cc=vertex(w/2,-h/2,d/2),dd=vertex(-w/2,-h/2,d/2),e=vertex(-w/2,h/2,-d/2),f=vertex(w/2,h/2,-d/2),j=vertex(w/2,-h/2,-d/2);
  return poly([b,f,j,cc],shade(c,.62))+poly([a,b,f,e],shade(c,.92))+poly([a,b,cc,dd],c);
 }
+// Pricing page: an approved written quote, a stack of coins and a price tag.
+add('pricing','Clear prices and an agreed scope',[
+ G([-.6,.15,0],[B([0,0,0],[1.5,1.95,.14],'ivory'),...lines(-.05,.6,.1,3,1),check(-.1,-.45,.13,.6)],[0,0,.12]),
+ G([1.05,-.6,.35],[C([0,0,0],.42,.12,'green'),C([0,.14,0],.42,.12,'lime'),C([0,.28,0],.42,.12,'green'),C([0,.42,0],.42,.12,'lime')]),
+ G([1.1,.95,.15],[B([0,0,0],[.95,.55,.1],'coral',[0,0,-.35]),R([-.28,.1,.08],.07,.03,'ivory')]),
+ G([0,0,0],[L([[-.6,-1.1,.2],[.35,-1.15,.3],[1.05,-.65,.35]],'metal',.04)])]);
 for(const[id,scene]of Object.entries(scenes)){
  const body=scene.parts.map(g=>g.items.map(o=>primitive(o,g)).join('')).join('');
  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="640" height="570" viewBox="0 0 640 570"><title>${scene.title}</title><desc>Original page-exclusive geometric illustration. Static fallback for its interactive 3D composition; not a product screenshot.</desc><ellipse cx="320" cy="467" rx="174" ry="20" fill="#05131a" opacity=".45"/>${body}</svg>\n`;

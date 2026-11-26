@@ -51,5 +51,5 @@ for(const route of Object.keys(routes)){
   const source=match[1];assert.ok(!illustrationOwners.has(source),'Illustration repeated on '+route+' and '+illustrationOwners.get(source)+': '+source);illustrationOwners.set(source,route);
  }
 }
-assert.equal(illustrationOwners.size,47);
-console.log('✓ All 47 large illustrations have a single page owner in prerendered output');
+assert.equal(illustrationOwners.size,48);
+console.log('✓ All 48 large illustrations have a single page owner in prerendered output');
