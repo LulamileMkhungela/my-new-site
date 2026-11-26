@@ -1,0 +1,20 @@
+name: DNS diagnose (temporary)
+on:
+  push:
+    branches: [arena/24763190-my-new-site]
+    paths: [.github/workflows/dns-diagnose.yml]
+permissions:
+  contents: read
+jobs:
+  dns:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y -qq dnsutils >/dev/null 2>&1 || true
+      - run: |
+          note() { local t="$1"; local m; m=$(cat | head -40 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g'); echo "::notice title=$t::${m:-<empty>}"; }
+          for ns in ns1.named.co.za ns2.named.co.za directadmin.resolving.co.za; do
+            { for q in "A lulazel.co.za" "CNAME www.lulazel.co.za" "A www.lulazel.co.za"; do set -- $q
+                echo "[$1 $2] $(dig +norec +time=4 +tries=2 $1 $2 @$ns | grep -oE 'status: [A-Z]+' ) -> $(dig +norec +short +time=4 +tries=2 $1 $2 @$ns | tr '\n' ' ')"; done; } | note "$ns"
+          done
+          { for r in 8.8.8.8 1.1.1.1 9.9.9.9; do echo "$r A: $(dig +short A lulazel.co.za @$r | tr '\n' ' ') | www: $(dig +short www.lulazel.co.za @$r | tr '\n' ' ')"; done; } | note public
+          { echo "http://lulazel.co.za:"; curl -sI --max-time 10 http://lulazel.co.za | grep -iE '^HTTP|^location|^server'; echo "http://www.lulazel.co.za:"; curl -sI --max-time 10 http://www.lulazel.co.za | grep -iE '^HTTP|^location|^server'; echo "https://www.lulazel.co.za:"; curl -sI --max-time 10 https://www.lulazel.co.za 2>&1 | grep -iE '^HTTP|^server' || curl -sS -o /dev/null --max-time 10 https://www.lulazel.co.za 2>&1 | head -2; } | note http
