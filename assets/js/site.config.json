@@ -1,8 +1,8 @@
 {
   "url": "https://www.lulazel.co.za",
   "name": "LulaZel",
-  "title": "LulaZel — Frontend Developer & Designer in South Africa",
-  "description": "Lulamile Mkhungela — frontend developer, designer and digital partner in Johannesburg, South Africa. Websites, product design, business systems and launch, built end to end, remote or local.",
+  "title": "LulaZel Digital Studio — Websites, Apps & Business Systems in Johannesburg",
+  "description": "LulaZel Digital Studio designs and builds websites, online stores, apps and business systems for South African businesses. Strategy, design, development, hosting and launch under one roof. Websites from R18,000.",
   "locale": "en_ZA",
   "language": "en-ZA",
   "email": "mkhungela.l@gmail.com",
@@ -10,5 +10,6 @@
   "linkedin": "https://www.linkedin.com/in/lulamile-mkhungela/",
   "socialImage": "/assets/img/social-card.png",
   "ownerName": "Lulamile Mkhungela",
-  "socialImageAlt": "LulaZel — Ideas into digital impact. Websites, product design, business systems and practical AI."
+  "socialImageAlt": "LulaZel Digital Studio — Ideas into digital impact. Websites, product design, business systems and practical AI.",
+  "legalName": "LulaZel Digital Studio"
 }

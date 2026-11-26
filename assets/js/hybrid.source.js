@@ -37,6 +37,22 @@ function LocalUiIcon({name='arrow-up-right',className=''}) {
   };
   return h('svg',{viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.6,strokeLinecap:'round',strokeLinejoin:'round',className:'ui-line-icon '+className,'aria-hidden':true,focusable:false},...(paths[name]||paths['arrow-up-right']).map((d,index)=>h('path',{d,key:index})));
 }
+/** Deterministic rand formatting (identical in prerender and browser): R18,000. */
+const localRand=n=>'R'+String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+/** Opens the shared enquiry dialog, optionally preselecting a service.
+ * Rendered as a real /contact link so it still works before hydration. */
+function localOpenEnquiry(event,service='') {
+  const dialog=typeof document!=='undefined'&&document.getElementById('footer-enquiry');
+  if(!dialog||typeof dialog.showModal!=='function')return;
+  event?.preventDefault();
+  const select=dialog.querySelector('select[name="service"]');
+  if(select)select.value=service&&[...select.options].some(option=>option.value===service)?service:'';
+  dialog.showModal();dialog.querySelector('input[name="name"]')?.focus();
+}
+function LocalQuoteLink({service='',className='hybrid-button',children,label}) {
+  const h=g.createElement;
+  return h('a',{href:'/contact/#contact-intro',className,'aria-haspopup':'dialog','aria-controls':'footer-enquiry','aria-label':label,onClick:event=>localOpenEnquiry(event,service)},children);
+}
 function LocalServiceNav({active=''}) {
   const h=g.createElement,track=g.useRef(null);
   const [edges,setEdges]=g.useState({start:true,end:false,overflow:false});
@@ -58,7 +74,7 @@ function LocalServiceNav({active=''}) {
 }
 /** Original local vector instead of the old sculpture placeholder. */
 function LocalDigitalVisual({label='Design × technology',icon='grid'}) {
-  const h=g.createElement,kind=({portfolio:'portfolio',toolkit:'toolkit'})[icon];
+  const h=g.createElement,kind=({portfolio:'portfolio',toolkit:'toolkit',pricing:'pricing'})[icon];
   return h('div',{key:kind,className:'hybrid-visual studio-original-visual','data-scene-kind':kind,'aria-hidden':true},
     h('img',{src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'',width:640,height:570,fetchPriority:'high'}),h('div',{className:'hybrid-visual-caption'},h('span'),label));
 }
@@ -76,7 +92,7 @@ function LocalHybridHero({eyebrow,line1,line2,line3,description,primary,secondar
           primary.href.startsWith('#') ? h('a',{href:primary.href,className:'hybrid-button'},primary.label,h(LocalUiIcon,{name:'arrow-down'})) : h(ve,{to:primary.href,className:'hybrid-button'},primary.label,h(LocalUiIcon,{name:'arrow-up-right'})),
           secondary.href.startsWith('#') ? h('a',{href:secondary.href,className:'hybrid-text-link'},secondary.label,h(LocalUiIcon,{name:'arrow-up-right'})) : h(ve,{to:secondary.href,className:'hybrid-text-link'},secondary.label,h(LocalUiIcon,{name:'arrow-up-right'})))),
       h(LocalDigitalVisual,{label,icon})),
-    h('div',{className:'hybrid-hero-bottom'},h('span',null,'South Africa · Anywhere remote'),h('span',null,'Independent thinking. Connected solutions.')));
+    h('div',{className:'hybrid-hero-bottom'},h('span',null,'Johannesburg · Working nationwide & remote'),h('span',null,'One studio. Strategy to launch.')));
 }
 function LocalHeaderContactCard({mobile=false}) {
   const h=g.createElement;
@@ -191,14 +207,14 @@ function LocalSiteHeader() {
     document.addEventListener('keydown',close);document.addEventListener('pointerdown',close);document.addEventListener('focusin',close);desktop.addEventListener('change',resize);
     return()=>{document.removeEventListener('keydown',close);document.removeEventListener('pointerdown',close);document.removeEventListener('focusin',close);desktop.removeEventListener('change',resize);};
   },[open]);
-  const links=[{label:'Home',href:'/'},{label:'My Services',href:'/services'},{label:'Portfolio',href:'/portfolio'},{label:'About',href:'/about'}];
+  const links=[{label:'Home',href:'/'},{label:'Services',href:'/services'},{label:'Work',href:'/portfolio'},{label:'Pricing',href:'/pricing'},{label:'About',href:'/about'}];
   const active=item=>item.href==='/services'?pathname==='/services'||pathname.startsWith('/services/')||localStrategyServices.some(service=>service.path===pathname):item.href==='/portfolio'?pathname==='/portfolio'||/^\/(project|graphic|amazon)\//.test(pathname):pathname===item.href;
   return h('header',{className:'rhino-header',ref:headerRef,onClick:event=>{if(event.target.closest('a'))setOpen(false);}},
     h('a',{href:'#main',className:'rhino-skip'},'Skip to content'),
     h('div',{className:'rhino-header-main'},
       h(LocalLogoAnim),
       h('nav',{className:'rhino-primary','aria-label':'Main navigation'},...links.filter(item=>item.href!=='/about').map(item=>h(ve,{key:item.href,to:item.href,className:active(item)?'is-active':'','aria-current':active(item)?'page':undefined},item.label)),h(LocalContactDropdown,{pathname})),
-      h('div',{className:'rhino-header-actions'},h(ve,{to:'/services',className:'rhino-mobile-services'},'My Services'),
+      h('div',{className:'rhino-header-actions'},h(ve,{to:'/pricing',className:'rhino-mobile-services'},'Pricing'),
         h(LocalHeaderContactCard,{}),
         h('button',{type:'button',className:'rhino-menu-button','aria-label':open?'Close navigation':'Open navigation','aria-expanded':open,'aria-controls':'rhino-mobile-menu',onClick:()=>setOpen(!open)},h(LocalUiIcon,{name:open?'close':'menu'})))),
     open&&h('nav',{id:'rhino-mobile-menu',className:'rhino-mobile-menu','aria-label':'Mobile navigation'},...links.map(item=>h(ve,{key:item.href,to:item.href,'aria-current':active(item)?'page':undefined},item.label)),h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setOpen(false)},'Contact'),h(LocalHeaderContactCard,{mobile:true})),

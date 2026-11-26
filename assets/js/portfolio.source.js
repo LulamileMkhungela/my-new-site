@@ -130,7 +130,7 @@ function LocalProjectPage() {
   const goBack=event=>{if(origin&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&!event.altKey&&event.button===0){event.preventDefault();navigate(-1);}};
   return h(LocalPageFrame,{title:project.client,description:project.description,className:'owner-project'},
     h('section',{className:'owner-project-hero','data-background-text':project.client.toUpperCase()},h('div',{className:'unified-container'},
-      h(ve,{to:backTo,onClick:goBack,className:'owner-project-back'},'← Back to portfolio'),
+      h(ve,{to:backTo,onClick:goBack,className:'owner-project-back'},'← Back to work'),
       h('p',{className:'hybrid-eyebrow'},project.type==='overview'?'Project overview':'Selected work / Case study'),
       h('h1',null,project.client),h('p',{className:'owner-project-tagline'},project.title),h('p',{className:'owner-project-intro'},project.description),
       h('dl',{className:'owner-project-meta'},h('div',null,h('dt',null,'Role'),h('dd',null,details.role)),h('div',null,h('dt',null,'Context'),h('dd',null,details.context)),h('div',null,h('dt',null,'Status'),h('dd',null,project.status||'Selected project'))),

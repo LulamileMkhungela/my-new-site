@@ -24,7 +24,7 @@ function render(url) {
   const context = {
     g: {createElement:(type,props,...children)=>typeof type==='function' ? type({...props,children}) : ({type,props:props||{},children}),Fragment:'fragment',useState:value=>[value,()=>{}],useEffect:()=>{},useRef:value=>({current:value})},
     Qt:()=>({pathname:url}), XA:'metadata', ve:'link', Bn:'header', zn:'footer',
-    localServiceCatalogue:catalogue,localHomeArtworkVersion:"test",localStrategyServices:[
+    localServiceCatalogue:catalogue,localSiteContent:JSON.parse(read('assets/js/site.content.json')),localHomeArtworkVersion:"test",localStrategyServices:[
       {path:'/product-design-strategy', title:'Product Design & Strategy', summary:'Product strategy'}
     ]
   };
@@ -87,7 +87,7 @@ assert.ok(read('services.html').includes('"/services.html":"/services"'),'Legacy
 const bundle = read('assets/js/site-app.js');
 assert.ok(read('assets/js/app.source.js').includes("path:'/services',element:h(LocalServicesPage)"));
 assert.ok(read('assets/js/app.source.js').includes("path:'/services/:slug',element:h(LocalServicesPage)"));
-assert.ok(read("assets/js/hybrid.source.js").includes("{label:'My Services',href:'/services'}"));
+assert.ok(read("assets/js/hybrid.source.js").includes("{label:'Services',href:'/services'}"));
 console.log('✓ Concise overview, all detail pages, scope, related links, metadata and legacy entry point');
 
 assert.ok(text(website).includes("HTML email design & development"));

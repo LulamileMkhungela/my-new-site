@@ -72,7 +72,7 @@ for(const href of ['tel:+27837195064','mailto:'+data.window.SITE.email,'https://
 assert.equal(footerView.elements.filter(node=>node.props.className==='footer-contact-icon').length,4);
 assert.ok(!footerView.elements.some(node=>String(node.props.href||'').includes('linkedin.com')),'LinkedIn belongs on About/Contact, not footer CTA');
 const footerNav=footerView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Footer');
-assert.deepEqual(nodes(footerNav).filter(node=>node.type==='link'||node.type==='a').map(node=>text(node)),['My Services','Portfolio','About']);
+assert.deepEqual(nodes(footerNav).filter(node=>node.type==='link'||node.type==='a').map(node=>text(node)),['Services','Work','Pricing','About']);
 assert.ok(footerView.elements.some(node=>node.type==='h2'&&text(node)==='Let’s make it  work.'));
 assert.ok(!footerView.elements.some(node=>node.props.to==='/contact'),'No duplicate footer Let’s Talk button');
 assert.deepEqual(footerView.elements.filter(node=>node.props.className==='footer-icon-label').map(node=>text(node).replace(/\s/g,'')),['Call','Email','Meeting','Enquiry']);
@@ -127,7 +127,7 @@ for(const component of ['LocalContactPage','LocalPortfolioPage','LocalToolsPage'
  const view=render(component);assert.ok(!/Lulamile/i.test(text(view.elements.find(node=>node.type==='main'))),'No repeated personal-name labels on '+component);
 }
 for(const service of [...catalogue.services.map(item=>({path:'/services/'+item.slug})),...strategies])assert.ok(!/Lulamile/i.test(text(render('LocalServicesPage',service.path).tree)),'Services use brand rather than repeated owner names');
-assert.ok(text(footerView.tree).includes('by Lulamile M'));
+assert.ok(text(footerView.tree).includes('LulaZel Digital Studio'),'Footer names the studio');assert.ok(text(render('LocalAboutPage').tree).includes('Founded by Lulamile Mkhungela'),'About credits the founder');
 assert.ok(text(render('LocalAboutPage').tree).includes('About / LulaZel'));
 assert.equal(homeContent.about.action,'About LulaZel');
 assert.ok(homeContent.about.lines.includes('LulaZel.'));
@@ -157,10 +157,10 @@ for(const id of ['nerdma','foodiezone','lulagazette']){
  assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href===project.siteUrl&&node.props.target==='_blank'&&node.props['aria-label']==='Visit site — '+project.client));
 }
 const delivery=projects.find(project=>project.id==='prompt-delivery-app');
-assert.equal(projects.find(project=>project.id==='lulagazette').projectLabel,'Personal Web project');
+assert.equal(projects.find(project=>project.id==='lulagazette').projectLabel,'In-house web project');
 assert.equal(delivery.projectLabel,undefined);assert.equal(delivery.homeProjectLabel,'Ai prompt app');
 assert.equal(projects.find(project=>project.id==='ai-lifeos').homeCardDescription,'');
-for(const [id,label] of [['designops','Personal project'],['addmoredigital','Work project'],['snb','Work project']])assert.equal(projects.find(project=>project.id===id).status,label);
+for(const [id,label] of [['designops','In-house project'],['addmoredigital','Work project'],['snb','Work project']])assert.equal(projects.find(project=>project.id===id).status,label);
 const designPrompt=projects.find(project=>project.id==='prompt-halfman-design-app-home-screen-flow');
 assert.equal(designPrompt.client,'Design App Home screen flow');assert.equal(designPrompt.title,designPrompt.client);assert.equal(designPrompt.href,'https://selar.com/m/le-loux');
 assert.equal(delivery.client,'Delivery App');assert.ok(delivery.details.prompt.includes('Track your parcel'));
@@ -173,8 +173,8 @@ assert.equal(lulafind.apkUrl,'https://drive.google.com/file/d/1aMZrI_pVEF5nQMmvb
 assert.equal(lulafind.status,'Android APK');
 const lunia=projects.find(project=>project.id==='lunianetwork');
 assert.equal(lunia.status,undefined,'No separate Google Play availability label');
-assert.match(lunia.cardDescription,/2019.*2024.*no longer updating/);
-assert.match(lunia.details.sections[1].paragraphs.join(' '),/2024 because I was no longer updating/);
+assert.match(lunia.cardDescription,/2019.*2024.*no longer being updated/);
+assert.match(lunia.details.sections[1].paragraphs.join(' '),/2024 because it was no longer being updated/);
 const oneScreen=projects.find(project=>project.id==='onescreen-business');
 assert.equal(oneScreen.androidReleaseUrl,'https://github.com/LulamileMkhungela/One-Screen-Business/releases/tag/v2.1.0-apk');
 assert.equal(oneScreen.status,undefined);
@@ -228,7 +228,7 @@ console.log('✓ Owner portfolio: correct category actions, no linked coming-soo
 for(const weight of [400,500,600,700,800]) assert.ok(fs.existsSync(path.join(root,`assets/fonts/poppins-latin-${weight}-normal.woff2`)));
 const nav=render('LocalSiteHeader','/portfolio');
 const primary=nav.elements.find(node=>node.props.className==='rhino-primary');
-assert.deepEqual(nodes(primary).filter(node=>node.type==='link').map(node=>text(node)),['Home','My Services','Portfolio','About']);
+assert.deepEqual(nodes(primary).filter(node=>node.type==='link').map(node=>text(node)),['Home','Services','Work','Pricing','About']);
 assert.ok(nav.elements.some(node=>(node.props.className||'').includes('rhino-contact')&&text(node).includes('Let’s talk')));
 const headerContact=nav.elements.find(node=>(node.props.className||'').includes('rhino-contact'));
 assert.equal(headerContact.props.href,'https://wa.me/27837195064');
@@ -271,3 +271,29 @@ for(const section of grouped.elements.filter(node=>node.props.className==='pf-ca
  assert.ok(nodes(section).some(node=>node.type==='button'&&node.props['aria-expanded']===true));
 }
 assert.equal(grouped.elements.filter(node=>node.props.className==='pf-card-description').length,0);
+
+// Studio brand: pricing page uses the owner-approved calculator starting prices.
+const pricing=data.window.SITE.pricing;
+assert.deepEqual(pricing.packages.map(item=>[item.id,item.from]),[['website',18000],['ecommerce',40000],['app',38000],['system',50000],['brand',14000]],'Starting prices must stay the owner-approved calculator bases');
+const serviceTitles=catalogue.services.concat(strategies).map(item=>item.title);
+for(const item of [...pricing.packages,...pricing.custom]){assert.ok(serviceTitles.includes(item.service),'Quote preselects a real service: '+item.service);assert.ok(serviceTitles.includes(item.service));}
+const pricingView=render('LocalPricingPage','/pricing');
+assert.equal(pricingView.elements.filter(node=>node.type==='h1').length,1);
+const pricingCards=pricingView.elements.filter(node=>node.props.className==='pricing-card');
+assert.equal(pricingCards.length,5);assert.equal(pricingView.elements.filter(node=>node.props.className==='pricing-card pricing-card-open').length,1,'Open-ended custom card completes the grid');
+for(const price of ['R18,000','R40,000','R38,000','R50,000','R14,000'])assert.ok(text(pricingView.tree).includes(price),'Pricing shows '+price);
+for(const card of pricingCards)assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href==='/contact/#contact-intro'&&node.props['aria-controls']==='footer-enquiry'),'Every package has a quote link that works without JavaScript');
+assert.equal(pricingView.elements.filter(node=>node.props.className==='pricing-custom-row').length,5);
+assert.ok(pricingView.elements.some(node=>node.props.id==='calculator'),'Instant estimate lives on Pricing');
+assert.ok(read('pricing/index.html').includes('R18,000'),'Pricing is prerendered');
+assert.ok(read('sitemap.xml').includes('/pricing/'),'Pricing is in the sitemap');
+// Trust strip: every figure is computed from site data; no invented "N+" style claims.
+const trust=homeView.elements.find(node=>node.props.className==='hm-trust');
+assert.ok(trust,'Home shows the studio trust strip');
+assert.ok(text(trust).includes('Since 2019')&&text(trust).includes(String(projects.length)));assert.ok(text(trust).replace(/\s+/g,'').includes('9Services'),'Trust strip uses the approved 9 services');
+assert.doesNotMatch(text(trust),/\d\+/);
+assert.ok(homeView.elements.some(node=>node.props.to==='/pricing'),'Home links to Pricing');
+// Studio voice: no first-person singular in site-level copy (testimonials are quoted and exempt).
+const siteCopy={...data.window.SITE};delete siteCopy.testimonials;
+assert.doesNotMatch(JSON.stringify(siteCopy)+JSON.stringify(homeContent),/\b(I’m|I'm|I’ll|I'll|I’ve|my portfolio|My Services)\b/);
+console.log('✓ Studio brand: Pricing page with approved starting prices, quote links, calculator and verifiable trust facts');

@@ -39,33 +39,34 @@ function LocalServicesPage() {
   const label=(number,title,subtitle)=>h('div',{className:'studio-section-heading'},h('p',{className:'studio-kicker'},h('span',{'aria-hidden':true}),number+' / '+title),h('p',{className:'studio-subtitle'},subtitle));
   const row=item=>h(ve,{key:item.slug||item.path,to:item.path||'/services/'+item.slug,className:'studio-service-row'},h('span',{className:'studio-row-title'},item.title,h(LocalUiIcon,{name:'arrow-up-right'})),h('span',{className:'studio-row-summary'},item.summary));
   const panel=(id,watermark,children,key=id)=>h('section',{key,id,className:'studio-panel','data-background-text':watermark},children);
-  if(slug&&!service)return h(g.Fragment,null,h(Bn),h('main',{id:'main',className:'svc-page'},h('section',{className:'unified-container unified-empty-page','data-background-text':'MY SERVICES'},h('h1',null,'Service not found.'),h(ve,{to:'/services'},'Browse My Services'))),h(LocalSectionRail),h(zn));
+  if(slug&&!service)return h(g.Fragment,null,h(Bn),h('main',{id:'main',className:'svc-page'},h('section',{className:'unified-container unified-empty-page','data-background-text':'SERVICES'},h('h1',null,'Service not found.'),h(ve,{to:'/services'},'Browse all services'))),h(LocalSectionRail),h(zn));
   if(!service){
     const groups=[
-      {id:'web',label:'Web & ecommerce',lines:['Digital services.','Your business.','Connected.'],description:'From design and development to choosing providers, connecting services and launch—I bring the pieces together so your website works end to end.',art:'web-services',watermark:'MY SERVICES'},
+      {id:'web',label:'Web & ecommerce',lines:['Digital services.','Your business.','Connected.'],description:'From design and development to choosing providers, connecting services and launch—we bring the pieces together so your website works end to end.',art:'web-services',watermark:'SERVICES'},
       {id:'systems',label:'Systems & AI',lines:['Custom systems.','Smarter work.','Your way.'],description:'Scope one focused solution or connect several services around your specific requirements.',art:'connected-services',watermark:'SMARTER WORK'},
       {id:'growth',label:'Design & marketing',lines:['Your brand.','Your audience.','Make contact.'],description:'Give your business a consistent visual presence and connect it with relevant customers.',art:'growth-services',watermark:'MAKE CONTACT'}
     ];
     return h(g.Fragment,null,h(Bn),h('main',{id:'main',className:'svc-page studio-services'},...groups.map((group,index)=>panel(group.id,group.watermark,
       h(g.Fragment,null,h('div',{className:'studio-panel-inner'+(index===1?' studio-art-left':'')},
-        h('div',{className:'studio-copy','data-reveal':'copy'},label('0'+(index+1),'My Services','Choose your next step.'),h(LocalStudioTitle,{lines:group.lines,level:index===0?'h1':'h2',id:'heading-'+group.id}),h('p',{className:'studio-description'},group.description),
+        h('div',{className:'studio-copy','data-reveal':'copy'},label('0'+(index+1),'Services','Choose your next step.'),h(LocalStudioTitle,{lines:group.lines,level:index===0?'h1':'h2',id:'heading-'+group.id}),h('p',{className:'studio-description'},group.description),
           h('div',{className:'studio-service-list'},...catalogue.services.filter(item=>item.group===group.id).map(row)),
           index===2&&h('div',{id:'strategy',className:'studio-strategy'},h('p',{className:'studio-subtitle'},'Also / Product & strategy'),...localStrategyServices.map(row)),
-          index===2&&h('a',{href:'#web',className:'studio-back'},'↺ Back to My Services')),
+          index===2&&h('a',{href:'#web',className:'studio-back'},'↺ Back to all services')),
         h(LocalStudioVisual,{kind:group.art,eager:index===0,caption:group.label+' · Original vector study'})),h(LocalStudioPager,{sections:groups,current:index,next:groups[index+1]?.id}))))) ,h(LocalSectionRail),h(zn));
   }
   const presentation={
-    'web-hosting':{intro:['Hosting setup.','Connected.','Managed.'],features:['Choose well.','Set it up.','Keep it running.'],contact:['Your website.','Your providers.','Let’s connect.'],featureLabel:'What I set up & manage',subtitle:'Choose. Connect. Maintain.',mark:'SET UP & SUPPORTED'},
-    'website-design':{intro:['Website','design.','With purpose.'],features:['Look sharp.','Work hard.','Make it easy.'],contact:['Your vision.','My craft.','Let’s build.'],featureLabel:'Design & development',subtitle:'Thought through. From the start.',mark:'DESIGNED AROUND YOU'},
+    'web-hosting':{intro:['Hosting setup.','Connected.','Managed.'],features:['Choose well.','Set it up.','Keep it running.'],contact:['Your website.','Your providers.','Let’s connect.'],featureLabel:'What we set up & manage',subtitle:'Choose. Connect. Maintain.',mark:'SET UP & SUPPORTED'},
+    'website-design':{intro:['Website','design.','With purpose.'],features:['Look sharp.','Work hard.','Make it easy.'],contact:['Your vision.','Our craft.','Let’s build.'],featureLabel:'Design & development',subtitle:'Thought through. From the start.',mark:'DESIGNED AROUND YOU'},
     ecommerce:{intro:['Ecommerce.','Built to','sell online.'],features:['Easy to find.','Easy to buy.','Built for you.'],contact:['Your store.','Next chapter.','Starts here.'],featureLabel:'Your online store',subtitle:'From first look to checkout.',mark:'SELL ONLINE'},
-    'business-systems':{intro:['Business','systems.','Built for you.'],features:['Less friction.','More control.','Your system.'],contact:['Your challenge.','My starting','point.'],featureLabel:'What could we build?',subtitle:'Your processes. Your possibilities.',mark:'BUILT AROUND YOUR BUSINESS'},
+    'business-systems':{intro:['Business','systems.','Built for you.'],features:['Less friction.','More control.','Your system.'],contact:['Your challenge.','Our starting','point.'],featureLabel:'What could we build?',subtitle:'Your processes. Your possibilities.',mark:'BUILT AROUND YOUR BUSINESS'},
     'workflow-automation':{intro:['Workflow','automation.','Practical AI.'],features:['Less repeat.','More flow.','Your way.'],contact:['Your process.','Next level.','Let’s connect.'],featureLabel:'What could work better?',subtitle:'Small tasks. Connected processes.',mark:'KEEP MOVING'},
     'ai-assistants':{intro:['AI assistants.','Real support.','Your business.'],features:['Help customers.','Support teams.','Make it useful.'],contact:['Your knowledge.','Your assistant.','Let’s shape it.'],featureLabel:'AI assistants',subtitle:'Purposeful work. Practical detail.',mark:'USEFUL AI'},
-    'basic-graphic-design':{intro:['Basic graphic','design.','Your brand.'],features:['Look distinct.','Stay consistent.','Be remembered.'],contact:['Your message.','My design.','Let’s create.'],featureLabel:'Basic graphic design',subtitle:'Purposeful work. Practical detail.',mark:'YOUR BRAND'},
+    'basic-graphic-design':{intro:['Basic graphic','design.','Your brand.'],features:['Look distinct.','Stay consistent.','Be remembered.'],contact:['Your message.','Our design.','Let’s create.'],featureLabel:'Basic graphic design',subtitle:'Purposeful work. Practical detail.',mark:'YOUR BRAND'},
     'seo-and-search':{intro:['SEO & search.','Get discovered.','Build relevance.'],features:['Strong basics.','Build relevance.','Keep improving.'],contact:['Your audience.','Your priorities.','Let’s get clear.'],featureLabel:'SEO & search',subtitle:'Purposeful work. Practical detail.',mark:'GET FOUND'},
     'google-ads':{intro:['Google Ads.','Relevant reach.','Clear goals.'],features:['Right audience.','Clear message.','Track the value.'],contact:['Your offer.','Your goals.','Let’s plan.'],featureLabel:'Google Ads',subtitle:'Purposeful work. Practical detail.',mark:'RELEVANT REACH'}
   };
   const design=presentation[service.slug]||{intro:['Product design.','Clear strategy.','Better products.'],features:['Understand.','Define.','Design.'],contact:['Your challenge.','Clear direction.','Let’s shape it.'],featureLabel:'Product design & strategy',subtitle:'Research. Direction. Useful design.',mark:'PRODUCT STRATEGY'};
+  const pricePackage=localSiteContent.pricing.packages.find(item=>item.path===(service.path||'/services/'+service.slug));
   // Each complete composition belongs to one page only. Home and Contact
   // keep their original artwork; service chapters never borrow it.
   const introArtwork={
@@ -88,10 +89,11 @@ function LocalServicesPage() {
         h('p',{className:'studio-scope'},service.note),h(ve,{to:'/contact',className:'studio-text-link'},'Discuss your requirements',h(LocalUiIcon,{name:'arrow-up-right'}))),
       h(LocalStudioVisual,{kind:featureArtwork.kind,caption:featureArtwork.caption})),h(LocalStudioPager,{sections,current:1,next:'service-contact'}))),
     panel('service-contact','YOUR NEXT STEP',h(g.Fragment,null,h('div',{className:'studio-panel-inner'},
-      h('div',{className:'studio-copy','data-reveal':'copy'},label('03','Your next digital project','A clear plan. A personal approach.'),h(LocalStudioTitle,{lines:design.contact}),h('p',{className:'studio-description'},'Tell me what needs to work better. We’ll agree what to design, build, configure or connect, along with provider access, costs, testing, ongoing support and handover.'),
+      h('div',{className:'studio-copy','data-reveal':'copy'},label('03','Your next digital project','A clear plan. A personal approach.'),h(LocalStudioTitle,{lines:design.contact}),h('p',{className:'studio-description'},'Tell us what needs to work better. We’ll agree what to design, build, configure or connect, along with provider access, costs, testing, ongoing support and handover.'),
         h('ol',{className:'studio-prepare'},...service.prepare.map((item,index)=>h('li',{key:item},h('span',null,item),h('strong',null,String(index+1).padStart(2,'0'))))),
         h('p',{className:'studio-related'},'Works well with ',...service.related.map((slug,index)=>{const item=catalogue.services.find(s=>s.slug===slug);return h(g.Fragment,{key:slug},index>0?' and ':null,h(ve,{to:'/services/'+slug},item.title));}),'.'),
-        h('div',{className:'studio-actions'},h(ve,{to:'/contact',className:'studio-text-link'},'Discuss '+service.title,h(LocalUiIcon,{name:'arrow-up-right'})),h('a',{href:'#service-intro',className:'studio-back'},'↺ Back to overview'),h(ve,{to:'/services',className:'studio-back'},'← My Services'))),
+        h('p',{className:'studio-price'},...(pricePackage?['Projects start from ',h('strong',{key:'price'},localRand(pricePackage.from)),'. ']:['Quoted to your scope. ']),h(ve,{to:'/pricing'},'See pricing')),
+        h('div',{className:'studio-actions'},h(LocalQuoteLink,{service:service.title,className:'studio-text-link',label:'Get a quote — '+service.title},'Get a quote',h(LocalUiIcon,{name:'arrow-up-right'})),h('a',{href:'#service-intro',className:'studio-back'},'↺ Back to overview'),h(ve,{to:'/services',className:'studio-back'},'← All services'))),
       h(LocalStudioVisual,{kind:service.slug+'-brief',caption:service.title+' · Your project brief'})),h(LocalStudioPager,{sections,current:2})))),h(LocalSectionRail),h(zn));
 }
 

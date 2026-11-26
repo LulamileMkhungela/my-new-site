@@ -188,3 +188,14 @@ body .hm-page~.site-back-to-top { bottom:calc(88px + env(safe-area-inset-bottom)
 }
 @media(prefers-reduced-motion:reduce) { .hm-quote-sculpture { transform:none; } .hm-quote-orbit,.hm-quote-sculpture,.hm-quote-spark { animation:none !important; } }
 @media(forced-colors:active) { .hm-scroll-progress>span { background:Highlight; }.hm-chapter-rail { background:Canvas; }.hm-chapter-rail a[aria-current='location'] { color:Highlight; outline:1px solid Highlight; } }
+
+/* Studio hero: primary quote action, pricing link and verifiable trust facts. */
+.hm-hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem 1.5rem; margin-top:1.8rem; }
+.hm-trust { list-style:none; margin:2rem 0 0; padding:1.1rem 0 0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; border-top:1px solid #a8c3c326; max-width:34rem; }
+.hm-trust li { display:flex; flex-direction:column; gap:.2rem; min-width:0; }
+.hm-trust strong { font:700 clamp(1rem,1.5vw,1.3rem)/1.1 Poppins,system-ui,sans-serif; color:#00ce7b; letter-spacing:-.02em; white-space:nowrap; }
+.hm-trust span { font-size:.6rem; line-height:1.4; color:#b9c7ce; letter-spacing:.02em; }
+@media (max-width: 800px) {
+  .hm-hero-actions { margin-top:1.4rem; }
+  .hm-trust { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem 1.25rem; margin-top:1.6rem; }
+}

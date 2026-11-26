@@ -1,13 +1,14 @@
 {
   "hero": {
-    "eyebrow": "Devzigner / Design + Frontend Development",
+    "eyebrow": "LulaZel Digital Studio / Johannesburg",
     "lines": [
-      "Design &",
-      "frontend",
-      "development."
+      "Websites & apps",
+      "built to grow",
+      "your business."
     ],
-    "description": "Frontend developer and designer in Johannesburg, South Africa. I build websites, apps and connected systems end to end — product thinking, responsive interfaces, provider setup, integrations and launch, so it works beyond the screen.",
-    "action": "Come along for the ride"
+    "description": "We design and build websites, online stores, apps and business systems for South African businesses — strategy, design, development, hosting and launch, all under one roof.",
+    "action": "Get a quote",
+    "secondary": "View pricing"
   },
   "sections": [
     {
@@ -64,7 +65,7 @@
         "Connected.",
         "Your way."
       ],
-      "description": "Your business has its own processes, challenges and goals. I build custom systems around how you work—from focused tools that solve one problem to connected platforms supporting multiple teams.",
+      "description": "Your business has its own processes, challenges and goals. We build custom systems around how you work—from focused tools that solve one problem to connected platforms supporting multiple teams.",
       "points": [
         "CRM and sales pipelines, quoting and invoicing, bookings",
         "Project and job tracking, stock and asset management, customer and supplier portals",
@@ -80,7 +81,7 @@
           "to": "/product-design-strategy"
         }
       ],
-      "note": "These are examples, not a fixed catalogue. Tell me what your business needs—I’ll scope a custom solution around your requirements."
+      "note": "These are examples, not a fixed catalogue. Tell us what your business needs—we’ll scope a custom solution around your requirements."
     },
     {
       "id": "automation",
@@ -162,14 +163,14 @@
   ],
   "portfolio": {
     "number": "08",
-    "eyebrow": "My Portfolio",
+    "eyebrow": "Selected work",
     "lines": [
       "Real challenges.",
       "Considered work.",
       "Take a look."
     ],
-    "description": "A selection of product, app and website design projects from this portfolio. Different businesses and constraints, with a consistent focus on making things useful.",
-    "action": "View my portfolio"
+    "description": "A selection of product, app and website design projects from the studio. Different businesses and constraints, with a consistent focus on making things useful.",
+    "action": "See our work"
   },
   "about": {
     "number": "09",
