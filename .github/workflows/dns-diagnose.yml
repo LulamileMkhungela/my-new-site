@@ -9,14 +9,11 @@ jobs:
   dns:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install -y -qq dnsutils whois >/dev/null 2>&1 || true
+      - run: sudo apt-get install -y -qq dnsutils >/dev/null 2>&1 || true
       - run: |
-          note() { local t="$1"; shift; local m; m=$(cat | head -40 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g'); echo "::notice title=$t::${m:-<empty>}"; }
-          { for q in "NS lulazel.co.za" "SOA lulazel.co.za" "A lulazel.co.za" "AAAA lulazel.co.za" "CNAME www.lulazel.co.za" "A www.lulazel.co.za" "MX lulazel.co.za"; do
-              set -- $q; echo "[$1 $2] google: $(dig +short $1 $2 @8.8.8.8 | tr '\n' ' ') | cloudflare: $(dig +short $1 $2 @1.1.1.1 | tr '\n' ' ')"; done; } | note records
-          P=$(dig +short NS co.za | head -1)
-          dig +norec NS lulazel.co.za @$P | grep -E 'status|IN\s+NS|IN\s+A' | note delegation
-          for ns in $(dig +norec NS lulazel.co.za @$P | awk '/IN\s+NS/{print $5}' | sort -u); do
-            { echo "ns=$ns"; dig +short A $ns; echo "www:"; dig +norec www.lulazel.co.za @$ns | grep -E 'status|IN\s'; echo "apex:"; dig +norec A lulazel.co.za @$ns | grep -E 'status|IN\s'; } | note "auth-$ns"
+          note() { local t="$1"; local m; m=$(cat | head -40 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g'); echo "::notice title=$t::${m:-<empty>}"; }
+          for ns in ns1.named.co.za ns2.named.co.za directadmin.resolving.co.za; do
+            { echo "ns ip: $(dig +short A $ns | tr '\n' ' ')"
+              for q in "A lulazel.co.za" "A www.lulazel.co.za" "CNAME www.lulazel.co.za" "NS lulazel.co.za"; do set -- $q
+                echo "[$1 $2] $(dig +norec +time=3 +tries=1 $1 $2 @$ns | grep -oE 'status: [A-Z]+' ) -> $(dig +norec +short +time=3 +tries=1 $1 $2 @$ns | tr '\n' ' ')"; done; } | note "$ns"
           done
-          whois -h whois.registry.net.za lulazel.co.za 2>&1 | grep -vE '^\s*$|^%' | grep -iE "status|name server|updated" | note whois
