@@ -290,7 +290,7 @@ assert.ok(read('sitemap.xml').includes('/pricing/'),'Pricing is in the sitemap')
 // Trust strip: every figure is computed from site data; no invented "N+" style claims.
 const trust=homeView.elements.find(node=>node.props.className==='hm-trust');
 assert.ok(trust,'Home shows the studio trust strip');
-assert.ok(text(trust).includes('Since 2019')&&text(trust).includes(String(projects.length)));
+assert.ok(text(trust).includes('Since 2019')&&text(trust).includes(String(projects.length)));assert.ok(text(trust).replace(/\s+/g,'').includes('9Services'),'Trust strip uses the approved 9 services');
 assert.doesNotMatch(text(trust),/\d\+/);
 assert.ok(homeView.elements.some(node=>node.props.to==='/pricing'),'Home links to Pricing');
 // Studio voice: no first-person singular in site-level copy (testimonials are quoted and exempt).

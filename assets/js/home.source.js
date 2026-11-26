@@ -115,7 +115,7 @@ function LocalHomeTrust() {
   const facts=[
     ['Since '+Math.min(...years),'Designing & building'],
     [String(localPortfolioProjects.length),'Projects & studies'],
-    [String(localServiceCatalogue.services.length+localStrategyServices.length),'Services, one studio'],
+    [String(localServiceCatalogue.services.length),'Services, one studio'],
     ['JHB','Nationwide & remote']
   ];
   return h('ul',{className:'hm-trust','aria-label':'LulaZel Digital Studio at a glance'},...facts.map(([value,label])=>h('li',{key:label},h('strong',null,value),h('span',null,label))));
