@@ -8,6 +8,27 @@ const colors={green:0x00ce7b,ivory:0xf0efd4,dark:0x244d41,lime:0xc8df8a,coral:0x
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
 const compact=matchMedia('(max-width:800px)');
+/** Models spin a full 360°, so nothing may have a blank back. Each part is built
+ * like a card: a main slab (page, screen, cube, shield, board) with details on its
+ * front face. Copy those front details onto the back, turned 180° about the slab's
+ * centre, so the reverse reads like the front instead of as a bare surface or a
+ * mirror image. Geometry and materials are shared, so this adds draw calls only. */
+function dressBacks(parts){
+ const size=new T.Vector3(),centre=new T.Vector3(),at=new T.Vector3();
+ for(const p of parts){
+  const meshes=p.children.filter(o=>o.isMesh);if(meshes.length<2)continue;
+  const bounds=new Map(meshes.map(m=>{m.updateMatrix();m.geometry.computeBoundingBox();return[m,m.geometry.boundingBox.clone().applyMatrix4(m.matrix)];}));
+  // Rings and tubes are frames/lines, never the surface that carries details.
+  let slab=null,area=0;for(const[m,b]of bounds){if(m.geometry.type==='TorusGeometry'||m.geometry.type==='TubeGeometry')continue;b.getSize(size);if(size.x*size.y>area){area=size.x*size.y;slab=m;}}
+  if(!slab)continue;const sb=bounds.get(slab);sb.getCenter(centre);
+  const front=meshes.filter(m=>{if(m===slab)return false;bounds.get(m).getCenter(at);
+   return at.z>centre.z+.02&&at.x>=sb.min.x-.05&&at.x<=sb.max.x+.05&&at.y>=sb.min.y-.05&&at.y<=sb.max.y+.05;});
+  if(!front.length)continue;
+  const back=new T.Group();back.name='back-face';back.position.set(2*centre.x,0,2*centre.z);back.rotation.y=Math.PI;
+  for(const m of front)back.add(m.clone());
+  p.add(back);
+ }
+}
 function model(kind){
  const root=new T.Group(),parts=[],materials=new Map();
  const mat=color=>{if(!materials.has(color))materials.set(color,new T.MeshStandardMaterial({color:colors[color]||color,roughness:.32,metalness:color==='metal'?.5:.12}));return materials.get(color)};
@@ -38,7 +59,7 @@ function model(kind){
     if(object&&item.r)object.rotation.set(...item.r);
    }
   }
-  return{root,parts};
+  dressBacks(parts);return{root,parts};
  }
  if(kind==='hosting'){
   for(let i=0;i<3;i++){const p=part(0,-.7+i*.65,0);box(p,0,0,0,2.5,.45,1.25,'dark');box(p,-.25,0,.65,1.35,.07,.05,'metal');for(let j=0;j<2;j++)ball(p,.85+j*.2,0,.66,.055,j?'green':'lime');}
@@ -68,7 +89,7 @@ function model(kind){
   const p=part(.1,0,-.2);box(p,0,0,0,2,2.45,.16,'ivory');p.rotation.z=.1;tube(p,[[-.65,-.5,.2],[-.6,.6,.2],[.35,.7,.2],[.4,-.5,.2],[.75,-.6,.2]],'green',.12);
   for(let i=0;i<4;i++){const p=part(-1.15,-.9,i*.07);box(p,0,.5,0,.4,1.45,.09,['dark','green','lime','coral'][i]);p.rotation.z=.2+i*.23;}
  }else if(kind==='advertising'){
-  const p=part(-.25,.25,0);const cone=mesh(new T.CylinderGeometry(.8,.3,1.8,48,1,true),'green',p);cone.rotation.z=-Math.PI/2;const mouth=ring(p,.9,0,0,.8,.08,'dark');mouth.rotation.y=Math.PI/2;box(p,-.35,-.8,0,.3,1,.4,'coral');
+  const p=part(-.25,.25,0);const cone=mesh(new T.CylinderGeometry(.8,.3,1.8,48,1,true),'green',p);cone.material=cone.material.clone();cone.material.side=T.DoubleSide;cone.rotation.z=-Math.PI/2;const mouth=ring(p,.9,0,0,.8,.08,'dark');mouth.rotation.y=Math.PI/2;box(p,-.35,-.8,0,.3,1,.4,'coral');
   const target=part(1.35,-.75,.5);for(const[r,c]of[[.6,'ivory'],[.44,'green'],[.29,'ivory'],[.14,'coral']]){const disk=mesh(new T.CylinderGeometry(r,r,.04,40),c,target,0,0,.7-r*.1);disk.rotation.x=Math.PI/2;}
  }else if(kind==='strategy'){
   const p=page(-.45,.25,-.3);tube(p,[[-.8,-.5,.2],[-.3,-.5,.2],[-.3,0,.2],[.3,0,.2],[.3,.4,.2],[.8,.4,.2]],'green',.065);for(const[x,y]of[[-.8,-.5],[-.3,0],[.8,.4]])ball(p,x,y,.23,.1,'coral');compass(1,-.7,.65);
@@ -77,7 +98,7 @@ function model(kind){
   const ruler=part(-.75,.65,.25);box(ruler,0,0,0,.28,2,.12,'lime');ruler.rotation.z=.25;for(let i=0;i<6;i++)box(ruler,.05,-.75+i*.27,.08,.15,.035,.03,'dark');
   const wrench=part(.85,.6,.1);box(wrench,0,-.2,0,.2,1.7,.18,'metal');ring(wrench,0,.65,0,.28,.1,'metal');wrench.rotation.z=-.3;
  }
- return{root,parts};
+ dressBacks(parts);return{root,parts};
 }
 function mount(host,kind,dir=1){
  const img=host.querySelector('img'),shell=document.createElement('div');shell.className='scene-shell';shell.dataset.scene=kind;
