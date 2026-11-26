@@ -587,3 +587,14 @@ clicks can themselves auto-scroll sticky elements before dispatching input.
   Pricing page, service-page price notes and the instant estimate calculator.
 - Trust figures on Home are computed from site data (first project year, project count,
   service count). Do not add unverifiable “N+” claims.
+
+## Search & AI discoverability
+
+- Structured data (`scripts/publication.mjs`): ProfessionalService with brand spellings
+  (`alternateNames`), founder, contact point, starting-price offer catalogue; FAQPage on /contact.
+- `robots.txt` explicitly welcomes search and AI answer-engine crawlers; `llms.txt` is a
+  generated plain-Markdown summary of the studio, services, prices, work and FAQ.
+- `sitemap.xml` carries `lastUpdated` from `site.config.json` — bump it when content changes.
+- `.github/workflows/indexnow.yml` submits every URL to IndexNow (Bing/ChatGPT search/Copilot,
+  DuckDuckGo, Yandex…) after each Pages publish, using the key file `<indexNowKey>.txt`.
+- Google: verify the domain in Search Console and submit the sitemap (needs the owner's account).

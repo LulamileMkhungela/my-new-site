@@ -11,5 +11,16 @@
   "socialImage": "/assets/img/social-card.png",
   "ownerName": "Lulamile Mkhungela",
   "socialImageAlt": "LulaZel Digital Studio — Ideas into digital impact. Websites, product design, business systems and practical AI.",
-  "legalName": "LulaZel Digital Studio"
+  "legalName": "LulaZel Digital Studio",
+  "alternateNames": [
+    "LulaZel",
+    "Lulazel",
+    "Lula Zel",
+    "LulaZel Studio",
+    "LulaZel Digital"
+  ],
+  "slogan": "Ideas into digital impact.",
+  "foundingDate": "2019",
+  "lastUpdated": "2026-11-26",
+  "indexNowKey": "8153fef2b78471709d77158d6ccd5cb0"
 }
