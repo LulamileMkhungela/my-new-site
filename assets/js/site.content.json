@@ -79,6 +79,28 @@
       "One connected approach means fewer gaps between the idea, the design and the build. Clear scope, regular reviews, testing and a considered launch keep you involved without making you manage every technical detail. The result is a digital experience built to serve your customers and make your business easier to run."
     ],
     "close": "Based in South Africa. Working with businesses worldwide. Your goals, your time zone, one connected approach.",
+    "specialists": [
+      {
+        "name": "Senior backend & systems mentor",
+        "role": "Previous employment",
+        "body": "For backend work — databases, integrations, server-side systems and the harder engineering decisions — I team up with a senior backend specialist I learned from at a previous role. Their reviews keep the systems clean, secure and maintainable."
+      },
+      {
+        "name": "Backend architecture mentor",
+        "role": "Previous gig",
+        "body": "A backend engineer from an earlier engagement who reviews how services, databases and third-party systems connect. This mentorship covers everything behind the interface that needs to scale and stay reliable."
+      }
+    ],
+    "governance": {
+      "title": "Your business data is never exposed to AI",
+      "body": "Practical AI is part of the offer, but your business data is not handed to an AI service to be trained on or guessed at. Every AI feature runs on the providers you choose, with a clear governance practice: what data goes in, what comes back, who can see it and how it is stored is agreed and documented upfront. Where AI is used, it stays inside the agreed scope, with human review before anything reaches your customers. No business data is used to train models, and no AI service is given access to your systems beyond what the agreed task needs.",
+      "points": [
+        "AI runs only through providers you approve, never with blanket access to your systems",
+        "What data is used, how it is stored and who can see it is agreed and documented before work starts",
+        "Human review sits between the AI and anything your customers or team see",
+        "No business data is used to train models — AI is a tool, not an audience for your data"
+      ]
+    },
     "principles": [
       {
         "title": "Your brief leads",

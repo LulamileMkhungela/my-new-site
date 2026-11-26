@@ -134,10 +134,14 @@ privacy information is centred and LinkedIn/contact methods remain labelled.
 
 ## Publication
 
-No production domain is assumed. Configure `SITE_URL` as a real HTTPS origin and
-rebuild for canonical URLs, structured data and a populated sitemap. Until then,
-staging remains `noindex`; deploy previews stay `noindex` even if a production
-origin is configured. See `.env.example`; no secrets belong in public JS.
+A placeholder production origin (`https://lulazel.example`, an RFC 2606 reserved
+TLD) is preconfigured in `assets/js/site.config.json`, so every build already ships
+canonical URLs, structured data, a populated `sitemap.xml`, a permissive
+`robots.txt` and absolute social cards. Before launch, set `SITE_URL` to your real
+HTTPS origin in Vercel/Netlify environment settings and rebuild — or edit
+`site.config.json` directly. `SITE_URL` overrides the config file. Deploy previews
+stay `noindex` even when a production origin is configured; production deploys get
+`index,follow`. See `.env.example`; no secrets belong in public JS.
 
 Netlify and Vercel settings are included. The production output contains hosting
 security headers and compatibility redirects, without an unconditional SPA rewrite

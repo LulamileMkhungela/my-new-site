@@ -17,10 +17,10 @@ export function seoRoutes(config,catalogue,strategies,projects){
  const record=(title,description,extra={})=>({title:title+' | '+config.name,description,...extra});
  const routes={
   '/':{title:config.title,description:config.description},
-  '/about':record('About LulaZel','LulaZel: one digital partner for product design, development, integrations and launch. Websites, apps and connected systems built around your business, worldwide.'),
-  '/contact':record('Let’s Talk','Your digital partner, wherever you work. Discuss websites, hosting setup, business systems, automation, AI and creative services with LulaZel.'),
-  '/portfolio':record('Portfolio','Explore LulaZel’s websites, apps, product-design case studies, frontend projects and premium and free AI design prompts.'),
-  '/services':record('My Services','Website design and development, hosting setup, provider integrations, ecommerce, business systems, automation and practical AI from LulaZel.'),
+  '/about':record('About LulaZel','LulaZel: frontend developer, designer and digital partner in Johannesburg, South Africa. Product design, development, integrations and launch for websites, apps and connected systems, worldwide.'),
+  '/contact':record('Book a Meeting','Book a meeting or request services with LulaZel — frontend developer and designer in South Africa. Websites, hosting setup, business systems, automation, AI and creative services, remote or local.'),
+  '/portfolio':record('Portfolio','Explore LulaZel’s websites, apps, product-design case studies and frontend projects for South African and international clients, plus AI design prompts.'),
+  '/services':record('My Services','Services by LulaZel in South Africa: website design, frontend development, hosting setup, ecommerce, business systems, automation, AI, SEO and Google Ads.'),
   '/privacy':record('Privacy & image rights','How portfolio enquiries, third-party services, personal information and image rights are handled.'),
   '/tools':record('Tools','A collection of practical design and development resources.',{noindex:true}),
   '/404':record('Page not found','This page could not be found. Explore services and projects from LulaZel.',{noindex:true})
@@ -33,7 +33,7 @@ export function seoRoutes(config,catalogue,strategies,projects){
 export function structuredData(config,p,meta){
  if(!config.url||meta.noindex)return null;
  const origin=config.url,url=origin+meta.canonical;
- const data=[{'@type':'Person','@id':origin+'/#person',name:config.ownerName,url:origin+'/about/',email:config.email,telephone:config.telephone,sameAs:[config.linkedin],jobTitle:'Devzigner — Designer & Frontend Developer'}, {'@type':'WebSite','@id':origin+'/#website',name:config.name,url:origin+'/',inLanguage:config.language,publisher:{'@id':origin+'/#person'}}, {'@type':'WebPage','@id':url+'#webpage',name:meta.title,description:meta.description,url,inLanguage:config.language,isPartOf:{'@id':origin+'/#website'},about:{'@id':origin+'/#person'}}];
+ const data=[{'@type':'Person','@id':origin+'/#person',name:config.ownerName,url:origin+'/about/',email:config.email,telephone:config.telephone,sameAs:[config.linkedin],jobTitle:'Frontend Developer & Designer',homeLocation:{'@type':'Place','name':'Johannesburg, South Africa'}}, {'@type':'WebSite','@id':origin+'/#website',name:config.name,url:origin+'/',inLanguage:config.language,publisher:{'@id':origin+'/#person'}}, {'@type':'WebPage','@id':url+'#webpage',name:meta.title,description:meta.description,url,inLanguage:config.language,isPartOf:{'@id':origin+'/#website'},about:{'@id':origin+'/#person'}}];
  if(p!=='/')data.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:origin+'/'},{'@type':'ListItem',position:2,name:meta.title.split(' | ')[0],item:url}]});
  if(p.startsWith('/services/')||p==='/product-design-strategy')data.push({'@type':'Service',name:meta.title.split(' | ')[0],description:meta.description,url,provider:{'@id':origin+'/#person'},areaServed:{'@type':'Country',name:'South Africa'}});
  return {'@context':'https://schema.org','@graph':data};

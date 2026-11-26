@@ -21,9 +21,9 @@ function LocalStudioTitle({lines,level='h2',id}) {
   const h=g.createElement;
   return h(level,{className:'studio-title',id},...lines.map((line,index)=>h('span',{key:index,className:index===1?'studio-outline':index===2?'studio-green':''},line)));
 }
-function LocalStudioVisual({kind='studio',caption='LulaZel · Independent digital partner',eager=false}) {
+function LocalStudioVisual({kind='studio',caption='LulaZel · Independent digital partner',eager=false,small=false}) {
   const h=g.createElement;
-  return h('figure',{key:kind,className:'studio-visual','data-reveal':'art','data-scene-kind':kind},h('img',{src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'Original '+kind+' vector illustration for LulaZel',width:640,height:570,loading:eager?'eager':'lazy',decoding:'async',fetchPriority:eager?'high':undefined}),h('figcaption',null,h('i',{'aria-hidden':true}),caption));
+  return h('figure',{key:kind,className:'studio-visual'+(small?' studio-visual-small':''),'data-reveal':'art','data-scene-kind':kind},h('img',{src:'/assets/img/home/'+kind+'.svg?v='+localHomeArtworkVersion,alt:'Original '+kind+' vector illustration for LulaZel',width:640,height:570,loading:'eager',decoding:'async',fetchPriority:eager?'high':undefined}),h('figcaption',null,h('i',{'aria-hidden':true}),caption));
 }
 function LocalStudioPager({sections,current,next}) {
   const h=g.createElement;
@@ -39,7 +39,7 @@ function LocalServicesPage() {
   const label=(number,title,subtitle)=>h('div',{className:'studio-section-heading'},h('p',{className:'studio-kicker'},h('span',{'aria-hidden':true}),number+' / '+title),h('p',{className:'studio-subtitle'},subtitle));
   const row=item=>h(ve,{key:item.slug||item.path,to:item.path||'/services/'+item.slug,className:'studio-service-row'},h('span',{className:'studio-row-title'},item.title,h(LocalUiIcon,{name:'arrow-up-right'})),h('span',{className:'studio-row-summary'},item.summary));
   const panel=(id,watermark,children,key=id)=>h('section',{key,id,className:'studio-panel','data-background-text':watermark},children);
-  if(slug&&!service)return h(g.Fragment,null,h(Bn),h('main',{id:'main',className:'svc-page'},h('section',{className:'unified-container unified-empty-page','data-background-text':'MY SERVICES'},h('h1',null,'Service not found.'),h(ve,{to:'/services'},'Browse My Services'))),h(zn));
+  if(slug&&!service)return h(g.Fragment,null,h(Bn),h('main',{id:'main',className:'svc-page'},h('section',{className:'unified-container unified-empty-page','data-background-text':'MY SERVICES'},h('h1',null,'Service not found.'),h(ve,{to:'/services'},'Browse My Services'))),h(LocalSectionRail),h(zn));
   if(!service){
     const groups=[
       {id:'web',label:'Web & ecommerce',lines:['Digital services.','Your business.','Connected.'],description:'From design and development to choosing providers, connecting services and launch—I bring the pieces together so your website works end to end.',art:'web-services',watermark:'MY SERVICES'},
@@ -52,7 +52,7 @@ function LocalServicesPage() {
           h('div',{className:'studio-service-list'},...catalogue.services.filter(item=>item.group===group.id).map(row)),
           index===2&&h('div',{id:'strategy',className:'studio-strategy'},h('p',{className:'studio-subtitle'},'Also / Product & strategy'),...localStrategyServices.map(row)),
           index===2&&h('a',{href:'#web',className:'studio-back'},'↺ Back to My Services')),
-        h(LocalStudioVisual,{kind:group.art,eager:index===0,caption:group.label+' · Original vector study'})),h(LocalStudioPager,{sections:groups,current:index,next:groups[index+1]?.id}))))) ,h(zn));
+        h(LocalStudioVisual,{kind:group.art,eager:index===0,caption:group.label+' · Original vector study'})),h(LocalStudioPager,{sections:groups,current:index,next:groups[index+1]?.id}))))) ,h(LocalSectionRail),h(zn));
   }
   const presentation={
     'web-hosting':{intro:['Hosting setup.','Connected.','Managed.'],features:['Choose well.','Set it up.','Keep it running.'],contact:['Your website.','Your providers.','Let’s connect.'],featureLabel:'What I set up & manage',subtitle:'Choose. Connect. Maintain.',mark:'SET UP & SUPPORTED'},
@@ -92,7 +92,7 @@ function LocalServicesPage() {
         h('ol',{className:'studio-prepare'},...service.prepare.map((item,index)=>h('li',{key:item},h('span',null,item),h('strong',null,String(index+1).padStart(2,'0'))))),
         h('p',{className:'studio-related'},'Works well with ',...service.related.map((slug,index)=>{const item=catalogue.services.find(s=>s.slug===slug);return h(g.Fragment,{key:slug},index>0?' and ':null,h(ve,{to:'/services/'+slug},item.title));}),'.'),
         h('div',{className:'studio-actions'},h(ve,{to:'/contact',className:'studio-text-link'},'Discuss '+service.title,h(LocalUiIcon,{name:'arrow-up-right'})),h('a',{href:'#service-intro',className:'studio-back'},'↺ Back to overview'),h(ve,{to:'/services',className:'studio-back'},'← My Services'))),
-      h(LocalStudioVisual,{kind:service.slug+'-brief',caption:service.title+' · Your project brief'})),h(LocalStudioPager,{sections,current:2})))),h(zn));
+      h(LocalStudioVisual,{kind:service.slug+'-brief',caption:service.title+' · Your project brief'})),h(LocalStudioPager,{sections,current:2})))),h(LocalSectionRail),h(zn));
 }
 
 /** Compatibility only: retired offerings never render as separate services. */

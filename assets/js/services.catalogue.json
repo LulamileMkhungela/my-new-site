@@ -22,7 +22,7 @@
       "group": "web",
       "title": "Web Hosting",
       "icon": "server",
-      "summary": "Hosting provider selection, setup and ongoing website management.",
+      "summary": "South African hosting setup, provider selection and ongoing website management.",
       "intro": "I help you choose a suitable hosting provider, set up your website and manage the agreed upkeep after launch. Hosting runs on an external provider’s infrastructure, with configuration, connections and day-to-day website care covered by your support plan.",
       "tags": [
         "Provider selection",
@@ -72,7 +72,7 @@
       "group": "web",
       "title": "Website Design",
       "icon": "layout",
-      "summary": "Website design, frontend development, HTML email design and external service integrations.",
+      "summary": "Website design and frontend development for South African businesses, HTML email design and integrations.",
       "intro": "Get a responsive website—from design and frontend development to the services needed for a working launch. Page structure, interactions, forms, booking tools and email come together in one connected experience, with suitable providers selected and the agreed journeys tested end to end.",
       "tags": [
         "Website design",
@@ -140,7 +140,7 @@
       "group": "web",
       "title": "Ecommerce",
       "icon": "bag",
-      "summary": "Online stores with an easy journey from product to checkout.",
+      "summary": "Online stores and ecommerce for South African businesses, an easy journey from product to checkout.",
       "intro": "Take your store from product discovery to a working checkout. Design, development and supported payment, delivery and email integrations are brought together around your customers, with provider selection, configuration and end-to-end testing included in the agreed scope.",
       "tags": [
         "Product discovery",
@@ -204,7 +204,7 @@
       "group": "systems",
       "title": "Business Systems",
       "icon": "grid",
-      "summary": "Custom tools, portals and dashboards built around your operations.",
+      "summary": "Custom business systems, tools, portals and dashboards built around South African operations.",
       "intro": "Focused tools, portals and dashboards designed and built around your operations. Existing services can be connected where they already do part of the job, bringing your interfaces, data and agreed workflows together without rebuilding everything from scratch.",
       "tags": [
         "Custom tools",
@@ -254,7 +254,7 @@
       "group": "systems",
       "title": "Workflow Automation & AI",
       "icon": "flow",
-      "summary": "Connect your tools and cut repetitive work—with AI where useful.",
+      "summary": "Workflow automation and practical AI for South African businesses, cutting repetitive work.",
       "intro": "Connect your existing tools and external services to automate repeated tasks and keep information moving. Workflows are configured through supported APIs, webhooks or automation platforms, with tested handovers, review points and exception handling.",
       "tags": [
         "Connected tools",
@@ -304,7 +304,7 @@
       "group": "systems",
       "title": "AI Assistants",
       "icon": "chat",
-      "summary": "Help customers and teams find answers in your business knowledge.",
+      "summary": "AI assistants that help customers and teams in South Africa find answers in your knowledge.",
       "intro": "Give customers and teams an assistant connected to approved business information and suitable AI services. The interface, knowledge sources and agreed actions are configured together, with clear access limits and a route to human support.",
       "tags": [
         "Useful answers",
@@ -354,7 +354,7 @@
       "group": "growth",
       "title": "Basic Graphic Design",
       "icon": "pen",
-      "summary": "Simple, consistent graphics for social, digital and print.",
+      "summary": "Simple, consistent graphic design for South African social, digital and print needs.",
       "intro": "Everyday design support using your existing brand or a simple agreed visual direction. Ideal for a clear message and practical assets—not a full brand strategy or complex identity project.",
       "tags": [
         "Social posts",
@@ -404,7 +404,7 @@
       "group": "growth",
       "title": "SEO & Search",
       "icon": "search",
-      "summary": "Help relevant customers discover your business through search.",
+      "summary": "SEO and search that helps relevant South African customers discover your business.",
       "intro": "Prioritised technical and content improvements around what your customers are searching for. Focus on useful pages, a sound website structure and meaningful measures of progress.",
       "tags": [
         "Technical SEO",
@@ -454,7 +454,7 @@
       "group": "growth",
       "title": "Google Ads",
       "icon": "target",
-      "summary": "Focused campaigns with clear enquiry or sales goals.",
+      "summary": "Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.",
       "intro": "Connect your offer, audience, keywords and landing page in a focused paid campaign. Use meaningful conversion data to decide what to improve—not clicks alone.",
       "tags": [
         "Targeting",

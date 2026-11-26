@@ -5,10 +5,36 @@ function LocalReadRoutePosition(key){
  try{return JSON.parse(sessionStorage.getItem('lulazel-position-'+key)||'null');}catch{return null;}
 }
 /** One shared application shell for Portfolio, About, Contact and Tools. */
+/** Auto-type text. Reveals the sentence character-by-character once it enters
+ * the viewport. Contact page only — used on the hero invitation line. */
+function LocalTypedText({text,className=''}) {
+  const h=g.createElement;
+  const ref=g.useRef(null);
+  const [count,setCount]=g.useState(0);
+  g.useEffect(()=>{
+    const node=ref.current;if(!node)return;
+    const reduced=typeof matchMedia!=='undefined'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced||!('IntersectionObserver' in window)){setCount(text.length);return;}
+    let timer=0;
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          io.disconnect();
+          let i=0;
+          const tick=()=>{i++;setCount(i);if(i<text.length)timer=setTimeout(tick,32+Math.random()*40);};
+          tick();
+        }
+      });
+    },{threshold:.4});
+    io.observe(node);
+    return()=>{io.disconnect();if(timer)clearTimeout(timer);};
+  },[text]);
+  return h('span',{ref,className:'typed-text '+className,'aria-label':text},text.slice(0,count));
+}
 function LocalPageFrame({title,description,children,className=''}) {
   const h=g.createElement;
   return h(g.Fragment,null,
-    h(Bn),h('main',{id:'main',className},children),h(zn));
+    h(Bn),h('main',{id:'main',className},children),h(LocalSectionRail),h(zn));
 }
 function LocalEnquiryDialog() {
   const h=g.createElement;
@@ -58,6 +84,150 @@ function LocalSiteFooter() {
         h('button',{type:'button',className:'footer-contact-icon','aria-label':'Enquiry — open enquiry form',title:'Send an enquiry','aria-haspopup':'dialog','aria-controls':'footer-enquiry',onClick:event=>{const dialog=event.currentTarget.closest('footer').querySelector('#footer-enquiry');dialog.showModal();dialog.querySelector('input[name="name"]')?.focus();}},...iconBody('form','Enquiry')))),
     h('div',{className:'unified-footer-bottom'},h('p',null,'© '+new Date().getFullYear()+' LulaZel · by Lulamile M · South Africa'),h(ve,{to:'/privacy',className:'footer-privacy'},'Privacy & image rights'),
       h('nav',{'aria-label':'Footer'},h(ve,{to:'/services'},'My Services'),h(ve,{to:'/portfolio'},'Portfolio'),h(ve,{to:'/about'},'About')))),h(LocalEnquiryDialog));
+}
+/** Instant project estimate in South African Rands.
+ * Multi-step wizard: project type → scope questions → a Rand range.
+ * Selecting an answer auto-advances to the next step (no Next button).
+ * "Send my estimate" submits the estimate details to the Formspree endpoint. */
+function LocalCalculator() {
+  const h=g.createElement;
+  const [step,setStep]=g.useState(0);
+  const [answers,setAnswers]=g.useState({});
+  const [otherText,setOtherText]=g.useState('');
+  const [done,setDone]=g.useState(false);
+  const [sending,setSending]=g.useState(false);
+  const [sent,setSent]=g.useState(false);
+  const FORMSPREE='https://formspree.io/f/xvkgqalq';
+  const types=[
+    {id:'website',label:'Website',base:[18000,48000],hint:'A business or marketing website',icon:'monitor'},
+    {id:'ecommerce',label:'Online store',base:[40000,95000],hint:'A store that sells online',icon:'layers'},
+    {id:'app',label:'App',base:[38000,100000],hint:'A mobile or web app',icon:'app-store'},
+    {id:'system',label:'Business system',base:[50000,140000],hint:'A custom tool, portal or dashboard',icon:'grid'},
+    {id:'brand',label:'Brand & design',base:[14000,40000],hint:'Identity and design assets',icon:'sparkles'},
+    {id:'other',label:'Something else',base:[18000,55000],hint:'Tell me what you have in mind',icon:'plus'}
+  ];
+  const type=types.find(item=>item.id===answers.type)||types[0];
+  // Integration add-ons are context-sensitive: each project type only offers
+  // the add-ons that make sense for it (a branding project has none).
+  const integrationSets={
+    website:[{v:'forms',l:'Forms / CRM',d:.12},{v:'booking',l:'Booking / calendar',d:.15},{v:'payments',l:'Payments / shop',d:.2},{v:'ai',l:'AI assistant',d:.25}],
+    ecommerce:[{v:'payments',l:'Payments / shop',d:.2},{v:'forms',l:'Forms / CRM',d:.12},{v:'ai',l:'AI assistant',d:.25}],
+    app:[{v:'forms',l:'Forms / CRM',d:.12},{v:'booking',l:'Booking / calendar',d:.15},{v:'payments',l:'Payments / shop',d:.2},{v:'ai',l:'AI assistant',d:.25}],
+    system:[{v:'forms',l:'Forms / CRM',d:.12},{v:'booking',l:'Booking / calendar',d:.15},{v:'payments',l:'Payments / shop',d:.2},{v:'ai',l:'AI assistant',d:.25}],
+    brand:[],
+    other:[{v:'forms',l:'Forms / CRM',d:.12},{v:'booking',l:'Booking / calendar',d:.15},{v:'payments',l:'Payments / shop',d:.2},{v:'ai',l:'AI assistant',d:.25}]
+  };
+  const questions=[
+    {id:'level',q:'What level of finish are you aiming for?',type:'single',opts:[{v:'std',l:'Clean & polished',d:1},{v:'prem',l:'Award-level, custom',d:1.8}]},
+    {id:'pages',q:'How many pages or screens?',type:'single',opts:[{v:'s1',l:'Up to 5',d:.8},{v:'s5',l:'6–15',d:1},{v:'s15',l:'16+',d:1.35}]},
+    ...(integrationSets[type.id].length?[{id:'integrations',q:'Need forms, booking, payments or integrations?',type:'multi',opts:integrationSets[type.id]}]:[]),
+    {id:'timeline',q:'How soon do you need it?',type:'single',opts:[{v:'flex',l:'Flexible',d:1},{v:'soon',l:'Within a month',d:1.15},{v:'urgent',l:'ASAP',d:1.3}]}
+  ];
+  const q=id=>questions.find(item=>item.id===id);
+  const estimate=()=>{
+    let lo=type.base[0],hi=type.base[1];
+    const level=(q('level').opts.find(o=>o.v===answers.level)||{d:1}).d;
+    const pages=(q('pages').opts.find(o=>o.v===answers.pages)||{d:1}).d;
+    const timeline=(q('timeline').opts.find(o=>o.v===answers.timeline)||{d:1}).d;
+    let extra=0;
+    (answers.integrations||[]).forEach(v=>{const o=q('integrations')?.opts.find(x=>x.v===v);if(o)extra+=o.d;});
+    lo=Math.round((lo*level*pages+lo*extra)*1000)/1000;
+    hi=Math.round((hi*level*pages+hi*extra)*timeline*1000)/1000;
+    return {lo:Math.max(8000,Math.round(lo/1000)*1000),hi:Math.round(hi/1000)*1000};
+  };
+  const range=estimate();
+  // Position the band on a scale from the project type's base range.
+  const rangeSpan=type.base[1]-type.base[0]||1;
+  const loPct=Math.max(0,Math.min(100,((range.lo-type.base[0])/rangeSpan)*100));
+  const hiPct=Math.max(0,Math.min(100,((range.hi-type.base[0])/rangeSpan)*100));
+  const chips=[];
+  if(answers.level)chips.push(q('level').opts.find(o=>o.v===answers.level)?.l);
+  if(answers.pages)chips.push(q('pages').opts.find(o=>o.v===answers.pages)?.l);
+  if(answers.timeline)chips.push(q('timeline').opts.find(o=>o.v===answers.timeline)?.l);
+  (answers.integrations||[]).forEach(v=>{const label=q('integrations')?.opts.find(o=>o.v===v)?.l;if(label)chips.push(label);});
+  // Auto-advance: tapping any option advances to the next step immediately.
+  // Multi-select options accumulate — each tap adds/toggles and advances.
+  // "Other" type does not auto-advance on selection — the user types their description.
+  const pick=key=>value=>{
+    setAnswers(prev=>{
+      const current=prev[key];
+      if(key==='integrations'){
+        const list=Array.isArray(current)?current:[];
+        const next=list.includes(value)?list.filter(v=>v!==value):[...list,value];
+        return {...prev,[key]:next};
+      }
+      return {...prev,[key]:value};
+    });
+    if(!(key==='type'&&value==='other'))advance();
+  };
+  const advance=()=>{if(step<questions.length-1)setStep(step+1);else setDone(true);};
+  const back=()=>{if(step>0)setStep(step-1);if(done)setDone(false);};
+  const fmt=n=>'R'+n.toLocaleString('en-ZA');
+  const sendEstimate=async()=>{
+    if(sending)return;
+    setSending(true);
+    const selected=(q('level')?.opts.find(o=>o.v===answers.level)?.l||'')+', '+(q('pages')?.opts.find(o=>o.v===answers.pages)?.l||'')+', '+(q('timeline')?.opts.find(o=>o.v===answers.timeline)?.l||'');
+    const integrations=(answers.integrations||[]).map(v=>q('integrations')?.opts.find(o=>o.v===v)?.l).filter(Boolean).join(', ');
+    const data=new FormData();
+    data.append('estimate_project',type.label);
+    data.append('estimate_range',fmt(range.lo)+' – '+fmt(range.hi));
+    data.append('estimate_details',selected+(integrations?'; integrations: '+integrations:'')+(answers.type==='other'&&otherText.trim()?'; other: '+otherText.trim():''));
+    data.append('estimate_source','Website instant estimate calculator');
+    data.append('_replyto',localSiteContent.email);
+    try{
+      const response=await fetch(FORMSPREE,{method:'POST',body:data,headers:{Accept:'application/json'},signal:AbortSignal.timeout(20000)});
+      if(!response.ok)throw new Error('Submission failed');
+      setSent(true);
+    }catch{
+      setSent(false);
+    }finally{setSending(false);}
+  };
+  const current=questions[step];
+  const multiHint=current.type==='multi'&&(answers[current.id]||[]).length>0;
+  const renderOptions=()=>current.opts.map(o=>{
+    const on=current.type==='multi'?(answers[current.id]||[]).includes(o.v):answers[current.id]===o.v;
+    const click=()=>pick(current.id)(o.v);
+    return h('button',{key:o.v,type:'button',className:'calc-opt'+(on?' is-active':''),'aria-pressed':on,onClick:click},
+      current.type==='multi'?h('span',{className:'calc-check','aria-hidden':true},h(LocalUiIcon,{name:'check'})):null,o.l);
+  });
+  return h('div',{id:'calculator',className:'calc-card','aria-labelledby':'calc-title'},
+    h('div',{className:'calc-head'},
+      h('p',{className:'hybrid-eyebrow'},h('span',{'aria-hidden':true}),'04 / Instant estimate'),
+      h('h2',{id:'calc-title'},'See a price range in Rands.'),
+      h('p',{className:'calc-lead'},'Answer a few questions about your project and get an instant estimate in South African Rands — about two minutes, no email required.')),
+    h('div',{className:'calc-app'},
+      h('div',{className:'calc-progress'},h('div',{className:'calc-progress-bar','aria-hidden':true,style:{transform:'scaleX('+((done?questions.length+1:step+1)/(questions.length+1))+')'}})),
+      done?
+        h('div',{className:'calc-result','data-anim':'result'},
+          h('div',{className:'calc-result-head'},h('span',{className:'calc-mono'},'Your estimate'),h('h3',null,type.label)),
+          h('div',{className:'calc-range'},h('span',{className:'calc-range-lo'},fmt(range.lo)),h('span',{className:'calc-range-sep'},'–'),h('span',{className:'calc-range-hi'},fmt(range.hi))),
+          h('div',{className:'calc-meter','aria-hidden':true},
+            h('div',{className:'calc-meter-track'},h('div',{className:'calc-meter-fill',style:{left:loPct+'%',width:Math.max(4,hiPct-loPct)+'%'}})),
+            h('div',{className:'calc-meter-labels'},h('span',null,'Starts near '+fmt(type.base[0])),h('span',null,'Range '+fmt(type.base[0])+' – '+fmt(type.base[1])))),
+          chips.length&&h('div',{className:'calc-chips'},...chips.map((chip,index)=>h('span',{key:index,className:'calc-chip'},h(LocalUiIcon,{name:'check'}),chip))),
+          h('p',{className:'calc-result-note'},'This is a starting estimate based on your answers — it is not a final price and can change once the scope is confirmed. After a short conversation you get a clear, written quote covering scope, deliverables and timing — nothing starts until you approve it.'),
+          sent?
+            h('div',{className:'calc-sent'},h(LocalUiIcon,{name:'check'}),'Your estimate has been sent. I\'ll be in touch shortly.'):
+            h('div',{className:'calc-actions'},
+              h('button',{type:'button',className:'hybrid-button',onClick:()=>{setStep(0);setAnswers({});setDone(false);setSent(false);}},'Restart'),
+              h('button',{type:'button',className:'hybrid-button',onClick:sendEstimate,disabled:sending},sending?'Sending…':'Send my estimate',h(LocalUiIcon,{name:'send'})))):
+        h('div',{className:'calc-question','data-anim':'step',key:'step-'+step},
+          step===0?
+            h('div',null,
+              h('div',{className:'calc-type-grid'},...types.map(item=>h('button',{key:item.id,type:'button',className:'calc-type'+(answers.type===item.id?' is-active':''),'aria-pressed':answers.type===item.id,onClick:()=>{const keep=integrationSets[item.id];setAnswers(prev=>{const list=(Array.isArray(prev.integrations)?prev.integrations:[]).filter(v=>keep.some(o=>o.v===v));return{...prev,integrations:keep.length?list:[]};});pick('type')(item.id);}},h('span',{className:'calc-type-icon','aria-hidden':true},h(LocalUiIcon,{name:item.icon})),h('span',{className:'calc-type-label'},item.label),h('span',{className:'calc-type-hint'},item.hint)))),
+              answers.type==='other'&&h('div',{className:'calc-other'},
+                h('label',{className:'calc-other-label',htmlFor:'calc-other-input'},'Tell me about it'),
+                h('input',{id:'calc-other-input',className:'calc-other-input',type:'text',value:otherText,placeholder:'e.g. a booking platform for my salon, a membership portal…',onChange:e=>{const v=e.target.value;setOtherText(v);if(v.trim().length>=4)setTimeout(()=>{if(document.getElementById('calc-other-input')?.value.trim().length>=4)advance(1);},400);},onKeyDown:e=>{if(e.key==='Enter'&&e.target.value.trim().length>=4){e.preventDefault();advance(1);}},'aria-label':'Describe your project'}),
+                h('p',{className:'calc-multi-hint'},'Press Enter or keep typing to continue →'))):
+            h('div',null,
+              h('div',{className:'calc-q-head'},h('span',{className:'calc-mono'},'Step '+String(step+1).padStart(2,'0')),h('p',null,current.q)),
+              current.type==='multi'?
+                h('div',{className:'calc-opts'},...renderOptions(),
+                  multiHint&&h('p',{className:'calc-multi-hint'},'Tap to add or remove, then continue →')):
+                h('div',{className:'calc-opts'},...renderOptions()),
+              h('div',{className:'calc-nav'},
+                step>0&&h('button',{type:'button',className:'calc-back',onClick:back},'← Back'))))),
+    h('p',{className:'calc-disclaimer'},'Estimates are indicative ranges for planning, not fixed quotes. Final pricing depends on the scope agreed after a conversation, and provider costs (hosting, payments, AI) are billed separately by those providers.'));
 }
 /** Horizontal browsing is explicit: never consume a vertical wheel/touch gesture. */
 function LocalProjectRail({projects,category,className='pf-grid'}) {
@@ -141,10 +311,11 @@ function LocalSocialProfiles() {
 function LocalAboutPage() {
   const h=g.createElement;
   return h(LocalPageFrame,{title:'About LulaZel',description:'LulaZel combines design, development and connected services to help businesses go from idea to launch.',className:'unified-page'},
-    h('section',{className:'unified-about-hero','data-background-text':'ABOUT LULAZEL'},h('div',{className:'unified-container unified-about-grid'},
+    h('section',{id:'about-intro',className:'unified-about-hero','data-background-text':'ABOUT LULAZEL'},h('div',{className:'unified-container unified-about-grid'},
       h('div',null,h('p',{className:'hybrid-eyebrow'},h('span'),'About / LulaZel'),h('h1',null,'Your vision.',h('br'),h('span',{className:'hybrid-outline'},'Designed & built.'),h('br'),h('span',{className:'hybrid-green'},'Ready for the world.')),h('p',{className:'hybrid-hero-description'},localSiteContent.about.intro),h(LocalSocialProfiles)),
-      h('img',{src:'/assets/img/lulamile.webp',alt:'Lulamile M, founder of LulaZel',width:900,height:900}))),
-    h('section',{className:'unified-container unified-about-copy'},h('p',{className:'svc-kicker'},'One partner. From idea to launch.'),h('h2',null,'Good design opens the door. Great development makes it work.'),...localSiteContent.about.paragraphs.map((paragraph,index)=>h('p',{key:index},paragraph)),h('p',{className:'unified-about-close'},localSiteContent.about.close)),h('section',{className:'unified-about-panel','aria-labelledby':'principles-title','data-background-text':'HOW WE WORK'},h('div',{className:'unified-container unified-panel-grid'},h('div',{className:'unified-panel-copy'},h('p',{className:'svc-kicker'},'How we work'),h('h2',{id:'principles-title'},'Principles you can rely on.'),h('ol',{className:'unified-principles-list'},...localSiteContent.about.principles.map((principle,index)=>h('li',{key:principle.title},h('span',{className:'unified-list-number'},String(index+1).padStart(2,'0')),h('div',null,h('h3',null,principle.title),h('p',null,principle.body)))))),h(LocalStudioVisual,{kind:'about-principles',caption:'How LulaZel works · Original vector study'}))),h('section',{className:'unified-about-panel unified-scope','aria-labelledby':'scope-title','data-background-text':'HONEST SCOPE'},h('div',{className:'unified-container unified-panel-grid unified-art-left'},h(LocalStudioVisual,{kind:'about-scope',caption:'Honest scope · Original vector study'}),h('div',{className:'unified-panel-copy'},h('p',{className:'svc-kicker'},'Honest scope'),h('h2',{id:'scope-title'},'What LulaZel doesn’t take on.'),h('p',{className:'unified-scope-intro'},'If a request is not the right fit, that is said up front — saving you time, money and frustration.'),h('ul',{className:'unified-scope-list'},...localSiteContent.about.outOfScope.map((item,index)=>h('li',{key:item.title},h('span',{className:'unified-list-number'},String(index+1).padStart(2,'0')),h('div',null,h('h3',null,item.title),h('p',null,item.body)))))))));
+      h('img',{src:'/assets/img/lulamile.webp',alt:'Lulamile M, founder of LulaZel',width:900,height:900,loading:'eager',decoding:'async',fetchPriority:'high'}))),
+    h('section',{id:'about-partner',className:'unified-about-panel unified-partner-card','data-background-text':'ONE PARTNER'},h('div',{className:'unified-container'},h('div',{className:'unified-partner-card-grid'},h('div',{className:'unified-partner-card-col'},h('p',{className:'svc-kicker'},'One partner. From idea to launch.'),h('h2',{id:'partner-title'},'Good design opens the door. Great development makes it work.'),...localSiteContent.about.paragraphs.map((paragraph,index)=>h('p',{key:index},paragraph)),h('p',{className:'unified-about-close'},localSiteContent.about.close)),h('div',{className:'unified-partner-card-col'},h('p',{className:'svc-kicker'},'Specialists & mentors'),h('h2',{id:'specialists-title'},'Trusted specialists behind the work.'),h('p',{className:'unified-scope-intro'},'For backend work I team up with trusted specialists — senior mentors from previous employment and gigs — who review the harder systems, database and integration decisions. Everything frontend, product and design is my own work, end to end.'),h('ul',{className:'unified-scope-list'},...localSiteContent.about.specialists.map((item,index)=>h('li',{key:item.name},h('span',{className:'unified-list-number'},String(index+1).padStart(2,'0')),h('div',null,h('h3',null,item.name),h('p',{className:'unified-specialist-role'},item.role),h('p',null,item.body))))))))),h('section',{id:'about-principles',className:'unified-about-panel','aria-labelledby':'principles-title','data-background-text':'HOW WE WORK'},h('div',{className:'unified-container unified-panel-grid'},h('div',{className:'unified-panel-copy'},h('p',{className:'svc-kicker'},'How we work'),h('h2',{id:'principles-title'},'Principles you can rely on.'),h('ol',{className:'unified-principles-list'},...localSiteContent.about.principles.map((principle,index)=>h('li',{key:principle.title},h('span',{className:'unified-list-number'},String(index+1).padStart(2,'0')),h('div',null,h('h3',null,principle.title),h('p',null,principle.body)))))),h(LocalStudioVisual,{kind:'about-principles',caption:'How LulaZel works · Original vector study'}))),h('section',{id:'about-scope',className:'unified-about-panel unified-scope','aria-labelledby':'scope-title','data-background-text':'HONEST SCOPE'},h('div',{className:'unified-container unified-panel-grid unified-art-left'},h(LocalStudioVisual,{kind:'about-scope',caption:'Honest scope · Original vector study'}),h('div',{className:'unified-panel-copy'},h('p',{className:'svc-kicker'},'Honest scope'),h('h2',{id:'scope-title'},'What LulaZel doesn’t take on.'),h('p',{className:'unified-scope-intro'},'If a request is not the right fit, that is said up front — saving you time, money and frustration.'),h('ul',{className:'unified-scope-list'},...localSiteContent.about.outOfScope.map((item,index)=>h('li',{key:item.title},h('span',{className:'unified-list-number'},String(index+1).padStart(2,'0')),h('div',null,h('h3',null,item.title),h('p',null,item.body))))))),
+    h('section',{id:'about-governance',className:'unified-about-panel unified-governance','aria-labelledby':'governance-title','data-background-text':'AI GOVERNANCE'},h('div',{className:'unified-container unified-panel-grid unified-art-left'},h(LocalStudioVisual,{kind:'about-governance',caption:'AI governance · Original vector study'}),h('div',{className:'unified-panel-copy'},h('p',{className:'svc-kicker'},'AI governance'),h('h2',{id:'governance-title'},localSiteContent.about.governance.title),h('p',{className:'unified-scope-intro'},localSiteContent.about.governance.body),h('ul',{className:'unified-scope-list'},...localSiteContent.about.governance.points.map((item,index)=>h('li',{key:item},h('span',{className:'unified-list-number'},String(index+1).padStart(2,'0')),h('div',null,h('h3',null,item),h('p',null,''))))))))));
 }
 function LocalContactPage() {
   const h=g.createElement;
@@ -153,31 +324,29 @@ function LocalContactPage() {
       h('div',{className:'contact-intro-copy'},h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'01 / Contact LulaZel'),h('p',{className:'contact-section-subtitle'},'South Africa & remote enquiries welcome.'),
         h('h1',null,h('span',null,'Your digital partner.'),h('span',{className:'hybrid-green'},'Wherever you work.')),
         h('p',{className:'hybrid-hero-description'},'Websites, hosting setup, business systems, automation, AI and creative services for businesses worldwide.'),
-        h('p',{className:'contact-invitation'},'Tell me your goals, your requirements and your time zone. Let’s discuss a solution that fits your business.'),
+        h('p',{className:'contact-invitation'},h(LocalTypedText,{text:'Tell me your goals, your requirements and your time zone. Let’s discuss a solution that fits your business.'})),
         h('div',{className:'contact-direct'},
           h('a',{href:'tel:+27837195064'},h(LocalUiIcon,{name:'handset'}),h('span',null,'Call',h('strong',null,'+27 83 719 5064')),h(LocalUiIcon,{name:'arrow-up-right'})),
           h('a',{href:'https://wa.me/27837195064',target:'_blank',rel:'noopener noreferrer'},h(LocalUiIcon,{name:'whatsapp'}),h('span',null,'WhatsApp',h('strong',null,'+27 83 719 5064')),h(LocalUiIcon,{name:'arrow-up-right'})),
           h('a',{href:'mailto:'+localSiteContent.email},h(LocalUiIcon,{name:'mail'}),h('span',null,'Email',h('strong',null,localSiteContent.email)),h(LocalUiIcon,{name:'arrow-up-right'}))),
         h('div',{className:'contact-extra-actions'},
-          h('a',{href:'https://calendly.com/lulamile_m/meet-lulamile?month=2026-11',target:'_blank',rel:'noopener noreferrer'},h(LocalUiIcon,{name:'calendar'}),'Book a meeting'),
+          h('a',{href:'https://calendly.com/lulamile_m/meet-lulamile?month=2026-11',target:'_blank',rel:'noopener noreferrer',className:'hybrid-button cta-glow','data-cc-glow':true},h(LocalUiIcon,{name:'calendar'}),'Book a meeting'),
           h('button',{type:'button',onClick:()=>{const dialog=document.getElementById('footer-enquiry');dialog.showModal();dialog.querySelector('input[name="name"]')?.focus();},'aria-haspopup':'dialog','aria-controls':'footer-enquiry'},h(LocalUiIcon,{name:'form'}),'Send an enquiry')),
         h(LocalSocialProfiles),
         h('a',{href:'#contact-next',className:'hybrid-text-link'},'What happens next?',h(LocalUiIcon,{name:'arrow-down'}))),
-      h('div',{className:'contact-art'},h('img',{src:'/assets/img/portfolio/contact-conversation.svg?v='+localHomeArtworkVersion,alt:'Two conversation shapes linked by a sculptural telephone receiver',width:640,height:570}),h('p',null,'A CONVERSATION IS A GOOD PLACE TO START.'))),
+      h('div',{className:'contact-art'},h(LocalStudioVisual,{kind:'contact-conversation',caption:'A conversation · Original vector study'}),h('p',null,'A CONVERSATION IS A GOOD PLACE TO START.'))),
     h('section',{className:'contact-next',id:'contact-next','aria-labelledby':'contact-next-title'},
       h('div',{className:'contact-next-watermark','aria-hidden':true},'NEXT STEP'),
       h('div',{className:'contact-next-layout'},
-        h('figure',{className:'contact-next-visual'},
-          h('img',{src:'/assets/img/portfolio/contact-next-step.svg?v='+localHomeArtworkVersion,alt:'Three dimensional milestones connect a conversation, a compass and a destination flag',width:640,height:570,loading:'lazy'}),
-          h('figcaption',null,h('span',{'aria-hidden':true}),'Contact LulaZel')),
         h('div',{className:'contact-next-copy'},
           h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'02 / What happens next'),
           h('p',{className:'contact-section-subtitle'},'Clear communication. From the start.'),
           h('h2',{id:'contact-next-title'},h('span',null,'I listen.'),h('span',{className:'contact-title-outline'},'We define.'),h('span',{className:'hybrid-green'},'We build.')),
           h('div',{className:'contact-steps'},...[['Tell me what you need','Share your business, goals, current tools and any examples that help explain the project.'],['Agree a practical scope','We clarify requirements, deliverables, responsibilities, budget and timing before work begins.'],['Plan the work together','We agree review points, communication and the steps toward launch or handover.']].map(([title,copy],index)=>h('article',{key:title},h('h3',null,'0'+(index+1)+' / '+title),h('p',null,copy)))),
           h('p',{className:'contact-next-note'},'You don’t need a complete technical brief. Explore ',h(ve,{to:'/services'},'my digital services'),' or simply describe the problem you want to solve.'),
-          h('a',{href:'#contact-intro',className:'contact-back'},'↺ Back to contact details'))),
-      h('div',{className:'contact-section-bottom'},h('a',{href:'#contact-intro'},'Back to contact details ↑'),h('span',null,'01 — ',h('strong',null,'02')),h(ve,{to:'/about'},'About LulaZel ↓'))),h('section',{className:'unified-faq','aria-labelledby':'contact-faq-title','data-background-text':'COMMON QUESTIONS'},h('div',{className:'unified-container unified-faq-layout'},h(LocalStudioVisual,{kind:'contact-faq',caption:'Common questions · Original vector study'}),h('div',{className:'unified-faq-copy'},h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'03 / Before you ask'),h('h2',{id:'contact-faq-title'},'Common questions.'),...localSiteContent.faq.map(item=>h('details',{className:'unified-faq-item',key:item.question},h('summary',null,item.question),h('p',null,item.answer)))))));
+          h('a',{href:'#contact-intro',className:'contact-back'},'↺ Back to contact details')),
+        LocalCalculator()),
+      h('div',{className:'contact-section-bottom'},h('a',{href:'#contact-intro'},'Back to contact details ↑'),h(ve,{to:'/about'},'About LulaZel ↓')),h('section',{className:'unified-faq','aria-labelledby':'contact-faq-title','data-background-text':'COMMON QUESTIONS'},h('div',{className:'unified-container unified-faq-layout'},h(LocalStudioVisual,{kind:'contact-faq',caption:'Common questions · Original vector study'}),h('div',{className:'unified-faq-copy'},h('p',{className:'contact-section-label'},h('span',{'aria-hidden':true}),'03 / Before you ask'),h('h2',{id:'contact-faq-title'},'Common questions.'),...localSiteContent.faq.map(item=>h('details',{className:'unified-faq-item',key:item.question},h('summary',null,item.question),h('p',null,item.answer))))))));
 
 }
 function LocalToolsPage() {
