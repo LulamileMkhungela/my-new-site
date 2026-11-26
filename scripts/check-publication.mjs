@@ -53,3 +53,24 @@ for(const route of Object.keys(routes)){
 }
 assert.equal(illustrationOwners.size,48);
 console.log('✓ All 48 large illustrations have a single page owner in prerendered output');
+
+// Discoverability: search engines + AI answer engines.
+{
+ const cfg=JSON.parse(fs.readFileSync(path.join(root,'assets/js/site.config.json'),'utf8'));
+ const robots=fs.readFileSync(path.join(root,'robots.txt'),'utf8');
+ for(const bot of ['Googlebot','Bingbot','OAI-SearchBot','GPTBot','PerplexityBot','ClaudeBot','Google-Extended'])assert.ok(robots.includes('User-agent: '+bot),'robots.txt welcomes '+bot);
+ assert.ok(!/^Disallow: \/$/m.test(robots),'Production robots.txt must not block the site');
+ const llms=fs.readFileSync(path.join(root,'llms.txt'),'utf8');
+ assert.ok(llms.startsWith('# LulaZel Digital Studio')&&llms.includes('from R18,000')&&llms.includes('Johannesburg'),'llms.txt summarises the studio, location and prices');
+ assert.ok(fs.existsSync(path.join(root,'dist/llms.txt')),'llms.txt is deployed');
+ assert.match(cfg.indexNowKey,/^[a-f0-9]{32}$/);
+ assert.equal(fs.readFileSync(path.join(root,cfg.indexNowKey+'.txt'),'utf8'),cfg.indexNowKey,'IndexNow key file served at the site root');
+ assert.ok(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').includes('<lastmod>'+cfg.lastUpdated+'</lastmod>'));
+ const graph=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8').match(/application\/ld\+json">(.*?)<\/script>/)[1])['@graph'];
+ const home=graph('index.html'),org=home.find(item=>item['@type']==='ProfessionalService');
+ assert.ok(org.alternateName.includes('Lulazel')&&org.alternateName.includes('LulaZel'),'Brand spellings declared for search');
+ assert.equal(org.hasOfferCatalog.itemListElement.find(item=>item.priceSpecification)?.priceSpecification.minPrice,18000);
+ assert.ok(graph('contact/index.html').some(item=>item['@type']==='FAQPage'&&item.mainEntity.length>=6),'Contact FAQ is marked up');
+ assert.ok(fs.readFileSync(path.join(root,'index.html'),'utf8').includes('LulaZel is a Johannesburg digital studio'),'Home states the brand entity in visible copy');
+ console.log('✓ Discoverability: AI-crawler-friendly robots, llms.txt, IndexNow key, sitemap lastmod, brand/offer/FAQ structured data');
+}

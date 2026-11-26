@@ -1,0 +1,36 @@
+name: Notify search engines
+# After every successful GitHub Pages publish, tell IndexNow search engines
+# (Bing — which also powers ChatGPT search, Copilot, DuckDuckGo and Yahoo —
+# plus Yandex, Seznam, Naver) that the site's pages changed, so they recrawl
+# within hours instead of waiting to discover the domain on their own.
+# Google does not support IndexNow; use Search Console for Google.
+on:
+  page_build:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    if: github.event_name == 'workflow_dispatch' || github.event.build.status == 'built'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const config = JSON.parse(fs.readFileSync('assets/js/site.config.json', 'utf8'));
+          const origin = config.url, key = config.indexNowKey, host = new URL(origin).host;
+          // Give the Pages CDN a moment, then confirm the key file is live.
+          await new Promise(r => setTimeout(r, 60000));
+          const keyLive = await fetch(`${origin}/${key}.txt`).then(r => r.ok ? r.text() : '').catch(() => '');
+          if (keyLive.trim() !== key) { console.log('Key file not live yet; skipping this run.'); process.exit(0); }
+          const sitemap = await fetch(`${origin}/sitemap.xml`).then(r => r.text());
+          const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]).concat(`${origin}/llms.txt`);
+          for (const endpoint of ['https://api.indexnow.org/indexnow', 'https://www.bing.com/indexnow']) {
+            const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' },
+              body: JSON.stringify({ host, key, keyLocation: `${origin}/${key}.txt`, urlList }) });
+            console.log(`${endpoint}: HTTP ${res.status} for ${urlList.length} URLs`);
+            if (![200, 202].includes(res.status)) console.log(await res.text());
+          }
+          JS

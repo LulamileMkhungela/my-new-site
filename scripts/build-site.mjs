@@ -32,7 +32,8 @@ const homeContent = JSON.parse(read('assets/js/home.content.json'));
 const portfolioProjects = JSON.parse(read('assets/js/portfolio.projects.json'));
 const publication=publicationConfig(root);
 const seo=seoRoutes(publication,catalogue,strategyServices,portfolioProjects);
-for(const [route,meta]of Object.entries(seo))meta.schema=structuredData(publication,route,meta);
+const schemaContent={site,services:[...catalogue.services,...strategyServices].map(service=>service.title)};
+for(const [route,meta]of Object.entries(seo))meta.schema=structuredData(publication,route,meta,schemaContent);
 for (const project of portfolioProjects) {
   if (!project.categories.every(id=>portfolioCategories.some(category=>category.id===id&&id!=='all'))) throw new Error('Unknown project category: '+project.id);
   if (project.type==='coming-soon' && (project.href || project.details)) throw new Error('Coming-soon projects must not link out: '+project.id);
@@ -109,10 +110,20 @@ for(const [alias,destination]of Object.entries(legacyRoutes)) {
  write(file.slice(1),htmlFor(destination,{alias:true}));
 }
 write('case-study.html',htmlFor('/portfolio',{alias:true}));
+// Search engines and AI answer engines (ChatGPT search, Copilot, Perplexity, Claude,
+// Gemini, Apple) are explicitly welcome; only build tooling stays private.
+const crawlers=['Googlebot','Bingbot','DuckDuckBot','Applebot','OAI-SearchBot','ChatGPT-User','GPTBot','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Applebot-Extended','CCBot','meta-externalagent'];
 write('robots.txt',publication.url?`User-agent: *
 Allow: /
 Disallow: /reference/
 Disallow: /scripts/
+
+${crawlers.map(bot=>'User-agent: '+bot).join('\n')}
+Allow: /
+Disallow: /reference/
+Disallow: /scripts/
+
+# Plain-text studio summary for AI assistants: ${publication.url}/llms.txt
 Sitemap: ${publication.url}/sitemap.xml
 `:`User-agent: *
 Disallow: /
@@ -120,9 +131,27 @@ Disallow: /
 `);
 write('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${publication.url?Object.entries(seo).filter(([,meta])=>!meta.noindex).map(([,meta])=>'  <url><loc>'+escapeHtml(publication.url+meta.canonical)+'</loc></url>').join('\n'):''}
+${publication.url?Object.entries(seo).filter(([,meta])=>!meta.noindex).map(([,meta])=>'  <url><loc>'+escapeHtml(publication.url+meta.canonical)+'</loc>'+(publication.lastUpdated?'<lastmod>'+publication.lastUpdated+'</lastmod>':'')+'</url>').join('\n'):''}
 </urlset>
 `);
+/** llms.txt: a concise, factual Markdown summary that AI assistants and answer
+ * engines can read in one request. Generated from the same content as the pages. */
+if(publication.url){
+ const o=publication.url,link=p=>o+(p==='/'?'/':p.replace(/\/$/,'')+'/'),rand=n=>'R'+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+ const services=[...catalogue.services,...strategyServices];
+ const lines=[`# ${publication.legalName}`,'',`> ${publication.description}`,'',
+  `${publication.legalName} (also written ${publication.alternateNames.filter(n=>n!==publication.legalName).join(', ')}) is a digital studio based in Johannesburg, South Africa, working with businesses nationwide and remotely. It was founded by ${publication.ownerName} and has been designing and building since ${publication.foundingDate}.`,'',
+  '## Key facts','',`- Name: ${publication.legalName} (short: ${publication.name})`,`- Location: Johannesburg, Gauteng, South Africa — serves all of South Africa and remote clients`,`- Founder: ${publication.ownerName}`,`- Building since: ${publication.foundingDate}`,`- Projects shipped or in progress: ${portfolioProjects.length}`,`- Website: ${o}/`,`- Email: ${publication.email}`,`- Phone / WhatsApp: ${publication.telephone}`,'',
+  '## Services','',...services.map(service=>`- [${service.title}](${link(service.path||'/services/'+service.slug)}): ${service.summary}`),'',
+  '## Starting prices (South African Rand)','',...site.pricing.packages.map(item=>`- ${item.label}: from ${rand(item.from)} — ${item.bestFor} ([${item.service}](${link(item.path)}))`),...site.pricing.custom.map(item=>`- ${item.label}: custom quote — ${item.summary}`),'','Prices exclude third-party costs such as hosting plans, domains, payment fees and ad spend. Every project gets a written quote before work begins.','',
+  '## Main pages','',...Object.entries(seo).filter(([,meta])=>!meta.noindex&&!/^\/(project|amazon|graphic|design)\//.test(meta.canonical)).map(([,meta])=>`- [${meta.title.split(' | ')[0]}](${o+meta.canonical}): ${meta.description}`),'',
+  '## Selected work','',...Object.entries(seo).filter(([,meta])=>!meta.noindex&&/^\/(project|amazon|graphic|design|brand-strategy|microfinance|website-design-conversion)/.test(meta.canonical)).map(([,meta])=>`- [${meta.title.split(' | ')[0]}](${o+meta.canonical}): ${meta.description}`),`- Full portfolio: ${o}/portfolio/`,'',
+  '## Frequently asked questions','',...site.faq.flatMap(item=>[`### ${item.question}`,'',item.answer,'']),
+  '## Contact','',`- Get a quote: ${o}/contact/`,`- Pricing: ${o}/pricing/`,`- WhatsApp: https://wa.me/${publication.telephone.replace(/\D/g,'')}`,`- Email: ${publication.email}`,''];
+ write('llms.txt',lines.join('\n'));
+ // IndexNow ownership key (Bing, Yandex, Seznam, Naver…); see .github/workflows/indexnow.yml.
+ if(publication.indexNowKey)write(publication.indexNowKey+'.txt',publication.indexNowKey);
+}
 write('site.webmanifest',JSON.stringify({name:publication.name,short_name:'LulaZel',start_url:'/',display:'browser',background_color:'#151f29',theme_color:'#151f29',icons:[{src:'/assets/img/icon-192.png?v='+createHash('sha256').update(read('assets/img/favicon.svg')).digest('hex').slice(0,10),sizes:'192x192',type:'image/png'},{src:'/assets/img/icon-512.png?v='+createHash('sha256').update(read('assets/img/favicon.svg')).digest('hex').slice(0,10),sizes:'512x512',type:'image/png'}]},null,2)+'\n');
 write('assets/js/publication.data.json',JSON.stringify({publication,routes:seo,aliases:legacyRoutes},null,2)+'\n');
 console.log(`Generated ${activeRoutes.length} prerendered pages plus aliases. SEO: ${publication.url||'staging noindex (set SITE_URL for launch)'}`);

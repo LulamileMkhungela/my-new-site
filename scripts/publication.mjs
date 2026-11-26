@@ -31,16 +31,21 @@ export function seoRoutes(config,catalogue,strategies,projects){
  for(const [p,meta]of Object.entries(routes))meta.canonical=canonicalPath(p);
  return routes;
 }
-export function structuredData(config,p,meta){
+export function structuredData(config,p,meta,content={}){
  if(!config.url||meta.noindex)return null;
  const origin=config.url,url=origin+meta.canonical;
  const org={'@id':origin+'/#organization'};
- const data=[{'@type':'ProfessionalService','@id':origin+'/#organization',name:config.legalName||config.name,alternateName:config.name,url:origin+'/',logo:origin+'/assets/img/icon-512.png',image:config.url+config.socialImage,email:config.email,telephone:config.telephone,priceRange:'R14,000+',founder:{'@id':origin+'/#person'},sameAs:[config.linkedin],address:{'@type':'PostalAddress',addressLocality:'Johannesburg',addressRegion:'Gauteng',addressCountry:'ZA'},areaServed:{'@type':'Country',name:'South Africa'}},
+ const names=[...new Set([config.name,...(config.alternateNames||[])])];
+ const pricing=content.site?.pricing,faq=content.site?.faq||[];
+ // Starting prices exactly as published on /pricing; never invented figures.
+ const offers=pricing?{'@type':'OfferCatalog',name:'Services and starting prices',itemListElement:[...pricing.packages.map(item=>({'@type':'Offer',url:origin+'/pricing/',itemOffered:{'@type':'Service',name:item.service,url:origin+canonicalPath(item.path)},priceSpecification:{'@type':'PriceSpecification',minPrice:item.from,priceCurrency:'ZAR'}})),...pricing.custom.map(item=>({'@type':'Offer',url:origin+'/pricing/',itemOffered:{'@type':'Service',name:item.service,url:origin+canonicalPath(item.path)}}))]}:undefined;
+ const data=[{'@type':'ProfessionalService','@id':origin+'/#organization',name:config.legalName||config.name,alternateName:names,description:config.description,slogan:config.slogan,foundingDate:config.foundingDate,knowsAbout:content.services,hasOfferCatalog:offers,contactPoint:{'@type':'ContactPoint',contactType:'sales',telephone:config.telephone,email:config.email,areaServed:'ZA',availableLanguage:['English']},url:origin+'/',logo:origin+'/assets/img/icon-512.png',image:config.url+config.socialImage,email:config.email,telephone:config.telephone,priceRange:'R14,000+',founder:{'@id':origin+'/#person'},sameAs:[config.linkedin],address:{'@type':'PostalAddress',addressLocality:'Johannesburg',addressRegion:'Gauteng',addressCountry:'ZA'},areaServed:{'@type':'Country',name:'South Africa'}},
   {'@type':'Person','@id':origin+'/#person',name:config.ownerName,url:origin+'/about/',sameAs:[config.linkedin],jobTitle:'Founder',worksFor:org,homeLocation:{'@type':'Place','name':'Johannesburg, South Africa'}},
-  {'@type':'WebSite','@id':origin+'/#website',name:config.name,alternateName:config.legalName,url:origin+'/',inLanguage:config.language,publisher:org},
+  {'@type':'WebSite','@id':origin+'/#website',name:config.name,alternateName:[config.legalName,...names.filter(n=>n!==config.name)],description:config.description,url:origin+'/',inLanguage:config.language,publisher:org},
   {'@type':'WebPage','@id':url+'#webpage',name:meta.title,description:meta.description,url,inLanguage:config.language,isPartOf:{'@id':origin+'/#website'},about:org}];
  if(p!=='/')data.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:origin+'/'},{'@type':'ListItem',position:2,name:meta.title.split(' | ')[0],item:url}]});
  if(p.startsWith('/services/')||p==='/product-design-strategy')data.push({'@type':'Service',name:meta.title.split(' | ')[0],description:meta.description,url,provider:org,areaServed:{'@type':'Country',name:'South Africa'}});
+ if(p==='/contact'&&faq.length)data.push({'@type':'FAQPage','@id':url+'#faq',mainEntity:faq.map(item=>({'@type':'Question',name:item.question,acceptedAnswer:{'@type':'Answer',text:item.answer}}))});
  return {'@context':'https://schema.org','@graph':data};
 }
 export function seoHead(config,p,meta){
@@ -48,7 +53,7 @@ export function seoHead(config,p,meta){
  const tags=[`<title>${e(meta.title)}</title>`,`<meta name="description" content="${e(meta.description)}" />`,`<meta name="robots" content="${url&&!meta.noindex?'index,follow,max-image-preview:large':'noindex,follow'}" />`,`<meta property="og:type" content="website" />`,`<meta property="og:locale" content="${e(config.locale)}" />`,`<meta property="og:site_name" content="${e(config.name)}" />`,`<meta property="og:title" content="${e(meta.title)}" />`,`<meta property="og:description" content="${e(meta.description)}" />`,`<meta name="twitter:card" content="summary_large_image" />`,`<meta name="twitter:title" content="${e(meta.title)}" />`,`<meta name="twitter:description" content="${e(meta.description)}" />`];
  if(url)tags.push(`<link rel="canonical" href="${e(url)}" />`,`<meta property="og:url" content="${e(url)}" />`);
  if(config.url)tags.push(`<meta property="og:image" content="${e(config.url+config.socialImage)}" />`,`<meta property="og:image:type" content="image/png" />`,`<meta property="og:image:width" content="1200" />`,`<meta property="og:image:height" content="630" />`,`<meta property="og:image:alt" content="${e(config.socialImageAlt)}" />`,`<meta name="twitter:image" content="${e(config.url+config.socialImage)}" />`,`<meta name="twitter:image:alt" content="${e(config.socialImageAlt)}" />`);
- const schema=structuredData(config,p,meta);if(schema)tags.push(`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`);
+ const schema=meta.schema!==undefined?meta.schema:structuredData(config,p,meta);if(schema)tags.push(`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`);
  return tags.join('\n  ').replace(/<(meta|link|script|title)(?=[ >])/g,'<$1 data-rh="true"');
 }
 /** Dependency-free static rendering of the SAME readable page components.
