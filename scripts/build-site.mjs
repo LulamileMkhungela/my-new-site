@@ -1,3 +1,4 @@
+import vm from 'node:vm';
 /** Build the owner's current UI from local sources and npm dependencies. */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -31,8 +32,11 @@ const portfolioCategories = JSON.parse(read('assets/js/portfolio.categories.json
 const homeContent = JSON.parse(read('assets/js/home.content.json'));
 const portfolioProjects = JSON.parse(read('assets/js/portfolio.projects.json'));
 const publication=publicationConfig(root);
-const seo=seoRoutes(publication,catalogue,strategyServices,portfolioProjects);
-const schemaContent={site,services:[...catalogue.services,...strategyServices].map(service=>service.title)};
+const seo=seoRoutes(publication,catalogue,strategyServices,portfolioProjects,site);
+// Evaluate the page's own FAQ builder so structured data matches visible answers.
+const faqBuilder=vm.runInNewContext(read('assets/js/hybrid.source.js')+'\n'+read('assets/js/services.source.js')+'\n;({faq:localServiceFaq,rand:localRand})',{g:{},localSiteContent:site,localServiceCatalogue:catalogue,localStrategyServices:strategyServices});
+const serviceFaqs=Object.fromEntries([...catalogue.services,...strategyServices].map(service=>{const path=service.path||'/services/'+service.slug;return [path,faqBuilder.faq(service,site.pricing.packages.find(item=>item.path===path))];}));
+const schemaContent={site,services:[...catalogue.services,...strategyServices].map(service=>service.title),serviceFaqs};
 for(const [route,meta]of Object.entries(seo))meta.schema=structuredData(publication,route,meta,schemaContent);
 for (const project of portfolioProjects) {
   if (!project.categories.every(id=>portfolioCategories.some(category=>category.id===id&&id!=='all'))) throw new Error('Unknown project category: '+project.id);
@@ -69,7 +73,7 @@ for(const file of fs.readdirSync(path.join(root,'assets/css')))if(/^site-[a-f0-9
 write('assets/css/'+cssFilename,css);
 
 const projectRoutes = Object.fromEntries(portfolioProjects.filter(project=>project.details).map(project=>[project.id,project.href]));
-const componentFor=route=>route==='/'?'LocalHomePage':route==='/about'?'LocalAboutPage':route==='/contact'?'LocalContactPage':route==='/pricing'?'LocalPricingPage':route==='/privacy'?'LocalPrivacyPage':route==='/portfolio'?'LocalPortfolioPage':route==='/tools'?'LocalToolsPage':route==='/services'||route.startsWith('/services/')||route==='/product-design-strategy'?'LocalServicesPage':route.startsWith('/project/')?'LocalProjectPage':'LocalNotFoundPage';
+const componentFor=route=>route==='/'?'LocalHomePage':route==='/about'?'LocalAboutPage':route==='/contact'?'LocalContactPage':route==='/pricing'?'LocalPricingPage':route==='/privacy'?'LocalPrivacyPage':route==='/blog'?'LocalBlogPage':route.startsWith('/blog/')?'LocalBlogPostPage':route==='/how-we-work'?'LocalHowWeWorkPage':route==='/portfolio'?'LocalPortfolioPage':route==='/tools'?'LocalToolsPage':route==='/services'||route.startsWith('/services/')||route==='/product-design-strategy'?'LocalServicesPage':route.startsWith('/project/')?'LocalProjectPage':'LocalNotFoundPage';
 function htmlFor(route,{alias=false}={}) {
   const meta={...(seo[route]||seo['/404']),...(alias?{noindex:true}:{})};
   const markup=prerender(root,route,componentFor(route),renderData);

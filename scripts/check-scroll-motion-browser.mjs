@@ -138,7 +138,7 @@ try{
   const fallback=await browser.newPage({javaScriptEnabled:false,viewport:{width,height:1000}});
   await fallback.goto(origin+'/');assert.equal(await fallback.locator('.scene-deck,.motion-enter').count(),0);
   assert.equal(await fallback.locator('#websites .hm-copy').evaluate(el=>getComputedStyle(el).opacity),'1');
-  assert.equal(await fallback.locator('.hm-panel').count(),11);
+  assert.equal(await fallback.locator('.hm-panel').count(),12);
  }
  console.log('✓ No JavaScript: all eleven chapters remain readable on mobile and desktop');
 }finally{await browser.close();}

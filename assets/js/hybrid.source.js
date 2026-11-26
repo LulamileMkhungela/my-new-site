@@ -92,7 +92,7 @@ function LocalHybridHero({eyebrow,line1,line2,line3,description,primary,secondar
           primary.href.startsWith('#') ? h('a',{href:primary.href,className:'hybrid-button'},primary.label,h(LocalUiIcon,{name:'arrow-down'})) : h(ve,{to:primary.href,className:'hybrid-button'},primary.label,h(LocalUiIcon,{name:'arrow-up-right'})),
           secondary.href.startsWith('#') ? h('a',{href:secondary.href,className:'hybrid-text-link'},secondary.label,h(LocalUiIcon,{name:'arrow-up-right'})) : h(ve,{to:secondary.href,className:'hybrid-text-link'},secondary.label,h(LocalUiIcon,{name:'arrow-up-right'})))),
       h(LocalDigitalVisual,{label,icon})),
-    h('div',{className:'hybrid-hero-bottom'},h('span',null,'Johannesburg · Working nationwide & remote'),h('span',null,'One studio. Strategy to launch.')));
+    h('div',{className:'hybrid-hero-bottom'},h('span',null,'Johannesburg · Working nationwide and remotely'),h('span',null,'One studio. Strategy to launch.')));
 }
 function LocalHeaderContactCard({mobile=false}) {
   const h=g.createElement;
@@ -137,8 +137,10 @@ function LocalSectionRail() {
       for(const chapter of chapters)if(document.getElementById(chapter.id)?.getBoundingClientRect().top<=readingLine)cur=chapter.id;
       const composed=document.querySelector('.hm-page[data-scene-active]')?.dataset.sceneActive;
       if(composed)cur=composed;
-      setActive(prev=>prev===cur?prev:cur);
       const max=document.documentElement.scrollHeight-innerHeight;
+      // The final chapter can never cross the reading line, so the page end selects it.
+      if(max>0&&scrollY>=max-4&&chapters.length)cur=chapters[chapters.length-1].id;
+      setActive(prev=>prev===cur?prev:cur);
       const p=max>0?Math.round(Math.max(0,Math.min(1,scrollY/max))*100):0;
       setProgress(prev=>prev===p?prev:p);
     };
@@ -150,7 +152,7 @@ function LocalSectionRail() {
   if(!chapters.length)return null;
   return h('div',{className:'hm-chapter-rail'},
     h('span',{className:'hm-rail-hint'},'Scroll to explore',h(LocalUiIcon,{name:'arrow-down'})),
-    h('nav',{'aria-label':'Page sections'},h('ol',null,...chapters.map((chapter,index)=>h('li',{key:chapter.id},
+    h('nav',{'aria-label':'Page sections'},h('ol',{style:{gridTemplateColumns:'repeat('+chapters.length+',minmax(0,1fr))'}},...chapters.map((chapter,index)=>h('li',{key:chapter.id},
       h('a',{href:'#'+chapter.id,'data-rail-label':String(index+1).padStart(2,'0')+' / '+chapter.label,'aria-label':String(index+1).padStart(2,'0')+' — '+chapter.label,'aria-current':active===chapter.id?'location':undefined,onClick:event=>{
         event.preventDefault();
         const target=document.getElementById(chapter.id);
@@ -183,9 +185,9 @@ function LocalContactDropdown({pathname}) {
     onPointerEnter:event=>{if(event.pointerType==='mouse'&&matchMedia('(hover: hover) and (pointer: fine)').matches)setExpanded(true);},
     onPointerLeave:event=>{if(!event.currentTarget.contains(document.activeElement))setExpanded(false);},
     onBlur:event=>{if(!event.currentTarget.contains(event.relatedTarget))setExpanded(false);}},
-    h(ve,{to:'/about',className:pathname==='/about'?'is-active':'','aria-current':pathname==='/about'?'page':undefined},'About'),
-    h('button',{type:'button','aria-label':'About and contact links','aria-expanded':expanded,'aria-controls':'rhino-about-links',onClick:()=>setExpanded(!expanded)},h(LocalUiIcon,{name:'chevron-down'})),
-    expanded&&h('div',{id:'rhino-about-links',className:'rhino-about-links'},h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setExpanded(false)},'Contact',h(LocalUiIcon,{name:'arrow-up-right'}))));
+    h(ve,{to:'/about',className:pathname==='/about'||pathname==='/how-we-work'?'is-active':'','aria-current':pathname==='/about'?'page':undefined},'About'),
+    h('button',{type:'button','aria-label':'About, how we work and contact links','aria-expanded':expanded,'aria-controls':'rhino-about-links',onClick:()=>setExpanded(!expanded)},h(LocalUiIcon,{name:'chevron-down'})),
+    expanded&&h('div',{id:'rhino-about-links',className:'rhino-about-links'},h(ve,{to:'/how-we-work','aria-current':pathname==='/how-we-work'?'page':undefined,onClick:()=>setExpanded(false)},'How we work',h(LocalUiIcon,{name:'arrow-up-right'})),h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setExpanded(false)},'Contact',h(LocalUiIcon,{name:'arrow-up-right'}))));
 }
 function LocalSiteHeader() {
   const h=g.createElement;
@@ -207,8 +209,8 @@ function LocalSiteHeader() {
     document.addEventListener('keydown',close);document.addEventListener('pointerdown',close);document.addEventListener('focusin',close);desktop.addEventListener('change',resize);
     return()=>{document.removeEventListener('keydown',close);document.removeEventListener('pointerdown',close);document.removeEventListener('focusin',close);desktop.removeEventListener('change',resize);};
   },[open]);
-  const links=[{label:'Home',href:'/'},{label:'Services',href:'/services'},{label:'Work',href:'/portfolio'},{label:'Pricing',href:'/pricing'},{label:'About',href:'/about'}];
-  const active=item=>item.href==='/services'?pathname==='/services'||pathname.startsWith('/services/')||localStrategyServices.some(service=>service.path===pathname):item.href==='/portfolio'?pathname==='/portfolio'||/^\/(project|graphic|amazon)\//.test(pathname):pathname===item.href;
+  const links=[{label:'Home',href:'/'},{label:'Services',href:'/services'},{label:'Work',href:'/portfolio'},{label:'Pricing',href:'/pricing'},{label:'Blog',href:'/blog'},{label:'About',href:'/about'}];
+  const active=item=>item.href==='/services'?pathname==='/services'||pathname.startsWith('/services/')||localStrategyServices.some(service=>service.path===pathname):item.href==='/portfolio'?pathname==='/portfolio'||/^\/(project|graphic|amazon)\//.test(pathname):item.href==='/blog'?pathname==='/blog'||pathname.startsWith('/blog/'):pathname===item.href;
   return h('header',{className:'rhino-header',ref:headerRef,onClick:event=>{if(event.target.closest('a'))setOpen(false);}},
     h('a',{href:'#main',className:'rhino-skip'},'Skip to content'),
     h('div',{className:'rhino-header-main'},
@@ -217,6 +219,6 @@ function LocalSiteHeader() {
       h('div',{className:'rhino-header-actions'},h(ve,{to:'/pricing',className:'rhino-mobile-services'},'Pricing'),
         h(LocalHeaderContactCard,{}),
         h('button',{type:'button',className:'rhino-menu-button','aria-label':open?'Close navigation':'Open navigation','aria-expanded':open,'aria-controls':'rhino-mobile-menu',onClick:()=>setOpen(!open)},h(LocalUiIcon,{name:open?'close':'menu'})))),
-    open&&h('nav',{id:'rhino-mobile-menu',className:'rhino-mobile-menu','aria-label':'Mobile navigation'},...links.map(item=>h(ve,{key:item.href,to:item.href,'aria-current':active(item)?'page':undefined},item.label)),h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setOpen(false)},'Contact'),h(LocalHeaderContactCard,{mobile:true})),
+    open&&h('nav',{id:'rhino-mobile-menu',className:'rhino-mobile-menu','aria-label':'Mobile navigation'},...links.map(item=>h(ve,{key:item.href,to:item.href,'aria-current':active(item)?'page':undefined},item.label)),h(ve,{to:'/how-we-work','aria-current':pathname==='/how-we-work'?'page':undefined},'How we work'),h(ve,{to:'/contact','aria-current':pathname==='/contact'?'page':undefined,onClick:()=>setOpen(false)},'Contact'),h(LocalHeaderContactCard,{mobile:true})),
     h(LocalServiceNav,{active:localStrategyServices.some(item=>item.path===pathname)?pathname:pathname.startsWith('/services/')?pathname.slice(10):pathname==='/services'?'':'home'}));
 }

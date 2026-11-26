@@ -8,8 +8,8 @@ import vm from 'node:vm';
 const root = path.resolve(import.meta.dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const catalogue = JSON.parse(read('assets/js/services.catalogue.json'));
-assert.equal(catalogue.services.length, 9);
-assert.equal(new Set(catalogue.services.map(item=>item.slug)).size, 9);
+assert.equal(catalogue.services.length, 13);
+assert.equal(new Set(catalogue.services.map(item=>item.slug)).size, 13);
 const nodes = tree => {
   if (Array.isArray(tree)) return tree.flatMap(nodes);
   if (!tree || typeof tree !== 'object') return [];
@@ -24,7 +24,7 @@ function render(url) {
   const context = {
     g: {createElement:(type,props,...children)=>typeof type==='function' ? type({...props,children}) : ({type,props:props||{},children}),Fragment:'fragment',useState:value=>[value,()=>{}],useEffect:()=>{},useRef:value=>({current:value})},
     Qt:()=>({pathname:url}), XA:'metadata', ve:'link', Bn:'header', zn:'footer',
-    localServiceCatalogue:catalogue,localSiteContent:JSON.parse(read('assets/js/site.content.json')),localHomeArtworkVersion:"test",localStrategyServices:[
+    localServiceCatalogue:catalogue,localSiteContent:JSON.parse(read('assets/js/site.content.json')),localPortfolioProjects:JSON.parse(read('assets/js/portfolio.projects.json')),localHomeArtworkVersion:"test",localStrategyServices:[
       {path:'/product-design-strategy', title:'Product Design & Strategy', summary:'Product strategy'}
     ]
   };
@@ -33,7 +33,7 @@ function render(url) {
 const overview = render('/services');
 const overviewNodes = nodes(overview);
 assert.equal(overviewNodes.filter(n=>n.type==='h1').length,1);
-assert.equal(overviewNodes.filter(n=>n.props.className==='studio-service-row').length,10);
+assert.equal(overviewNodes.filter(n=>n.props.className==='studio-service-row').length,catalogue.services.length+1);
 assert.equal(overviewNodes.filter(n=>n.props.className==='studio-panel').length,3);
 assert.equal(overviewNodes.filter(n=>n.props.className==='svc-card').length,0);
 assert.equal(overviewNodes.filter(n=>n.type==='img').length,3);
@@ -51,8 +51,33 @@ for (const service of catalogue.services) {
   assert.equal(elements.filter(n=>n.props.className==='studio-contact-links').length,0,'Contact methods belong in the shared footer, not repeated in service content');
   assert.equal(elements.filter(n=>/^(tel:|mailto:|https:\/\/wa\.me\/)/.test(n.props.href||'')).length,0,'No duplicate contact-method links in service body');
   assert.equal(elements.filter(n=>n.type==='h1').length,1);
-  assert.equal(elements.filter(n=>n.props.className==='studio-panel').length,3);
-  assert.deepEqual(Array.from(elements.filter(n=>n.props.className==='studio-panel'),n=>n.props.id),['service-intro','service-features','service-contact']);
+  assert.equal(elements.filter(n=>n.props.className==='studio-panel').length,service.work?.length?7:6);
+  assert.deepEqual(Array.from(elements.filter(n=>n.props.className==='studio-panel'),n=>n.props.id),['service-intro','service-features',...(service.work?.length?['service-work']:[]),'service-process','service-why','service-faq','service-contact']);
+  // Selected work: only real portfolio projects, max three.
+  const workCards=elements.filter(n=>n.props.className==='studio-work-card');
+  assert.equal(workCards.length,Math.min(3,(service.work||[]).length),'Selected work on '+route);
+  // Why LulaZel + fit lists (cosmos structure).
+  assert.equal(service.fit.good.length,3);assert.equal(service.fit.notFor.length,3);
+  assert.equal(nodes(elements.find(n=>n.props.className==='studio-fit-good')).filter(n=>n.type==='li').length,3,'Strong-fit list on '+route);
+  assert.ok(!/Lulamile/.test(text(elements.find(n=>n.props.id==='service-why'))),'Why chapter stays brand-first');
+  // FAQ answers come only from the page's own content and published price.
+  const faqItems=nodes(elements.find(n=>n.props.className==='studio-faq')).filter(n=>n.type==='details');
+  assert.equal(faqItems.length,5,'Five service FAQs');
+  assert.ok(text(detail).includes(service.prepare[0])&&text(detail).includes('Do you work outside Johannesburg?'));
+  assert.ok(!/Lulamile/.test(text(elements.find(n=>n.props.id==='service-faq'))),'FAQ chapter stays brand-first');
+  // How a project runs: 6 shared steps + 5 roles, linked to the full page; brand-first.
+  const process=elements.find(n=>n.props.id==='service-process');
+  assert.equal(nodes(process).filter(n=>n.type==='li').length,6,'Six project steps');
+  assert.equal(nodes(process).filter(n=>n.type==='dt').length,JSON.parse(read('assets/js/site.content.json')).howWeWork.roles.length,'Every role in Who builds what');
+  assert.ok(nodes(process).some(n=>n.props.to==='/how-we-work'));
+  assert.ok(!/Lulamile/.test(text(process)),'Process chapter stays brand-first');
+  // Related articles: 1–3 real blog posts.
+  const postLinks=nodes(elements.find(n=>n.props.className==='studio-posts')).filter(n=>/^\/blog\/.+/.test(n.props.to||''));
+  assert.ok(postLinks.length>=1&&postLinks.length<=3,'Related blog articles on '+route);
+  const html=read(route.slice(1)+'/index.html'),graph=JSON.parse(html.match(/application\/ld\+json">(.*?)<\/script>/)[1])['@graph'];
+  assert.equal(graph.find(n=>n['@type']==='FAQPage')?.mainEntity.length,5,'Service FAQ structured data');
+  assert.match(html.match(/<title[^>]*>([^<]*)/)[1],/ \| LulaZel Digital Studio$/);
+  assert.equal(graph.find(n=>n['@type']==='Service').name,service.title);
   assert.equal(elements.filter(n=>n.props.className==='studio-visual').length,3);
   const illustrationSources=elements.filter(n=>n.type==='img').map(n=>n.props.src.split('?')[0]);
   assert.equal(new Set(illustrationSources).size,illustrationSources.length,'Each chapter must have a different illustration');
@@ -111,7 +136,8 @@ assert.equal(homeContent.sections.find(s=>s.id==='hosting').eyebrow,'Hosting Set
 assert.ok(homeContent.sections.find(s=>s.id==='hosting').description.includes('hosting provider'));
 assert.ok(!JSON.stringify(homeContent).includes('malware protection and automated backups'));
 const seo=JSON.parse(read('assets/js/publication.data.json'));
-assert.equal(seo.routes['/services/web-hosting'].description,catalogue.services.find(s=>s.slug==='web-hosting').summary);
+assert.ok(seo.routes['/services/web-hosting'].description.startsWith(catalogue.services.find(s=>s.slug==='web-hosting').seoDescription));
+assert.match(seo.routes['/services/web-hosting'].description,/chosen provider/,'Hosting metadata makes the provider relationship explicit');
 console.log('✓ Provider-backed hosting, end-to-end integrations and AI/payment responsibilities are clear in Home, services and metadata');
 
 assert.ok(catalogue.services.filter(service=>/^I\b/.test(service.intro)).length<=2,'Vary service introductions instead of repeatedly opening with I');

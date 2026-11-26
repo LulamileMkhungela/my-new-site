@@ -17,14 +17,18 @@ LulaZel Digital Studio (also written LulaZel, Lulazel, Lula Zel, LulaZel Studio,
 
 ## Services
 
-- [Web Hosting](https://www.lulazel.co.za/services/web-hosting/): South African hosting setup, provider selection and ongoing website management.
-- [Website Design](https://www.lulazel.co.za/services/website-design/): Website design and frontend development for South African businesses, HTML email design and integrations.
-- [Ecommerce](https://www.lulazel.co.za/services/ecommerce/): Online stores and ecommerce for South African businesses, an easy journey from product to checkout.
+- [Web Hosting](https://www.lulazel.co.za/services/web-hosting/): Hosting setup, provider selection and ongoing website management for South African businesses.
+- [Website Design](https://www.lulazel.co.za/services/website-design/): Website design and frontend development for South African businesses, plus HTML email design and integrations.
+- [UX/UI Design & Audit](https://www.lulazel.co.za/services/ux-ui-design/): Research-led interface design and usability audits for websites, apps and platforms.
+- [Ecommerce](https://www.lulazel.co.za/services/ecommerce/): Online stores for South African businesses, with a smooth journey from product to checkout.
 - [Business Systems](https://www.lulazel.co.za/services/business-systems/): Custom business systems, tools, portals and dashboards built around South African operations.
-- [Workflow Automation & AI](https://www.lulazel.co.za/services/workflow-automation/): Workflow automation and practical AI for South African businesses, cutting repetitive work.
-- [AI Assistants](https://www.lulazel.co.za/services/ai-assistants/): AI assistants that help customers and teams in South Africa find answers in your knowledge.
-- [Basic Graphic Design](https://www.lulazel.co.za/services/basic-graphic-design/): Simple, consistent graphic design for South African social, digital and print needs.
-- [SEO & Search](https://www.lulazel.co.za/services/seo-and-search/): SEO and search that helps relevant South African customers discover your business.
+- [Workflow Automation & AI](https://www.lulazel.co.za/services/workflow-automation/): Workflow automation and practical AI that cut repetitive work for South African businesses.
+- [AI Assistants](https://www.lulazel.co.za/services/ai-assistants/): AI assistants that help your customers and team find answers in your approved knowledge.
+- [AI & Data Engineering](https://www.lulazel.co.za/services/ai-data-engineering/): Data pipelines, dashboards, cloud backends and custom AI features, built to be secure and maintainable.
+- [Basic Graphic Design](https://www.lulazel.co.za/services/basic-graphic-design/): Simple, consistent graphic design for social, digital and print needs.
+- [Brand Identity](https://www.lulazel.co.za/services/brand-identity/): Logos, visual identity systems, brand guidelines and pitch decks that work together.
+- [Motion Design & Animation](https://www.lulazel.co.za/services/motion-animation/): Animated explainers, motion graphics and social video that make ideas easy to follow.
+- [SEO & Search](https://www.lulazel.co.za/services/seo-and-search/): SEO that helps relevant South African customers find your business.
 - [Google Ads](https://www.lulazel.co.za/services/google-ads/): Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.
 - [Product Design & Strategy](https://www.lulazel.co.za/product-design-strategy/): Product design and strategy for South African teams — research, direction and usable experiences.
 
@@ -40,6 +44,10 @@ LulaZel Digital Studio (also written LulaZel, Lulazel, Lula Zel, LulaZel Studio,
 - AI Assistants: custom quote — Assistants that answer from your approved knowledge, with human escalation.
 - SEO & Search: custom quote — Technical foundations, search intent and content that helps customers find you.
 - Google Ads: custom quote — Focused campaigns with clear goals, tracking and ongoing optimisation.
+- UX/UI Design & Audit: custom quote — Usability audits, journeys, wireframes and interface design.
+- Brand Identity: custom quote — Logo, identity system, guidelines and pitch decks.
+- Motion Design & Animation: custom quote — Explainer videos, motion graphics and social video.
+- AI & Data Engineering: custom quote — Pipelines, dashboards, cloud backends and custom AI features.
 
 Prices exclude third-party costs such as hosting plans, domains, payment fees and ad spend. Every project gets a written quote before work begins.
 
@@ -49,24 +57,36 @@ Prices exclude third-party costs such as hosting plans, domains, payment fees an
 - [About](https://www.lulazel.co.za/about/): LulaZel Digital Studio is a Johannesburg design and development studio. We turn business ideas into websites, apps and connected systems — from strategy and design to development, integrations and launch.
 - [Contact & Book a Meeting](https://www.lulazel.co.za/contact/): Contact LulaZel Digital Studio to discuss a website, online store, app or business system. Book a meeting, send an enquiry or get an instant estimate. Johannesburg and remote.
 - [Work](https://www.lulazel.co.za/portfolio/): Selected work by LulaZel Digital Studio: websites, apps, product-design case studies and frontend builds for South African and international clients, plus AI design resources.
-- [Services](https://www.lulazel.co.za/services/): Services by LulaZel Digital Studio in South Africa: website design, ecommerce, business systems, hosting setup, workflow automation, AI assistants, graphic design, SEO and Google Ads.
+- [Services](https://www.lulazel.co.za/services/): Services by LulaZel Digital Studio in South Africa: websites, UX/UI, ecommerce, business systems, automation, AI, data engineering, branding, motion, SEO and Google Ads.
 - [Pricing](https://www.lulazel.co.za/pricing/): Starting prices from LulaZel Digital Studio: websites from R18,000, online stores from R40,000, apps from R38,000, business systems from R50,000 and graphic design from R14,000. Written quote before work begins.
 - [Privacy & image rights](https://www.lulazel.co.za/privacy/): How enquiries, third-party services, personal information and image rights are handled.
-- [Web Hosting](https://www.lulazel.co.za/services/web-hosting/): South African hosting setup, provider selection and ongoing website management.
-- [Website Design](https://www.lulazel.co.za/services/website-design/): Website design and frontend development for South African businesses, HTML email design and integrations.
-- [Ecommerce](https://www.lulazel.co.za/services/ecommerce/): Online stores and ecommerce for South African businesses, an easy journey from product to checkout.
-- [Business Systems](https://www.lulazel.co.za/services/business-systems/): Custom business systems, tools, portals and dashboards built around South African operations.
-- [Workflow Automation & AI](https://www.lulazel.co.za/services/workflow-automation/): Workflow automation and practical AI for South African businesses, cutting repetitive work.
-- [AI Assistants](https://www.lulazel.co.za/services/ai-assistants/): AI assistants that help customers and teams in South Africa find answers in your knowledge.
-- [Basic Graphic Design](https://www.lulazel.co.za/services/basic-graphic-design/): Simple, consistent graphic design for South African social, digital and print needs.
-- [SEO & Search](https://www.lulazel.co.za/services/seo-and-search/): SEO and search that helps relevant South African customers discover your business.
-- [Google Ads](https://www.lulazel.co.za/services/google-ads/): Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.
-- [Product Design & Strategy](https://www.lulazel.co.za/product-design-strategy/): Product design and strategy for South African teams — research, direction and usable experiences.
+- [Website Hosting Setup & Management in South Africa](https://www.lulazel.co.za/services/web-hosting/): Website hosting setup and management for South African businesses: choosing a suitable provider, domain and SSL setup, and ongoing website management to an agreed scope. Hosting plans come from your chosen provider. Custom quote.
+- [Website Design Company in Johannesburg](https://www.lulazel.co.za/services/website-design/): Website design and development company in Johannesburg. Responsive, accessible business websites and landing pages with forms, bookings and integrations, built for South African businesses. From R18,000.
+- [UX/UI Design & UX Audits for Websites and Apps](https://www.lulazel.co.za/services/ux-ui-design/): UX/UI design and usability audits for South African businesses: user journeys, wireframes, prototypes, UI design and design systems with clean developer handover. Custom quote.
+- [Ecommerce Website Design & Online Stores in South Africa](https://www.lulazel.co.za/services/ecommerce/): Ecommerce website design and online stores for South African businesses: product catalogues, mobile-first checkout, payment gateways, stock and order notifications. From R40,000.
+- [Custom Business Systems, Portals & Dashboards](https://www.lulazel.co.za/services/business-systems/): Custom business systems for South African companies: internal tools, client portals, dashboards and role-based workflows that replace spreadsheets and scattered messages. From R50,000.
+- [Workflow Automation & Practical AI for Businesses](https://www.lulazel.co.za/services/workflow-automation/): Workflow automation and practical AI for South African businesses: connect your tools, remove repetitive admin and route information with agreed business rules. Custom quote.
+- [AI Assistants & Chatbots for Businesses in South Africa](https://www.lulazel.co.za/services/ai-assistants/): AI assistants and chatbots for South African businesses that answer from your approved knowledge, support customers and teams, and hand over to people when needed. Custom quote.
+- [AI & Data Engineering: Pipelines, Dashboards & Cloud](https://www.lulazel.co.za/services/ai-data-engineering/): AI and data engineering for South African businesses: data pipelines, dashboards, backend APIs, cloud architecture, generative AI and RAG, and machine learning. Custom quote.
+- [Graphic Design for Social Media, Print & Digital](https://www.lulazel.co.za/services/basic-graphic-design/): Graphic design for South African businesses: logo touch-ups, social media graphics, flyers, business cards and website banners built on your existing brand. From R14,000.
+- [Brand Identity Design, Logos & Pitch Decks](https://www.lulazel.co.za/services/brand-identity/): Brand identity design for South African businesses: logo design, colour and typography systems, brand guidelines, pitch decks and ready-to-use templates. Custom quote.
+- [Motion Design, Animated Explainers & Motion Graphics](https://www.lulazel.co.za/services/motion-animation/): Motion design and animation for South African businesses: explainer videos, motion graphics, social video, logo animation and animated eLearning content. Custom quote.
+- [SEO Services in Johannesburg & South Africa](https://www.lulazel.co.za/services/seo-and-search/): SEO services for South African businesses: technical SEO, search intent, page structure and content that helps relevant customers find you on Google. Custom quote.
+- [Google Ads Management in South Africa](https://www.lulazel.co.za/services/google-ads/): Google Ads management for South African businesses: focused campaigns with clear enquiry and sales goals, conversion tracking and ongoing optimisation. Custom quote.
+- [App & Product Design (UX/UI) in South Africa](https://www.lulazel.co.za/product-design-strategy/): App and product design for South African teams: user research, UX/UI design, prototypes and design systems that turn an idea into a usable web or mobile product. From R38,000.
+- [How We Work: Process, Roles & Ways to Work With Us](https://www.lulazel.co.za/how-we-work/): How a project runs, who builds what and the ways you can work with us — so you know exactly what happens after you get in touch.
+- [Blog: AI, Tech Trends & Buzzwords Explained for Business](https://www.lulazel.co.za/blog/): Trends, buzzwords and tech explained in plain language — from agentic AI to digital twins — for business owners and teams across every industry.
+- [What Is Agentic AI? AI Agents Explained for South African Businesses](https://www.lulazel.co.za/blog/agentic-ai/): Agentic AI is the shift from chatbots that answer to AI agents that act. What agents are, how they work, where they help in finance, retail, logistics and healthcare — and the guardrails they need.
+- [What Is MCP (Model Context Protocol)? A Plain-English Guide](https://www.lulazel.co.za/blog/model-context-protocol/): MCP — the Model Context Protocol — is an open standard for connecting AI assistants to tools and data. What it is, how it works, why it matters and what to check before you connect anything.
+- [RAG Explained: Retrieval-Augmented Generation for Businesses](https://www.lulazel.co.za/blog/retrieval-augmented-generation/): Retrieval-augmented generation (RAG) lets AI answer questions from your own documents instead of guessing. How it works, embeddings and vector search in plain terms, where it is used and how to keep it accurate.
+- [Vibe Coding Explained: Benefits, Risks and When to Get Help](https://www.lulazel.co.za/blog/vibe-coding/): Vibe coding means building software by describing what you want to an AI. What it is, the tools behind it, where it shines for prototypes — and the security, data and maintenance problems to fix before launch.
+- [Passkeys Explained: How Passwordless Sign-In Works](https://www.lulazel.co.za/blog/passkeys/): Passkeys replace passwords with a cryptographic key stored on your device and unlocked by your fingerprint, face or PIN. How they work, why they resist phishing and what businesses should know.
+- [Digital Twins Explained: How Industries Use Virtual Models](https://www.lulazel.co.za/blog/digital-twins/): A digital twin is a virtual model of a real asset or process, kept up to date with live data. How digital twins work and how mining, manufacturing, energy, cities and healthcare use them.
 
 ## Selected work
 
 - [Nerdma](https://www.lulazel.co.za/project/nerdma/): Website redesign and product dashboards that connect Nerdma’s governance, risk and sustainability offer.
-- [SNB](https://www.lulazel.co.za/project/snb/): Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.
+- [SnB](https://www.lulazel.co.za/project/snb/): Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.
 - [FoodieZone](https://www.lulazel.co.za/project/foodiezone/): An ordering PWA designed around a local kitchen, a clear menu and an easier path to reorder.
 - [LulaFind](https://www.lulazel.co.za/project/lulafind/): Missing-person posters, sightings, danger alerts, surname communities, stories and private chat in one installable app.
 - [Sesyme](https://www.lulazel.co.za/project/sesyme/): A co-learning app our founder created while working at Sesyme in 2019, with question-and-answer learning and a digital reading experience.
@@ -86,6 +106,18 @@ Prices exclude third-party costs such as hosting plans, domains, payment fees an
 ### What does a project cost?
 
 Starting prices are on our Pricing page — for example, websites start from R18,000. After a short conversation you get a clear written quote covering scope, deliverables and timing before any work begins. Nothing starts until you approve it.
+
+### How do we start working together?
+
+Send an enquiry, message us on WhatsApp or book a meeting. We talk through your goals, then send a written quote covering scope, deliverables, responsibilities, budget and timing. Nothing starts until you approve it.
+
+### Who will work on my project?
+
+Our core team of three: our founder (strategy, UX/UI design and frontend), a graphic designer and animator, and a certified backend and AI engineer. You work with us directly from the first conversation to launch — meet the team on our About page.
+
+### What does working with you look like?
+
+Review points are planned into your scope, so you see progress and give feedback before the next stage. Questions can go through WhatsApp, email or a booked call, and the agreed journeys are tested end to end before launch.
 
 ### How long does a project take?
 

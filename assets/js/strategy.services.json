@@ -42,7 +42,7 @@
         "Prepare reusable components, interaction notes and developer-ready designs with support for implementation."
       ]
     ],
-    "note": "Research depth, screen count, testing, revisions and handover are agreed upfront. Production development is scoped separately. Project examples live in Portfolio, not on this service page. Inclusive service design and field research are included here when relevant; this is design support, not financial or legal advice.",
+    "note": "Research depth, screen count, testing, revisions and handover are agreed upfront. Production development is scoped separately. Inclusive service design and field research are included here when relevant; this is design support, not financial or legal advice.",
     "prepare": [
       "Your product idea, audience and business goals",
       "Current screens, research or known user problems",
@@ -51,6 +51,25 @@
     "related": [
       "business-systems",
       "website-design"
-    ]
+    ],
+    "seoTitle": "App & Product Design (UX/UI) in South Africa",
+    "seoDescription": "App and product design for South African teams: user research, UX/UI design, prototypes and design systems that turn an idea into a usable web or mobile product.",
+    "work": [
+      "sesyme",
+      "lunianetwork",
+      "lulafind"
+    ],
+    "fit": {
+      "good": [
+        "You have an app or platform idea and want to validate it before building",
+        "You need product strategy, user research and design in one place",
+        "You want a clear roadmap and designs your developers can build from"
+      ],
+      "notFor": [
+        "You only need a marketing website — see Website Design",
+        "You want development to start before the problem is understood",
+        "You need a guaranteed business outcome from design alone"
+      ]
+    }
   }
 ]

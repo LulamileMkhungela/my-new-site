@@ -15,7 +15,7 @@ try{
   const section=page.locator('#home-portfolio'),cards=section.locator('.pf-card');
   assert.deepEqual(await cards.evaluateAll(els=>els.map(el=>el.dataset.project)),ids);
   assert.equal(await section.locator('[data-project="lulagazette"] .pf-card-status').textContent(),'Personal Web project');
-  assert.equal(await section.locator('[data-project="prompt-delivery-app"] .pf-card-status').textContent(),'Ai prompt app');
+  assert.equal(await section.locator('[data-project="prompt-delivery-app"] .pf-card-status').textContent(),'AI prompt');
   assert.equal(await section.locator('[data-project="ai-lifeos"] .pf-history-description').count(),0);
   assert.equal(await section.locator('[data-project="ai-lifeos"] .pf-store-links button:disabled').count(),2);
   await page.waitForFunction(()=>document.querySelector('.hm-chapter-rail a[aria-current="location"]')?.getAttribute('href')==='#home-portfolio');
@@ -46,6 +46,6 @@ try{
   if(width===1440){await section.locator('.hm-project-previews img').evaluateAll(async imgs=>{for(const img of imgs)img.loading='eager';await Promise.all(imgs.map(img=>img.decode().catch(()=>{})));});await page.screenshot({path:'/tmp/home-five-selected-projects.png'});}
   console.log('✓ Home 08: five requested projects in order, thumbnail/name/details/action order, safe gutters, correct links/coming-soon and inline delivery prompt: '+width+'px');
  }
- for(const id of['nerdma','foodiezone','lulagazette']){const link=page.locator('#home-portfolio [data-project="'+id+'"] a');assert.equal(await link.getAttribute('target'),'_blank');assert.equal(await link.locator('.pf-action-bar').textContent(),'Visit site');}
+ for(const id of['nerdma','foodiezone','lulagazette']){const link=page.locator('#home-portfolio [data-project="'+id+'"] a');assert.equal(await link.getAttribute('target'),'_blank');assert.equal(await link.locator('.pf-action-bar').textContent(),'Visit website');}
  assert.deepEqual(errors,[]);
 }finally{await browser.close();}

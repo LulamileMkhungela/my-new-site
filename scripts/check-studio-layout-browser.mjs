@@ -6,7 +6,7 @@ for(const width of (process.argv.includes('--navigation-only')?[]:[320,375,768,8
  await page.setViewportSize({width,height:900});
  for(const route of routes){
   await page.goto('http://127.0.0.1:3000'+route,{waitUntil:'load'});await page.locator('.site-back-to-top').waitFor({state:'attached'});assert.equal(await page.locator('main h1').count(),1);assert.equal(await page.locator('.studio-panel').count(),3);assert.equal(await page.locator('.studio-panel .studio-title').count(),3);assert.equal(await page.locator('.studio-visual img').count(),3);assert.equal(await page.locator('main h1').evaluate(el=>getComputedStyle(el).fontWeight),'800');
-  if(route==='/services/'){assert.equal(await page.locator('.studio-service-row').count(),10);assert.equal(await page.locator('.svc-card,.svc-catalogue-heading,.svc-jumps').count(),0);}
+  if(route==='/services/'){assert.equal(await page.locator('.studio-service-row').count(),14);assert.equal(await page.locator('.svc-card,.svc-catalogue-heading,.svc-jumps').count(),0);}
   else {assert.equal(await page.locator('.svc-feature').count(),6);assert.equal(await page.locator('.studio-prepare li').count(),3);assert.equal(await page.locator('.studio-contact-links a').count(),0);assert.equal(await page.locator('.svc-cta,.svc-related-grid').count(),0);}
   const second=page.locator('.studio-panel').nth(1);const art=await second.locator('.studio-visual').boundingBox(),copy=await second.locator('.studio-copy').boundingBox();if(width>800)assert.ok(art.x+art.width<=copy.x,route+' reverse columns');else assert.ok(art.y<copy.y,route+' reverse stacking');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' overflows '+width);
