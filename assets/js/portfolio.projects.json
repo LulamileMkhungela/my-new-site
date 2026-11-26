@@ -73,7 +73,7 @@
   },
   {
     "id": "snb",
-    "client": "SNB",
+    "client": "SnB",
     "title": "A clear first impression for a professional firm.",
     "description": "Website design, responsive build and CMS handover for SnB Chartered Accountants & Auditors.",
     "categories": [
@@ -170,7 +170,7 @@
         {
           "title": "Evidence & next questions",
           "paragraphs": [
-            "The project notes describe funnel instrumentation but do not supply a measured before-and-after comparison. Order accuracy and the share of repeat orders are useful next validation questions—not published outcomes."
+            "The project notes describe funnel instrumentation but do not supply a measured before-and-after comparison. Order accuracy and the share of repeat orders are useful next validation questions — not published outcomes."
           ]
         }
       ],
@@ -449,7 +449,7 @@
         {
           "src": "/assets/img/portfolio/lunianetwork.jpg",
           "alt": "Historical LuniaNetwork Google Play listing",
-          "caption": "Historical listing image from the original portfolio—not a current store availability claim."
+          "caption": "Historical listing image from the original portfolio — not a current store availability claim."
         }
       ]
     },
@@ -474,7 +474,7 @@
     "external": true,
     "href": "https://lulamilemkhungela.github.io/LulaGazette/",
     "image": "/assets/img/portfolio/lulagazette.webp",
-    "actionLabel": "Visit site",
+    "actionLabel": "Visit website",
     "previewScroll": true,
     "featured": true,
     "homeOrder": 3,
@@ -531,7 +531,7 @@
   },
   {
     "id": "wethinkcode-gbv",
-    "client": "WeThinkCode developers",
+    "client": "HashScape",
     "title": "Developers triumph at a GBV hackathon",
     "description": "HashScape: the Winning Team’s GBV-prevention concept, documented in ITWeb’s 2021 coverage. An editorial overview with clearly labelled concept imagery.",
     "categories": [
@@ -578,7 +578,7 @@
         {
           "title": "Key product decisions",
           "paragraphs": [
-            "Make approvals visible, with notes and a revisit state when upstream work changes. These are local workflow aids—not multi-user permissions.",
+            "Make approvals visible, with notes and a revisit state when upstream work changes. These are local workflow aids — not multi-user permissions.",
             "Connect scope, requirements, design, tests and handoff through editable documents and traceability views. Keep export packs available so the work can continue in an external development environment.",
             "Let manual editing and exports work without an AI provider. Clearly separate browser-only functionality from server-dependent drafting and imports."
           ]
@@ -631,7 +631,7 @@
         {
           "title": "The challenge",
           "paragraphs": [
-            "Keep design decisions consistent between a Figma workflow, typed design tokens and framework-specific components—without pretending the design system is complete or adoption-validated."
+            "Keep design decisions consistent between a Figma workflow, typed design tokens and framework-specific components — without pretending the design system is complete or adoption-validated."
           ]
         },
         {
@@ -677,7 +677,7 @@
     "id": "prompt-spin-the-wheel-portfolio",
     "client": "Spin the wheel portfolio",
     "title": "Spin the wheel portfolio",
-    "description": "Premium design resource. R15 · Prompt+ Guide. Explore the listing in our shop; current price and contents are confirmed there.",
+    "description": "Premium design resource. R15 · Prompt + Guide. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
     ],
@@ -746,8 +746,8 @@
   },
   {
     "id": "prompt-finance-app-flow-figma-file",
-    "client": "Finance App Flow +Figma file",
-    "title": "Finance App Flow +Figma file",
+    "client": "Finance App Flow + Figma file",
+    "title": "Finance App Flow + Figma file",
     "description": "Premium design resource. R300 · Prompt + Figma file. Explore the listing in our shop; current price and contents are confirmed there.",
     "categories": [
       "ai-prompt"
@@ -784,7 +784,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library — not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -817,7 +817,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library — not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -850,7 +850,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library — not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -863,7 +863,7 @@
     "homeOrder": 4,
     "imageAlt": "Delivery App comparison: Claude, ChatGPT and Figma Make parcel-tracking home screens",
     "imageFit": "contain",
-    "homeProjectLabel": "Ai prompt app"
+    "homeProjectLabel": "AI prompt"
   },
   {
     "id": "prompt-food-delivery-app-home-screen",
@@ -888,7 +888,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library — not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -921,7 +921,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library — not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],
@@ -954,7 +954,7 @@
         {
           "title": "About this exploration",
           "paragraphs": [
-            "An AI-assisted design concept from our original design library—not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
+            "An AI-assisted design concept from our original design library — not a shipped client product. The cover shows the original exploration. Generated results vary by tool; review content, imagery and accessibility before using a result."
           ]
         }
       ],

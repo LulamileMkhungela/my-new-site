@@ -25,7 +25,7 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
  // reaches <5% opacity by 65%, instead of lingering as a readable ghost.
  const fade=t=>smooth((t-.3)/.4);
  const visibility=(p,i)=>1-fade(Math.abs(p-i));
- const layerSelector='.hm-copy,.hm-visual,.hm-portrait-wrap,.hm-portfolio-heading,.hm-project-previews,.hm-restored-heading,.hm-process-grid,.hm-testimonials-copy,.hm-quote-art,.hm-panel-bottom';
+ const layerSelector='.hm-copy,.hm-visual,.hm-portrait-wrap,.hm-portfolio-heading,.hm-project-previews,.hm-restored-heading,.hm-process-grid,.hm-testimonials-copy,.hm-quote-art,.hm-panel-bottom,.hm-faq-list';
  const getState=(deck,y)=>{
   const local=Math.max(0,y-deck.base),scenes=deck.scenes;
   let index=0;for(let j=1;j<scenes.length;j++)if(local>=scenes[j].start)index=j;
@@ -253,7 +253,7 @@ if('IntersectionObserver' in window){
  const near=new IntersectionObserver(entries=>{
   if(!requested&&entries.some(entry=>entry.isIntersecting)){
    requested=true;near.disconnect();watch.disconnect();
-   import('./interactive-scenes-a2314558ba.js').catch(()=>{/* Original SVG remains usable. */});
+   import('./interactive-scenes-9f9b645b46.js').catch(()=>{/* Original SVG remains usable. */});
   }
  },{rootMargin:'160px'});
  const scan=()=>{for(const img of document.querySelectorAll('.hm-visual img,.studio-visual img,.studio-original-visual img')){

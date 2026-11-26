@@ -31,11 +31,13 @@ for(const service of strategies){
   assert.equal(elements.filter(node=>node.type==='h1').length,1);
   assert.equal(elements.filter(node=>node.props.className==='svc-feature').length,6);
   assert.equal(elements.filter(node=>node.props.className==='pf-card').length,0);
-  assert.equal(elements.filter(node=>/\/(project|graphic|amazon)\//.test(node.props.to||'')).length,0,'Services must not embed project links');
+  // Project links appear only inside the Selected work chapter (real portfolio items).
+  const workIds=new Set(nodes(elements.find(node=>node.props.id==='service-work')||{children:[]}).filter(node=>node.props).map(node=>node));
+  assert.equal(elements.filter(node=>/\/(project|graphic|amazon)\//.test(node.props.to||'')&&!workIds.has(node)).length,0,'Project links only in Selected work');
   assert.ok(text(tree).includes(service.title));
   const artworkSources=elements.filter(node=>node.type==='img').map(node=>node.props.src.split('?')[0]);
   assert.equal(new Set(artworkSources).size,artworkSources.length,'No repeated chapter artwork on '+service.title);
-  console.log('✓ Shared service layout without projects: '+service.title);
+  console.log('✓ Shared service layout; projects only in Selected work: '+service.title);
 }
 assert.deepEqual(categories.map(item=>item.label),['All projects','Website','Product Design','Apps','Frontend Dev','AI Prompt']);
 for(const category of categories){
@@ -72,7 +74,7 @@ for(const href of ['tel:+27837195064','mailto:'+data.window.SITE.email,'https://
 assert.equal(footerView.elements.filter(node=>node.props.className==='footer-contact-icon').length,4);
 assert.ok(!footerView.elements.some(node=>String(node.props.href||'').includes('linkedin.com')),'LinkedIn belongs on About/Contact, not footer CTA');
 const footerNav=footerView.elements.find(node=>node.type==='nav'&&node.props['aria-label']==='Footer');
-assert.deepEqual(nodes(footerNav).filter(node=>node.type==='link'||node.type==='a').map(node=>text(node)),['Services','Work','Pricing','About']);
+assert.deepEqual(nodes(footerNav).filter(node=>node.type==='link'||node.type==='a').map(node=>text(node)),['Services','Work','Pricing','Blog','How we work','About']);
 assert.ok(footerView.elements.some(node=>node.type==='h2'&&text(node)==='Let’s make it  work.'));
 assert.ok(!footerView.elements.some(node=>node.props.to==='/contact'),'No duplicate footer Let’s Talk button');
 assert.deepEqual(footerView.elements.filter(node=>node.props.className==='footer-icon-label').map(node=>text(node).replace(/\s/g,'')),['Call','Email','Meeting','Enquiry']);
@@ -93,7 +95,7 @@ console.log('✓ Footer: three navigation links, four labelled contacts, enquiry
 const homeView=render('LocalHomePage');
 assert.equal(homeView.elements.filter(node=>node.type==='h1').length,1);
 assert.equal(homeView.elements.filter(node=>node.type==='main').length,1);
-assert.equal(homeView.elements.filter(node=>(node.props.className||'').split(' ').includes('hm-panel')).length,11);
+assert.equal(homeView.elements.filter(node=>(node.props.className||'').split(' ').includes('hm-panel')).length,12);
 assert.deepEqual(homeView.elements.filter(node=>node.props.className==='pf-card').map(node=>node.props['data-project']),['ai-lifeos','nerdma','lulagazette','prompt-delivery-app','foodiezone']);
 for(const card of homeView.elements.filter(node=>node.props.className==='pf-card')){
  const children=nodes(card),title=children.findIndex(node=>node.props.className==='pf-compact-name'),action=children.findIndex(node=>(node.props.className||'').split(' ').some(name=>['pf-action-bar','pf-copy-prompt','pf-release-badge','pf-apk-download'].includes(name)));
@@ -154,11 +156,11 @@ assert.equal(projects.length,31);
 assert.deepEqual(projects.find(project=>project.id==='lulagazette').categories,['website']);
 for(const id of ['nerdma','foodiezone','lulagazette']){
  const project=projects.find(item=>item.id===id),card=homeView.elements.find(node=>node.props['data-project']===id);
- assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href===project.siteUrl&&node.props.target==='_blank'&&node.props['aria-label']==='Visit site — '+project.client));
+ assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href===project.siteUrl&&node.props.target==='_blank'&&node.props['aria-label']==='Visit website — '+project.client));
 }
 const delivery=projects.find(project=>project.id==='prompt-delivery-app');
 assert.equal(projects.find(project=>project.id==='lulagazette').projectLabel,'In-house web project');
-assert.equal(delivery.projectLabel,undefined);assert.equal(delivery.homeProjectLabel,'Ai prompt app');
+assert.equal(delivery.projectLabel,undefined);assert.equal(delivery.homeProjectLabel,'AI prompt');
 assert.equal(projects.find(project=>project.id==='ai-lifeos').homeCardDescription,'');
 for(const [id,label] of [['designops','In-house project'],['addmoredigital','Work project'],['snb','Work project']])assert.equal(projects.find(project=>project.id===id).status,label);
 const designPrompt=projects.find(project=>project.id==='prompt-halfman-design-app-home-screen-flow');
@@ -217,7 +219,7 @@ for(const category of ['website','product-design','apps','frontend-dev']) {
 const websiteFood=render('LocalPortfolioPage','/portfolio?filter=website').elements.find(node=>node.props['data-project']==='foodiezone');
 assert.ok(nodes(websiteFood).some(node=>node.props.href==='https://loux91.github.io/foodiezone/'));
 const productFood=render('LocalPortfolioPage','/portfolio?filter=product-design').elements.find(node=>node.props['data-project']==='foodiezone');
-assert.ok(nodes(productFood).some(node=>node.props.href==='https://loux91.github.io/foodiezone/'&&text(node).includes('Visit site')));
+assert.ok(nodes(productFood).some(node=>node.props.href==='https://loux91.github.io/foodiezone/'&&text(node).includes('Visit website')));
 for(const project of projects.filter(item=>item.details)) {
  const result=render('LocalProjectPage',project.href);
  assert.equal(result.elements.filter(node=>node.type==='h1').length,1);
@@ -228,7 +230,7 @@ console.log('✓ Owner portfolio: correct category actions, no linked coming-soo
 for(const weight of [400,500,600,700,800]) assert.ok(fs.existsSync(path.join(root,`assets/fonts/poppins-latin-${weight}-normal.woff2`)));
 const nav=render('LocalSiteHeader','/portfolio');
 const primary=nav.elements.find(node=>node.props.className==='rhino-primary');
-assert.deepEqual(nodes(primary).filter(node=>node.type==='link').map(node=>text(node)),['Home','Services','Work','Pricing','About']);
+assert.deepEqual(nodes(primary).filter(node=>node.type==='link').map(node=>text(node)),['Home','Services','Work','Pricing','Blog','About']);
 assert.ok(nav.elements.some(node=>(node.props.className||'').includes('rhino-contact')&&text(node).includes('Let’s talk')));
 const headerContact=nav.elements.find(node=>(node.props.className||'').includes('rhino-contact'));
 assert.equal(headerContact.props.href,'https://wa.me/27837195064');
@@ -237,7 +239,7 @@ assert.ok(text(headerContact).includes('Have an idea?'));
 assert.ok(text(headerContact).includes('On WhatsApp'));
 assert.equal(nav.elements.filter(node=>node.props.className==='hybrid-service-nav').length,1);
 const serviceNav=nav.elements.find(node=>node.props.className==='hybrid-service-nav');
-assert.equal(nodes(serviceNav).filter(node=>node.type==='link').length,10);
+assert.equal(nodes(serviceNav).filter(node=>node.type==='link').length,catalogue.services.length+1);
 assert.ok(!text(serviceNav).includes('All services'));
 for(const component of ['LocalAboutPage','LocalContactPage','LocalToolsPage']){
   const result=render(component);
@@ -283,14 +285,14 @@ const pricingCards=pricingView.elements.filter(node=>node.props.className==='pri
 assert.equal(pricingCards.length,5);assert.equal(pricingView.elements.filter(node=>node.props.className==='pricing-card pricing-card-open').length,1,'Open-ended custom card completes the grid');
 for(const price of ['R18,000','R40,000','R38,000','R50,000','R14,000'])assert.ok(text(pricingView.tree).includes(price),'Pricing shows '+price);
 for(const card of pricingCards)assert.ok(nodes(card).some(node=>node.type==='a'&&node.props.href==='/contact/#contact-intro'&&node.props['aria-controls']==='footer-enquiry'),'Every package has a quote link that works without JavaScript');
-assert.equal(pricingView.elements.filter(node=>node.props.className==='pricing-custom-row').length,5);
+assert.equal(pricingView.elements.filter(node=>node.props.className==='pricing-custom-row').length,json('assets/js/site.content.json').pricing.custom.length);
 assert.ok(pricingView.elements.some(node=>node.props.id==='calculator'),'Instant estimate lives on Pricing');
 assert.ok(read('pricing/index.html').includes('R18,000'),'Pricing is prerendered');
 assert.ok(read('sitemap.xml').includes('/pricing/'),'Pricing is in the sitemap');
 // Trust strip: every figure is computed from site data; no invented "N+" style claims.
 const trust=homeView.elements.find(node=>node.props.className==='hm-trust');
 assert.ok(trust,'Home shows the studio trust strip');
-assert.ok(text(trust).includes('Since 2019')&&text(trust).includes(String(projects.length)));assert.ok(text(trust).replace(/\s+/g,'').includes('9Services'),'Trust strip uses the approved 9 services');
+assert.ok(text(trust).includes('Since 2019')&&text(trust).includes(String(projects.length)));assert.ok(text(trust).replace(/\s+/g,'').includes(catalogue.services.length+'Services'),'Trust strip counts the published services');
 assert.doesNotMatch(text(trust),/\d\+/);
 assert.ok(homeView.elements.some(node=>node.props.to==='/pricing'),'Home links to Pricing');
 // Studio voice: no first-person singular in site-level copy (testimonials are quoted and exempt).

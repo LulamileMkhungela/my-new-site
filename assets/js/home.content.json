@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "LulaZel Digital Studio / Johannesburg",
+    "eyebrow": "Web design & development studio / Johannesburg",
     "lines": [
       "Websites & apps",
       "built to grow",
@@ -49,6 +49,10 @@
           "to": "/services/website-design"
         },
         {
+          "label": "UX/UI design",
+          "to": "/services/ux-ui-design"
+        },
+        {
           "label": "Ecommerce",
           "to": "/services/ecommerce"
         }
@@ -65,7 +69,7 @@
         "Connected.",
         "Your way."
       ],
-      "description": "Your business has its own processes, challenges and goals. We build custom systems around how you work—from focused tools that solve one problem to connected platforms supporting multiple teams.",
+      "description": "Your business has its own processes, challenges and goals. We build custom systems around how you work — from focused tools that solve one problem to connected platforms supporting multiple teams.",
       "points": [
         "CRM and sales pipelines, quoting and invoicing, bookings",
         "Project and job tracking, stock and asset management, customer and supplier portals",
@@ -81,7 +85,7 @@
           "to": "/product-design-strategy"
         }
       ],
-      "note": "These are examples, not a fixed catalogue. Tell us what your business needs—we’ll scope a custom solution around your requirements."
+      "note": "These are examples, not a fixed catalogue. Tell us what your business needs — we’ll scope a custom solution around your requirements."
     },
     {
       "id": "automation",
@@ -129,6 +133,10 @@
         {
           "label": "AI assistants",
           "to": "/services/ai-assistants"
+        },
+        {
+          "label": "AI & data engineering",
+          "to": "/services/ai-data-engineering"
         }
       ],
       "note": "These are examples, not a fixed catalogue. The right setup depends on your requirements, provider access and the work agreed together."
@@ -136,7 +144,7 @@
     {
       "id": "design-growth",
       "number": "07",
-      "eyebrow": "Basic Graphic Design, SEO & Google Ads",
+      "eyebrow": "Design, Motion, SEO & Google Ads",
       "watermark": "STAND OUT",
       "visual": "design",
       "lines": [
@@ -144,11 +152,19 @@
         "Get found.",
         "Stand out."
       ],
-      "description": "A consistent identity. A clearer message. A stronger digital presence. Bring basic graphic design, search optimisation and targeted advertising together around your business goals.",
+      "description": "A consistent identity. A clearer message. A stronger digital presence. Bring graphic design, brand identity, motion and animation, search optimisation and targeted advertising together around your business goals.",
       "links": [
         {
           "label": "Basic graphic design",
           "to": "/services/basic-graphic-design"
+        },
+        {
+          "label": "Brand identity",
+          "to": "/services/brand-identity"
+        },
+        {
+          "label": "Motion & animation",
+          "to": "/services/motion-animation"
         },
         {
           "label": "SEO & Search",

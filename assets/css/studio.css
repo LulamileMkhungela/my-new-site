@@ -91,3 +91,84 @@
 /* The SVG is a fallback, not a second illustration behind the live model. */
 .scene-shell[data-state='ready'] .scene-stage>img { visibility:hidden; }
 .scene-shell[data-state='fallback'] .scene-stage>canvas { display:none !important; }
+
+/* Service FAQ chapter: one readable column, optional verbatim client quote. */
+.studio-panel-faq { grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr); align-items:start; }
+.studio-faq { margin:1.6rem 0 1.4rem; border-top:1px solid #a8c3c326; }
+.studio-faq details { border-bottom:1px solid #a8c3c326; }
+.studio-faq summary { list-style:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; cursor:pointer; padding:1.05rem 0; min-height:44px; }
+.studio-faq summary::-webkit-details-marker { display:none; }
+.studio-faq summary h3 { margin:0; font:600 .95rem/1.4 Poppins,system-ui,sans-serif; color:#eff5f7; }
+.studio-faq summary .ui-line-icon { flex:none; width:16px; height:16px; color:#00ce7b; transition:transform .2s ease; }
+.studio-faq details[open] summary .ui-line-icon { transform:rotate(45deg); }
+.studio-faq summary:hover h3 { color:#00ce7b; }
+.studio-faq details p { margin:0 0 1.2rem; max-width:62ch; color:#b9c7ce; font-size:.86rem; line-height:1.75; }
+.studio-quote { margin:0; padding:1.8rem 1.6rem; border-radius:22px; background:linear-gradient(165deg,#1c2c38,#13202a); border:1px solid #a8c3c32e; }
+.studio-quote blockquote { margin:0; }
+.studio-quote p { margin:0; color:#e4edf0; font-size:1rem; line-height:1.7; }
+.studio-quote figcaption { margin-top:1rem; color:#9eb3ba; font-size:.75rem; line-height:1.5; }
+.studio-quote figcaption strong { color:#00ce7b; font-weight:600; }
+@media (max-width:1000px) { .studio-panel-faq { grid-template-columns:minmax(0,1fr); } }
+@media (prefers-reduced-motion:reduce) { .studio-faq summary .ui-line-icon { transition:none; } }
+
+/* Service FAQ side column: optional client quote + related articles. */
+.studio-faq-side { display:grid; gap:1.2rem; align-self:center; }
+.studio-posts { padding:1.5rem 1.6rem; border-radius:22px; background:#ffffff08; border:1px solid #a8c3c32e; }
+.studio-posts h3 { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#00ce7b; margin:0 0 .8rem; }
+.studio-posts ul { list-style:none; margin:0; padding:0; display:grid; }
+.studio-posts li + li { border-top:1px solid #ffffff14; }
+.studio-posts a { display:flex; flex-direction:column; gap:.2rem; padding:.75rem 0; color:#eef4f5; text-decoration:none; font-size:.92rem; line-height:1.4; }
+.studio-posts a:hover span, .studio-posts a:focus-visible span { color:#00ce7b; }
+.studio-posts small { color:hsl(var(--muted-foreground)); font-size:.74rem; }
+.studio-faq-side > .studio-back { justify-self:start; }
+/* How a project runs chapter. */
+.studio-panel-process { grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); align-items:center; }
+.studio-steps { list-style:none; margin:1.6rem 0 0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.9rem 1.6rem; }
+.studio-steps li { display:grid; grid-template-columns:auto 1fr; gap:.15rem .8rem; padding-top:.9rem; border-top:1px solid #ffffff17; }
+.studio-steps .studio-feature-number { grid-row:span 2; }
+.studio-steps h3 { font-size:1rem; margin:0; }
+.studio-steps p { grid-column:2; color:hsl(var(--muted-foreground)); font-size:.84rem; line-height:1.6; margin:0; }
+.studio-roles { padding:1.6rem; border-radius:22px; background:linear-gradient(165deg,#1c2c38,#13202a); border:1px solid #a8c3c32e; }
+.studio-roles > h3 { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#00ce7b; margin:0 0 1rem; }
+.studio-roles dl { margin:0 0 1.2rem; display:grid; gap:.85rem; }
+.studio-roles dt { font-weight:600; font-size:.92rem; }
+.studio-roles dd { margin:.2rem 0 0; color:hsl(var(--muted-foreground)); font-size:.82rem; line-height:1.6; }
+@media (max-width:1000px) { .studio-panel-process { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:640px) { .studio-steps { grid-template-columns:minmax(0,1fr); } }
+
+/* Selected work — real projects only, cosmos-style "Works" chapter. */
+.studio-panel-work { grid-template-columns:minmax(0,1fr); }
+.studio-work-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; margin:1.6rem 0 1.2rem; }
+.studio-work-card { display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:linear-gradient(165deg,#1c2c38,#13202a); border:1px solid #a8c3c32e; transition:border-color .25s ease,transform .25s ease; }
+.studio-work-card:hover { border-color:#00ce7b80; transform:translateY(-3px); }
+.studio-work-media { aspect-ratio:16/10; overflow:hidden; background:#0f1720; }
+.studio-work-media img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+.studio-work-body { display:flex; flex-direction:column; gap:.45rem; padding:1.1rem 1.2rem 1.25rem; flex:1; }
+.studio-work-client { margin:0; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:#00ce7b; }
+.studio-work-body h3 { margin:0; font-size:1rem; line-height:1.35; }
+.studio-work-body > p:not(.studio-work-client) { margin:0; color:hsl(var(--muted-foreground)); font-size:.82rem; line-height:1.6; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.studio-work-body .studio-text-link, .studio-work-soon { margin-top:auto; padding-top:.4rem; }
+.studio-work-soon { font-size:.75rem; color:#9eb3ba; letter-spacing:.08em; text-transform:uppercase; }
+@media (max-width:1000px) { .studio-work-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:640px) { .studio-work-grid { grid-template-columns:minmax(0,1fr); } }
+@media (prefers-reduced-motion:reduce) { .studio-work-card:hover { transform:none; } }
+
+/* Why LulaZel + fit — cosmos "Why us" and "Is it right for you?" chapters. */
+.studio-panel-why { grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); align-items:center; }
+.studio-why-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem 1.4rem; margin:1.6rem 0 1.4rem; }
+.studio-why-list .studio-why-item { padding-top:.9rem; border-top:1px solid #ffffff17; }
+.studio-why-list h3 { font-size:1rem; margin:.5rem 0 .35rem; }
+.studio-why-list p { color:hsl(var(--muted-foreground)); font-size:.84rem; line-height:1.6; margin:0; }
+.studio-sync h3, .studio-fit > h3 { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#00ce7b; margin:0 0 .8rem; }
+.studio-sync ul { list-style:none; margin:0; padding:0; display:grid; gap:.5rem; }
+.studio-sync li { position:relative; padding-left:1.1rem; color:hsl(var(--muted-foreground)); font-size:.84rem; line-height:1.6; }
+.studio-sync li::before { content:""; position:absolute; left:0; top:.6em; width:.4rem; height:.4rem; border-radius:50%; background:#00ce7b; }
+.studio-fit { padding:1.6rem; border-radius:22px; background:linear-gradient(165deg,#1c2c38,#13202a); border:1px solid #a8c3c32e; }
+.studio-fit-label { margin:.4rem 0 .6rem; font-weight:600; font-size:.9rem; }
+.studio-fit ul { list-style:none; margin:0 0 1rem; padding:0; display:grid; gap:.55rem; }
+.studio-fit li { display:grid; grid-template-columns:1.1rem 1fr; gap:.6rem; align-items:start; color:hsl(var(--muted-foreground)); font-size:.82rem; line-height:1.55; }
+.studio-fit li svg { width:1rem; height:1rem; margin-top:.15rem; }
+.studio-fit-good svg { color:#00ce7b; }
+.studio-fit-no svg { color:#ee9b7b; }
+@media (max-width:1000px) { .studio-panel-why { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:640px) { .studio-why-list { grid-template-columns:minmax(0,1fr); } }

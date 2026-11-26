@@ -22,7 +22,7 @@
       "group": "web",
       "title": "Web Hosting",
       "icon": "server",
-      "summary": "South African hosting setup, provider selection and ongoing website management.",
+      "summary": "Hosting setup, provider selection and ongoing website management for South African businesses.",
       "intro": "We help you choose a suitable hosting provider, set up your website and manage the agreed upkeep after launch. Hosting runs on an external provider’s infrastructure, with configuration, connections and day-to-day website care covered by your support plan.",
       "tags": [
         "Provider selection",
@@ -65,15 +65,34 @@
         "website-design",
         "ecommerce"
       ],
-      "source": "https://digitalrhino.co.za/web-hosting/"
+      "source": "https://digitalrhino.co.za/web-hosting/",
+      "seoTitle": "Website Hosting Setup & Management in South Africa",
+      "seoDescription": "Website hosting setup and management for South African businesses: choosing a suitable provider, domain and SSL setup, and ongoing website management to an agreed scope. Hosting plans come from your chosen provider.",
+      "work": [
+        "addmoredigital",
+        "africa-cuisine",
+        "sk-finds"
+      ],
+      "fit": {
+        "good": [
+          "You want a website that stays online, secure and backed up without managing servers yourself",
+          "You need help choosing between hosting providers and plans",
+          "You want SSL, domains and email set up correctly the first time"
+        ],
+        "notFor": [
+          "You need a large-scale, multi-region cloud platform with a 24/7 operations team",
+          "You want a hosting company — we set up and manage providers, we are not one",
+          "You only need the cheapest possible plan with no setup or support"
+        ]
+      }
     },
     {
       "slug": "website-design",
       "group": "web",
       "title": "Website Design",
       "icon": "layout",
-      "summary": "Website design and frontend development for South African businesses, HTML email design and integrations.",
-      "intro": "Get a responsive website—from design and frontend development to the services needed for a working launch. Page structure, interactions, forms, booking tools and email come together in one connected experience, with suitable providers selected and the agreed journeys tested end to end.",
+      "summary": "Website design and frontend development for South African businesses, plus HTML email design and integrations.",
+      "intro": "Get a responsive website — from design and frontend development to the services needed for a working launch. Page structure, interactions, forms, booking tools and email come together in one connected experience, with suitable providers selected and the agreed journeys tested end to end.",
       "tags": [
         "Website design",
         "Landing pages",
@@ -133,14 +152,103 @@
           "Launch checks & handover",
           "Check metadata, links, images, forms and agreed provider connections before launch. Coordinate deployment and HTTPS with hosting setup, then hand over access, documentation and ongoing support responsibilities."
         ]
-      ]
+      ],
+      "seoTitle": "Website Design Company in Johannesburg",
+      "seoDescription": "Website design and development company in Johannesburg. Responsive, accessible business websites and landing pages with forms, bookings and integrations, built for South African businesses.",
+      "work": [
+        "snb",
+        "nerdma",
+        "addmoredigital"
+      ],
+      "fit": {
+        "good": [
+          "You need a professional website that explains what you do and turns visitors into enquiries",
+          "You want design and development handled by the same team",
+          "You want to update content yourself after launch"
+        ],
+        "notFor": [
+          "You only need a quick template with no design input",
+          "You need a website live within a few days",
+          "You want a large enterprise portal with dozens of integrations in one go"
+        ]
+      },
+      "testimonial": "Nerdma"
+    },
+    {
+      "slug": "ux-ui-design",
+      "group": "web",
+      "title": "UX/UI Design & Audit",
+      "icon": "eye",
+      "summary": "Research-led interface design and usability audits for websites, apps and platforms.",
+      "intro": "Clear, usable interfaces start with understanding how people actually use your product. We audit what you have, find where users get stuck and design journeys, wireframes and polished interfaces your developers can build with confidence.",
+      "tags": [
+        "UX audit",
+        "Wireframes",
+        "UI design"
+      ],
+      "features": [
+        [
+          "UX audit & heuristic review",
+          "A structured review of your site or app against usability principles, with prioritised, practical fixes."
+        ],
+        [
+          "User journeys & flows",
+          "Mapping key tasks end to end so sign-up, checkout or booking feel simple."
+        ],
+        [
+          "Wireframes & prototypes",
+          "Low- and high-fidelity layouts and clickable prototypes to test ideas before development."
+        ],
+        [
+          "UI design",
+          "Polished, accessible screens in your brand, designed for mobile and desktop."
+        ],
+        [
+          "Design systems",
+          "Reusable components, colours, type and spacing rules that keep products consistent."
+        ],
+        [
+          "Developer handover",
+          "Annotated Figma files, states and specs so the build matches the design."
+        ]
+      ],
+      "note": "Design scope, number of screens, research depth and revision rounds are agreed upfront. User research with external participants and usability-testing tools are quoted separately.",
+      "prepare": [
+        "Your product, its users and the main tasks they need to complete",
+        "Existing designs, analytics or customer feedback you already have",
+        "Platforms, deadline, budget and who will build it"
+      ],
+      "related": [
+        "website-design",
+        "business-systems"
+      ],
+      "seoTitle": "UX/UI Design & UX Audits for Websites and Apps",
+      "seoDescription": "UX/UI design and usability audits for South African businesses: user journeys, wireframes, prototypes, UI design and design systems with clean developer handover.",
+      "work": [
+        "prodops",
+        "designops",
+        "sesyme"
+      ],
+      "fit": {
+        "good": [
+          "Your website or app works, but users drop off, get confused or contact support often",
+          "You are planning a new product and want journeys and screens designed before development",
+          "You need a design system so your product stays consistent as it grows"
+        ],
+        "notFor": [
+          "You only want a visual refresh with no change to how things work",
+          "You cannot share analytics, feedback or access to the product",
+          "You need large-scale academic user research"
+        ]
+      },
+      "testimonial": "Nerdma"
     },
     {
       "slug": "ecommerce",
       "group": "web",
       "title": "Ecommerce",
       "icon": "bag",
-      "summary": "Online stores and ecommerce for South African businesses, an easy journey from product to checkout.",
+      "summary": "Online stores for South African businesses, with a smooth journey from product to checkout.",
       "intro": "Take your store from product discovery to a working checkout. Design, development and supported payment, delivery and email integrations are brought together around your customers, with provider selection, configuration and end-to-end testing included in the agreed scope.",
       "tags": [
         "Product discovery",
@@ -197,7 +305,27 @@
           "Storefront & conversion review",
           "Use available sales, traffic and conversion data to prioritise catalogue, content and storefront improvements. Inventory or account work is separately agreed."
         ]
-      ]
+      ],
+      "seoTitle": "Ecommerce Website Design & Online Stores in South Africa",
+      "seoDescription": "Ecommerce website design and online stores for South African businesses: product catalogues, mobile-first checkout, payment gateways, stock and order notifications.",
+      "testimonial": "FoodieZone",
+      "work": [
+        "foodiezone",
+        "sk-finds",
+        "heritagebites"
+      ],
+      "fit": {
+        "good": [
+          "You want customers to browse, pay and order online without messaging you",
+          "You sell physical products, food or services with clear prices",
+          "You want to manage products, stock and orders yourself"
+        ],
+        "notFor": [
+          "You need a marketplace with thousands of sellers on day one",
+          "You have not decided what you will sell or how you will deliver it",
+          "You want a store with no payment gateway or delivery plan"
+        ]
+      }
     },
     {
       "slug": "business-systems",
@@ -247,14 +375,34 @@
         "workflow-automation",
         "ai-assistants"
       ],
-      "source": "https://digitalrhino.co.za/business-systems/"
+      "source": "https://digitalrhino.co.za/business-systems/",
+      "seoTitle": "Custom Business Systems, Portals & Dashboards",
+      "seoDescription": "Custom business systems for South African companies: internal tools, client portals, dashboards and role-based workflows that replace spreadsheets and scattered messages.",
+      "testimonial": "FoodieZone",
+      "work": [
+        "foodiezone",
+        "onescreen-business",
+        "lulafind"
+      ],
+      "fit": {
+        "good": [
+          "Spreadsheets, paper or messages are slowing your team down",
+          "You need a custom portal, dashboard or booking system that fits how you work",
+          "You want one system your team actually uses"
+        ],
+        "notFor": [
+          "Off-the-shelf software already does everything you need",
+          "You need a full ERP replacement for a large enterprise",
+          "The process itself has not been agreed inside your business yet"
+        ]
+      }
     },
     {
       "slug": "workflow-automation",
       "group": "systems",
       "title": "Workflow Automation & AI",
       "icon": "flow",
-      "summary": "Workflow automation and practical AI for South African businesses, cutting repetitive work.",
+      "summary": "Workflow automation and practical AI that cut repetitive work for South African businesses.",
       "intro": "Connect your existing tools and external services to automate repeated tasks and keep information moving. Workflows are configured through supported APIs, webhooks or automation platforms, with tested handovers, review points and exception handling.",
       "tags": [
         "Connected tools",
@@ -297,14 +445,33 @@
         "business-systems",
         "ai-assistants"
       ],
-      "source": "https://digitalrhino.co.za/workflow-automation/"
+      "source": "https://digitalrhino.co.za/workflow-automation/",
+      "seoTitle": "Workflow Automation & Practical AI for Businesses",
+      "seoDescription": "Workflow automation and practical AI for South African businesses: connect your tools, remove repetitive admin and route information with agreed business rules.",
+      "work": [
+        "onescreen-business",
+        "prodops",
+        "foodiezone"
+      ],
+      "fit": {
+        "good": [
+          "Your team repeats the same admin tasks every day",
+          "Information is copied between email, spreadsheets and other tools by hand",
+          "You want approvals and notifications to happen automatically"
+        ],
+        "notFor": [
+          "The process changes every week and has no clear rules",
+          "You want to automate decisions that need human judgement without review",
+          "Your tools have no way to connect (no API, export or integration)"
+        ]
+      }
     },
     {
       "slug": "ai-assistants",
       "group": "systems",
       "title": "AI Assistants",
       "icon": "chat",
-      "summary": "AI assistants that help customers and teams in South Africa find answers in your knowledge.",
+      "summary": "AI assistants that help your customers and team find answers in your approved knowledge.",
       "intro": "Give customers and teams an assistant connected to approved business information and suitable AI services. The interface, knowledge sources and agreed actions are configured together, with clear access limits and a route to human support.",
       "tags": [
         "Useful answers",
@@ -345,17 +512,104 @@
       ],
       "related": [
         "business-systems",
-        "workflow-automation"
+        "ai-data-engineering"
       ],
-      "source": "https://digitalrhino.co.za/ai-assistants-chatbots/"
+      "source": "https://digitalrhino.co.za/ai-assistants-chatbots/",
+      "seoTitle": "AI Assistants & Chatbots for Businesses in South Africa",
+      "seoDescription": "AI assistants and chatbots for South African businesses that answer from your approved knowledge, support customers and teams, and hand over to people when needed.",
+      "work": [
+        "onescreen-business",
+        "ai-lifeos",
+        "lawmania"
+      ],
+      "fit": {
+        "good": [
+          "You answer the same customer or staff questions over and over",
+          "You have approved documents, FAQs or policies the assistant can learn from",
+          "You want people to be able to reach a human when needed"
+        ],
+        "notFor": [
+          "You want an assistant to give legal, medical or financial advice without review",
+          "There is no approved information for it to answer from",
+          "You expect AI to replace your whole support team immediately"
+        ]
+      }
+    },
+    {
+      "slug": "ai-data-engineering",
+      "group": "systems",
+      "title": "AI & Data Engineering",
+      "icon": "data",
+      "summary": "Data pipelines, dashboards, cloud backends and custom AI features, built to be secure and maintainable.",
+      "intro": "Good AI starts with good data and solid engineering. Our certified AI and backend engineer designs the pipelines, databases, APIs and cloud infrastructure behind your product, and builds AI features — from document search to predictions — that are secure, measurable and maintainable.",
+      "tags": [
+        "Data pipelines",
+        "Dashboards",
+        "Generative AI"
+      ],
+      "features": [
+        [
+          "Data pipelines & integration",
+          "Moving and cleaning data between your systems on a reliable schedule."
+        ],
+        [
+          "Dashboards & reporting",
+          "Clear dashboards that turn operational data into decisions."
+        ],
+        [
+          "Backend & API development",
+          "Secure databases, APIs and server-side logic for web and mobile products."
+        ],
+        [
+          "Cloud architecture",
+          "Setup and cost-aware configuration on AWS, Azure or Google Cloud."
+        ],
+        [
+          "Generative AI & RAG",
+          "AI features that answer from your own documents and data, with sources."
+        ],
+        [
+          "Machine learning models",
+          "Forecasting, classification and anomaly detection, evaluated before use."
+        ]
+      ],
+      "note": "Data access, quality, security requirements and success measures are agreed upfront. Cloud, AI model and data-platform fees are billed by the providers under their own terms. Personal information is handled in line with POPIA.",
+      "prepare": [
+        "The decision or process you want to improve",
+        "Where your data lives today and who owns it",
+        "Security or compliance requirements, timeline and budget"
+      ],
+      "related": [
+        "ai-assistants",
+        "business-systems"
+      ],
+      "seoTitle": "AI & Data Engineering: Pipelines, Dashboards & Cloud",
+      "seoDescription": "AI and data engineering for South African businesses: data pipelines, dashboards, backend APIs, cloud architecture, generative AI and RAG, and machine learning.",
+      "work": [
+        "ai-lifeos",
+        "onescreen-business",
+        "lulafind"
+      ],
+      "fit": {
+        "good": [
+          "Your data is spread across systems and nobody trusts the reports",
+          "You want dashboards, pipelines or a backend built properly",
+          "You want AI features grounded in your own data, with measurable results"
+        ],
+        "notFor": [
+          "You do not yet have access to the data you want to use",
+          "You need a research lab to invent a brand-new AI model",
+          "You want results without agreeing how success will be measured"
+        ]
+      }
     },
     {
       "slug": "basic-graphic-design",
       "group": "growth",
       "title": "Basic Graphic Design",
       "icon": "pen",
-      "summary": "Simple, consistent graphic design for South African social, digital and print needs.",
-      "intro": "Everyday design support using your existing brand or a simple agreed visual direction. Ideal for a clear message and practical assets—not a full brand strategy or complex identity project.",
+      "summary": "Simple, consistent graphic design for social, digital and print needs.",
+      "intro": "Everyday design support using your existing brand or a simple agreed visual direction. Ideal for a clear message and practical assets — not a full brand strategy or complex identity project.",
       "tags": [
         "Social posts",
         "Flyers",
@@ -394,17 +648,167 @@
         "Deliverables, revisions, budget and deadline"
       ],
       "related": [
-        "website-design",
-        "google-ads"
+        "brand-identity",
+        "website-design"
       ],
-      "source": "https://digitalrhino.co.za/graphic-design/"
+      "source": "https://digitalrhino.co.za/graphic-design/",
+      "seoTitle": "Graphic Design for Social Media, Print & Digital",
+      "seoDescription": "Graphic design for South African businesses: logo touch-ups, social media graphics, flyers, business cards and website banners built on your existing brand.",
+      "work": [
+        "nerdma",
+        "africa-cuisine",
+        "heritagebites"
+      ],
+      "fit": {
+        "good": [
+          "You need social posts, flyers or banners that look consistent",
+          "You already have a logo and colours, or need a simple starting point",
+          "You want reusable templates for everyday marketing"
+        ],
+        "notFor": [
+          "You need a full rebrand or brand strategy — see Brand Identity",
+          "You need complex illustration, animation or packaging",
+          "You need printing done — we prepare print-ready files"
+        ]
+      }
+    },
+    {
+      "slug": "brand-identity",
+      "group": "growth",
+      "title": "Brand Identity",
+      "icon": "brand",
+      "summary": "Logos, visual identity systems, brand guidelines and pitch decks that work together.",
+      "intro": "A recognisable brand makes every touchpoint work harder. We shape a visual identity around your positioning — logo, colour, typography and imagery — and document it so your team, printers and partners can use it consistently.",
+      "tags": [
+        "Logo design",
+        "Brand guidelines",
+        "Pitch decks"
+      ],
+      "features": [
+        [
+          "Brand discovery",
+          "Your audience, competitors, values and personality distilled into a clear creative direction."
+        ],
+        [
+          "Logo & marks",
+          "A primary logo with secondary versions and icons that work from favicon to billboard."
+        ],
+        [
+          "Colour & typography system",
+          "A palette and type hierarchy chosen for character, legibility and accessibility."
+        ],
+        [
+          "Brand guidelines",
+          "A practical guide showing how to use the identity correctly across digital and print."
+        ],
+        [
+          "Pitch decks & presentations",
+          "Investor, sales and company presentations designed in your identity with editable templates."
+        ],
+        [
+          "Brand assets & templates",
+          "Social templates, stationery and document layouts ready for everyday use."
+        ]
+      ],
+      "note": "Identity scope, number of concepts, revision rounds, file formats and usage rights are agreed upfront. Trademark searches and registration, printing and paid fonts or stock imagery are excluded.",
+      "prepare": [
+        "What your business does, who it serves and what makes it different",
+        "Brands you admire, competitors and any existing assets",
+        "Where the brand will be used, timeline and budget"
+      ],
+      "related": [
+        "basic-graphic-design",
+        "motion-animation"
+      ],
+      "seoTitle": "Brand Identity Design, Logos & Pitch Decks",
+      "seoDescription": "Brand identity design for South African businesses: logo design, colour and typography systems, brand guidelines, pitch decks and ready-to-use templates.",
+      "work": [
+        "nerdma",
+        "forma",
+        "snb"
+      ],
+      "fit": {
+        "good": [
+          "You are launching a new business or product and need a recognisable look",
+          "Your current brand feels inconsistent or outdated",
+          "You need a pitch deck or presentation that matches your brand"
+        ],
+        "notFor": [
+          "You only need a quick logo with no guidelines",
+          "You need a trademark search or registration — we work alongside your attorney",
+          "You want a large multi-brand architecture for a corporate group"
+        ]
+      }
+    },
+    {
+      "slug": "motion-animation",
+      "group": "growth",
+      "title": "Motion Design & Animation",
+      "icon": "motion",
+      "summary": "Animated explainers, motion graphics and social video that make ideas easy to follow.",
+      "intro": "Movement holds attention and makes complex ideas easier to understand. From script and storyboard to final animation, we create explainer videos, motion graphics and animated content for marketing, training and product launches.",
+      "tags": [
+        "Explainer videos",
+        "Motion graphics",
+        "Social video"
+      ],
+      "features": [
+        [
+          "Script & storyboard",
+          "A clear message and scene-by-scene plan agreed before any animation starts."
+        ],
+        [
+          "Animated explainers",
+          "2D explainer videos that show how a product, service or process works."
+        ],
+        [
+          "Motion graphics",
+          "Animated logos, titles, lower thirds and infographics in your brand."
+        ],
+        [
+          "Social & ad video",
+          "Short, looping and captioned clips sized for each platform."
+        ],
+        [
+          "Training & eLearning animation",
+          "Animated learning content and interactive modules that help people remember."
+        ],
+        [
+          "Website & product animation",
+          "Lightweight animated illustrations and micro-interactions for websites and apps."
+        ]
+      ],
+      "note": "Length, style, number of revisions, voice-over, music licensing and delivery formats are agreed upfront. Live-action filming, professional voice talent and paid music or stock footage are quoted separately.",
+      "prepare": [
+        "The message, audience and where the video will be shown",
+        "Your brand assets, script ideas or reference videos you like",
+        "Length, deadline and budget"
+      ],
+      "related": [
+        "brand-identity",
+        "basic-graphic-design"
+      ],
+      "seoTitle": "Motion Design, Animated Explainers & Motion Graphics",
+      "seoDescription": "Motion design and animation for South African businesses: explainer videos, motion graphics, social video, logo animation and animated eLearning content.",
+      "fit": {
+        "good": [
+          "You need an explainer video for a product, service or process",
+          "You want animated social content or a logo animation",
+          "You need animated training or eLearning content"
+        ],
+        "notFor": [
+          "You need live-action filming or a full production crew",
+          "You need a feature-length film or broadcast commercial",
+          "You have no message or script direction yet and need it tomorrow"
+        ]
+      }
     },
     {
       "slug": "seo-and-search",
       "group": "growth",
       "title": "SEO & Search",
       "icon": "search",
-      "summary": "SEO and search that helps relevant South African customers discover your business.",
+      "summary": "SEO that helps relevant South African customers find your business.",
       "intro": "Prioritised technical and content improvements around what your customers are searching for. Focus on useful pages, a sound website structure and meaningful measures of progress.",
       "tags": [
         "Technical SEO",
@@ -447,7 +851,26 @@
         "website-design",
         "google-ads"
       ],
-      "source": "https://digitalrhino.co.za/seo-and-search/"
+      "source": "https://digitalrhino.co.za/seo-and-search/",
+      "seoTitle": "SEO Services in Johannesburg & South Africa",
+      "seoDescription": "SEO services for South African businesses: technical SEO, search intent, page structure and content that helps relevant customers find you on Google.",
+      "work": [
+        "snb",
+        "africa-cuisine",
+        "nerdma"
+      ],
+      "fit": {
+        "good": [
+          "Your website exists but people cannot find it on Google",
+          "You want strong technical foundations before investing in content or ads",
+          "You want to appear in local searches and AI answers"
+        ],
+        "notFor": [
+          "You want guaranteed first-page rankings by a date — nobody can promise that",
+          "You want shortcuts like bought links that put your site at risk",
+          "You will not be able to update or add content over time"
+        ]
+      }
     },
     {
       "slug": "google-ads",
@@ -455,7 +878,7 @@
       "title": "Google Ads",
       "icon": "target",
       "summary": "Focused Google Ads campaigns in South Africa with clear enquiry and sales goals.",
-      "intro": "Connect your offer, audience, keywords and landing page in a focused paid campaign. Use meaningful conversion data to decide what to improve—not clicks alone.",
+      "intro": "Connect your offer, audience, keywords and landing page in a focused paid campaign. Use meaningful conversion data to decide what to improve — not clicks alone.",
       "tags": [
         "Targeting",
         "Ad creative",
@@ -497,7 +920,21 @@
         "website-design",
         "seo-and-search"
       ],
-      "source": "https://digitalrhino.co.za/google-ad-campaigns/"
+      "source": "https://digitalrhino.co.za/google-ad-campaigns/",
+      "seoTitle": "Google Ads Management in South Africa",
+      "seoDescription": "Google Ads management for South African businesses: focused campaigns with clear enquiry and sales goals, conversion tracking and ongoing optimisation.",
+      "fit": {
+        "good": [
+          "You have a clear offer and want enquiries or sales quickly",
+          "You can track what an enquiry or sale is worth",
+          "You want campaigns set up with tracking from the start"
+        ],
+        "notFor": [
+          "You have no website or landing page to send people to",
+          "You have no budget for ad spend in addition to management",
+          "You expect results without tracking or testing"
+        ]
+      }
     }
   ]
 }

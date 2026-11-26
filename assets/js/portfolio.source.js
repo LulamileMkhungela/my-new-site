@@ -32,7 +32,7 @@ async function LocalCopyPrompt(text) {
 function LocalProjectAction(project,category='all') {
   if(project.apkUrl)return {type:'external',href:project.apkUrl,label:'Download APK'};
   if(project.androidReleaseUrl)return {type:'external',href:project.androidReleaseUrl,label:'Android release'};
-  if(project.siteUrl)return {type:'external',href:project.siteUrl,label:'Visit site'};
+  if(project.siteUrl)return {type:'external',href:project.siteUrl,label:'Visit website'};
   const override=project.categoryActions?.[category];
   const type=override?.type||project.type;
   return {type,href:override?.href||project.href,label:override?.label||project.actionLabel||(type==='coming-soon'?'Coming soon':type==='external'?'Open project':type==='overview'?'View project':'View case study')};
@@ -95,7 +95,7 @@ function LocalPortfolioCard({project,index,total,category='all'}) {
   const groupedDownload=!!(project.apkUrl||project.androidReleaseUrl);
   const linked=!groupedDownload&&!freePrompt&&action.type!=='coming-soon'&&!!action.href;
   const web=category==='website'||category==='frontend-dev';
-  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.androidReleaseUrl?'Android release':project.siteUrl?'Visit site':action.type==='external'?(web?'Visit website':'Open project'):'View project';
+  const label=freePrompt?'Copy prompt':action.type==='coming-soon'?'Coming soon':project.promptTier==='premium'?'View on Selar':project.apkUrl?'Download APK':project.androidReleaseUrl?'Android release':project.siteUrl?'Visit website':action.type==='external'?(web?'Visit website':'Open project'):'View project';
   const cardDescription=category==='home'?(project.homeCardDescription??project.cardDescription):project.cardDescription;
   const projectLabel=category==='home'?(project.homeProjectLabel??project.projectLabel):project.projectLabel;
   const descriptionId='pf-description-'+category+'-'+project.id;

@@ -1,22 +1,22 @@
 {
   "name": "Lulamile M",
-  "location": "Johannesburg, South Africa · Working nationwide & remote",
+  "location": "Johannesburg, South Africa · Working nationwide and remotely",
   "email": "mkhungela.l@gmail.com",
   "process": [
     {
       "num": "01",
-      "title": "Tell us what you're building",
-      "body": "No brief required. A conversation about where you are and what's not working."
+      "title": "Tell us what you’re building",
+      "body": "No brief required. Just a conversation about where you are and what isn’t working."
     },
     {
       "num": "02",
-      "title": "We map what's needed",
+      "title": "We map what’s needed",
       "body": "Research, design and development, scoped around what you need. No bloated proposals, no wasted time."
     },
     {
       "num": "03",
       "title": "We build and ship",
-      "body": "Iteratively, with your team in the loop at every step. Things actually get done."
+      "body": "Built in stages, with you in the loop at every step through to launch."
     }
   ],
   "testimonials": [
@@ -78,27 +78,15 @@
       "Behind the screen, the pieces need to connect. LulaZel brings together websites, online stores, custom business systems, automation and practical AI around the work you need to get done. Hosting is selected and configured with suitable providers; forms, bookings, payments and other integrations are scoped around your requirements.",
       "One connected approach means fewer gaps between the idea, the design and the build. Clear scope, regular reviews, testing and a considered launch keep you involved without making you manage every technical detail. The result is a digital experience built to serve your customers and make your business easier to run."
     ],
-    "close": "Based in South Africa. Working with businesses worldwide. Your goals, your time zone, one connected approach.",
-    "specialists": [
-      {
-        "name": "Senior backend & systems mentor",
-        "role": "Previous employment",
-        "body": "For backend work — databases, integrations, server-side systems and the harder engineering decisions — we team up with a senior backend specialist our founder learned from at a previous role. Their reviews keep the systems clean, secure and maintainable."
-      },
-      {
-        "name": "Backend architecture mentor",
-        "role": "Previous gig",
-        "body": "A backend engineer from an earlier engagement who reviews how services, databases and third-party systems connect. This mentorship covers everything behind the interface that needs to scale and stay reliable."
-      }
-    ],
+    "close": "Based in Johannesburg. Working with businesses across South Africa and beyond — your goals, your time zone, one connected approach.",
     "governance": {
-      "title": "Your business data is never exposed to AI",
-      "body": "Practical AI is part of the offer, but your business data is not handed to an AI service to be trained on or guessed at. Every AI feature runs on the providers you choose, with a clear governance practice: what data goes in, what comes back, who can see it and how it is stored is agreed and documented upfront. Where AI is used, it stays inside the agreed scope, with human review before anything reaches your customers. No business data is used to train models, and no AI service is given access to your systems beyond what the agreed task needs.",
+      "title": "Your data stays under your control",
+      "body": "Practical AI is part of what we offer, but your business data is never handed over without agreement. Every AI feature runs through providers you approve, and what data goes in, what comes back, who can see it and how it is stored are agreed and documented upfront. AI stays inside the agreed scope, with human review before anything reaches your customers, and no AI service gets more access to your systems than the task needs.",
       "points": [
         "AI runs only through providers you approve, never with blanket access to your systems",
-        "What data is used, how it is stored and who can see it is agreed and documented before work starts",
+        "What data is used, how it is stored and who can see it are agreed and documented before work starts",
         "Human review sits between the AI and anything your customers or team see",
-        "No business data is used to train models — AI is a tool, not an audience for your data"
+        "Where a provider offers it, we choose settings that keep your data out of model training"
       ]
     },
     "principles": [
@@ -129,20 +117,20 @@
     ],
     "outOfScope": [
       {
-        "title": "Managed IT infrastructure",
-        "body": "Networks, servers and hardware are not offered. Hosting is set up through the provider you choose, to an agreed scope."
+        "title": "Managed IT support",
+        "body": "Office networks, physical servers, hardware and IT help-desk support are not offered. Hosting and cloud services are set up with the provider you choose, to an agreed scope."
       },
       {
-        "title": "Print, photography & events",
-        "body": "No printing, photo shoots, videography or event coverage. Brand assets can be supplied and applied to the digital work."
+        "title": "Printing, photography & filming",
+        "body": "We prepare print-ready files, but printing, photo shoots, live-action filming and event coverage are not offered. Your existing photos and brand assets can be used in the work."
       },
       {
-        "title": "Full rebrands",
-        "body": "Basic graphic design supports your existing identity. Complete rebranding exercises are outside the current offer."
+        "title": "Legal, financial & trademark advice",
+        "body": "We design and build; we do not give legal, financial or tax advice, or register trademarks. We work alongside your attorney or accountant where needed."
       },
       {
-        "title": "Provider costs, promised free",
-        "body": "Hosting, payment and AI services are billed by those providers under their terms. Those costs are always agreed upfront, never guessed."
+        "title": "Third-party fees",
+        "body": "Hosting, payment, AI and advertising services are billed by those providers under their own terms. We list these costs upfront, so there are no surprises."
       }
     ]
   },
@@ -150,6 +138,18 @@
     {
       "question": "What does a project cost?",
       "answer": "Starting prices are on our Pricing page — for example, websites start from R18,000. After a short conversation you get a clear written quote covering scope, deliverables and timing before any work begins. Nothing starts until you approve it."
+    },
+    {
+      "question": "How do we start working together?",
+      "answer": "Send an enquiry, message us on WhatsApp or book a meeting. We talk through your goals, then send a written quote covering scope, deliverables, responsibilities, budget and timing. Nothing starts until you approve it."
+    },
+    {
+      "question": "Who will work on my project?",
+      "answer": "Our core team of three: our founder (strategy, UX/UI design and frontend), a graphic designer and animator, and a certified backend and AI engineer. You work with us directly from the first conversation to launch — meet the team on our About page."
+    },
+    {
+      "question": "What does working with you look like?",
+      "answer": "Review points are planned into your scope, so you see progress and give feedback before the next stage. Questions can go through WhatsApp, email or a booked call, and the agreed journeys are tested end to end before launch."
     },
     {
       "question": "How long does a project take?",
@@ -315,6 +315,30 @@
         "summary": "Focused campaigns with clear goals, tracking and ongoing optimisation.",
         "service": "Google Ads",
         "path": "/services/google-ads"
+      },
+      {
+        "label": "UX/UI Design & Audit",
+        "summary": "Usability audits, journeys, wireframes and interface design.",
+        "service": "UX/UI Design & Audit",
+        "path": "/services/ux-ui-design"
+      },
+      {
+        "label": "Brand Identity",
+        "summary": "Logo, identity system, guidelines and pitch decks.",
+        "service": "Brand Identity",
+        "path": "/services/brand-identity"
+      },
+      {
+        "label": "Motion Design & Animation",
+        "summary": "Explainer videos, motion graphics and social video.",
+        "service": "Motion Design & Animation",
+        "path": "/services/motion-animation"
+      },
+      {
+        "label": "AI & Data Engineering",
+        "summary": "Pipelines, dashboards, cloud backends and custom AI features.",
+        "service": "AI & Data Engineering",
+        "path": "/services/ai-data-engineering"
       }
     ],
     "terms": [
@@ -345,5 +369,824 @@
         "Combine design, build, hosting and growth"
       ]
     }
+  },
+  "blog": {
+    "intro": "Trends, buzzwords and tech explained in plain language — from agentic AI to digital twins — for business owners and teams across every industry.",
+    "items": [
+      {
+        "slug": "agentic-ai",
+        "title": "What is agentic AI? AI agents explained for business",
+        "seoTitle": "What Is Agentic AI? AI Agents Explained for South African Businesses",
+        "description": "Agentic AI is the shift from chatbots that answer to AI agents that act. What agents are, how they work, where they help in finance, retail, logistics and healthcare — and the guardrails they need.",
+        "published": "2026-11-26",
+        "minutes": 6,
+        "image": "/assets/img/blog/agentic-ai.svg",
+        "imageAlt": "A friendly AI agent orchestrating documents, a calendar, a checklist and a settings gear",
+        "services": [
+          "workflow-automation",
+          "ai-assistants",
+          "business-systems"
+        ],
+        "related": [
+          "/services/workflow-automation",
+          "/services/ai-assistants",
+          "/blog/model-context-protocol"
+        ],
+        "takeaways": [
+          "A chatbot answers questions; an AI agent plans steps and uses tools to complete a task.",
+          "Agents work best on repeatable, well-defined jobs with clear rules and data.",
+          "Keep a human approval step for anything involving money, customers or personal information.",
+          "Under POPIA, personal information handled by an agent still needs a lawful reason, protection and limited access."
+        ],
+        "sections": [
+          {
+            "p": [
+              "For the past few years most people met AI as a chat window: you ask, it answers. Agentic AI is the next step. Instead of only replying, an AI agent is given a goal and a set of tools, then plans and carries out the steps needed to reach it — checking its own progress along the way.",
+              "That shift from talking to doing is why “agentic” has become one of the biggest buzzwords in technology. Here’s what it actually means in practice."
+            ]
+          },
+          {
+            "h": "At a glance",
+            "table": {
+              "head": [
+                "Spec",
+                "In plain terms"
+              ],
+              "rows": [
+                [
+                  "What it is",
+                  "AI that pursues a goal by planning steps and taking actions, not just replying"
+                ],
+                [
+                  "Core parts",
+                  "A language model, instructions, tools it may use, memory and guardrails"
+                ],
+                [
+                  "Typical tools",
+                  "Email, calendars, spreadsheets, CRMs, databases and internal systems"
+                ],
+                [
+                  "Best for",
+                  "Repeatable multi-step work: triage, follow-ups, reconciliation, reporting"
+                ],
+                [
+                  "Main risks",
+                  "Wrong actions, data leakage, runaway costs and unclear accountability"
+                ],
+                [
+                  "Human role",
+                  "Set the goal and rules, approve key actions, review the results"
+                ]
+              ]
+            }
+          },
+          {
+            "h": "How an AI agent works",
+            "list": [
+              "Goal — a clear instruction, such as “chase every invoice that is more than 30 days overdue”.",
+              "Planning — the model breaks the goal into steps and decides which tool to use for each one.",
+              "Tools — connections to real systems: reading a spreadsheet, drafting an email, updating a record.",
+              "Memory — notes about what has been done, so the agent doesn’t repeat itself.",
+              "Guardrails — limits on what it may do on its own, and when it must stop and ask a person."
+            ]
+          },
+          {
+            "h": "Where it is being used",
+            "list": [
+              "Finance — matching payments to invoices, flagging anomalies and preparing reports for review.",
+              "Retail and ecommerce — answering order queries, updating stock records and drafting product descriptions.",
+              "Logistics — monitoring deliveries, spotting delays and notifying customers.",
+              "Healthcare administration — booking, reminders and summarising forms, with clinicians making decisions.",
+              "Professional services — gathering information for proposals and keeping CRMs up to date."
+            ]
+          },
+          {
+            "h": "Where it goes wrong",
+            "p": [
+              "Agents can be confidently wrong, and an agent that acts on a mistake does more damage than a chatbot that only says something odd. Common problems are vague goals, tools with too much access, no record of what the agent did and no human checkpoint before irreversible actions."
+            ]
+          },
+          {
+            "h": "Guardrails worth having",
+            "list": [
+              "Give each agent the smallest set of permissions it needs.",
+              "Require approval before payments, deletions or messages to customers.",
+              "Log every action so you can see what happened and why.",
+              "Set spending and usage limits on the AI services behind it.",
+              "Treat personal information carefully — POPIA still applies when software does the processing."
+            ]
+          },
+          {
+            "h": "How to start",
+            "p": [
+              "Pick one repetitive, well-documented task with a clear definition of “done”. Run the agent alongside a person first, measure the results and only then let it act on its own within firm limits. Our Workflow Automation and AI Assistants services are built around exactly this kind of careful, step-by-step adoption."
+            ]
+          }
+        ],
+        "shareImage": "/assets/img/blog/agentic-ai-share.png"
+      },
+      {
+        "slug": "model-context-protocol",
+        "title": "What is MCP? The Model Context Protocol explained",
+        "seoTitle": "What Is MCP (Model Context Protocol)? A Plain-English Guide",
+        "description": "MCP — the Model Context Protocol — is an open standard for connecting AI assistants to tools and data. What it is, how it works, why it matters and what to check before you connect anything.",
+        "published": "2026-11-26",
+        "minutes": 5,
+        "image": "/assets/img/blog/model-context-protocol.svg",
+        "imageAlt": "A universal connector hub with cables plugging in from a database, documents, a calendar and a chat bubble",
+        "services": [
+          "ai-assistants",
+          "business-systems",
+          "workflow-automation"
+        ],
+        "related": [
+          "/services/ai-assistants",
+          "/services/business-systems",
+          "/blog/agentic-ai"
+        ],
+        "takeaways": [
+          "MCP is an open standard that lets AI applications connect to tools and data in one consistent way.",
+          "It is often described as “USB-C for AI”: build a connection once, use it with many AI apps.",
+          "An MCP server exposes tools, data and prompt templates; an AI app connects to it as a client.",
+          "Every connection is access to your systems — permissions, logging and trusted sources matter."
+        ],
+        "sections": [
+          {
+            "p": [
+              "An AI assistant is only as useful as the information and tools it can reach. Until recently, every connection — to your calendar, your database, your documents — had to be custom-built for each AI product. MCP, the Model Context Protocol, is an open standard that changes that."
+            ]
+          },
+          {
+            "h": "At a glance",
+            "table": {
+              "head": [
+                "Spec",
+                "In plain terms"
+              ],
+              "rows": [
+                [
+                  "Full name",
+                  "Model Context Protocol"
+                ],
+                [
+                  "Type",
+                  "Open standard for connecting AI applications to external tools and data"
+                ],
+                [
+                  "Introduced",
+                  "By Anthropic in late 2024, since adopted across major AI platforms and developer tools"
+                ],
+                [
+                  "Architecture",
+                  "Client–server: AI apps are clients; MCP servers expose capabilities"
+                ],
+                [
+                  "What servers expose",
+                  "Tools (actions), resources (data) and prompts (reusable templates)"
+                ],
+                [
+                  "Why it matters",
+                  "Fewer one-off integrations and easier switching between AI providers"
+                ]
+              ]
+            }
+          },
+          {
+            "h": "The problem it solves",
+            "p": [
+              "Imagine five AI tools and ten business systems. Without a standard, that could mean fifty separate integrations. With MCP, each system is wrapped once as an MCP server, and any AI application that supports MCP can use it. That is why it is often compared to USB-C: one plug shape for many devices."
+            ]
+          },
+          {
+            "h": "How it works",
+            "list": [
+              "MCP server — a small service that sits in front of a system (a database, a file store, a ticketing tool) and describes what it can do.",
+              "MCP client — the AI application, such as an assistant or a coding tool, that discovers those capabilities and uses them.",
+              "Tools — actions the AI may take, like “create a ticket” or “look up an order”.",
+              "Resources — data the AI may read, like documents or records.",
+              "Prompts — reusable instructions that help the AI use the server well."
+            ]
+          },
+          {
+            "h": "Where it is useful",
+            "list": [
+              "Internal assistants that can look up policies, orders or stock levels.",
+              "Developer tools that read code, run tests and open issues.",
+              "Customer support assistants that check order status in real systems.",
+              "Agents that move information between tools as part of a workflow."
+            ]
+          },
+          {
+            "h": "What to check before connecting anything",
+            "list": [
+              "Use servers from sources you trust, or build your own.",
+              "Give each server read-only access unless writing is genuinely needed.",
+              "Keep credentials out of prompts and rotate them regularly.",
+              "Log tool calls so you can audit what the AI did.",
+              "Decide which actions need a person to approve them first."
+            ]
+          },
+          {
+            "h": "The bottom line",
+            "p": [
+              "MCP doesn’t make AI smarter — it makes it better connected. For businesses, that means AI assistants that work with your real information, built with integrations that are easier to maintain and less tied to a single provider."
+            ]
+          }
+        ],
+        "shareImage": "/assets/img/blog/model-context-protocol-share.png"
+      },
+      {
+        "slug": "retrieval-augmented-generation",
+        "title": "RAG explained: how AI answers from your own documents",
+        "seoTitle": "RAG Explained: Retrieval-Augmented Generation for Businesses",
+        "description": "Retrieval-augmented generation (RAG) lets AI answer questions from your own documents instead of guessing. How it works, embeddings and vector search in plain terms, where it is used and how to keep it accurate.",
+        "published": "2026-11-26",
+        "minutes": 6,
+        "image": "/assets/img/blog/retrieval-augmented-generation.svg",
+        "imageAlt": "A filing drawer of documents with a magnifying lens lifting pages into a glowing speech bubble",
+        "services": [
+          "ai-assistants",
+          "business-systems",
+          "workflow-automation"
+        ],
+        "related": [
+          "/services/ai-assistants",
+          "/blog/model-context-protocol",
+          "/blog/agentic-ai"
+        ],
+        "takeaways": [
+          "RAG finds the most relevant passages in your documents and gives them to the AI before it answers.",
+          "It reduces made-up answers and lets the AI quote and link its sources.",
+          "Answer quality depends on document quality: outdated or messy files produce poor answers.",
+          "Access rules matter — people should only get answers from documents they are allowed to see."
+        ],
+        "sections": [
+          {
+            "p": [
+              "Large language models are trained on huge amounts of public text, but they don’t know your price list, your HR policy or last month’s product update. Ask them anyway and they may produce a fluent, confident guess. Retrieval-augmented generation — RAG — fixes this by giving the model the right information at the moment it answers."
+            ]
+          },
+          {
+            "h": "At a glance",
+            "table": {
+              "head": [
+                "Spec",
+                "In plain terms"
+              ],
+              "rows": [
+                [
+                  "Full name",
+                  "Retrieval-augmented generation"
+                ],
+                [
+                  "What it does",
+                  "Retrieves relevant information first, then generates an answer grounded in it"
+                ],
+                [
+                  "Key ingredients",
+                  "Your documents, an embedding model, a vector index and a language model"
+                ],
+                [
+                  "Embeddings",
+                  "Numbers that capture meaning, so similar ideas can be found even with different words"
+                ],
+                [
+                  "Best for",
+                  "Policies, product manuals, contracts, FAQs, knowledge bases"
+                ],
+                [
+                  "Watch out for",
+                  "Stale content, missing access controls and answers without citations"
+                ]
+              ]
+            }
+          },
+          {
+            "h": "How RAG works",
+            "list": [
+              "Prepare — documents are split into small passages.",
+              "Embed — each passage is converted into an embedding: a list of numbers representing its meaning.",
+              "Index — the embeddings are stored in a vector index so they can be searched by meaning.",
+              "Retrieve — when someone asks a question, the most relevant passages are found.",
+              "Generate — the model writes an answer using those passages, ideally citing them."
+            ]
+          },
+          {
+            "h": "Why “search by meaning” matters",
+            "p": [
+              "Traditional search matches words. Vector search matches ideas, so a question about “annual leave” can find a policy that only says “vacation days”. Many systems combine both approaches for the best results."
+            ]
+          },
+          {
+            "h": "Where it is used across industries",
+            "list": [
+              "Banking and insurance — answering staff questions from long policy and product documents.",
+              "Legal — finding relevant clauses across contracts.",
+              "Healthcare — helping staff find procedures and administrative guidance.",
+              "Manufacturing and mining — searching manuals, maintenance logs and safety procedures.",
+              "Customer support — answering from help articles and order information."
+            ]
+          },
+          {
+            "h": "Keeping answers accurate",
+            "list": [
+              "Remove outdated documents and keep one current version of each.",
+              "Show the sources behind every answer so people can check them.",
+              "Respect permissions so confidential files never reach the wrong person.",
+              "Test with real questions and review the answers that go wrong.",
+              "Tell the assistant to say “I don’t know” when the documents don’t cover a question."
+            ]
+          },
+          {
+            "h": "Is RAG right for you?",
+            "p": [
+              "If your team spends time hunting through documents or answering the same questions repeatedly, RAG is often the most practical first AI project. Our AI Assistants service scopes the sources, permissions and testing so answers stay grounded in your information."
+            ]
+          }
+        ],
+        "shareImage": "/assets/img/blog/retrieval-augmented-generation-share.png"
+      },
+      {
+        "slug": "vibe-coding",
+        "title": "Vibe coding explained: what it is, where it works and where it breaks",
+        "seoTitle": "Vibe Coding Explained: Benefits, Risks and When to Get Help",
+        "description": "Vibe coding means building software by describing what you want to an AI. What it is, the tools behind it, where it shines for prototypes — and the security, data and maintenance problems to fix before launch.",
+        "published": "2026-11-26",
+        "minutes": 6,
+        "image": "/assets/img/blog/vibe-coding.svg",
+        "imageAlt": "A laptop with code blocks rising like bricks, with one cracked brick tilting off the stack",
+        "services": [
+          "business-systems",
+          "product-design-strategy",
+          "website-design"
+        ],
+        "related": [
+          "/services/business-systems",
+          "/product-design-strategy",
+          "/blog/agentic-ai"
+        ],
+        "takeaways": [
+          "Vibe coding is building software by describing it in plain language and letting AI write the code.",
+          "It is excellent for prototypes, internal tools and testing ideas quickly.",
+          "Generated apps often hide problems: weak security, exposed keys, poor data handling and no tests.",
+          "Before real customers or real data, have the code reviewed, secured and made maintainable."
+        ],
+        "sections": [
+          {
+            "p": [
+              "“Vibe coding” went from a throwaway phrase to a global trend remarkably quickly. The idea is simple: describe the app you want, let an AI generate the code, try it, describe what to change and repeat. Many people have built working prototypes in an afternoon this way."
+            ]
+          },
+          {
+            "h": "At a glance",
+            "table": {
+              "head": [
+                "Spec",
+                "In plain terms"
+              ],
+              "rows": [
+                [
+                  "What it is",
+                  "Creating software by prompting an AI and iterating on the results, often without reading much of the code"
+                ],
+                [
+                  "Coined",
+                  "By AI researcher Andrej Karpathy in early 2025"
+                ],
+                [
+                  "Typical tools",
+                  "AI app builders and AI coding assistants inside code editors"
+                ],
+                [
+                  "Best for",
+                  "Prototypes, demos, internal tools and early product experiments"
+                ],
+                [
+                  "Common gaps",
+                  "Authentication, access rules, secrets management, error handling, tests"
+                ],
+                [
+                  "Before launch",
+                  "Security review, data protection, performance checks and documentation"
+                ]
+              ]
+            }
+          },
+          {
+            "h": "Why people love it",
+            "list": [
+              "Speed — an idea can become a clickable prototype in hours.",
+              "Accessibility — founders and domain experts can build without a development team.",
+              "Cheap experiments — you can test whether an idea is worth building properly.",
+              "Momentum — seeing something real helps you explain your idea to customers and investors."
+            ]
+          },
+          {
+            "h": "Where it breaks",
+            "list": [
+              "Security — login, permissions and database rules are easy to get subtly wrong.",
+              "Secrets — API keys can end up in code that anyone can read.",
+              "Data — personal information may be stored or exposed in ways that conflict with POPIA.",
+              "Scale — what works for ten users can slow down or fail with a thousand.",
+              "Maintenance — code nobody has read is hard to change safely, and AI fixes can introduce new bugs."
+            ]
+          },
+          {
+            "h": "Prototype versus product",
+            "p": [
+              "A prototype answers “should this exist?”. A product has to be secure, reliable and maintainable for real customers. Vibe coding is great at the first question; the second needs engineering judgement — reviews, tests, monitoring and clear ownership of the code."
+            ]
+          },
+          {
+            "h": "A checklist before you launch",
+            "list": [
+              "Check who can read and change every piece of data.",
+              "Move keys and passwords into secure environment settings.",
+              "Add automated tests for the most important journeys.",
+              "Review dependencies and remove anything unused.",
+              "Set up backups, error monitoring and a way to roll back.",
+              "Document how the app works so someone else can maintain it."
+            ]
+          },
+          {
+            "h": "Need a second pair of eyes?",
+            "p": [
+              "If you have a vibe-coded app that works but you’re not sure it’s safe to launch, our team reviews, secures and hardens AI-built code — so your prototype can become a product."
+            ]
+          }
+        ],
+        "shareImage": "/assets/img/blog/vibe-coding-share.png"
+      },
+      {
+        "slug": "passkeys",
+        "title": "Passkeys explained: why passwords are on the way out",
+        "seoTitle": "Passkeys Explained: How Passwordless Sign-In Works",
+        "description": "Passkeys replace passwords with a cryptographic key stored on your device and unlocked by your fingerprint, face or PIN. How they work, why they resist phishing and what businesses should know.",
+        "published": "2026-11-26",
+        "minutes": 5,
+        "image": "/assets/img/blog/passkeys.svg",
+        "imageAlt": "A smartphone with a glowing fingerprint beside a key and an open padlock, with password dots falling away",
+        "services": [
+          "web-hosting",
+          "business-systems",
+          "ecommerce"
+        ],
+        "related": [
+          "/services/business-systems",
+          "/services/ecommerce",
+          "/services/web-hosting"
+        ],
+        "takeaways": [
+          "A passkey is a pair of cryptographic keys: a private one that stays on your device and a public one held by the website.",
+          "You unlock it with your fingerprint, face or device PIN — there’s no password to remember or steal.",
+          "Passkeys resist phishing because they only work on the genuine website they were created for.",
+          "They’re supported by major operating systems, browsers and password managers."
+        ],
+        "sections": [
+          {
+            "p": [
+              "Passwords are the weakest link in online security. People reuse them, write them down and type them into convincing fake websites. Passkeys are the industry’s answer — and they’re now built into the phones and computers most of us already use."
+            ]
+          },
+          {
+            "h": "At a glance",
+            "table": {
+              "head": [
+                "Spec",
+                "In plain terms"
+              ],
+              "rows": [
+                [
+                  "What it is",
+                  "A passwordless sign-in credential based on public-key cryptography"
+                ],
+                [
+                  "Standards",
+                  "FIDO2 and WebAuthn, developed by the FIDO Alliance and W3C"
+                ],
+                [
+                  "How you unlock it",
+                  "Fingerprint, face recognition or your device PIN"
+                ],
+                [
+                  "Where the secret lives",
+                  "On your device or in your password manager — never on the website’s server"
+                ],
+                [
+                  "Main benefit",
+                  "Resistant to phishing, password reuse and database leaks"
+                ],
+                [
+                  "Recovery",
+                  "Synced across devices via your platform account, plus backup sign-in options"
+                ]
+              ]
+            }
+          },
+          {
+            "h": "How passkeys work",
+            "list": [
+              "When you create a passkey, your device generates two linked keys.",
+              "The public key is stored by the website; on its own it can’t be used to sign in.",
+              "The private key stays on your device or in your password manager.",
+              "To sign in, the website sends a challenge, your device signs it with the private key after you unlock it, and the website checks the signature."
+            ]
+          },
+          {
+            "h": "Why they resist phishing",
+            "p": [
+              "A passkey is tied to the exact website it was created for. If a scammer builds a look-alike site, your device simply won’t offer the passkey there. And because the website never holds a secret that can be reused, a breached database doesn’t hand attackers your login."
+            ]
+          },
+          {
+            "h": "Where you’ll see them",
+            "list": [
+              "Banking and fintech apps adding faster, safer sign-in.",
+              "Online stores reducing abandoned checkouts caused by forgotten passwords.",
+              "Workplace tools strengthening employee sign-in.",
+              "Customer portals and booking systems."
+            ]
+          },
+          {
+            "h": "What businesses should consider",
+            "list": [
+              "Offer passkeys alongside existing sign-in options during the transition.",
+              "Plan account recovery carefully — it’s where attackers will try next.",
+              "Explain the benefit in plain words on your sign-in screen.",
+              "Use well-established authentication libraries or providers rather than building your own."
+            ]
+          },
+          {
+            "h": "The bottom line",
+            "p": [
+              "Passkeys make signing in both easier and safer — a rare win-win in security. If you’re building a customer portal, online store or business system, it’s worth planning for them from the start."
+            ]
+          }
+        ],
+        "shareImage": "/assets/img/blog/passkeys-share.png"
+      },
+      {
+        "slug": "digital-twins",
+        "title": "Digital twins explained: from mines to hospitals",
+        "seoTitle": "Digital Twins Explained: How Industries Use Virtual Models",
+        "description": "A digital twin is a virtual model of a real asset or process, kept up to date with live data. How digital twins work and how mining, manufacturing, energy, cities and healthcare use them.",
+        "published": "2026-11-26",
+        "minutes": 6,
+        "image": "/assets/img/blog/digital-twins.svg",
+        "imageAlt": "A solid model of a mining plant beside its glowing green wireframe twin, linked by streams of data",
+        "services": [
+          "business-systems",
+          "workflow-automation"
+        ],
+        "related": [
+          "/services/business-systems",
+          "/services/workflow-automation",
+          "/blog/agentic-ai"
+        ],
+        "takeaways": [
+          "A digital twin is a virtual copy of a real asset, system or process that updates with live data.",
+          "It lets you monitor, test changes and predict problems without touching the real thing.",
+          "Sensors, connectivity, a data platform and a model of how the asset behaves are the core ingredients.",
+          "Start with one asset and one clear question, such as “when will this pump fail?”."
+        ],
+        "sections": [
+          {
+            "p": [
+              "A digital twin is a virtual model of something real — a pump, a production line, a building or an entire mine — that stays in sync with its physical counterpart through live data. Unlike a static 3D drawing, a twin changes as the real thing changes."
+            ]
+          },
+          {
+            "h": "At a glance",
+            "table": {
+              "head": [
+                "Spec",
+                "In plain terms"
+              ],
+              "rows": [
+                [
+                  "What it is",
+                  "A living virtual model of a physical asset or process"
+                ],
+                [
+                  "Fed by",
+                  "Sensors, equipment data and business systems (IoT)"
+                ],
+                [
+                  "Core uses",
+                  "Monitoring, simulation, predictive maintenance and planning"
+                ],
+                [
+                  "Industries",
+                  "Mining, manufacturing, energy, logistics, cities and healthcare"
+                ],
+                [
+                  "Building blocks",
+                  "Sensors, connectivity, data platform, model, dashboards"
+                ],
+                [
+                  "Common pitfall",
+                  "Collecting data without a clear decision it will improve"
+                ]
+              ]
+            }
+          },
+          {
+            "h": "How a digital twin works",
+            "list": [
+              "Sense — sensors measure things like temperature, vibration, pressure or location.",
+              "Connect — that data flows to a central platform in near real time.",
+              "Model — software represents how the asset behaves and how its parts relate.",
+              "Analyse — dashboards, rules and machine learning spot trends and anomalies.",
+              "Act — teams use the insights to schedule maintenance, change settings or plan improvements."
+            ]
+          },
+          {
+            "h": "How industries use them",
+            "list": [
+              "Mining — modelling processing plants, monitoring equipment health and planning ventilation and haulage.",
+              "Manufacturing — simulating production lines to remove bottlenecks before changing the real floor.",
+              "Energy and utilities — monitoring generation, grids and water networks to anticipate faults.",
+              "Cities and buildings — managing energy use, maintenance and occupancy.",
+              "Healthcare — modelling patient flow and equipment use in hospitals; research also explores twins of organs."
+            ]
+          },
+          {
+            "h": "Why it matters",
+            "p": [
+              "The value of a twin is the ability to ask “what if?” safely. What if we run this machine faster? What if this conveyor stops? When will this part fail? Answering those questions virtually can reduce downtime, improve safety and support better investment decisions."
+            ]
+          },
+          {
+            "h": "Getting started without overspending",
+            "list": [
+              "Choose one high-value asset with a costly failure mode.",
+              "Use the data you already have before adding new sensors.",
+              "Define the decision the twin should improve, and how you’ll measure success.",
+              "Build a simple dashboard first; add simulation and prediction later."
+            ]
+          },
+          {
+            "h": "Where we can help",
+            "p": [
+              "Digital twins rely on data pipelines, dashboards and integrations — the same building blocks as our AI & Data Engineering and Business Systems work. We can help you turn existing data into a practical first view of your operation."
+            ]
+          }
+        ],
+        "shareImage": "/assets/img/blog/digital-twins-share.png"
+      }
+    ]
+  },
+  "howWeWork": {
+    "intro": "How a project runs, who builds what and the ways you can work with us — so you know exactly what happens after you get in touch.",
+    "steps": [
+      {
+        "title": "Talk it through",
+        "body": "Tell us what you’re building and what isn’t working. No brief required — goals, examples and what you use today are enough to start."
+      },
+      {
+        "title": "Agree a written scope",
+        "body": "You get a written quote covering deliverables, responsibilities, budget and timing. Nothing starts until you approve it."
+      },
+      {
+        "title": "Design the experience",
+        "body": "Journeys, content structure and interfaces are shaped around your customers and the way your business works, then reviewed with you."
+      },
+      {
+        "title": "Build and connect",
+        "body": "Design and development move together. Suitable providers are selected and configured; forms, bookings, payments and other integrations are connected to the agreed scope."
+      },
+      {
+        "title": "Test and launch",
+        "body": "The agreed journeys are tested end to end before a considered launch."
+      },
+      {
+        "title": "Hand over and support",
+        "body": "You receive the access, assets and documentation agreed. Ongoing support and maintenance options are agreed upfront."
+      }
+    ],
+    "roles": [
+      {
+        "who": "Our founder",
+        "what": "Strategy, journeys and interface design, frontend development, provider setup, testing and launch — from the first conversation to handover."
+      },
+      {
+        "who": "Graphic designer & animator",
+        "what": "Brand visuals, social and print graphics, motion graphics and animated explainers."
+      },
+      {
+        "who": "Backend & AI engineer",
+        "what": "Databases, APIs, cloud infrastructure and AI features, built and reviewed by our certified AI and backend engineer."
+      },
+      {
+        "who": "You",
+        "what": "Your goals, content such as copy, photos and product details, brand assets, feedback at each review point and final approvals."
+      },
+      {
+        "who": "Your chosen providers",
+        "what": "Hosting, domains, payment gateways, booking, email and AI services. Their fees are billed by them under their own terms."
+      }
+    ],
+    "ways": [
+      {
+        "title": "A fixed-scope project",
+        "body": "One written quote for a website, online store, app or business system. Starting prices are published and the scope is agreed before work starts.",
+        "link": "/pricing",
+        "linkLabel": "See starting prices"
+      },
+      {
+        "title": "One focused piece first",
+        "body": "Scope one focused solution now — a landing page, an automation or an AI assistant — and connect more services later as your needs grow.",
+        "link": "/services",
+        "linkLabel": "Browse services"
+      },
+      {
+        "title": "Support after launch",
+        "body": "Hosting management, updates and ongoing improvements, agreed upfront so you know what’s covered.",
+        "link": "/services/web-hosting",
+        "linkLabel": "Web Hosting"
+      }
+    ],
+    "rhythm": [
+      "Review points are planned into your scope, so you see progress and give feedback before the next stage.",
+      "Questions can go through WhatsApp, email or a booked call — whichever suits you.",
+      "Johannesburg-based, working with businesses across South Africa and remotely, whatever your time zone."
+    ],
+    "why": [
+      {
+        "title": "One team designs and builds",
+        "body": "The people who design your project also build it, so nothing gets lost in a hand-off between agencies."
+      },
+      {
+        "title": "A written scope and a starting price",
+        "body": "Starting prices are published and the scope is agreed in writing before work starts. Third-party costs are listed separately."
+      },
+      {
+        "title": "Specialists, one team",
+        "body": "Design, motion, frontend, backend and AI engineering in one team of three, and the people you speak to are the people doing the work."
+      }
+    ]
+  },
+  "address": {
+    "street": "41 Juta St",
+    "suburb": "Braamfontein",
+    "city": "Johannesburg",
+    "postalCode": "2017",
+    "region": "Gauteng",
+    "country": "ZA",
+    "display": "41 Juta St, Braamfontein, Johannesburg, 2017"
+  },
+  "team": {
+    "title": "Three people. One studio.",
+    "intro": "Design, motion and engineering under one roof. The people you speak to are the people doing the work — no hand-offs to strangers.",
+    "members": [
+      {
+        "id": "lulamile",
+        "name": "Lulamile Mkhungela",
+        "role": "Founder · UX/UI Designer & Frontend Developer",
+        "photo": "/assets/img/lulamile.webp",
+        "bio": [
+          "Lulamile founded LulaZel Digital Studio in 2019 to bring design and development together. He leads every project from the first conversation to launch — shaping the strategy, designing the journeys and interfaces, and building the frontend that customers actually use.",
+          "His focus is simple: turn a business problem into something clear, useful and ready for the real world."
+        ],
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/lulamile-mkhungela/",
+          "email": "mkhungela.l@gmail.com",
+          "phone": "+27837195064",
+          "phoneDisplay": "+27 83 719 5064"
+        }
+      },
+      {
+        "id": "ronald",
+        "name": "Ronald Modiba",
+        "role": "Graphic Designer | Motion | Animation",
+        "photo": null,
+        "bio": [
+          "Ronald brings brands and ideas to life through graphic design, motion and animation. A multimedia graduate of Tshwane University of Technology, he has spent more than four years turning storyboards into animated videos, infographics and interactive digital learning, using Adobe Illustrator, Photoshop and After Effects, Vyond, and 3D tools such as 3ds Max and Unity.",
+          "He and Lulamile first worked together at The Digital Academy. At LulaZel he leads brand visuals, motion graphics and animated explainers."
+        ],
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/ronald-modiba-ba4451131",
+          "email": "ronald.mronza@gmail.com",
+          "phone": "+27607089787",
+          "phoneDisplay": "+27 60 708 9787"
+        }
+      },
+      {
+        "id": "keitumetse",
+        "name": "Keitumetse Donald Bokaba",
+        "role": "Backend & AI Engineer",
+        "photo": null,
+        "bio": [
+          "Keitumetse is a certified AI engineer and backend developer: Microsoft-certified, with three Azure certifications and hands-on machine-learning and generative-AI experience on AWS. With a background in data science and software development, he builds the systems behind the screen — databases, APIs, cloud infrastructure and the AI features that run on them.",
+          "He and Lulamile were on the winning team at Empire Partner Foundation’s 2021 GBV hackathon, where they built HashScape, a mobile app that uses AI to help identify signs of abuse. At LulaZel he leads backend and AI engineering."
+        ],
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/keitumetse-donald-bokaba-2093a1a3/",
+          "email": "donald.bokaba@gmail.com",
+          "phone": "+27711111979",
+          "phoneDisplay": "+27 71 111 1979"
+        }
+      }
+    ]
   }
 }

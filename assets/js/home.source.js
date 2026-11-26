@@ -18,7 +18,17 @@ function LocalHomeProcess() {
   return h('section',{id:'process',className:'hm-panel hm-process','data-background-text':'THE PROCESS','aria-labelledby':'hm-process-title'},
     h('div',{className:'unified-container'},h('div',{className:'hm-restored-heading'},h('div',null,h('p',{className:'hybrid-eyebrow'},'10 / How we work'),h('h2',{id:'hm-process-title'},'Process')),h('p',null,'A conversation. A clear plan. Something that works.')),
       h('div',{className:'hm-process-grid'},...localSiteContent.process.map((step,index)=>h('article',{className:'hm-process-card',key:step.num},
-        h('div',{className:'hm-process-top'},h('span',null,step.num),h(LocalServiceIcon,{name:['chat','layout','flow'][index]})),h('h3',null,step.title),h('p',null,step.body),h('span',{className:'hm-process-track','aria-hidden':true},h('i'),h('i'),h('i')))))));
+        h('div',{className:'hm-process-top'},h('span',null,step.num),h(LocalServiceIcon,{name:['chat','layout','flow'][index]})),h('h3',null,step.title),h('p',null,step.body),h('span',{className:'hm-process-track','aria-hidden':true},h('i'),h('i'),h('i'))))),
+      h('p',{className:'hm-process-more'},h(ve,{to:'/how-we-work'},'How a project runs, who builds what and ways to work with us',h(LocalUiIcon,{name:'arrow-up-right'})))));
+}
+/** Home FAQ (12): the same shared answers as Contact, closing the page like a studio FAQ. */
+function LocalHomeFaq() {
+  const h=g.createElement;
+  return h('section',{id:'home-faq',className:'hm-panel hm-faq','data-background-text':'GOOD QUESTIONS','aria-labelledby':'hm-faq-title'},
+    h('div',{className:'unified-container hm-faq-layout'},
+      h('div',{className:'hm-restored-heading hm-faq-heading'},h('div',null,h('p',{className:'hybrid-eyebrow'},'12 / Before you ask'),h('h2',{id:'hm-faq-title'},'Questions')),h('p',null,'How we start, who works on your project and what it costs — answered plainly.')),
+      h('div',{className:'hm-faq-list'},...localSiteContent.faq.map((item,index)=>h('details',{className:'unified-faq-item',key:item.question,open:index===0||undefined},h('summary',null,item.question),h('p',null,item.answer)))),
+      h('p',{className:'hm-process-more'},h(ve,{to:'/contact'},'Still got questions? Talk to us',h(LocalUiIcon,{name:'arrow-up-right'})),h(ve,{to:'/blog'},'Read the blog',h(LocalUiIcon,{name:'arrow-up-right'})))));
 }
 /** Real hash hrefs work without JS; router pushes get distinct history keys. */
 function LocalHomeChapterLink({to,onClick,children,...props}) {
@@ -31,7 +41,7 @@ function LocalHomeChapterLink({to,onClick,children,...props}) {
 /** Native hash links also work before hydration and without JavaScript. */
 function LocalHomeNavigator() {
   const h=g.createElement;
-  const chapters=[{id:'home',label:'Welcome'},...localHomeContent.sections.map(item=>({id:item.id,label:item.eyebrow})),{id:'home-portfolio',label:'Work'},{id:'home-about',label:'About'},{id:'process',label:'Process'},{id:'testimonials',label:'Testimonials'}];
+  const chapters=[{id:'home',label:'Welcome'},...localHomeContent.sections.map(item=>({id:item.id,label:item.eyebrow})),{id:'home-portfolio',label:'Work'},{id:'home-about',label:'About'},{id:'process',label:'Process'},{id:'testimonials',label:'Testimonials'},{id:'home-faq',label:'Questions'}];
   const [position,setPosition]=g.useState({active:'home',progress:0});
   g.useEffect(()=>{
     let frame=0;
@@ -106,7 +116,7 @@ function LocalHomeTestimonials() {
               h('span',{className:'hm-quote-mark','aria-hidden':true},'“'),
               h('details',{className:'hm-quote-details'},h('summary',null,h('span',{className:'hm-quote-preview'},preview),h('span',{className:'hm-quote-toggle'},h('span',{className:'hm-quote-more'},'Read full note'),h('span',{className:'hm-quote-less'},'Close full note'),h(LocalUiIcon,{name:'chevron-down'}))),h('blockquote',null,person.message)));
           })),
-          h('p',{className:'hm-carousel-status',role:'status','aria-live':'polite'},'Showing from '+(slide+1)+' of '+localSiteContent.testimonials.length+' · Swipe or use the arrows')))));
+          h('p',{className:'hm-carousel-status',role:'status','aria-live':'polite'},'Showing '+(slide+1)+' of '+localSiteContent.testimonials.length+' · Swipe or use the arrows')))));
 }
 /** Verifiable facts only, computed from the site's own data (no invented metrics). */
 function LocalHomeTrust() {
@@ -115,7 +125,7 @@ function LocalHomeTrust() {
   const facts=[
     ['Since '+Math.min(...years),'Designing & building'],
     [String(localPortfolioProjects.length),'Projects & studies'],
-    [String(localServiceCatalogue.services.length),'Services, one studio'],
+    [String(localServiceCatalogue.services.length),'Services under one roof'],
     ['JHB','Nationwide & remote']
   ];
   return h('ul',{className:'hm-trust','aria-label':'LulaZel Digital Studio at a glance'},...facts.map(([value,label])=>h('li',{key:label},h('strong',null,value),h('span',null,label))));
@@ -137,5 +147,5 @@ function LocalHomePage() {
     h('section',{id:'home-portfolio',className:'hm-panel hm-portfolio','aria-labelledby':'hm-portfolio-title'},h('div',{className:'hm-watermark','aria-hidden':true},'OUR WORK.'),h('div',{className:'unified-container'},h('div',{className:'hm-portfolio-heading'},h('div',null,label(content.portfolio.number,content.portfolio.eyebrow),h(LocalHomeTitle,{lines:content.portfolio.lines,id:'hm-portfolio-title'})),h('div',null,h('p',{className:'hm-description'},content.portfolio.description),h(LocalHomeLink,{to:'/portfolio',primary:true},content.portfolio.action))),
       h(LocalProjectRail,{className:'hm-project-previews pf-featured',projects:localPortfolioProjects.filter(project=>project.featured).sort((a,b)=>a.homeOrder-b.homeOrder),category:'home'}))),
     h('section',{id:'home-about',className:'hm-panel hm-about','aria-labelledby':'hm-about-title'},h('div',{className:'hm-watermark','aria-hidden':true},'LULAZEL.'),h('div',{className:'unified-container hm-panel-inner'},h('div',{className:'hm-copy'},label(content.about.number,content.about.eyebrow),h(LocalHomeTitle,{lines:content.about.lines,id:'hm-about-title'}),h('p',{className:'hm-description'},content.about.description),h('p',{className:'hm-description'},content.about.second),h('div',{className:'hm-actions'},h(LocalHomeLink,{to:'/about',primary:true},content.about.action))),
-      h('div',{className:'hm-portrait-wrap'},h('div',{className:'hm-portrait-frame'},h('img',{src:'/assets/img/lulamile.webp',alt:localSiteContent.name+' — designer, developer and founder',width:900,height:900,loading:'eager',decoding:'async',fetchPriority:'high'})),h('div',{className:'hm-portrait-caption'},h('span',null,'Lulamile Mkhungela · Founder'),h('small',null,'LulaZel Digital Studio · Johannesburg'))))),h(LocalHomeProcess),h(LocalHomeTestimonials)));
+      h('div',{className:'hm-portrait-wrap'},h('div',{className:'hm-portrait-frame'},h('img',{src:'/assets/img/lulamile.webp',alt:localSiteContent.name+' — designer, developer and founder',width:900,height:900,loading:'eager',decoding:'async',fetchPriority:'high'})),h('div',{className:'hm-portrait-caption'},h('span',null,'Lulamile Mkhungela · Founder'),h('small',null,'LulaZel Digital Studio · Johannesburg'))))),h(LocalHomeProcess),h(LocalHomeTestimonials),h(LocalHomeFaq)));
 }
