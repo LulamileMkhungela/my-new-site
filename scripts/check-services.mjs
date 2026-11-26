@@ -119,3 +119,7 @@ assert.ok(homeContent.sections.filter(section=>/^I\b/.test(section.description))
 const sceneSource=read('assets/js/interactive-scenes.source.js');
 for(const removed of ['Move cursor to tilt','Separate parts','Click to separate','scene-controls'])assert.ok(!sceneSource.includes(removed),'Removed vector controls/instructions must not return: '+removed);
 console.log('✓ Varied first-person service wording and no generated vector control strip');
+// Models auto-rotate a full turn: every model path must dress its back faces.
+assert.equal((sceneSource.match(/dressBacks\(parts\);return\{root,parts\};/g)||[]).length,2,'Both recipe and hand-built models get decorated backs');
+assert.ok(sceneSource.includes("back.rotation.y=Math.PI"),'Back details are turned, not mirrored, so they read correctly from behind');
+console.log('✓ Rotating 3D models show details on their back faces');
