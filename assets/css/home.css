@@ -199,3 +199,12 @@ body .hm-page~.site-back-to-top { bottom:calc(88px + env(safe-area-inset-bottom)
   .hm-hero-actions { margin-top:1.4rem; }
   .hm-trust { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem 1.25rem; margin-top:1.6rem; }
 }
+
+/* Phones scroll natively (no pinned chapter deck), so content passes under the
+   fixed section rail: give it an opaque, compact bar instead of a fade. */
+@media (max-width:760px) {
+  body .hm-chapter-rail { min-height:52px; padding:4px 12px calc(4px + env(safe-area-inset-bottom)); background:#131c25f5; -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-top:1px solid #a8c3c31f; }
+  body .hm-chapter-rail a { min-height:44px; }
+  body .hm-page~.site-back-to-top { bottom:calc(64px + env(safe-area-inset-bottom)); }
+  body:has(.hm-chapter-rail) .unified-footer { padding-bottom:calc(56px + env(safe-area-inset-bottom)); }
+}

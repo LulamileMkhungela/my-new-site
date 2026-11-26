@@ -141,7 +141,10 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
  };
  const scan=()=>{
   for(const [root,deck]of roots)if(!root.isConnected){deck.resize.disconnect();roots.delete(root);}
-  if(reduced.matches){clear();return;}
+  // Phones get native scrolling: a pinned, scroll-scrubbed stage fights touch
+  // momentum (hold zones feel stuck, flicks skip chapters). Sections stack in
+  // normal flow with the directional entrances below; 3D models still mount.
+  if(reduced.matches||mobile.matches){clear();return;}
   for(const root of document.querySelectorAll('main.hm-page')){
    if(roots.has(root))continue;
    const stage=root.querySelector('.hm-stage');if(!stage)continue;
@@ -173,7 +176,7 @@ if(window.CSS?.supports('transform','translate3d(0,0,0)')&&'ResizeObserver' in w
  window.addEventListener('resize',()=>{if(!mobile.matches||innerWidth!==measuredWidth){measuredWidth=innerWidth;scheduleMeasure();}},{passive:true});
  document.addEventListener('lulazel-scene-focus',event=>{for(const deck of roots.values())deck.focus=event.detail;});
  reduced.addEventListener('change',()=>{clear();scan();});
- mobile.addEventListener('change',scheduleMeasure);
+ mobile.addEventListener('change',()=>{clear();scan();});
  document.fonts?.ready.then(scheduleMeasure);scan();
 }
 
