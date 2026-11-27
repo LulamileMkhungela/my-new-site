@@ -23,7 +23,13 @@
     "slogan": "Ideas into digital impact.",
     "foundingDate": "2019",
     "lastUpdated": "2026-11-26",
-    "indexNowKey": "8153fef2b78471709d77158d6ccd5cb0"
+    "indexNowKey": "8153fef2b78471709d77158d6ccd5cb0",
+    "siteVerification": {
+      "google": "",
+      "bing": "F8811B3C4500AB798CACD0A534E9EA73",
+      "yandex": "",
+      "pinterest": ""
+    }
   },
   "routes": {
     "/": {
