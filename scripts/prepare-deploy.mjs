@@ -5,7 +5,7 @@ const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'dist');
 const {routes,aliases}=JSON.parse(fs.readFileSync(path.join(root,'assets/js/publication.data.json'),'utf8'));
 fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});
 const copy=(source,target=source)=>{fs.mkdirSync(path.dirname(path.join(out,target)),{recursive:true});fs.cpSync(path.join(root,source),path.join(out,target),{recursive:true});};
-for(const name of ['index.html','404.html','case-study.html','robots.txt','sitemap.xml','site.webmanifest','llms.txt'])copy(name);
+for(const name of ['index.html','404.html','case-study.html','robots.txt','sitemap.xml','site.webmanifest','llms.txt','BingSiteAuth.xml'])copy(name);
 for(const name of fs.readdirSync(root).filter(name=>/^[a-f0-9]{32}\.txt$/.test(name)))copy(name);
 for(const route of Object.keys(routes).filter(p=>p!=='/'&&p!=='/404'))copy(route.slice(1)+'/index.html');
 for(const alias of Object.keys(aliases).filter(p=>p!=='/index.html'))copy(alias.slice(1)+(alias.endsWith('.html')?'':'/index.html'));
